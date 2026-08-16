@@ -1,2 +1,0 @@
-scenario,cases,waiting_mean,service_mean,turnaround_mean,waiting_median,service_median,turnaround_median
-Baseline,24000,17.204613473174515,5.775150159479364,"Series([], dtype: float64)",4.0,0.0,"Series([], dtype: float64)"
