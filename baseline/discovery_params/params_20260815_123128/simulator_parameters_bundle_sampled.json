@@ -1,0 +1,239 @@
+{
+  "paramset": "params_20260815_123128",
+  "eventlog_source": "../../data/processed/CTB/xes_files/s6_eventlog_target_rank_features.xes",
+  "created_by": "generate_simulation_parameters.py",
+  "timestamp": "2026-08-15T14:53:38.805226",
+  "activities": {
+    "Gate Out": {
+      "service": {
+        "family": "expon",
+        "params": "(0.0, 0.0)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_delivery": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.9140214993025872, 0, 6.559264587372676)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_mixed": {
+      "service": {
+        "family": "gamma",
+        "params": "(2.2781647422118283, 0, 8.71628925213895)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_receive": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.6533535279278764, 0, 13.625567329168243)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_delivery": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.7116710944508086, 0, 7.716816797801332)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_mixed": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.673088017169779, 0, 7.262173718276075)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_receive": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.605033510801225, 0, 8.532358736160436)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_delivery": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.7703949708188302, 0, 6.261683371408537)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_mixed": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.7588568062816893, 0, 11.273061889220328)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_receive": {
+      "service": {
+        "family": "lognorm",
+        "params": "(0.7161796180572204, 0, 9.113252990607728)"
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    }
+  },
+  "resources": {
+    "LL": {
+      "capacity": 2,
+      "capacity_candidates": [
+        1,
+        2,
+        3
+      ]
+    },
+    "HO2": {
+      "capacity": 2,
+      "capacity_candidates": [
+        1,
+        2,
+        3
+      ]
+    },
+    "RMG": {
+      "capacity": 1,
+      "capacity_candidates": [
+        1
+      ]
+    }
+  },
+  "routing_table": "archiv\\discovered_routing_probabilities.csv",
+  "resources_waiting": {
+    "HO2": {
+      "family": "weibull_min",
+      "params": "(0.7121307011891714, 0, 11.879719329225843)"
+    },
+    "LL": {
+      "family": "gamma",
+      "params": "(0.9210754921875646, 0, 3.6053913536823803)"
+    },
+    "Res.GateIn": {
+      "family": "lognorm",
+      "params": "(0.8009218664599489, 0, 2.4222392175112035)"
+    },
+    "Res.GateOut": {
+      "family": "lognorm",
+      "params": "(1.3201678363618603, 0, 3.9732129268340013)"
+    },
+    "T06": {
+      "family": "lognorm",
+      "params": "(1.3524760210703197, 0, 4.4370158470089125)"
+    },
+    "T07": {
+      "family": "lognorm",
+      "params": "(1.217528069532186, 0, 3.639326222912155)"
+    },
+    "T08": {
+      "family": "lognorm",
+      "params": "(1.4042371900856636, 0, 4.078187869789891)"
+    },
+    "T09": {
+      "family": "lognorm",
+      "params": "(1.2772218742649941, 0, 3.965034487818053)"
+    },
+    "T10": {
+      "family": "lognorm",
+      "params": "(1.4189288879221333, 0, 2.9938279707763686)"
+    },
+    "T11": {
+      "family": "weibull_min",
+      "params": "(0.7333067709603122, 0, 8.418621432464418)"
+    },
+    "T12": {
+      "family": "weibull_min",
+      "params": "(0.7935813125714453, 0, 4.798989669189124)"
+    },
+    "T13": {
+      "family": "weibull_min",
+      "params": "(0.6364454853262873, 0, 10.610219835522502)"
+    },
+    "T14": {
+      "family": "gamma",
+      "params": "(0.5624550692121957, 0, 12.98794353541277)"
+    },
+    "T15": {
+      "family": "lognorm",
+      "params": "(1.0173449510637853, 0, 4.10752171128857)"
+    },
+    "T16": {
+      "family": "lognorm",
+      "params": "(1.199113796795186, 0, 4.903128164103784)"
+    },
+    "T17": {
+      "family": "lognorm",
+      "params": "(1.231962394826316, 0, 4.793753653741245)"
+    },
+    "T18": {
+      "family": "lognorm",
+      "params": "(1.1995856724234026, 0, 4.428481402312705)"
+    },
+    "T19": {
+      "family": "lognorm",
+      "params": "(1.2194130831803143, 0, 5.513966751253966)"
+    },
+    "T20": {
+      "family": "lognorm",
+      "params": "(1.1067501252385523, 0, 3.4781824391517304)"
+    },
+    "T21": {
+      "family": "gamma",
+      "params": "(0.8569623121532595, 0, 6.9881068469490035)"
+    },
+    "T22": {
+      "family": "lognorm",
+      "params": "(1.1370459326002509, 0, 2.8997250611851104)"
+    },
+    "T23": {
+      "family": "lognorm",
+      "params": "(1.262572911147138, 0, 3.3572116340488916)"
+    },
+    "T24": {
+      "family": "gamma",
+      "params": "(0.7897466175769358, 0, 7.481578955124916)"
+    },
+    "T25": {
+      "family": "gamma",
+      "params": "(0.7937628534858212, 0, 8.351561057801765)"
+    },
+    "T26": {
+      "family": "gamma",
+      "params": "(0.5548782729504387, 0, 15.478870425434808)"
+    },
+    "T27": {
+      "family": "gamma",
+      "params": "(0.624987716931743, 0, 10.838753893549375)"
+    }
+  }
+}

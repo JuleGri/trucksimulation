@@ -1,0 +1,11 @@
+activity,waiting_mean,waiting_std,lognormal_params,gamma_params,chosen_family,chosen_params,source
+Gate Out,,,,,empirical,,insufficient_stats
+HO2_delivery,,,,,empirical,,insufficient_stats
+HO2_mixed,,,,,empirical,,insufficient_stats
+HO2_receive,,,,,empirical,,insufficient_stats
+LL_delivery,,,,,empirical,,insufficient_stats
+LL_mixed,,,,,empirical,,insufficient_stats
+LL_receive,,,,,empirical,,insufficient_stats
+RMG_delivery,,,,,empirical,,insufficient_stats
+RMG_mixed,,,,,empirical,,insufficient_stats
+RMG_receive,,,,,empirical,,insufficient_stats

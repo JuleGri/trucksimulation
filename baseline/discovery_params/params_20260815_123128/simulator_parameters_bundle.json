@@ -1,0 +1,160 @@
+{
+  "paramset": "params_20260815_123128",
+  "eventlog_source": "../../data/processed/CTB/xes_files/s6_eventlog_target_rank_features.xes",
+  "created_by": "generate_simulation_parameters.py",
+  "timestamp": "2026-08-15T14:53:38.805226",
+  "activities": {
+    "Gate Out": {
+      "service": {
+        "family": "empirical",
+        "params": null
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_delivery": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 1.9353312453807616,
+          "sigma": 0.8272873431020639
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_mixed": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.805132859707725,
+          "sigma": 0.5988407189459043
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "HO2_receive": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.60935405866324,
+          "sigma": 0.6564614564136486
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_delivery": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.024591570951772,
+          "sigma": 0.7627416595325369
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_mixed": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 1.9729041206019662,
+          "sigma": 0.7055596628084517
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "LL_receive": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.1056285294393224,
+          "sigma": 0.6697255978494419
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_delivery": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 1.8055607784518823,
+          "sigma": 0.8221505388326789
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_mixed": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.430851153020581,
+          "sigma": 0.737378014535837
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    },
+    "RMG_receive": {
+      "service": {
+        "family": "lognormal",
+        "params": {
+          "mu": 2.1904304429669583,
+          "sigma": 0.7570820344189427
+        }
+      },
+      "waiting": {
+        "family": "empirical",
+        "params": null
+      }
+    }
+  },
+  "resources": {
+    "LL": {
+      "capacity": 2,
+      "capacity_candidates": [
+        1,
+        2,
+        3
+      ]
+    },
+    "HO2": {
+      "capacity": 2,
+      "capacity_candidates": [
+        1,
+        2,
+        3
+      ]
+    },
+    "RMG": {
+      "capacity": 1,
+      "capacity_candidates": [
+        1
+      ]
+    }
+  },
+  "routing_table": "archiv\\discovered_routing_probabilities.csv"
+}

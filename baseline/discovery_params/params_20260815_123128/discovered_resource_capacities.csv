@@ -1,0 +1,6 @@
+resource_pool,median_concurrency,p90_concurrency,max_concurrency,night_cap,candidate_capacities,chosen_capacity_baseline
+GateIn,0,0,10,1,"[1, 2, 3]",1
+GateOut,0,0,9,1,"[1, 2, 3]",1
+HO2,1,8,15,1,"[1, 2, 3]",3
+LL,1,6,25,1,"[1, 2, 3]",3
+OTHER,4,27,63,1,"[1, 2, 3]",3

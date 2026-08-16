@@ -1,0 +1,4 @@
+analysis,pooled_rmse_mean,tree_rmse_mean,tree_rmse_improvement_pct,pooled_r2_mean,tree_r2_mean,best_overall_activity_count,best_tree_r2_mean,best_tree_r2_min,best_tree_r2_max,resource_count,mean_utilization_proxy,max_relative_to_baseline
+arrival_model_robustness,38.15555975012202,20.851489690451594,45.35137257320695,-0.027210750519960167,0.6266372260715233,,,,,,,
+duration_model_robustness,,,,,,11.0,0.10402230824002584,-0.4259979330301342,1.0,,,
+capacity_sensitivity,,,,,,,,,,5.0,2.872222222222222,3.0

@@ -1,0 +1,75 @@
+edge_from,edge_to,count
+RMG_receive,Gate Out,37369
+Gate In,RMG_receive,32830
+Gate In,RMG_delivery,16875
+RMG_delivery,Gate Out,16641
+RMG_mixed,Gate Out,12810
+Gate In,RMG_mixed,11798
+Gate In,LL_delivery,9828
+Gate In,HO2_delivery,6488
+LL_delivery,Gate Out,5973
+HO2_delivery,Gate Out,5936
+HO2_receive,Gate Out,4964
+Gate In,LL_mixed,4486
+Gate In,HO2_receive,4468
+LL_delivery,RMG_receive,2982
+LL_mixed,Gate Out,2891
+Gate In,HO2_mixed,2038
+HO2_mixed,Gate Out,2013
+LL_mixed,RMG_receive,1076
+LL_receive,Gate Out,850
+RMG_mixed,RMG_mixed,694
+Gate In,LL_receive,636
+LL_delivery,RMG_mixed,511
+LL_mixed,RMG_mixed,507
+HO2_delivery,RMG_receive,463
+RMG_receive,RMG_receive,463
+LL_delivery,LL_delivery,342
+LL_delivery,HO2_receive,330
+HO2_mixed,HO2_mixed,192
+LL_mixed,LL_mixed,160
+RMG_delivery,LL_receive,151
+RMG_delivery,RMG_delivery,121
+LL_mixed,HO2_receive,98
+HO2_delivery,HO2_delivery,97
+HO2_receive,HO2_receive,91
+HO2_mixed,RMG_receive,69
+RMG_receive,HO2_receive,60
+RMG_delivery,HO2_receive,53
+LL_delivery,HO2_mixed,49
+RMG_mixed,LL_mixed,49
+HO2_receive,RMG_receive,47
+HO2_delivery,LL_receive,44
+HO2_delivery,RMG_mixed,44
+RMG_delivery,LL_delivery,42
+LL_mixed,HO2_mixed,36
+HO2_mixed,LL_mixed,36
+LL_delivery,RMG_delivery,33
+HO2_mixed,RMG_mixed,31
+RMG_delivery,LL_mixed,21
+LL_receive,LL_receive,20
+HO2_delivery,LL_mixed,16
+RMG_receive,HO2_mixed,16
+RMG_mixed,HO2_mixed,13
+Gate In,Gate Out,11
+LL_delivery,HO2_delivery,11
+RMG_mixed,LL_receive,9
+Gate Out,LL_delivery,8
+RMG_receive,LL_mixed,8
+HO2_mixed,LL_receive,7
+RMG_receive,LL_delivery,7
+RMG_mixed,LL_delivery,6
+RMG_delivery,HO2_mixed,6
+RMG_mixed,HO2_receive,6
+LL_mixed,RMG_delivery,5
+RMG_receive,HO2_delivery,4
+HO2_delivery,LL_delivery,4
+LL_mixed,HO2_delivery,4
+Gate Out,LL_mixed,3
+HO2_delivery,RMG_delivery,3
+RMG_receive,LL_receive,3
+HO2_receive,RMG_mixed,3
+RMG_delivery,HO2_delivery,2
+HO2_mixed,LL_delivery,2
+RMG_mixed,HO2_delivery,1
+HO2_receive,LL_mixed,1

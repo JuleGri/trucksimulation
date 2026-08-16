@@ -1,0 +1,135 @@
+variant,count,cum_coverage
+"('Gate In', 'RMG_receive', 'Gate Out')",32698,0.3655123074515415
+"('Gate In', 'RMG_delivery', 'Gate Out')",16522,0.5502023295848331
+"('Gate In', 'RMG_mixed', 'Gate Out')",11148,0.6748194683538644
+"('Gate In', 'HO2_delivery', 'Gate Out')",5900,0.7407722059513961
+"('Gate In', 'LL_delivery', 'Gate Out')",5887,0.8065796239576114
+"('Gate In', 'HO2_receive', 'Gate Out')",4401,0.8557758948333296
+"('Gate In', 'LL_mixed', 'Gate Out')",2759,0.8866171834827516
+"('Gate In', 'LL_delivery', 'RMG_receive', 'Gate Out')",2742,0.9172684388204521
+"('Gate In', 'HO2_mixed', 'Gate Out')",1724,0.9365400523150529
+"('Gate In', 'LL_mixed', 'RMG_receive', 'Gate Out')",987,0.9475731628250128
+"('Gate In', 'LL_receive', 'Gate Out')",636,0.9546826443694247
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",565,0.960998457376646
+"('Gate In', 'LL_delivery', 'RMG_mixed', 'Gate Out')",466,0.9662076058038409
+"('Gate In', 'LL_mixed', 'RMG_mixed', 'Gate Out')",452,0.9712602562096179
+"('Gate In', 'HO2_delivery', 'RMG_receive', 'Gate Out')",396,0.9756869145297234
+"('Gate In', 'LL_delivery', 'HO2_receive', 'Gate Out')",296,0.9789957298397013
+"('Gate In', 'LL_delivery', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'Gate Out')",221,0.9814661628920834
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'Gate Out')",170,0.9833664960093005
+"('Gate In', 'RMG_delivery', 'LL_receive', 'Gate Out')",138,0.9849091193632766
+"('Gate In', 'LL_mixed', 'HO2_receive', 'Gate Out')",85,0.9858592859218851
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'Gate Out')",77,0.9867200250396835
+"('Gate In', 'LL_mixed', 'LL_mixed', 'RMG_receive', 'RMG_receive', 'Gate Out')",76,0.9875695857273804
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'RMG_receive', 'RMG_receive', 'Gate Out')",61,0.9882514699635583
+"('Gate In', 'HO2_mixed', 'RMG_receive', 'Gate Out')",55,0.9888662836191285
+"('Gate In', 'RMG_receive', 'RMG_receive', 'Gate Out')",53,0.9894587404144962
+"('Gate In', 'LL_mixed', 'LL_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",51,0.9900288403496613
+"('Gate In', 'RMG_mixed', 'LL_mixed', 'Gate Out')",48,0.9905654049945226
+"('Gate In', 'LL_delivery', 'HO2_mixed', 'Gate Out')",44,0.9910572559189788
+"('Gate In', 'RMG_receive', 'HO2_receive', 'Gate Out')",43,0.9915379284133337
+"('Gate In', 'LL_delivery', 'LL_delivery', 'Gate Out')",39,0.9919738871872834
+"('Gate In', 'HO2_delivery', 'LL_receive', 'Gate Out')",39,0.9924098459612332
+"('Gate In', 'RMG_delivery', 'LL_delivery', 'Gate Out')",38,0.9928346263050817
+"('Gate In', 'HO2_delivery', 'RMG_mixed', 'Gate Out')",37,0.993248228218829
+"('Gate In', 'RMG_delivery', 'HO2_receive', 'Gate Out')",35,0.9936394732723737
+"('Gate In', 'LL_delivery', 'LL_delivery', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",35,0.9940307183259183
+"('Gate In', 'LL_mixed', 'HO2_mixed', 'Gate Out')",33,0.9943996065192604
+"('Gate In', 'HO2_mixed', 'LL_mixed', 'Gate Out')",33,0.9947684947126025
+"('Gate In', 'LL_delivery', 'LL_delivery', 'HO2_receive', 'HO2_receive', 'Gate Out')",32,0.9951262044758434
+"('Gate In', 'HO2_receive', 'RMG_receive', 'Gate Out')",32,0.9954839142390842
+"('Gate In', 'LL_delivery', 'RMG_delivery', 'Gate Out')",30,0.9958192671421225
+"('Gate In', 'HO2_mixed', 'RMG_mixed', 'Gate Out')",24,0.9960875494645532
+"('Gate In', 'HO2_receive', 'HO2_receive', 'Gate Out')",22,0.9963334749267813
+"('Gate In', 'RMG_delivery', 'LL_mixed', 'Gate Out')",18,0.9965346866686042
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'HO2_receive', 'HO2_receive', 'Gate Out')",17,0.996724719980326
+"('Gate In', 'HO2_delivery', 'LL_mixed', 'Gate Out')",14,0.9968812180017438
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'Gate Out')",14,0.9970377160231617
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'LL_receive', 'LL_receive', 'Gate Out')",13,0.9971830356144783
+"('Gate In', 'LL_mixed', 'LL_mixed', 'HO2_receive', 'HO2_receive', 'Gate Out')",10,0.9972948199154911
+"('Gate In', 'LL_delivery', 'HO2_delivery', 'Gate Out')",9,0.9973954257864026
+"('Gate In', 'LL_mixed', 'LL_mixed', 'Gate Out')",9,0.997496031657314
+"('Gate In', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",8,0.9975854590981242
+"('Gate In', 'RMG_receive', 'LL_mixed', 'RMG_receive', 'Gate Out')",8,0.9976748865389344
+"('Gate In', 'RMG_mixed', 'LL_receive', 'Gate Out')",8,0.9977643139797446
+"('Gate In', 'Gate Out', 'LL_delivery')",8,0.9978537414205549
+"('Gate In', 'RMG_receive', 'HO2_mixed', 'Gate Out')",7,0.9979319904312638
+"('Gate In', 'HO2_mixed', 'LL_receive', 'Gate Out')",7,0.9980102394419728
+"('Gate In', 'RMG_receive', 'LL_delivery', 'RMG_receive', 'Gate Out')",6,0.9980773100225804
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",6,0.9981443806031881
+"('Gate In', 'RMG_mixed', 'LL_delivery', 'RMG_mixed', 'Gate Out')",6,0.9982114511837957
+"('Gate In', 'RMG_delivery', 'HO2_mixed', 'Gate Out')",6,0.9982785217644035
+"('Gate In', 'HO2_receive', 'RMG_receive', 'HO2_receive', 'Gate Out')",6,0.9983455923450111
+"('Gate In', 'HO2_mixed', 'RMG_receive', 'HO2_mixed', 'Gate Out')",6,0.9984126629256187
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'LL_receive', 'LL_receive', 'Gate Out')",5,0.9984685550761251
+"('Gate In', 'LL_delivery', 'RMG_receive', 'HO2_receive', 'Gate Out')",5,0.9985244472266315
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'RMG_receive', 'RMG_receive', 'Gate Out')",5,0.9985803393771379
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",5,0.9986362315276442
+"('Gate In', 'LL_mixed', 'RMG_delivery', 'Gate Out')",5,0.9986921236781506
+"('Gate In', 'RMG_mixed', 'HO2_receive', 'Gate Out')",5,0.998748015828657
+"('Gate In', 'RMG_mixed', 'HO2_mixed', 'Gate Out')",5,0.9988039079791634
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'LL_delivery', 'LL_delivery', 'Gate Out')",4,0.9988486216995686
+"('Gate In', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'Gate Out')",4,0.9988933354199736
+"('Gate In', 'HO2_delivery', 'RMG_receive', 'HO2_delivery', 'Gate Out')",4,0.9989380491403788
+"('Gate In', 'HO2_mixed', 'RMG_mixed', 'HO2_mixed', 'Gate Out')",3,0.9989715844306826
+"('Gate In', 'Gate Out', 'LL_mixed')",3,0.9990051197209864
+"('Gate In', 'HO2_delivery', 'LL_delivery', 'Gate Out')",3,0.9990386550112902
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'LL_mixed', 'LL_mixed', 'Gate Out')",3,0.999072190301594
+"('Gate In', 'HO2_receive', 'HO2_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",3,0.9991057255918979
+"('Gate In', 'LL_delivery', 'LL_delivery', 'RMG_delivery', 'RMG_delivery', 'Gate Out')",3,0.9991392608822017
+"('Gate In', 'LL_mixed', 'HO2_delivery', 'Gate Out')",3,0.9991727961725055
+"('Gate In', 'LL_mixed', 'RMG_mixed', 'HO2_mixed', 'Gate Out')",3,0.9992063314628093
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'LL_mixed', 'LL_mixed', 'Gate Out')",3,0.9992398667531132
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",3,0.999273402043417
+"('Gate In', 'LL_delivery', 'LL_delivery', 'HO2_mixed', 'HO2_mixed', 'Gate Out')",2,0.9992957589036195
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'LL_mixed', 'LL_mixed', 'Gate Out')",2,0.9993181157638221
+"('Gate In', 'HO2_delivery', 'RMG_delivery', 'Gate Out')",2,0.9993404726240247
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'HO2_mixed', 'Gate Out')",2,0.9993628294842273
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",2,0.9993851863444297
+"('Gate In', 'LL_delivery', 'HO2_receive', 'RMG_receive', 'Gate Out')",2,0.9994075432046323
+"('Gate In', 'HO2_receive', 'RMG_mixed', 'Gate Out')",2,0.9994299000648349
+"('Gate In', 'LL_delivery', 'RMG_mixed', 'HO2_mixed', 'Gate Out')",2,0.9994522569250375
+"('Gate In', 'LL_mixed', 'HO2_receive', 'RMG_receive', 'HO2_receive', 'Gate Out')",2,0.99947461378524
+"('Gate In', 'LL_mixed', 'LL_mixed', 'HO2_mixed', 'HO2_mixed', 'Gate Out')",2,0.9994969706454425
+"('Gate In', 'RMG_delivery', 'HO2_delivery', 'Gate Out')",2,0.9995193275056451
+"('Gate In', 'RMG_receive', 'LL_receive', 'Gate Out')",2,0.9995416843658477
+"('Gate In', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",2,0.9995640412260502
+"('Gate In', 'HO2_mixed', 'LL_delivery', 'HO2_mixed', 'Gate Out')",1,0.9995752196561515
+"('Gate In', 'LL_delivery', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.9995863980862527
+"('Gate In', 'LL_delivery', 'LL_delivery', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.9995975765163541
+"('Gate In', 'LL_delivery', 'LL_delivery', 'HO2_delivery', 'HO2_delivery', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.9996087549464553
+"('Gate In', 'LL_delivery', 'LL_delivery', 'HO2_delivery', 'HO2_delivery', 'Gate Out')",1,0.9996199333765566
+"('Gate In', 'LL_delivery', 'HO2_mixed', 'RMG_receive', 'HO2_mixed', 'Gate Out')",1,0.9996311118066579
+"('Gate In', 'LL_delivery', 'HO2_mixed', 'RMG_mixed', 'Gate Out')",1,0.9996422902367591
+"('Gate In', 'HO2_receive', 'LL_mixed', 'Gate Out')",1,0.9996534686668604
+"('Gate In', 'HO2_receive', 'HO2_receive', 'RMG_receive', 'RMG_receive', 'HO2_receive', 'HO2_receive', 'Gate Out')",1,0.9996646470969617
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'HO2_mixed', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.999675825527063
+"('Gate In', 'HO2_mixed', 'LL_delivery', 'Gate Out')",1,0.9996870039571643
+"('Gate In', 'HO2_mixed', 'HO2_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",1,0.9996981823872655
+"('Gate In', 'LL_delivery', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",1,0.9997093608173668
+"('Gate In', 'HO2_delivery', 'RMG_mixed', 'HO2_delivery', 'Gate Out')",1,0.9997205392474681
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'RMG_receive', 'RMG_receive', 'LL_receive', 'LL_receive', 'Gate Out')",1,0.9997317176775694
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'RMG_delivery', 'RMG_delivery', 'Gate Out')",1,0.9997428961076706
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'LL_delivery', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.9997540745377719
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'HO2_delivery', 'HO2_delivery', 'Gate Out')",1,0.9997652529678732
+"('Gate In', 'LL_delivery', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",1,0.9997764313979745
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'LL_mixed', 'LL_mixed', 'Gate Out')",1,0.9997876098280758
+"('Gate In', 'LL_delivery', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.999798788258177
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'HO2_receive', 'HO2_receive', 'HO2_receive', 'HO2_receive', 'Gate Out')",1,0.9998099666882783
+"('Gate In', 'RMG_receive', 'RMG_receive', 'HO2_receive', 'HO2_receive', 'Gate Out')",1,0.9998211451183796
+"('Gate In', 'RMG_receive', 'LL_delivery', 'Gate Out')",1,0.9998323235484808
+"('Gate In', 'RMG_receive', 'HO2_receive', 'HO2_receive', 'Gate Out')",1,0.9998435019785822
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",1,0.9998546804086834
+"('Gate In', 'RMG_mixed', 'RMG_mixed', 'LL_receive', 'LL_receive', 'Gate Out')",1,0.9998658588387846
+"('Gate In', 'RMG_mixed', 'HO2_receive', 'RMG_mixed', 'Gate Out')",1,0.999877037268886
+"('Gate In', 'RMG_delivery', 'RMG_delivery', 'RMG_delivery', 'Gate Out')",1,0.9998882156989872
+"('Gate In', 'LL_mixed', 'RMG_receive', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.9998993941290885
+"('Gate In', 'LL_mixed', 'HO2_delivery', 'RMG_mixed', 'Gate Out')",1,0.9999105725591898
+"('Gate In', 'LL_mixed', 'RMG_receive', 'RMG_receive', 'Gate Out')",1,0.999921750989291
+"('Gate In', 'LL_mixed', 'RMG_receive', 'HO2_receive', 'Gate Out')",1,0.9999329294193924
+"('Gate In', 'LL_mixed', 'RMG_receive', 'HO2_mixed', 'Gate Out')",1,0.9999441078494936
+"('Gate In', 'LL_mixed', 'LL_mixed', 'RMG_receive', 'RMG_receive', 'HO2_mixed', 'HO2_mixed', 'Gate Out')",1,0.9999552862795948
+"('Gate In', 'LL_mixed', 'LL_mixed', 'LL_mixed', 'RMG_mixed', 'RMG_mixed', 'RMG_mixed', 'Gate Out')",1,0.9999664647096962
+"('Gate In', 'LL_mixed', 'HO2_receive', 'RMG_receive', 'Gate Out')",1,0.9999776431397974
+"('Gate In', 'LL_mixed', 'HO2_mixed', 'RMG_receive', 'Gate Out')",1,0.9999888215698988
+"('Gate In', 'HO2_delivery', 'HO2_delivery', 'HO2_delivery', 'Gate Out')",1,1.0

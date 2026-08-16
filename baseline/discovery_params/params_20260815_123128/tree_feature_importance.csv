@@ -1,0 +1,100 @@
+activity,feature,importance
+Gate In,target_demand,0.0
+Gate In,target_utilization,0.0
+Gate In,target_rank,0.0
+Gate In,visit_complexity,0.0
+Gate In,n_receives,0.0
+Gate In,n_deliveries,0.0
+Gate In,hour,0.0
+Gate In,weekday,0.0
+Gate In,is_weekend,0.0
+Gate Out,target_demand,0.0
+Gate Out,target_utilization,0.0
+Gate Out,target_rank,0.0
+Gate Out,visit_complexity,0.0
+Gate Out,n_receives,0.0
+Gate Out,n_deliveries,0.0
+Gate Out,hour,0.0
+Gate Out,weekday,0.0
+Gate Out,is_weekend,0.0
+HO2_delivery,target_demand,0.22534660017243316
+HO2_delivery,target_utilization,0.13935082856793957
+HO2_delivery,target_rank,0.0
+HO2_delivery,visit_complexity,0.0
+HO2_delivery,n_receives,0.0
+HO2_delivery,n_deliveries,0.0
+HO2_delivery,hour,0.5631428693871989
+HO2_delivery,weekday,0.07215970187242836
+HO2_delivery,is_weekend,0.0
+HO2_mixed,target_demand,0.1938563290385639
+HO2_mixed,target_utilization,0.16523172397711763
+HO2_mixed,target_rank,0.0
+HO2_mixed,visit_complexity,0.03678604251745725
+HO2_mixed,n_receives,0.0
+HO2_mixed,n_deliveries,0.0
+HO2_mixed,hour,0.4479731417733982
+HO2_mixed,weekday,0.15615276269346304
+HO2_mixed,is_weekend,0.0
+HO2_receive,target_demand,0.12496007402824616
+HO2_receive,target_utilization,0.20231118317145336
+HO2_receive,target_rank,0.0
+HO2_receive,visit_complexity,0.027409923718462285
+HO2_receive,n_receives,0.0
+HO2_receive,n_deliveries,0.0
+HO2_receive,hour,0.4550909603008643
+HO2_receive,weekday,0.19022785878097392
+HO2_receive,is_weekend,0.0
+LL_delivery,target_demand,0.061178501627948544
+LL_delivery,target_utilization,0.07172929921581017
+LL_delivery,target_rank,0.004111257633260226
+LL_delivery,visit_complexity,0.0
+LL_delivery,n_receives,0.0
+LL_delivery,n_deliveries,0.0
+LL_delivery,hour,0.8093749447780739
+LL_delivery,weekday,0.05360599674490702
+LL_delivery,is_weekend,0.0
+LL_mixed,target_demand,0.056539530407358964
+LL_mixed,target_utilization,0.05786019883267219
+LL_mixed,target_rank,0.0
+LL_mixed,visit_complexity,0.0
+LL_mixed,n_receives,0.0
+LL_mixed,n_deliveries,0.002401225173878708
+LL_mixed,hour,0.8396259991880737
+LL_mixed,weekday,0.043573046398016416
+LL_mixed,is_weekend,0.0
+LL_receive,target_demand,0.17341659112651295
+LL_receive,target_utilization,0.21592712044638207
+LL_receive,target_rank,0.012273971061008035
+LL_receive,visit_complexity,0.054451839249941354
+LL_receive,n_receives,0.0
+LL_receive,n_deliveries,0.095017736322663
+LL_receive,hour,0.2798514475429871
+LL_receive,weekday,0.16906129425050542
+LL_receive,is_weekend,0.0
+RMG_delivery,target_demand,0.0
+RMG_delivery,target_utilization,0.13963449071127698
+RMG_delivery,target_rank,0.0
+RMG_delivery,visit_complexity,0.09063361345231473
+RMG_delivery,n_receives,0.0
+RMG_delivery,n_deliveries,0.7697318958364083
+RMG_delivery,hour,0.0
+RMG_delivery,weekday,0.0
+RMG_delivery,is_weekend,0.0
+RMG_mixed,target_demand,0.21054243803788272
+RMG_mixed,target_utilization,0.04210355123990226
+RMG_mixed,target_rank,0.0
+RMG_mixed,visit_complexity,0.541434557651734
+RMG_mixed,n_receives,0.0
+RMG_mixed,n_deliveries,0.08263031892359711
+RMG_mixed,hour,0.07205180870736574
+RMG_mixed,weekday,0.051237325439518165
+RMG_mixed,is_weekend,0.0
+RMG_receive,target_demand,0.33771738013533664
+RMG_receive,target_utilization,0.10698713995277448
+RMG_receive,target_rank,0.0
+RMG_receive,visit_complexity,0.21781913266079247
+RMG_receive,n_receives,0.0
+RMG_receive,n_deliveries,0.04516049123663077
+RMG_receive,hour,0.17753262237276313
+RMG_receive,weekday,0.11478323364170243
+RMG_receive,is_weekend,0.0

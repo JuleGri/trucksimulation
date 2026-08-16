@@ -1,0 +1,12 @@
+activity,mean,distribution,params
+LL_receive,10.39922480620155,constant,
+HO2_mixed,19.485809682804675,constant,
+LL_mixed,9.133814102564102,constant,
+HO2_delivery,9.565804274465691,constant,
+HO2_receive,16.591593973037273,constant,
+LL_delivery,10.001186708860759,constant,
+Gate Out,0.0,constant,
+Gate In,0.0,constant,
+RMG_mixed,14.268673050615595,constant,
+RMG_delivery,8.339634801288936,constant,
+RMG_receive,11.635738498789346,constant,
