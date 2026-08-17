@@ -16,12 +16,18 @@ Outputs:
 - robustness-analysis outputs saved under discovery_params/<paramset>/.
 """
 
+import argparse
 import os
 import subprocess
 import sys
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Run the baseline discovery suite on the held-out training log.')
+    parser.add_argument('--input', dest='input_csv', default=None,
+                        help='Event log CSV forwarded to every discovery script. Defaults to s6_train.csv when present.')
+    args = parser.parse_args()
+
     base_dir = os.path.dirname(os.path.abspath(__file__))
     scripts = [
         '03_arrival_rate_discovery.py',
@@ -29,10 +35,11 @@ def main():
         '05_data_aware_discovery_evaluation.py',
         '06_robustness_analysis.py',
     ]
+    forwarded = ['--input', args.input_csv] if args.input_csv else []
     for script in scripts:
         path = os.path.join(base_dir, script)
         print(f'Running {script} ...')
-        subprocess.run([sys.executable, path], cwd=base_dir, check=True)
+        subprocess.run([sys.executable, path, *forwarded], cwd=base_dir, check=True)
     print('\nAll baseline discovery analyses completed successfully.')
 
 

@@ -17,6 +17,7 @@ Methodological note:
 - the time-aware model conditions on hour, weekday, and weekend indicators to approximate temporal dependence.
 """
 
+import argparse
 import os
 from datetime import datetime
 
@@ -26,19 +27,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
-
-def resolve_event_csv():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    candidates = [
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features.csv'),
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features_v1.csv'),
-        os.path.join(script_dir, 's6_eventlog_target_rank_features.csv'),
-    ]
-    for path in candidates:
-        norm = os.path.normpath(path)
-        if os.path.exists(norm):
-            return norm
-    raise FileNotFoundError('Could not find the event log CSV in the standard project locations.')
+from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_csv
 
 
 def build_case_arrivals(df):
@@ -106,7 +95,11 @@ def train_context_tree(bucket_df):
 
 
 def main():
-    event_csv = resolve_event_csv()
+    parser = argparse.ArgumentParser(description='Arrival-rate discovery on the held-out training log.')
+    add_input_arg(parser)
+    args = parser.parse_args()
+
+    event_csv = resolve_event_csv(args.input_csv)
     df = pd.read_csv(event_csv)
     case_arrivals = build_case_arrivals(df)
     summary = summarize_day_night(case_arrivals)
@@ -140,6 +133,7 @@ def main():
             'rmse': np.sqrt(mean_squared_error(y_test, baseline_pred)),
             'r2': r2_score(y_test, baseline_pred),
             'notes': 'single arrival rate across all periods',
+            'source_eventlog': os.path.basename(event_csv),
         },
         {
             'model': 'time_aware_decision_tree',
@@ -150,22 +144,17 @@ def main():
             'notes': 'tree conditioned on hour, weekday, weekend indicator',
             'tree_max_depth': tree_model.get_depth(),
             'tree_min_samples_leaf': tree_model.min_samples_leaf,
+            'source_eventlog': os.path.basename(event_csv),
         },
     ]
     model_df = pd.DataFrame(model_rows)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    param_root = os.path.join(script_dir, 'discovery_params')
-    output_path = os.path.join(script_dir, 'arrival_rate_analysis.csv')
-    if os.path.exists(param_root):
-        param_dirs = [p for p in os.listdir(param_root) if os.path.isdir(os.path.join(param_root, p))]
-        if param_dirs:
-            param_dir = os.path.join(param_root, sorted(param_dirs)[-1])
-            output_path = os.path.join(param_dir, 'arrival_rate_analysis.csv')
-
-    summary_path = os.path.join(os.path.dirname(output_path), 'arrival_rate_analysis.csv')
+    from _eventlog_source import resolve_paramset_dir
+    param_dir = resolve_paramset_dir(script_dir, paramset_suffix_for(event_csv))
+    summary_path = os.path.join(param_dir, 'arrival_rate_analysis.csv')
     model_df.to_csv(summary_path, index=False)
-    summary.to_csv(os.path.join(os.path.dirname(summary_path), 'arrival_rate_by_period.csv'), index=False)
+    summary.to_csv(os.path.join(param_dir, 'arrival_rate_by_period.csv'), index=False)
 
     print('Arrival-log analysis complete.')
     print(f'Wrote:{summary_path}')

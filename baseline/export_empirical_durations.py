@@ -19,10 +19,12 @@ import os
 import pandas as pd
 import numpy as np
 
+from _eventlog_source import parse_input_arg, resolve_event_csv
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
-# Input CSV relative to script_dir
-input_csv = os.path.join(script_dir, "..", "..", "data", "processed", "CTB", "s6_eventlog_target_rank_features.csv")
-input_csv = os.path.normpath(input_csv)
+# Route through the shared resolver so this preprocessing step also honours
+# the s6_train.csv hold-out (see validation/01_train_test_split.py).
+input_csv = resolve_event_csv(parse_input_arg())
 
 if not os.path.exists(input_csv):
     raise FileNotFoundError(f"Eventlog CSV not found at expected location: {input_csv}")
@@ -37,15 +39,24 @@ for col in ["enabled:timestamp", "start:timestamp", "time:timestamp"]:
     else:
         print(f"Warning: column {col} not found in input CSV")
 
-# Sample training cases like the notebook uses (24k) if available
-n_cases = 24000
+# When reading from the held-out training log (s6_train.csv), every case
+# already belongs to the training partition — no additional random sub-
+# sampling is applied so that empirical stats reflect the full training
+# distribution. The historical 24 000-case sample is preserved only when
+# reading from the full log for legacy comparisons.
+from _eventlog_source import is_train_log
+
 case_ids = df['case:concept:name'].drop_duplicates()
-if len(case_ids) > n_cases:
-    case_sample = case_ids.sample(n_cases, random_state=42)
-    df = df[df['case:concept:name'].isin(case_sample)].copy()
-    print(f'Sampled {len(case_sample)} cases for empirical stats')
+if is_train_log(input_csv):
+    print(f'Held-out training log detected: keeping all {len(case_ids)} cases.')
 else:
-    print(f'Using all {len(case_ids)} cases for empirical stats')
+    n_cases = 24000
+    if len(case_ids) > n_cases:
+        case_sample = case_ids.sample(n_cases, random_state=42)
+        df = df[df['case:concept:name'].isin(case_sample)].copy()
+        print(f'Sampled {len(case_sample)} cases for empirical stats (legacy full-log mode)')
+    else:
+        print(f'Using all {len(case_ids)} cases for empirical stats')
 
 # Compute empirical durations in minutes
 if 'time:timestamp' in df.columns and 'start:timestamp' in df.columns:

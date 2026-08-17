@@ -1,38 +1,113 @@
 """
 Purpose:
-- model a resource-constrained RMG scenario in which the remaining blocks absorb displaced workload;
-- study how a reduced resource pool propagates into service times and turnaround times;
-- provide a second what-if case beyond the T22 closure scenario.
+- reuse the discovered ProSiT baseline (workload-features variant, adopted
+  as default after the sensitivity comparison in Chapter 5) under a
+  reduced RMG resource pool;
+- study how the remaining blocks absorb the workload displaced from T22;
+- provide a second what-if case beyond the T22 closure scenario, with the
+  same simulation window as the held-out validation so both experiments
+  are directly comparable.
 
 Inputs:
-- the discovered baseline simulation bundle from the active baseline discovery flow;
-- the Prosit simulator engine for a reduced effective RMG resource set.
+- baseline/discovery_params/params_<latest>_train80/prosit_discovery_workload/
+  prosit_params.pkl        (ProSiT parameters fit on s6_train.csv with
+                            use_workload_features=True; override via
+                            --params);
+- validation/results/split_manifest.json (test-window cutoff & size).
 
 Outputs:
 - baseline and reduced-resource simulation logs;
 - scenario comparison summaries for turnaround time and RMG activity performance.
 
 Methodological note:
-- the experiment is meant to test how the model behaves under plausible but degraded capacity assumptions.
+- unlike the plain T22 closure, this scenario also removes the RMG capacity
+  associated with T22 from the discovered resource pool, testing how the
+  workload-aware ProSiT model reallocates work in the presence of a
+  hard capacity reduction.
 """
 
+import argparse
+import json
 import os
 import pickle
 from copy import deepcopy
+from datetime import datetime
 
 import pandas as pd
 from prosit import SimulatorEngine
 
 
-REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-BASELINE_PICKLE = os.path.join(REPO_ROOT, 'scenarios', 'Archiv', 'scenarios', 'baseline_parameters.pkl')
+REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
+
+def _resolve_default_pickle() -> str:
+    discovery_root = os.path.join(REPO_ROOT, 'baseline', 'discovery_params')
+    if os.path.isdir(discovery_root):
+        candidates = sorted(
+            (d for d in os.listdir(discovery_root)
+             if d.endswith('_train80') and os.path.isdir(os.path.join(discovery_root, d))),
+            reverse=True,
+        )
+        for cand in candidates:
+            pkl = os.path.join(discovery_root, cand, 'prosit_discovery_workload', 'prosit_params.pkl')
+            if os.path.exists(pkl):
+                return pkl
+    return os.path.join(REPO_ROOT, 'scenarios', 'Archiv', 'scenarios', 'baseline_parameters.pkl')
+
+
+DEFAULT_BASELINE_PICKLE = _resolve_default_pickle()
+DEFAULT_MANIFEST = os.path.join(REPO_ROOT, 'validation', 'results', 'split_manifest.json')
 OUT_ROOT = os.path.join(REPO_ROOT, 'data', 'processed', 'CTB', 'prosit_simulations', 'what_if_reduced_rmg_resources')
 os.makedirs(OUT_ROOT, exist_ok=True)
 
 
-def load_baseline_params():
-    with open(BASELINE_PICKLE, 'rb') as f:
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--params', default=DEFAULT_BASELINE_PICKLE,
+                        help='Path to a pickled prosit SimulatorParameters object.')
+    parser.add_argument('--manifest', default=DEFAULT_MANIFEST,
+                        help='split_manifest.json used to size the simulation window.')
+    parser.add_argument('--n-traces', type=int, default=None,
+                        help='Number of cases to simulate. Defaults to the size of the held-out test set.')
+    parser.add_argument('--t-start', default=None,
+                        help='ISO timestamp for the simulation start. Defaults to cutoff_arrival_ts '
+                             'from the manifest.')
+    parser.add_argument('--blocked-blocks', nargs='+', default=['T22'],
+                        help='RMG blocks to remove from the resource pool.')
+    parser.add_argument('--retained-blocks', nargs='+',
+                        default=['T13', 'T14', 'T16', 'T17', 'T18', 'T19', 'T20', 'T21', 'T23', 'T24', 'T25', 'T26', 'T27'],
+                        help='RMG blocks retained after the reduction (order-independent).')
+    parser.add_argument('--seed', type=int, default=42)
+    return parser.parse_args()
+
+
+def load_baseline_params(pickle_path: str):
+    if not os.path.exists(pickle_path):
+        raise FileNotFoundError(
+            f'ProSiT baseline pickle not found at {pickle_path}. '
+            'Run baseline/07_run_prosit_discovery.py first.'
+        )
+    print(f'[what_if_reduced_rmg] Loading params from {pickle_path}')
+    with open(pickle_path, 'rb') as f:
         return pickle.load(f)
+
+
+def _resolve_simulation_window(args) -> tuple[int, datetime | None]:
+    n_traces = args.n_traces
+    t_start = None
+    if os.path.exists(args.manifest):
+        with open(args.manifest, 'r') as fh:
+            manifest = json.load(fh)
+        if n_traces is None:
+            n_traces = int(manifest.get('test', {}).get('n_cases', 2000))
+        cutoff = args.t_start or manifest.get('cutoff_arrival_ts')
+        if cutoff:
+            t_start = datetime.fromisoformat(cutoff)
+    else:
+        n_traces = n_traces or 2000
+    if args.t_start and t_start is None:
+        t_start = datetime.fromisoformat(args.t_start)
+    return int(n_traces), t_start
 
 
 def apply_reduced_rmg_pool(params, blocked_blocks=None, retained_blocks=None):
@@ -55,6 +130,11 @@ def apply_reduced_rmg_pool(params, blocked_blocks=None, retained_blocks=None):
 
 def add_kpis(df):
     df = df.copy()
+    # ProSiT 1.0.3 sometimes emits the same column twice in the simulated log
+    # (e.g. enabled:timestamp appears once as an event attribute and once as a
+    # case-level attribute). Deduplicate before any coercion so pd.to_datetime
+    # sees a Series, not a DataFrame slice.
+    df = df.loc[:, ~df.columns.duplicated()]
     for col in ['enabled:timestamp', 'start:timestamp', 'time:timestamp']:
         if col in df.columns:
             df[col] = pd.to_datetime(df[col], errors='coerce')
@@ -99,11 +179,26 @@ def summarize(df, label):
 
 
 def main():
-    baseline_params = load_baseline_params()
-    reduced_params = apply_reduced_rmg_pool(baseline_params, blocked_blocks=['T22'])
+    args = parse_args()
+    n_traces, t_start = _resolve_simulation_window(args)
+    print(f'[what_if_reduced_rmg] n_traces={n_traces:,}  t_start={t_start}  '
+          f'blocked={args.blocked_blocks}  retained={len(args.retained_blocks)} blocks')
 
-    baseline_log = SimulatorEngine(baseline_params).apply(n_traces=2000)
-    reduced_log = SimulatorEngine(reduced_params).apply(n_traces=2000)
+    baseline_params = load_baseline_params(args.params)
+    reduced_params = apply_reduced_rmg_pool(
+        baseline_params,
+        blocked_blocks=args.blocked_blocks,
+        retained_blocks=args.retained_blocks,
+    )
+
+    baseline_engine = SimulatorEngine(baseline_params)
+    reduced_engine = SimulatorEngine(reduced_params)
+    if t_start is None:
+        baseline_log = baseline_engine.apply(n_traces=n_traces)
+        reduced_log = reduced_engine.apply(n_traces=n_traces)
+    else:
+        baseline_log = baseline_engine.apply(n_traces=n_traces, t_start=t_start)
+        reduced_log = reduced_engine.apply(n_traces=n_traces, t_start=t_start)
 
     baseline_log.to_csv(os.path.join(OUT_ROOT, 'baseline_reference_sim_log.csv'), index=False)
     reduced_log.to_csv(os.path.join(OUT_ROOT, 't22_closed_reduced_rmg_pool_sim_log.csv'), index=False)
@@ -115,6 +210,17 @@ def main():
     summary_df.to_csv(os.path.join(OUT_ROOT, 'scenario_comparison_summary.csv'), index=False)
     baseline_acts.to_csv(os.path.join(OUT_ROOT, 'baseline_rmg_activity_summary.csv'), index=False)
     reduced_acts.to_csv(os.path.join(OUT_ROOT, 't22_closed_reduced_rmg_pool_activity_summary.csv'), index=False)
+
+    with open(os.path.join(OUT_ROOT, 'scenario_run_summary.json'), 'w') as fh:
+        json.dump({
+            'params_pickle': args.params,
+            'manifest': args.manifest,
+            'n_traces': int(n_traces),
+            't_start': None if t_start is None else t_start.isoformat(),
+            'blocked_blocks': list(args.blocked_blocks),
+            'retained_blocks': list(args.retained_blocks),
+            'seed': args.seed,
+        }, fh, indent=2)
 
     print('Reduced-RMG resource experiment complete.')
     print(summary_df.to_string(index=False))

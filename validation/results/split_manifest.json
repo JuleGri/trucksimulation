@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-08-16T21:26:23.299225Z",
+  "input_path": "data\\processed\\CTB\\s6_eventlog_target_rank_features.csv",
+  "train_path": "data\\processed\\CTB\\s6_train.csv",
+  "test_path": "data\\processed\\CTB\\s6_test.csv",
+  "test_size": 0.2,
+  "seed": 42,
+  "cutoff_arrival_ts": "2026-04-20T18:14:00",
+  "n_cases_total": 89458,
+  "n_events_total": 277423,
+  "n_events_dropped_missing_ts": 0,
+  "train": {
+    "label": "train",
+    "n_events": 221559,
+    "n_cases": 71566,
+    "timestamp_min": "2026-03-02T05:25:00",
+    "timestamp_max": "2026-04-20T19:34:00",
+    "activity_counts": {
+      "Gate In": 71566,
+      "Gate Out": 71566,
+      "RMG_receive": 30656,
+      "RMG_delivery": 14010,
+      "RMG_mixed": 10816,
+      "LL_delivery": 7678,
+      "HO2_delivery": 5351,
+      "HO2_receive": 3807,
+      "LL_mixed": 3571,
+      "HO2_mixed": 1810,
+      "LL_receive": 728
+    }
+  },
+  "test": {
+    "label": "test",
+    "n_events": 55864,
+    "n_cases": 17892,
+    "timestamp_min": "2026-04-20T18:14:00",
+    "timestamp_max": "2026-04-30T11:54:12",
+    "activity_counts": {
+      "Gate In": 17892,
+      "Gate Out": 17892,
+      "RMG_receive": 7274,
+      "RMG_delivery": 3027,
+      "RMG_mixed": 2772,
+      "LL_delivery": 2561,
+      "HO2_receive": 1299,
+      "HO2_delivery": 1256,
+      "LL_mixed": 1209,
+      "HO2_mixed": 540,
+      "LL_receive": 142
+    }
+  }
+}

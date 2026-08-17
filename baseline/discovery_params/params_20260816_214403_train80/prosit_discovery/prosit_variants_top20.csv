@@ -1,0 +1,21 @@
+variant,n_cases,length
+Gate In -> RMG_receive -> Gate Out,26647,3
+Gate In -> RMG_delivery -> Gate Out,13582,3
+Gate In -> RMG_mixed -> Gate Out,8953,3
+Gate In -> HO2_delivery -> Gate Out,4782,3
+Gate In -> LL_delivery -> Gate Out,4410,3
+Gate In -> HO2_receive -> Gate Out,3310,3
+Gate In -> LL_delivery -> RMG_receive -> Gate Out,2112,4
+Gate In -> LL_mixed -> Gate Out,2073,3
+Gate In -> HO2_mixed -> Gate Out,1356,3
+Gate In -> LL_mixed -> RMG_receive -> Gate Out,738,4
+Gate In -> LL_receive -> Gate Out,530,3
+Gate In -> RMG_mixed -> RMG_mixed -> Gate Out,432,4
+Gate In -> LL_mixed -> RMG_mixed -> Gate Out,343,4
+Gate In -> LL_delivery -> RMG_mixed -> Gate Out,340,4
+Gate In -> HO2_delivery -> RMG_receive -> Gate Out,324,4
+Gate In -> LL_delivery -> HO2_receive -> Gate Out,207,4
+Gate In -> LL_delivery -> LL_delivery -> RMG_receive -> RMG_receive -> Gate Out,155,6
+Gate In -> HO2_mixed -> HO2_mixed -> Gate Out,123,4
+Gate In -> RMG_delivery -> LL_receive -> Gate Out,121,4
+Gate In -> RMG_delivery -> RMG_delivery -> Gate Out,67,4

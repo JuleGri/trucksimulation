@@ -25,9 +25,13 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
+from _eventlog_source import is_train_log, parse_input_arg, resolve_event_csv
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, '..'))
-raw_csv = os.path.normpath(os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features.csv'))
+# Route through the shared resolver so the sampled-distribution fits also
+# consume the held-out training log by default.
+raw_csv = resolve_event_csv(parse_input_arg())
 
 if not os.path.exists(raw_csv):
     raise FileNotFoundError(f"Event CSV not found at {raw_csv}")
@@ -40,15 +44,19 @@ for col in ['enabled:timestamp','start:timestamp','time:timestamp']:
     if col in df.columns:
         df[col] = pd.to_datetime(df[col], errors='coerce')
 
-# sample cases
-n_cases = 24000
+# sample cases (only when reading the full log — the training log is
+# already the correct hold-out and does not need extra sub-sampling)
 case_ids = df['case:concept:name'].drop_duplicates()
-if len(case_ids) > n_cases:
-    sample_ids = case_ids.sample(n_cases, random_state=42)
-    df = df[df['case:concept:name'].isin(sample_ids)].copy()
-    print(f'Sampled {len(sample_ids)} cases')
+if is_train_log(raw_csv):
+    print(f'Held-out training log detected: keeping all {len(case_ids)} cases')
 else:
-    print(f'Using all {len(case_ids)} cases')
+    n_cases = 24000
+    if len(case_ids) > n_cases:
+        sample_ids = case_ids.sample(n_cases, random_state=42)
+        df = df[df['case:concept:name'].isin(sample_ids)].copy()
+        print(f'Sampled {len(sample_ids)} cases (legacy full-log mode)')
+    else:
+        print(f'Using all {len(case_ids)} cases')
 
 # compute durations in minutes
 df['service_time_min'] = (df['time:timestamp'] - df['start:timestamp']).dt.total_seconds() / 60

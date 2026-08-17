@@ -17,6 +17,7 @@ Methodological note:
 - this script is intentionally conservative: it compares contextual models against pooled baselines and does not claim universal superiority.
 """
 
+import argparse
 import os
 from itertools import product
 
@@ -27,18 +28,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
-
-def resolve_event_csv():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    candidates = [
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features.csv'),
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features_v1.csv'),
-        os.path.join(script_dir, 's6_eventlog_target_rank_features.csv'),
-    ]
-    for candidate in candidates:
-        if os.path.exists(candidate):
-            return candidate
-    raise FileNotFoundError('Could not find the target event log CSV.')
+from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_csv
 
 
 def build_service_time(df):
@@ -142,7 +132,11 @@ def evaluate_activity_tree(df, activity_name, hyperparams):
 
 
 def main():
-    event_csv = resolve_event_csv()
+    parser = argparse.ArgumentParser(description='Data-aware duration discovery on the held-out training log.')
+    add_input_arg(parser)
+    args = parser.parse_args()
+
+    event_csv = resolve_event_csv(args.input_csv)
     df = pd.read_csv(event_csv)
     df = build_service_time(df)
     df = make_feature_frame(df)
@@ -186,18 +180,16 @@ def main():
             })
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    param_root = os.path.join(script_dir, 'discovery_params')
-    summary_path = os.path.join(script_dir, 'data_aware_model_summary.csv')
-    importance_path = os.path.join(script_dir, 'tree_feature_importance.csv')
-    if os.path.exists(param_root):
-        param_dirs = [p for p in os.listdir(param_root) if os.path.isdir(os.path.join(param_root, p))]
-        if param_dirs:
-            param_dir = os.path.join(param_root, sorted(param_dirs)[-1])
-            summary_path = os.path.join(param_dir, 'data_aware_model_summary.csv')
-            importance_path = os.path.join(param_dir, 'tree_feature_importance.csv')
+    from _eventlog_source import resolve_paramset_dir
+    param_dir = resolve_paramset_dir(script_dir, paramset_suffix_for(event_csv))
+    summary_path = os.path.join(param_dir, 'data_aware_model_summary.csv')
+    importance_path = os.path.join(param_dir, 'tree_feature_importance.csv')
 
+    summary['source_eventlog'] = os.path.basename(event_csv)
     summary.to_csv(summary_path, index=False)
-    pd.DataFrame(importance_rows).to_csv(importance_path, index=False)
+    imp_df = pd.DataFrame(importance_rows)
+    imp_df['source_eventlog'] = os.path.basename(event_csv)
+    imp_df.to_csv(importance_path, index=False)
 
     print('Data-aware discovery evaluation complete.')
     print(f'Wrote: {summary_path}')

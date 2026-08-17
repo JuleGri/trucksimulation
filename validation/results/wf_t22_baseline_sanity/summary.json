@@ -1,0 +1,16 @@
+{
+  "label": "wf_t22_baseline_sanity",
+  "real_path": "data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "data\\processed\\CTB\\prosit_simulations\\what_if_T22_closed\\baseline_reference_sim_log.csv",
+  "real_events": 55864,
+  "sim_events": 55231,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "mean_service_time_emd_min": 2.0071890435583746,
+  "mean_waiting_time_emd_min": 34.985076928325775,
+  "case_turnaround_emd_min": 11.15753588472334,
+  "inter_arrival_emd_min": 0.3151966538110381,
+  "prepared_real_path": "validation\\results\\wf_t22_baseline_sanity\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\wf_t22_baseline_sanity\\prepared_sim.csv"
+}

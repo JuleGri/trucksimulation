@@ -1,0 +1,16 @@
+{
+  "label": "prosit_train80_vs_holdout",
+  "real_path": "data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery\\sim_baseline_train80.csv",
+  "real_events": 55864,
+  "sim_events": 55609,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "mean_service_time_emd_min": 2.04165298387596,
+  "mean_waiting_time_emd_min": 39.05390400402471,
+  "case_turnaround_emd_min": 14.099138408644512,
+  "inter_arrival_emd_min": 0.3136595681254981,
+  "prepared_real_path": "validation\\results\\prosit_train80_vs_holdout\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\prosit_train80_vs_holdout\\prepared_sim.csv"
+}

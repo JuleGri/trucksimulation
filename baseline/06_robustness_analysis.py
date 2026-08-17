@@ -19,6 +19,7 @@ Methodological note:
 - this script closes the gap between model selection and a more formal robustness discussion in the thesis.
 """
 
+import argparse
 import os
 from itertools import product
 
@@ -28,34 +29,19 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.tree import DecisionTreeRegressor
 
+from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_csv
 
-def resolve_event_csv():
+
+def resolve_discovery_dir(suffix: str = ''):
+    """Resolve or create the paramset folder used to store robustness artefacts.
+
+    Delegates to the shared resolver in ``_eventlog_source`` so the results
+    end up in the same paramset directory as the corresponding discovery
+    outputs (train80 or full).
+    """
+    from _eventlog_source import resolve_paramset_dir
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    candidates = [
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features.csv'),
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features_v1.csv'),
-        os.path.join(script_dir, 's6_eventlog_target_rank_features.csv'),
-    ]
-    for path in candidates:
-        path = os.path.normpath(path)
-        if os.path.exists(path):
-            return path
-    raise FileNotFoundError('Could not find the target event log CSV.')
-
-
-def resolve_discovery_dir():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    discovery_root = os.path.join(script_dir, 'discovery_params')
-    if not os.path.exists(discovery_root):
-        os.makedirs(discovery_root, exist_ok=True)
-    param_dirs = [p for p in os.listdir(discovery_root) if os.path.isdir(os.path.join(discovery_root, p))]
-    if param_dirs:
-        latest = sorted(param_dirs)[-1]
-        return os.path.join(discovery_root, latest)
-    param_name = 'params_' + pd.Timestamp.utcnow().strftime('%Y%m%d_%H%M%S')
-    param_dir = os.path.join(discovery_root, param_name)
-    os.makedirs(param_dir, exist_ok=True)
-    return param_dir
+    return resolve_paramset_dir(script_dir, suffix)
 
 
 def build_arrival_slots(df):
@@ -211,9 +197,9 @@ def evaluate_duration_cv(df):
     return pd.DataFrame(rows)
 
 
-def resource_capacity_sensitivity_summary():
+def resource_capacity_sensitivity_summary(suffix: str = ''):
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    discovery_dir = resolve_discovery_dir()
+    discovery_dir = resolve_discovery_dir(suffix)
     capacity_csv = os.path.join(discovery_dir, 'discovered_resource_capacities.csv')
     if os.path.exists(capacity_csv):
         cap_df = pd.read_csv(capacity_csv)
@@ -276,7 +262,12 @@ def summarize_robustness(arrival_cv_df, duration_cv_df, capacity_sensitivity_df)
 
 
 def main():
-    event_csv = resolve_event_csv()
+    parser = argparse.ArgumentParser(description='Robustness analysis on the held-out training log.')
+    add_input_arg(parser)
+    args = parser.parse_args()
+
+    event_csv = resolve_event_csv(args.input_csv)
+    suffix = paramset_suffix_for(event_csv)
     df = pd.read_csv(event_csv)
     case_arrivals = build_arrival_slots(df)
 
@@ -284,10 +275,10 @@ def main():
     service_df = build_service_time_df(df)
     service_df = make_feature_frame(service_df)
     duration_cv_df = evaluate_duration_cv(service_df)
-    capacity_sensitivity_df = resource_capacity_sensitivity_summary()
+    capacity_sensitivity_df = resource_capacity_sensitivity_summary(suffix)
     robustness_summary_df = summarize_robustness(arrival_cv_df, duration_cv_df, capacity_sensitivity_df)
 
-    discovery_dir = resolve_discovery_dir()
+    discovery_dir = resolve_discovery_dir(suffix)
     arrival_cv_path = os.path.join(discovery_dir, 'arrival_cv_summary.csv')
     arrival_hyperparam_path = os.path.join(discovery_dir, 'arrival_hyperparameter_sensitivity.csv')
     duration_cv_path = os.path.join(discovery_dir, 'duration_cv_summary.csv')

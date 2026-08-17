@@ -17,24 +17,14 @@ Methodological note:
 - the resulting capacities are effective capacities under the pooled-resource event-log abstraction.
 """
 
+import argparse
 import os
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-
-def resolve_event_csv():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    candidates = [
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features.csv'),
-        os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_eventlog_target_rank_features_v1.csv'),
-        os.path.join(script_dir, 's6_eventlog_target_rank_features.csv'),
-    ]
-    for candidate in candidates:
-        if os.path.exists(candidate):
-            return candidate
-    raise FileNotFoundError('Could not find target event log CSV.')
+from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_csv
 
 
 def map_resource_pool(resource_name):
@@ -112,18 +102,19 @@ def compute_pool_concurrency(df):
 
 
 def main():
-    event_csv = resolve_event_csv()
+    parser = argparse.ArgumentParser(description='Resource-concurrency discovery on the held-out training log.')
+    add_input_arg(parser)
+    args = parser.parse_args()
+
+    event_csv = resolve_event_csv(args.input_csv)
     df = pd.read_csv(event_csv)
     summary = compute_pool_concurrency(df)
+    summary['source_eventlog'] = os.path.basename(event_csv)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    param_root = os.path.join(script_dir, 'discovery_params')
-    output_path = os.path.join(script_dir, 'discovered_resource_capacities.csv')
-    if os.path.exists(param_root):
-        param_dirs = [p for p in os.listdir(param_root) if os.path.isdir(os.path.join(param_root, p))]
-        if param_dirs:
-            param_dir = os.path.join(param_root, sorted(param_dirs)[-1])
-            output_path = os.path.join(param_dir, 'discovered_resource_capacities.csv')
+    from _eventlog_source import resolve_paramset_dir
+    param_dir = resolve_paramset_dir(script_dir, paramset_suffix_for(event_csv))
+    output_path = os.path.join(param_dir, 'discovered_resource_capacities.csv')
     summary.to_csv(output_path, index=False)
 
     print('Resource concurrency discovery complete.')

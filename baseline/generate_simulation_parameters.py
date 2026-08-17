@@ -50,18 +50,19 @@ discovery_root = os.path.join(script_dir, 'discovery_params')
 if not os.path.exists(discovery_root):
     os.makedirs(discovery_root)
 
-# Choose an existing paramset folder or create a new one (no archiv)
-candidates = [p for p in os.listdir(discovery_root) if os.path.isdir(os.path.join(discovery_root, p))]
-paramset = None
-for c in candidates:
-    if 'depth10' in c or 'params' in c:
-        paramset = c
-        break
-if paramset is None:
-    paramset = 'params_' + datetime.now().strftime('%Y%m%d_%H%M%S')
-    os.makedirs(os.path.join(discovery_root, paramset), exist_ok=True)
+# Route the paramset folder through the shared resolver so this script
+# writes into the same folder as the discovery scripts (train80 by default,
+# full only when the caller explicitly points at the full log). The
+# --input / TRUCKSIM_EVENTLOG selection is honoured transparently.
+from _eventlog_source import parse_input_arg, paramset_suffix_for, resolve_paramset_dir
 
-param_dir = os.path.join(discovery_root, paramset)
+_source_hint = parse_input_arg()
+# When no --input is passed, prefer the training log if it exists so that
+# suffix defaults align with the discovery scripts.
+_source_hint = _source_hint or os.path.join(script_dir, '..', '..', 'data', 'processed', 'CTB', 's6_train.csv')
+suffix = paramset_suffix_for(_source_hint)
+param_dir = resolve_paramset_dir(script_dir, suffix)
+paramset = os.path.basename(param_dir)
 print('Using paramset folder:', param_dir)
 
 # Helper to find cleaned empirical durations CSV (try several locations and recursive search)

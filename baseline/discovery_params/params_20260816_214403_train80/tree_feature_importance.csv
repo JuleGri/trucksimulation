@@ -1,0 +1,100 @@
+activity,feature,importance,source_eventlog
+Gate In,target_demand,0.0,s6_train.csv
+Gate In,target_utilization,0.0,s6_train.csv
+Gate In,target_rank,0.0,s6_train.csv
+Gate In,visit_complexity,0.0,s6_train.csv
+Gate In,n_receives,0.0,s6_train.csv
+Gate In,n_deliveries,0.0,s6_train.csv
+Gate In,hour,0.0,s6_train.csv
+Gate In,weekday,0.0,s6_train.csv
+Gate In,is_weekend,0.0,s6_train.csv
+Gate Out,target_demand,0.0,s6_train.csv
+Gate Out,target_utilization,0.0,s6_train.csv
+Gate Out,target_rank,0.0,s6_train.csv
+Gate Out,visit_complexity,0.0,s6_train.csv
+Gate Out,n_receives,0.0,s6_train.csv
+Gate Out,n_deliveries,0.0,s6_train.csv
+Gate Out,hour,0.0,s6_train.csv
+Gate Out,weekday,0.0,s6_train.csv
+Gate Out,is_weekend,0.0,s6_train.csv
+HO2_delivery,target_demand,0.11055565552152372,s6_train.csv
+HO2_delivery,target_utilization,0.0,s6_train.csv
+HO2_delivery,target_rank,0.0,s6_train.csv
+HO2_delivery,visit_complexity,0.0,s6_train.csv
+HO2_delivery,n_receives,0.0,s6_train.csv
+HO2_delivery,n_deliveries,0.0,s6_train.csv
+HO2_delivery,hour,0.8894443444784763,s6_train.csv
+HO2_delivery,weekday,0.0,s6_train.csv
+HO2_delivery,is_weekend,0.0,s6_train.csv
+HO2_mixed,target_demand,0.119738083492998,s6_train.csv
+HO2_mixed,target_utilization,0.0,s6_train.csv
+HO2_mixed,target_rank,0.0,s6_train.csv
+HO2_mixed,visit_complexity,0.06280656352782844,s6_train.csv
+HO2_mixed,n_receives,0.0,s6_train.csv
+HO2_mixed,n_deliveries,0.0,s6_train.csv
+HO2_mixed,hour,0.5145084922729054,s6_train.csv
+HO2_mixed,weekday,0.30294686070626825,s6_train.csv
+HO2_mixed,is_weekend,0.0,s6_train.csv
+HO2_receive,target_demand,0.02230586893945625,s6_train.csv
+HO2_receive,target_utilization,0.0663112762496556,s6_train.csv
+HO2_receive,target_rank,0.0,s6_train.csv
+HO2_receive,visit_complexity,0.0,s6_train.csv
+HO2_receive,n_receives,0.0,s6_train.csv
+HO2_receive,n_deliveries,0.0,s6_train.csv
+HO2_receive,hour,0.5488693468931766,s6_train.csv
+HO2_receive,weekday,0.3625135079177116,s6_train.csv
+HO2_receive,is_weekend,0.0,s6_train.csv
+LL_delivery,target_demand,0.0,s6_train.csv
+LL_delivery,target_utilization,0.0,s6_train.csv
+LL_delivery,target_rank,0.0,s6_train.csv
+LL_delivery,visit_complexity,0.0,s6_train.csv
+LL_delivery,n_receives,0.0,s6_train.csv
+LL_delivery,n_deliveries,0.0,s6_train.csv
+LL_delivery,hour,1.0,s6_train.csv
+LL_delivery,weekday,0.0,s6_train.csv
+LL_delivery,is_weekend,0.0,s6_train.csv
+LL_mixed,target_demand,0.0,s6_train.csv
+LL_mixed,target_utilization,0.0,s6_train.csv
+LL_mixed,target_rank,0.0,s6_train.csv
+LL_mixed,visit_complexity,0.0,s6_train.csv
+LL_mixed,n_receives,0.0,s6_train.csv
+LL_mixed,n_deliveries,0.0,s6_train.csv
+LL_mixed,hour,1.0,s6_train.csv
+LL_mixed,weekday,0.0,s6_train.csv
+LL_mixed,is_weekend,0.0,s6_train.csv
+LL_receive,target_demand,0.4157222312442021,s6_train.csv
+LL_receive,target_utilization,0.0,s6_train.csv
+LL_receive,target_rank,0.0,s6_train.csv
+LL_receive,visit_complexity,0.0,s6_train.csv
+LL_receive,n_receives,0.0,s6_train.csv
+LL_receive,n_deliveries,0.0,s6_train.csv
+LL_receive,hour,0.1223779079897388,s6_train.csv
+LL_receive,weekday,0.46189986076605904,s6_train.csv
+LL_receive,is_weekend,0.0,s6_train.csv
+RMG_delivery,target_demand,0.1523626974728853,s6_train.csv
+RMG_delivery,target_utilization,0.0,s6_train.csv
+RMG_delivery,target_rank,0.0,s6_train.csv
+RMG_delivery,visit_complexity,0.11163048587546989,s6_train.csv
+RMG_delivery,n_receives,0.0,s6_train.csv
+RMG_delivery,n_deliveries,0.7360068166516448,s6_train.csv
+RMG_delivery,hour,0.0,s6_train.csv
+RMG_delivery,weekday,0.0,s6_train.csv
+RMG_delivery,is_weekend,0.0,s6_train.csv
+RMG_mixed,target_demand,0.2555635432449421,s6_train.csv
+RMG_mixed,target_utilization,0.0,s6_train.csv
+RMG_mixed,target_rank,0.0,s6_train.csv
+RMG_mixed,visit_complexity,0.5941183058779722,s6_train.csv
+RMG_mixed,n_receives,0.0,s6_train.csv
+RMG_mixed,n_deliveries,0.12680109097156866,s6_train.csv
+RMG_mixed,hour,0.023517059905517102,s6_train.csv
+RMG_mixed,weekday,0.0,s6_train.csv
+RMG_mixed,is_weekend,0.0,s6_train.csv
+RMG_receive,target_demand,0.45224342101863846,s6_train.csv
+RMG_receive,target_utilization,0.03464858825945533,s6_train.csv
+RMG_receive,target_rank,0.0,s6_train.csv
+RMG_receive,visit_complexity,0.01887317889325954,s6_train.csv
+RMG_receive,n_receives,0.0,s6_train.csv
+RMG_receive,n_deliveries,0.0,s6_train.csv
+RMG_receive,hour,0.34640409169286607,s6_train.csv
+RMG_receive,weekday,0.1478307201357805,s6_train.csv
+RMG_receive,is_weekend,0.0,s6_train.csv
