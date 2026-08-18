@@ -129,10 +129,21 @@ def _dedupe_columns(df: pd.DataFrame) -> pd.DataFrame:
 def _run_one_seed(engine, seed: int, n_traces: int, t_start: datetime | None) -> pd.DataFrame:
     random.seed(seed)
     np.random.seed(seed)
-    if t_start is None:
-        sim_log = engine.apply(n_traces=n_traces)
-    else:
-        sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
+    # ProSiT 1.0.3 no-rules mode passes numpy arrays to random.choice(),
+    # which crashes on `if not seq:` in Python 3.11. Patch for the call.
+    _orig_choice = random.choice
+    def _safe_choice(seq):
+        if isinstance(seq, np.ndarray):
+            return seq[np.random.randint(len(seq))]
+        return _orig_choice(seq)
+    random.choice = _safe_choice
+    try:
+        if t_start is None:
+            sim_log = engine.apply(n_traces=n_traces)
+        else:
+            sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
+    finally:
+        random.choice = _orig_choice
     return _dedupe_columns(sim_log)
 
 

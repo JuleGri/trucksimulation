@@ -403,14 +403,25 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
 
 
 def simulate_prosit(params, n_traces: int, t_start: datetime | None, seed: int) -> pd.DataFrame:
+    import random
     from prosit import SimulatorEngine
     engine = SimulatorEngine(params)
     print(f"[prosit] Simulating n_traces={n_traces:,}  t_start={t_start}  ...")
+    # ProSiT 1.0.3 no-rules mode passes numpy arrays to random.choice()
+    _orig = random.choice
+    def _safe(seq):
+        if isinstance(seq, np.ndarray):
+            return seq[np.random.randint(len(seq))]
+        return _orig(seq)
+    random.choice = _safe
     t0 = time.time()
-    if t_start is None:
-        sim_log = engine.apply(n_traces=n_traces)
-    else:
-        sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
+    try:
+        if t_start is None:
+            sim_log = engine.apply(n_traces=n_traces)
+        else:
+            sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
+    finally:
+        random.choice = _orig
     dt = time.time() - t0
     print(f"[prosit] Simulation finished in {dt:.1f}s (events={len(sim_log):,})")
     return sim_log
