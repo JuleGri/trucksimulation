@@ -40,7 +40,7 @@ print('Reading raw event CSV from', raw_csv)
 df = pd.read_csv(raw_csv)
 
 # timestamps
-for col in ['enabled:timestamp','start:timestamp','time:timestamp']:
+for col in ['start:timestamp','time:timestamp']:
     if col in df.columns:
         df[col] = pd.to_datetime(df[col], errors='coerce')
 
@@ -60,9 +60,9 @@ else:
 
 # compute durations in minutes
 df['service_time_min'] = (df['time:timestamp'] - df['start:timestamp']).dt.total_seconds() / 60
-df['waiting_time_min'] = (df['start:timestamp'] - df['enabled:timestamp']).dt.total_seconds() / 60
-# clip waiting
-df['waiting_time_min'] = df['waiting_time_min'].clip(lower=0)
+# Note (2026-08): waiting_time_min is no longer computed from a handcrafted
+# enabled:timestamp. Pre-service delay is a model concept derived by ProSiT.
+df['waiting_time_min'] = np.nan
 
 # candidate distributions
 candidates = ['lognorm','gamma','weibull_min','expon','norm']

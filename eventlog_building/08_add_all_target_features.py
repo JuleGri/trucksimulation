@@ -40,15 +40,15 @@ demand = pd.read_csv(DEMAND_FILE)
 
 for col in [
 
-    "enabled:timestamp",
     "start:timestamp",
     "time:timestamp"
 
 ]:
 
-    log[col] = pd.to_datetime(
-        log[col]
-    )
+    if col in log.columns:
+        log[col] = pd.to_datetime(
+            log[col]
+        )
 
 yard["ZEITPUNKT"] = pd.to_datetime(
     yard["ZEITPUNKT"]

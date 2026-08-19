@@ -45,7 +45,7 @@ def resolve_discovery_dir(suffix: str = ''):
 
 
 def build_arrival_slots(df):
-    ts_col = 'enabled:timestamp' if 'enabled:timestamp' in df.columns else 'start:timestamp'
+    ts_col = 'start:timestamp'
     df = df[['case:concept:name', ts_col]].dropna().copy()
     df[ts_col] = pd.to_datetime(df[ts_col], errors='coerce')
     df = df.dropna(subset=[ts_col]).sort_values(ts_col)
@@ -64,17 +64,12 @@ def build_arrival_slots(df):
 
 def build_service_time_df(df):
     out = df.copy()
-    for col in ['enabled:timestamp', 'start:timestamp', 'time:timestamp']:
+    for col in ['start:timestamp', 'time:timestamp']:
         if col in out.columns:
             out[col] = pd.to_datetime(out[col], errors='coerce')
     if 'start:timestamp' not in out.columns or 'time:timestamp' not in out.columns:
         raise KeyError('The event log must contain start:timestamp and time:timestamp.')
     out['service_time_min'] = (out['time:timestamp'] - out['start:timestamp']).dt.total_seconds().div(60.0)
-    if 'enabled:timestamp' in out.columns:
-        out['waiting_time_min'] = (out['start:timestamp'] - out['enabled:timestamp']).dt.total_seconds().div(60.0)
-        out['waiting_time_min'] = out['waiting_time_min'].clip(lower=0)
-    else:
-        out['waiting_time_min'] = np.nan
     return out.dropna(subset=['service_time_min'])
 
 

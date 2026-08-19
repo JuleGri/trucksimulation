@@ -1,0 +1,16 @@
+{
+  "label": "prosit_no_enabled_no_rules",
+  "real_path": "data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules\\sim_baseline_train80_no_rules.csv",
+  "real_events": 55864,
+  "sim_events": 55409,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "mean_service_time_emd_min": 1.9097138476561393,
+  "mean_waiting_time_emd_min": NaN,
+  "case_turnaround_emd_min": 13.844442287559767,
+  "inter_arrival_emd_min": 0.31709239282320084,
+  "prepared_real_path": "validation\\results\\prosit_no_enabled_no_rules\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\prosit_no_enabled_no_rules\\prepared_sim.csv"
+}

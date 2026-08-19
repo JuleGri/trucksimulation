@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T09:15:06.323557Z",
+  "generated_at": "2026-08-19T13:40:48.332520Z",
   "train_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_train.csv",
   "test_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
   "paramset_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80",
@@ -16,7 +16,7 @@
     "out_suffix": "_workload",
     "random_state": 42
   },
-  "discovery_seconds": 1061.1656754016876,
+  "discovery_seconds": 1409.1140234470367,
   "conformance": [
     {
       "log": "train",
@@ -24,7 +24,7 @@
       "fitness_perc_fit_traces": 100.0,
       "fitness_average_trace": 1.0,
       "precision_token": 0.9037055450739098,
-      "compute_seconds": 3.0758790969848633,
+      "compute_seconds": 6.6293394565582275,
       "generalization": 0.9741098169071539,
       "simplicity": 0.6516129032258065
     },
@@ -34,14 +34,14 @@
       "fitness_perc_fit_traces": 100.0,
       "fitness_average_trace": 1.0,
       "precision_token": 0.8715395050494337,
-      "compute_seconds": 1.0738892555236816,
+      "compute_seconds": 3.2808728218078613,
       "generalization": 0.948818837029093,
       "simplicity": 0.6516129032258065
     }
   ],
   "simulation": {
     "n_traces": 17892,
-    "n_events": 55394,
+    "n_events": 56853,
     "t_start": "2026-04-20T18:14:00",
     "output_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload\\sim_baseline_train80_workload.csv"
   }

@@ -99,6 +99,12 @@ DEFAULT_XES_DIR = _REPO_ROOT / "data" / "processed" / "CTB" / "xes_files"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="ProSiT discovery + visualisation on the training split.")
     add_input_arg(parser)
+    parser.add_argument("--xes", type=Path, default=None,
+                        help="Path to a pre-built XES file for the training log. "
+                             "If provided, the CSV --input is ignored and the XES is "
+                             "loaded directly with pm4py.read_xes() following Vinci et al.")
+    parser.add_argument("--test-xes", type=Path, default=None,
+                        help="Path to a pre-built XES file for the test log.")
     parser.add_argument("--test", type=Path, default=DEFAULT_TEST,
                         help="Held-out test CSV used for test-set conformance.")
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST,
@@ -441,18 +447,30 @@ def _read_manifest(path: Path) -> dict:
 
 def main() -> int:
     args = parse_args()
+    import pm4py
 
-    train_csv = resolve_event_csv(args.input_csv)
-    if not is_train_log(train_csv):
-        print("[main] WARNING: input is not s6_train.csv. Continuing but paramset suffix will reflect this.")
-    if not args.test.exists():
-        raise FileNotFoundError(f"Test log not found at {args.test}. Run validation/01_train_test_split.py first.")
+    # --- Load logs: prefer XES (Vinci approach) over CSV ---
+    if args.xes and args.xes.exists():
+        print(f"[main] Reading training XES: {args.xes}")
+        train_log = pm4py.read_xes(str(args.xes))
+        print(f"[main] Training log: {len(train_log)} traces (from XES)")
+        train_csv = str(args.xes)  # for paramset suffix
+    else:
+        train_csv = resolve_event_csv(args.input_csv)
+        if not is_train_log(train_csv):
+            print("[main] WARNING: input is not s6_train.csv.")
+        train_df = load_log(train_csv, "train")
+        train_log = to_pm4py_log(train_df, "train")
 
-    train_df = load_log(train_csv, "train")
-    test_df = load_log(str(args.test), "test")
-
-    train_log = to_pm4py_log(train_df, "train")
-    test_log = to_pm4py_log(test_df, "test")
+    if args.test_xes and args.test_xes.exists():
+        print(f"[main] Reading test XES: {args.test_xes}")
+        test_log = pm4py.read_xes(str(args.test_xes))
+        print(f"[main] Test log: {len(test_log)} traces (from XES)")
+    else:
+        if not args.test.exists():
+            raise FileNotFoundError(f"Test log not found at {args.test}. Run validation/01_train_test_split.py first.")
+        test_df = load_log(str(args.test), "test")
+        test_log = to_pm4py_log(test_df, "test")
 
     if args.write_xes:
         maybe_write_xes(train_log, DEFAULT_XES_DIR / "s6_train.xes", "train")

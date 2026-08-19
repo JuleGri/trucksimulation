@@ -33,7 +33,7 @@ print('Reading event CSV from', input_csv)
 df = pd.read_csv(input_csv)
 
 # Convert relevant timestamp columns to datetime
-for col in ["enabled:timestamp", "start:timestamp", "time:timestamp"]:
+for col in ["start:timestamp", "time:timestamp"]:
     if col in df.columns:
         df[col] = pd.to_datetime(df[col], errors='coerce')
     else:
@@ -64,13 +64,11 @@ if 'time:timestamp' in df.columns and 'start:timestamp' in df.columns:
 else:
     df['service_time_min'] = np.nan
 
-if 'start:timestamp' in df.columns and 'enabled:timestamp' in df.columns:
-    df['waiting_time_min'] = (df['start:timestamp'] - df['enabled:timestamp']).dt.total_seconds() / 60
-else:
-    df['waiting_time_min'] = np.nan
-
-# Clip negative waiting times to zero (common timestamp artifact)
-df['waiting_time_min'] = df['waiting_time_min'].clip(lower=0)
+# Note (2026-08 revision): waiting_time_min is no longer computed from
+# a handcrafted enabled:timestamp. Pre-service delay is a model concept
+# derived by ProSiT during discovery. We retain the column as NaN for
+# schema compatibility with downstream scripts.
+df['waiting_time_min'] = np.nan
 
 # Remove extreme outliers per-activity/service and per-resource/waiting: 99.9 percentile
 # Service: per activity

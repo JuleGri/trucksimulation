@@ -1,0 +1,16 @@
+{
+  "label": "prosit_no_enabled_workload",
+  "real_path": "data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload\\sim_baseline_train80_workload.csv",
+  "real_events": 55864,
+  "sim_events": 56853,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "mean_service_time_emd_min": 2.014463837449693,
+  "mean_waiting_time_emd_min": NaN,
+  "case_turnaround_emd_min": 20.50877935402678,
+  "inter_arrival_emd_min": 0.31331675143926485,
+  "prepared_real_path": "validation\\results\\prosit_no_enabled_workload\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\prosit_no_enabled_workload\\prepared_sim.csv"
+}

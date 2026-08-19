@@ -31,7 +31,7 @@ from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_c
 
 
 def build_case_arrivals(df):
-    ts_col = 'enabled:timestamp' if 'enabled:timestamp' in df.columns else 'start:timestamp'
+    ts_col = 'start:timestamp'
     df = df[["case:concept:name", ts_col]].dropna().copy()
     df[ts_col] = pd.to_datetime(df[ts_col], errors='coerce')
     df = df.dropna(subset=[ts_col])

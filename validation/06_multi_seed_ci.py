@@ -226,14 +226,23 @@ def _plot_violin(replications: pd.DataFrame, out_path: Path) -> None:
         ("inter_arrival_emd_min", "IAT EMD (min)"),
     ]
     fig, ax = plt.subplots(figsize=(8.0, 4.5))
-    data = [replications[key].dropna().to_numpy() for key, _ in metrics]
-    positions = np.arange(len(metrics)) + 1
+    data = []
+    labels = []
+    for key, label in metrics:
+        vals = replications[key].dropna().to_numpy()
+        if len(vals) >= 2:
+            data.append(vals)
+            labels.append(label)
+    if not data:
+        plt.close(fig)
+        return
+    positions = np.arange(len(data)) + 1
     parts = ax.violinplot(data, positions=positions, widths=0.7, showmeans=True, showextrema=True)
     for pc in parts["bodies"]:
         pc.set_facecolor("#2c7fb8")
         pc.set_alpha(0.55)
     ax.set_xticks(positions)
-    ax.set_xticklabels([label for _, label in metrics], fontsize=9)
+    ax.set_xticklabels(labels, fontsize=9)
     ax.set_ylabel("EMD (min)")
     ax.set_title(f"Monte-Carlo spread across {len(replications)} seeds")
     ax.grid(True, axis="y", linestyle=":", alpha=0.5)

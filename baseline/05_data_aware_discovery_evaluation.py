@@ -32,13 +32,13 @@ from _eventlog_source import add_input_arg, paramset_suffix_for, resolve_event_c
 
 
 def build_service_time(df):
-
+    """Compute service_time_min from observed start/complete timestamps.
+    
+    Note (2026-08 revision): waiting_time_min is no longer computed here.
+    Activity enablement is a model concept derived by ProSiT, not from
+    the input event log.
+    """
     out = df.copy()
-
-    out["enabled:timestamp"] = pd.to_datetime(
-        out["enabled:timestamp"],
-        errors="coerce"
-    )
 
     out["start:timestamp"] = pd.to_datetime(
         out["start:timestamp"],
@@ -50,39 +50,11 @@ def build_service_time(df):
         errors="coerce"
     )
 
-    print(
-        out[
-            [
-                "enabled:timestamp",
-                "start:timestamp",
-                "time:timestamp"
-            ]
-        ].dtypes
-    )
-
-    out["waiting_time_min"] = (
-        out["start:timestamp"]
-        -
-        out["enabled:timestamp"]
-    ).dt.total_seconds() / 60
-
-    out["service_time_min"] = (
-        out["time:timestamp"]
-        -
-        out["start:timestamp"]
-    ).dt.total_seconds() / 60
-
-    for col in ['enabled:timestamp', 'start:timestamp', 'time:timestamp']:
-        if col in out.columns:
-            out[col] = pd.to_datetime(out[col], errors='coerce')
     if 'time:timestamp' not in out.columns or 'start:timestamp' not in out.columns:
         raise KeyError('The event log must contain start:timestamp and time:timestamp for service-time discovery.')
+
     out['service_time_min'] = (out['time:timestamp'] - out['start:timestamp']).dt.total_seconds().div(60.0)
-    if 'enabled:timestamp' in out.columns:
-        out['waiting_time_min'] = (out['start:timestamp'] - out['enabled:timestamp']).dt.total_seconds().div(60.0)
-        out['waiting_time_min'] = out['waiting_time_min'].clip(lower=0)
-    else:
-        out['waiting_time_min'] = np.nan
+
     return out.dropna(subset=['service_time_min'])
 
 

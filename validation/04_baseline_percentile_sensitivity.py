@@ -1,13 +1,20 @@
 """
 04_baseline_percentile_sensitivity.py
 
+Status: DIAGNOSTIC / DESCRIPTIVE ONLY (2026-08 revision)
+  This script is no longer part of the main simulation pipeline.
+  The transition-baseline table is not used to construct enabled:timestamp
+  and does not affect ProSiT's simulation-parameter discovery.
+  It is retained as descriptive evidence that the model-derived
+  pre-service delay includes a non-trivial physical-movement component.
+
 Purpose:
-- quantify how sensitive the transition-baseline table is to the choice
-  of percentile used in preparation/010_generate_transition_baseline.ipynb;
-- address the reviewer concern that the baseline percentile is arbitrary
-  and that reconstructed waiting times inherit that arbitrariness;
-- provide the sensitivity table and figure needed as a limitations
-  discussion in Chapter 6.
+- quantify how sensitive empirical transition durations are to the choice
+  of percentile;
+- provide the descriptive table and figure used in
+  Section 5.6 (Descriptive Analysis of Transition Durations);
+- illustrate the physical-movement component embedded in ProSiT's
+  model-derived pre-service delay.
 
 Inputs:
 - data/interim/CTB/s4_its_fahrplan_with_case_features_anonymized.csv (default;

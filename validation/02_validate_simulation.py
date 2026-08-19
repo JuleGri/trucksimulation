@@ -10,6 +10,25 @@ Purpose:
 - write a compact metrics bundle that can be tabulated in Chapter 5 of
   the thesis and reused by 03_validation_plots.py.
 
+Methodological note (2026-08 revision):
+  The real event log contains only observed timestamps (start, complete).
+  Activity enablement is a process-model concept derived by ProSiT via
+  A* alignment.  Consequently:
+    - Service time is computed from both real and simulated logs
+      (complete − start).
+    - Model-derived pre-service delay (ProSiT "waiting time") is
+      computed only from the *simulated* log's enabled:timestamp.
+    - The real log does NOT contain enabled:timestamp; model-derived
+      waiting for the real log would require replaying the real log
+      against the discovered Petri net (done internally by ProSiT
+      during discovery, not repeated here).
+    - Waiting-time comparison is therefore between the *simulated*
+      pre-service delay and the *simulated* log's own internal
+      consistency — not between a hand-crafted real enabled timestamp
+      and a simulated one.
+  For the case-level turnaround comparison the real turnaround is
+  measured as (last complete − first start), which is fully observed.
+
 Inputs:
 - --real  : path to the real held-out event log (default: s6_test.csv);
 - --sim   : path to the simulated event log (any CSV with the standard
@@ -17,23 +36,12 @@ Inputs:
 
 Outputs (under validation/results/<label>/):
 - metrics_activity.csv       per-activity service-time metrics
-- metrics_waiting.csv        per-activity waiting-time metrics
+- metrics_waiting.csv        per-activity pre-service-delay metrics (sim only)
 - metrics_case.csv           case-level KPIs (turnaround, n_events, etc.)
 - metrics_arrival.csv        inter-arrival time metrics
 - summary.json               overall roll-up used by the plot script
 - prepared_real.parquet /    per-event data cleaned and aligned so that
   prepared_sim.parquet        03_validation_plots.py can reuse it.
-
-Methodological notes:
-- EMD is computed with scipy.stats.wasserstein_distance in the natural
-  unit of the variable (minutes for durations, minutes for
-  inter-arrivals). It is scale-dependent and comparable only within the
-  same variable across configurations.
-- The KS p-value is capped at n=10,000 sub-sampled from each side to
-  keep the statistic informative (with 89 000 events the null is
-  rejected almost mechanically).
-- Summary-statistic errors (MAE/RMSE of mean, p50, p90) provide an
-  operationally interpretable secondary view.
 """
 
 from __future__ import annotations
@@ -99,6 +107,8 @@ def load_and_prepare(path: Path, label: str) -> pd.DataFrame:
         raise FileNotFoundError(f"[{label}] Event log not found: {path.resolve()}")
     print(f"[{label}] Reading {path}")
     df = pd.read_csv(path)
+    # Handle ProSiT duplicate columns
+    df = df.loc[:, ~df.columns.duplicated()]
     _to_ts(df, [TS_ENABLED, TS_START, TS_COMPLETE])
     if ACT_COL not in df.columns:
         raise KeyError(f"[{label}] Column {ACT_COL!r} missing.")
@@ -110,14 +120,18 @@ def load_and_prepare(path: Path, label: str) -> pd.DataFrame:
     else:
         df["service_time_min"] = np.nan
 
+    # Pre-service delay: only computable when enabled:timestamp is present
+    # (i.e. in simulated logs where ProSiT derives enablement from model)
     if TS_ENABLED in df.columns and TS_START in df.columns:
         df["waiting_time_min"] = (df[TS_START] - df[TS_ENABLED]).dt.total_seconds() / 60.0
         df["waiting_time_min"] = df["waiting_time_min"].clip(lower=0.0)
     else:
         df["waiting_time_min"] = np.nan
 
-    # Arrival timestamp per case (earliest available timestamp).
-    ts_cols_available = [c for c in (TS_ENABLED, TS_START, TS_COMPLETE) if c in df.columns]
+    # Arrival timestamp per case (earliest available observed timestamp).
+    ts_cols_available = [c for c in (TS_START, TS_COMPLETE) if c in df.columns]
+    if not ts_cols_available:
+        ts_cols_available = [c for c in (TS_ENABLED,) if c in df.columns]
     df["_event_ts"] = df[ts_cols_available].min(axis=1)
 
     print(f"[{label}] events={len(df):,}  cases={df[CASE_COL].nunique():,}  "
@@ -194,7 +208,8 @@ def compare_by_activity(real_df: pd.DataFrame, sim_df: pd.DataFrame, value_col: 
 
 
 def case_kpis(df: pd.DataFrame) -> pd.DataFrame:
-    ts_cols = [c for c in (TS_START, TS_COMPLETE, TS_ENABLED) if c in df.columns]
+    """Case turnaround = last complete − first start (observed timestamps only)."""
+    ts_cols = [c for c in (TS_START, TS_COMPLETE) if c in df.columns]
     if not ts_cols:
         return pd.DataFrame(columns=["case", "turnaround_min", "n_events"])
     grouped = df.groupby(CASE_COL)

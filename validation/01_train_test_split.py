@@ -47,7 +47,7 @@ DEFAULT_MANIFEST = Path("validation") / "results" / "split_manifest.json"
 
 CASE_COL = "case:concept:name"
 ACT_COL = "concept:name"
-TS_COLS = ["enabled:timestamp", "start:timestamp", "time:timestamp"]
+TS_COLS = ["start:timestamp", "time:timestamp"]
 
 
 def parse_args() -> argparse.Namespace:
