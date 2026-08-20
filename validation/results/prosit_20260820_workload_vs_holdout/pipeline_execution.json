@@ -1,0 +1,99 @@
+{
+  "label": "prosit_20260820_workload_vs_holdout",
+  "started_at": "2026-08-20T11:36:56.927405+00:00",
+  "python": "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "repo_root": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation",
+  "dry_run": false,
+  "steps": [
+    {
+      "name": "verify existing discovery split",
+      "status": "completed",
+      "finished_at": "2026-08-20T11:37:03.284766+00:00",
+      "details": {
+        "train_cases": 71566,
+        "test_cases": 17892,
+        "train_events": 220042,
+        "test_events": 55360,
+        "case_overlap": 0,
+        "cutoff_arrival_ts": "2026-04-20T18:17:00",
+        "manifest": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\split_manifest.json"
+      }
+    },
+    {
+      "name": "regenerate clean XES",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\_regen_xes.py"
+      ],
+      "started_at": "2026-08-20T11:37:03.298770+00:00",
+      "status": "completed",
+      "seconds": 144.94538009999087,
+      "returncode": 0,
+      "finished_at": "2026-08-20T11:39:28.246157+00:00"
+    },
+    {
+      "name": "02 held-out simulation validation",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\02_validate_simulation.py",
+        "--real",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+        "--sim",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload\\sim_baseline_train80_workload.csv",
+        "--label",
+        "prosit_20260820_workload_vs_holdout",
+        "--seed",
+        "42"
+      ],
+      "started_at": "2026-08-20T11:39:28.249709+00:00",
+      "status": "completed",
+      "seconds": 6.413355400029104,
+      "returncode": 0,
+      "finished_at": "2026-08-20T11:39:34.663608+00:00"
+    },
+    {
+      "name": "03 validation plots",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\03_validation_plots.py",
+        "--run-label",
+        "prosit_20260820_workload_vs_holdout",
+        "--max-activities",
+        "12"
+      ],
+      "started_at": "2026-08-20T11:39:34.788454+00:00",
+      "status": "completed",
+      "seconds": 9.760496300004888,
+      "returncode": 0,
+      "finished_at": "2026-08-20T11:39:44.540476+00:00"
+    },
+    {
+      "name": "06 multi-seed confidence intervals",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\06_multi_seed_ci.py",
+        "--params",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload\\prosit_params.pkl",
+        "--real",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+        "--manifest",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\split_manifest.json",
+        "--n-seeds",
+        "10",
+        "--base-seed",
+        "42",
+        "--label",
+        "prosit_20260820_workload_vs_holdout_ci",
+        "--t-start",
+        "2026-04-20T18:14:00"
+      ],
+      "started_at": "2026-08-20T11:39:44.540476+00:00",
+      "status": "completed",
+      "seconds": 1182.4626010999782,
+      "returncode": 0,
+      "finished_at": "2026-08-20T11:59:27.018960+00:00"
+    }
+  ],
+  "status": "completed",
+  "finished_at": "2026-08-20T11:59:27.032619+00:00"
+}

@@ -200,6 +200,11 @@ def main() -> int:
         ):
             real_values = _clean_series(real_df.loc[real_df[ACT_COL] == activity, col])
             sim_values = _clean_series(sim_df.loc[sim_df[ACT_COL] == activity, col])
+            if kind == "waiting" and len(real_values) == 0:
+                # A real log without model-derived enabled:timestamp has no
+                # observed ProSiT waiting-time reference.  Do not draw a
+                # misleading artificial zero distribution.
+                continue
             fig, ax = plt.subplots(figsize=FIGSIZE_CDF)
             _plot_cdf(ax, real_values, sim_values,
                       title=f"{activity} — {kind} time",
@@ -218,6 +223,11 @@ def main() -> int:
 
     # Compact box-plot overview.
     for col, kind in (("service_time_min", "service"), ("waiting_time_min", "waiting")):
+        if kind == "waiting" and not np.isfinite(
+            pd.to_numeric(real_df[col], errors="coerce")
+        ).any():
+            print("[plots] Skipping waiting-time plots: real holdout has no model-derived enablement.")
+            continue
         real_lists, sim_lists, labels = [], [], []
         for activity in top_activities:
             r = _clean_series(real_df.loc[real_df[ACT_COL] == activity, col])

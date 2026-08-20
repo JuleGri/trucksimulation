@@ -62,24 +62,18 @@ for i,(act,vals) in enumerate(bundle.get('activities', {}).items()):
 print('\nRouting table (relative to param dir):', bundle.get('routing_table'))
 
 print('\nVerification template:')
-print('The following code sketch shows how to run a Prosit simulation using the discovered Petri net and the generated bundle. This is a template you can run in a Python session where prosit and pm4py are installed:')
+print('The following code sketch reuses the validated sequential ProSiT parameter bundle. Do not rediscover an unconstrained Petri net from completion-time order:')
 
 print('''
 # Template (do not run unless prosit and pm4py are available in your environment)
-import pm4py
-from prosit import SimulatorParameters, SimulatorEngine
-import json
+import pickle
+from prosit import SimulatorEngine
 
-# 1. load event log and discover petri net (or reuse saved net if you have it)
-log = pm4py.objects.log.importer.xes.importer.apply('../../data/processed/CTB/xes_files/s6_eventlog_target_rank_features.xes')
-net, im, fm = pm4py.discover_petri_net_inductive(log)
+# Reuse the fitted parameters; they contain the domain-constrained sequential
+# control-flow net and the learned cross-case resource multitasking capacities.
+with open('prosit_discovery_workload_sequential/prosit_params.pkl', 'rb') as fh:
+    params = pickle.load(fh)
 
-# 2. create params and optionally override capacities
-params = SimulatorParameters(net, im, fm)
-# If Prosit exposes a method to load param json directly, use it; otherwise use params.discover_from_eventlog with options
-# e.g. params = SimulatorParameters.from_json('path/to/params.json')  # check Prosit API
-
-# 3. run simulation
 sim = SimulatorEngine(params)
 sim_log = sim.apply(n_traces=1000)
 print(sim_log.head())

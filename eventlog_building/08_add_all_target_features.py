@@ -1,4 +1,14 @@
+import sys
+from pathlib import Path
+
 import pandas as pd
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    canonicalize_case_order,
+    validate_eventlog_contract,
+)
 
 # =====================================================
 # INPUTS
@@ -270,7 +280,9 @@ case_info = pd.merge_asof(
 
     by="target_area",
 
-    direction="nearest"
+    direction="backward",
+
+    tolerance=pd.Timedelta("2h")
 
 )
 
@@ -317,7 +329,9 @@ case_info = pd.merge_asof(
 
     by="target_area",
 
-    direction="nearest"
+    direction="backward",
+
+    tolerance=pd.Timedelta("2h")
 
 )
 # =====================================================
@@ -558,6 +572,14 @@ print(
 # =====================================================
 # SAVE
 # =====================================================
+
+log = canonicalize_case_order(log)
+contract = validate_eventlog_contract(log, label="stage 6 real event log")
+print(
+    "CTB case contract: "
+    f"gate-only cases={contract['gate_only_cases']}, "
+    f"minimum yard events/case={contract['yard_events_per_case']['min']}"
+)
 
 log.to_csv(
     OUTPUT,

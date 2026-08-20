@@ -1,52 +1,182 @@
 {
-  "generated_at": "2026-08-16T21:26:23.299225Z",
+  "generated_at": "2026-08-20T14:21:27.260080Z",
   "input_path": "data\\processed\\CTB\\s6_eventlog_target_rank_features.csv",
   "train_path": "data\\processed\\CTB\\s6_train.csv",
   "test_path": "data\\processed\\CTB\\s6_test.csv",
   "test_size": 0.2,
   "seed": 42,
-  "cutoff_arrival_ts": "2026-04-20T18:14:00",
-  "n_cases_total": 89458,
-  "n_events_total": 277423,
+  "cutoff_arrival_ts": "2026-04-20T18:17:00",
+  "n_cases_total": 89460,
+  "n_events_total": 275408,
   "n_events_dropped_missing_ts": 0,
   "train": {
     "label": "train",
-    "n_events": 221559,
-    "n_cases": 71566,
-    "timestamp_min": "2026-03-02T05:25:00",
+    "n_events": 220048,
+    "n_cases": 71568,
+    "timestamp_min": "2026-03-02T05:27:00",
     "timestamp_max": "2026-04-20T19:34:00",
     "activity_counts": {
-      "Gate In": 71566,
-      "Gate Out": 71566,
-      "RMG_receive": 30656,
-      "RMG_delivery": 14010,
-      "RMG_mixed": 10816,
-      "LL_delivery": 7678,
-      "HO2_delivery": 5351,
-      "HO2_receive": 3807,
-      "LL_mixed": 3571,
-      "HO2_mixed": 1810,
-      "LL_receive": 728
+      "Gate In": 71568,
+      "Gate Out": 71568,
+      "RMG_receive": 32794,
+      "RMG_delivery": 17823,
+      "LL_delivery": 9612,
+      "HO2_delivery": 5775,
+      "HO2_receive": 4188,
+      "RMG_mixed": 3986,
+      "LL_receive": 1932,
+      "HO2_mixed": 749,
+      "LL_mixed": 53
     }
   },
   "test": {
     "label": "test",
-    "n_events": 55864,
+    "n_events": 55360,
     "n_cases": 17892,
-    "timestamp_min": "2026-04-20T18:14:00",
-    "timestamp_max": "2026-04-30T11:54:12",
+    "timestamp_min": "2026-04-20T18:17:00",
+    "timestamp_max": "2026-04-30T11:54:00",
     "activity_counts": {
       "Gate In": 17892,
       "Gate Out": 17892,
-      "RMG_receive": 7274,
-      "RMG_delivery": 3027,
-      "RMG_mixed": 2772,
-      "LL_delivery": 2561,
-      "HO2_receive": 1299,
-      "HO2_delivery": 1256,
-      "LL_mixed": 1209,
-      "HO2_mixed": 540,
-      "LL_receive": 142
+      "RMG_receive": 7171,
+      "RMG_delivery": 4681,
+      "LL_delivery": 3618,
+      "HO2_delivery": 1449,
+      "HO2_receive": 1276,
+      "RMG_mixed": 953,
+      "HO2_mixed": 276,
+      "LL_receive": 141,
+      "LL_mixed": 11
+    }
+  },
+  "case_structure_contract": {
+    "required_order": [
+      "Gate In",
+      "one_or_more_yard_activities",
+      "Gate Out"
+    ],
+    "train": {
+      "events": 220048,
+      "cases": 71568,
+      "activities": 11,
+      "gate_only_cases": 0,
+      "invalid_gate_in_count_cases": 0,
+      "invalid_gate_out_count_cases": 0,
+      "wrong_case_boundary_cases": 0,
+      "gate_only_case_examples": [],
+      "invalid_gate_in_examples": [],
+      "invalid_gate_out_examples": [],
+      "wrong_case_boundary_examples": [],
+      "yard_events_per_case": {
+        "min": 1,
+        "max": 4,
+        "mean": 1.0746702436843283
+      },
+      "activity_counts": {
+        "Gate In": 71568,
+        "RMG_delivery": 17823,
+        "Gate Out": 71568,
+        "RMG_receive": 32794,
+        "LL_delivery": 9612,
+        "HO2_delivery": 5775,
+        "HO2_receive": 4188,
+        "RMG_mixed": 3986,
+        "HO2_mixed": 749,
+        "LL_receive": 1932,
+        "LL_mixed": 53
+      },
+      "overlap_tolerance_min": 0.0,
+      "within_case_overlap_events": 8,
+      "within_case_overlap_cases": 8,
+      "within_case_overlap_case_examples": [
+        "TP_14901632603",
+        "TP_15084922603",
+        "TP_15179662603",
+        "TP_15201492603",
+        "TP_15213332603",
+        "TP_15467302603",
+        "TP_15717882604",
+        "TP_15784922604"
+      ],
+      "decreasing_completion_events": 8,
+      "decreasing_completion_cases": 8,
+      "decreasing_completion_case_examples": [
+        "TP_14901632603",
+        "TP_15084922603",
+        "TP_15179662603",
+        "TP_15201492603",
+        "TP_15213332603",
+        "TP_15467302603",
+        "TP_15717882604",
+        "TP_15784922604"
+      ],
+      "negative_service_events": 0,
+      "negative_service_cases": 0,
+      "gate_out_before_final_yard_cases": 8,
+      "gate_out_before_final_yard_examples": [
+        "TP_14901632603",
+        "TP_15084922603",
+        "TP_15179662603",
+        "TP_15201492603",
+        "TP_15213332603",
+        "TP_15467302603",
+        "TP_15717882604",
+        "TP_15784922604"
+      ]
+    },
+    "test": {
+      "events": 55360,
+      "cases": 17892,
+      "activities": 11,
+      "gate_only_cases": 0,
+      "invalid_gate_in_count_cases": 0,
+      "invalid_gate_out_count_cases": 0,
+      "wrong_case_boundary_cases": 0,
+      "gate_only_case_examples": [],
+      "invalid_gate_in_examples": [],
+      "invalid_gate_out_examples": [],
+      "wrong_case_boundary_examples": [],
+      "yard_events_per_case": {
+        "min": 1,
+        "max": 4,
+        "mean": 1.0941202772188687
+      },
+      "activity_counts": {
+        "Gate In": 17892,
+        "RMG_receive": 7171,
+        "Gate Out": 17892,
+        "LL_delivery": 3618,
+        "HO2_receive": 1276,
+        "RMG_delivery": 4681,
+        "RMG_mixed": 953,
+        "HO2_mixed": 276,
+        "HO2_delivery": 1449,
+        "LL_receive": 141,
+        "LL_mixed": 11
+      },
+      "overlap_tolerance_min": 0.0,
+      "within_case_overlap_events": 3,
+      "within_case_overlap_cases": 3,
+      "within_case_overlap_case_examples": [
+        "TP_15977962604",
+        "TP_16000912604",
+        "TP_16078752604"
+      ],
+      "decreasing_completion_events": 3,
+      "decreasing_completion_cases": 3,
+      "decreasing_completion_case_examples": [
+        "TP_15977962604",
+        "TP_16000912604",
+        "TP_16078752604"
+      ],
+      "negative_service_events": 0,
+      "negative_service_cases": 0,
+      "gate_out_before_final_yard_cases": 3,
+      "gate_out_before_final_yard_examples": [
+        "TP_15977962604",
+        "TP_16000912604",
+        "TP_16078752604"
+      ]
     }
   }
 }

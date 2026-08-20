@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-08-20T16:33:11.057630Z",
+  "train_csv": "data\\processed\\CTB\\xes_files\\s6_train.xes",
+  "test_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "paramset_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80",
+  "prosit_output_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential",
+  "hyperparameters": {
+    "max_depth_tree": 3,
+    "min_samples_leaf_cv": [
+      50,
+      100,
+      200
+    ],
+    "attribute_mode": "empirical",
+    "use_workload_features": true,
+    "out_suffix": "_workload_sequential",
+    "random_state": 42,
+    "prosit_case_attribute_allowlist": [
+      "process_flow_type",
+      "n_containers",
+      "n_stops",
+      "n_deliveries",
+      "n_receives",
+      "has_hazardous",
+      "has_reefer",
+      "full_ratio",
+      "visit_complexity",
+      "gate_demand",
+      "rmg_demand",
+      "vc_demand",
+      "mt_demand",
+      "gate_utilization",
+      "rmg_utilization",
+      "vc_utilization",
+      "mt_utilization",
+      "primary_target_area",
+      "target_area",
+      "target_utilization",
+      "target_demand",
+      "target_utilization_bin",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group"
+    ]
+  },
+  "control_flow": {
+    "authoritative_model": "sequential_observed_variant_trie",
+    "diagnostic_model": "inductive_process_tree_not_used_for_simulation",
+    "case_language": [
+      "Gate In",
+      "one_or_more_yard_activities",
+      "Gate Out"
+    ],
+    "within_case_parallelism": false,
+    "cross_case_resource_multitasking": true,
+    "trie": {
+      "train_variants": 70,
+      "places": 76,
+      "transitions": 144,
+      "yard_transition_edges": 73,
+      "terminal_prefixes": 70
+    },
+    "holdout_variant_coverage": {
+      "train_variants": 70,
+      "test_variants": 53,
+      "unseen_test_variants": 10,
+      "unseen_test_cases": 10,
+      "unseen_test_case_share": 0.0005589090096132349
+    }
+  },
+  "discovery_seconds": 543.8610751628876,
+  "conformance": [
+    {
+      "log": "train",
+      "fitness_log": 1.0,
+      "fitness_perc_fit_traces": 100.0,
+      "fitness_average_trace": 1.0,
+      "precision_token": 1.0,
+      "compute_seconds": 3.7411839962005615,
+      "generalization": 0.5767665694622635,
+      "simplicity": 0.6179775280898876
+    },
+    {
+      "log": "test",
+      "fitness_log": 0.9998498334516464,
+      "fitness_perc_fit_traces": 99.94410909903867,
+      "fitness_average_trace": 0.9998964687596477,
+      "precision_token": 0.9605736609437647,
+      "compute_seconds": 0.9537277221679688,
+      "generalization": 0.3733711218394763,
+      "simplicity": 0.6179775280898876
+    }
+  ],
+  "simulation": {
+    "n_traces": 17892,
+    "n_events": 55125,
+    "t_start": "2026-04-20T18:17:00",
+    "output_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential\\sim_baseline_train80_workload_sequential.csv"
+  }
+}

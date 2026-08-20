@@ -1,0 +1,16 @@
+{
+  "label": "prosit_20260820_workload_vs_holdout",
+  "real_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload\\sim_baseline_train80_workload.csv",
+  "real_events": 55360,
+  "sim_events": 56881,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "mean_service_time_emd_min": 1.9068922042845458,
+  "mean_waiting_time_emd_min": NaN,
+  "case_turnaround_emd_min": 1.5401704137260321,
+  "inter_arrival_emd_min": 0.31331675143926485,
+  "prepared_real_path": "validation\\results\\prosit_20260820_workload_vs_holdout\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\prosit_20260820_workload_vs_holdout\\prepared_sim.csv"
+}

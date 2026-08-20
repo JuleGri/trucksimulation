@@ -64,9 +64,15 @@ from scipy import stats
 # Make sibling validation modules importable when run from repo root.
 _SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(_SCRIPT_DIR))
+_REPO_ROOT = _SCRIPT_DIR.parent
+sys.path.insert(0, str(_REPO_ROOT))
 # Re-use the metrics implementation from step 2 so the numbers stay
 # comparable between single-shot and multi-seed runs.
 _step2 = __import__("02_validate_simulation")
+from _eventlog_contract import (  # noqa: E402
+    ORDER_COL,
+    eventlog_contract_report,
+)
 
 CASE_COL = _step2.CASE_COL
 ACT_COL = _step2.ACT_COL
@@ -90,14 +96,24 @@ def parse_args() -> argparse.Namespace:
                         help="Seed for the first replication; seed[i] = base + i.")
     parser.add_argument("--n-traces", type=int, default=None,
                         help="Cases per replication. Defaults to the test-set size.")
+    parser.add_argument("--t-start", type=str, default=None,
+                        help=("ISO simulation start timestamp. If provided, this overrides "
+                              "the cutoff stored in the split manifest."))
     parser.add_argument("--label", type=str, required=True,
                         help="Sub-folder under validation/results/ for this run.")
     parser.add_argument("--out-root", type=Path, default=DEFAULT_ROOT)
+    parser.add_argument(
+        "--fail-on-contract-violations",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Stop if any replication produces a structurally/temporally invalid case.",
+    )
     return parser.parse_args()
 
 
 def _load_simulation_window(manifest_path: Path, n_traces_override: int | None,
-                            real_df: pd.DataFrame) -> tuple[int, datetime | None]:
+                            real_df: pd.DataFrame,
+                            t_start_override: str | None = None) -> tuple[int, datetime | None]:
     n_traces = n_traces_override
     t_start: datetime | None = None
     if manifest_path.exists():
@@ -108,6 +124,8 @@ def _load_simulation_window(manifest_path: Path, n_traces_override: int | None,
         cutoff = manifest.get("cutoff_arrival_ts")
         if cutoff:
             t_start = datetime.fromisoformat(cutoff)
+    if t_start_override:
+        t_start = datetime.fromisoformat(t_start_override.replace("Z", "+00:00"))
     if n_traces is None:
         n_traces = int(real_df[CASE_COL].nunique())
     return int(n_traces), t_start
@@ -151,7 +169,6 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
                        activities: list[str]) -> dict[str, float]:
     # Reuse step-2 helpers so the numbers stay identical to the single-shot
     # validation.
-    sim_prepared = _step2.load_and_prepare_dataframe = None  # sentinel
     # step 2 exposes load_and_prepare via file only, so we prep in-memory
     # to avoid disk round-trips.
     sim = sim_df.copy()
@@ -184,24 +201,50 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
     real_ta = _step2._clip_duration(real_case["turnaround_min"]).to_numpy()
     sim_ta = _step2._clip_duration(sim_case["turnaround_min"]).to_numpy()
     turnaround_stats = _step2.compare_distributions(real_ta, sim_ta, seed)
+    turnaround_raw_stats = _step2.compare_distributions(
+        _step2._raw_duration(real_case["turnaround_min"]).to_numpy(),
+        _step2._raw_duration(sim_case["turnaround_min"]).to_numpy(),
+        seed,
+    )
 
     # Inter-arrival.
     real_iat = _step2.inter_arrival_series(real_df)
     sim_iat = _step2.inter_arrival_series(sim)
     iat_stats = _step2.compare_distributions(real_iat, sim_iat, seed)
 
+    sim_contract_input = sim.copy()
+    sim_contract_input[ORDER_COL] = sim_contract_input.groupby(
+        CASE_COL, sort=False
+    ).cumcount()
+    contract = eventlog_contract_report(
+        sim_contract_input, _already_ordered=True
+    )
+
     return {
         "seed": int(seed),
         "sim_events": int(len(sim)),
         "sim_cases": int(sim[CASE_COL].nunique()),
         "mean_service_time_emd_min": _mean_emd(svc_rows),
+        "mean_service_time_emd_min_raw": float(
+            svc_rows["wasserstein_min_raw"].replace([np.inf, -np.inf], np.nan).dropna().mean()
+        ),
         "mean_waiting_time_emd_min": _mean_emd(wait_rows),
         "case_turnaround_emd_min": float(turnaround_stats.get("wasserstein_min", float("nan"))),
+        "case_turnaround_emd_min_raw": float(
+            turnaround_raw_stats.get("wasserstein_min", float("nan"))
+        ),
         "case_turnaround_ks": float(turnaround_stats.get("ks_stat", float("nan"))),
         "case_turnaround_sim_mean": float(turnaround_stats.get("sim_mean", float("nan"))),
         "case_turnaround_sim_p90": float(turnaround_stats.get("sim_p90", float("nan"))),
         "inter_arrival_emd_min": float(iat_stats.get("wasserstein_min", float("nan"))),
         "inter_arrival_ks": float(iat_stats.get("ks_stat", float("nan"))),
+        "gate_only_cases": int(contract["gate_only_cases"]),
+        "wrong_case_boundary_cases": int(contract["wrong_case_boundary_cases"]),
+        "within_case_overlap_cases": int(contract.get("within_case_overlap_cases", 0)),
+        "decreasing_completion_cases": int(contract.get("decreasing_completion_cases", 0)),
+        "gate_out_before_final_yard_cases": int(
+            contract.get("gate_out_before_final_yard_cases", 0)
+        ),
     }
 
 
@@ -299,7 +342,9 @@ def main() -> int:
     print(f"[mc] Loading real log from {args.real}")
     real_df = _step2.load_and_prepare(args.real, label="real")
 
-    n_traces, t_start = _load_simulation_window(args.manifest, args.n_traces, real_df)
+    n_traces, t_start = _load_simulation_window(
+        args.manifest, args.n_traces, real_df, args.t_start
+    )
     activities = sorted(set(real_df[ACT_COL].dropna().unique()))
 
     print(f"[mc] n_seeds={args.n_seeds}  n_traces={n_traces:,}  t_start={t_start}")
@@ -311,7 +356,30 @@ def main() -> int:
         sim_df = _run_one_seed(engine, seed, n_traces, t_start)
         row = _metrics_for_seed(seed, sim_df, real_df, activities)
         rows.append(row)
-        print(f"turnaround_emd={row['case_turnaround_emd_min']:.3f} min")
+        contract_violations = sum(
+            row[key]
+            for key in (
+                "gate_only_cases",
+                "wrong_case_boundary_cases",
+                "within_case_overlap_cases",
+                "decreasing_completion_cases",
+                "gate_out_before_final_yard_cases",
+            )
+        )
+        print(
+            f"turnaround_emd={row['case_turnaround_emd_min']:.3f} min  "
+            f"raw={row['case_turnaround_emd_min_raw']:.3f} min  "
+            f"contract_violations={contract_violations}"
+        )
+        if contract_violations and args.fail_on_contract_violations:
+            raise RuntimeError(
+                f"Seed {seed} violated the sequential CTB case contract: "
+                f"gate_only={row['gate_only_cases']}, "
+                f"wrong_boundary={row['wrong_case_boundary_cases']}, "
+                f"overlap={row['within_case_overlap_cases']}, "
+                f"decreasing_completion={row['decreasing_completion_cases']}, "
+                f"gate_out_before_yard={row['gate_out_before_final_yard_cases']}"
+            )
 
     replications = pd.DataFrame(rows)
     replications_path = out_dir / "mc_replications.csv"
@@ -320,10 +388,14 @@ def main() -> int:
 
     # Aggregate.
     summary_rows = []
-    for col in ("mean_service_time_emd_min", "mean_waiting_time_emd_min",
-                "case_turnaround_emd_min", "case_turnaround_ks",
+    for col in ("mean_service_time_emd_min", "mean_service_time_emd_min_raw",
+                "mean_waiting_time_emd_min", "case_turnaround_emd_min",
+                "case_turnaround_emd_min_raw", "case_turnaround_ks",
                 "case_turnaround_sim_mean", "case_turnaround_sim_p90",
-                "inter_arrival_emd_min", "inter_arrival_ks"):
+                "inter_arrival_emd_min", "inter_arrival_ks",
+                "gate_only_cases", "wrong_case_boundary_cases",
+                "within_case_overlap_cases", "decreasing_completion_cases",
+                "gate_out_before_final_yard_cases"):
         m, s, lo, hi = _ci_from_samples(replications[col].to_numpy())
         summary_rows.append({
             "metric": col,

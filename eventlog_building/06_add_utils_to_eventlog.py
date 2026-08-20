@@ -1,4 +1,14 @@
+import sys
+from pathlib import Path
+
 import pandas as pd
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    canonicalize_case_order,
+    validate_eventlog_contract,
+)
 
 # ==========================================================
 # CONFIG
@@ -93,7 +103,8 @@ def add_util_feature(
         ],
         left_on="start:timestamp",
         right_on="ZEITPUNKT",
-        direction="nearest"
+        direction="backward",
+        tolerance=pd.Timedelta("2h")
     )
 
     return merged[
@@ -213,6 +224,14 @@ print("=" * 70)
 # ==========================================================
 # SAVE
 # ==========================================================
+
+eventlog = canonicalize_case_order(eventlog)
+contract = validate_eventlog_contract(eventlog, label="stage 3 real event log")
+print(
+    "CTB case contract: "
+    f"gate-only cases={contract['gate_only_cases']}, "
+    f"minimum yard events/case={contract['yard_events_per_case']['min']}"
+)
 
 eventlog.to_csv(
     OUTPUT_FILE,

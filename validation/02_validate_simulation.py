@@ -71,7 +71,8 @@ DEFAULT_OUT_ROOT = Path("validation") / "results"
 KS_SUBSAMPLE = 10_000
 # Discard non-finite / negative durations.
 DURATION_LOWER = 0.0
-# Cap unrealistic outliers (in minutes) before EMD to avoid single-event dominance.
+# Upper bound for the *robust companion view*.  Raw, uncapped metrics are also
+# reported and are the guard against hiding long-tail simulation failures.
 DURATION_UPPER = 60.0 * 24.0
 
 
@@ -100,6 +101,28 @@ def _clip_duration(series: pd.Series) -> pd.Series:
     out = out.replace([np.inf, -np.inf], np.nan).dropna()
     out = out[(out >= DURATION_LOWER) & (out <= DURATION_UPPER)]
     return out
+
+
+def _raw_duration(series: pd.Series) -> pd.Series:
+    """Return all finite, non-negative observations without an upper cap."""
+    out = pd.to_numeric(series, errors="coerce")
+    out = out.replace([np.inf, -np.inf], np.nan).dropna()
+    return out[out >= DURATION_LOWER]
+
+
+def _add_raw_companion(
+    row: dict,
+    real_series: pd.Series,
+    sim_series: pd.Series,
+    seed: int,
+) -> None:
+    real_raw = _raw_duration(real_series).to_numpy()
+    sim_raw = _raw_duration(sim_series).to_numpy()
+    raw = compare_distributions(real_raw, sim_raw, seed)
+    for key, value in raw.items():
+        row[f"{key}_raw"] = value
+    row["real_excluded_above_24h"] = int((real_raw > DURATION_UPPER).sum())
+    row["sim_excluded_above_24h"] = int((sim_raw > DURATION_UPPER).sum())
 
 
 def load_and_prepare(path: Path, label: str) -> pd.DataFrame:
@@ -199,10 +222,13 @@ def compare_by_activity(real_df: pd.DataFrame, sim_df: pd.DataFrame, value_col: 
                         | set(sim_df[ACT_COL].dropna().unique()))
     rows = []
     for act in activities:
-        real_vals = _clip_duration(real_df.loc[real_df[ACT_COL] == act, value_col]).to_numpy()
-        sim_vals = _clip_duration(sim_df.loc[sim_df[ACT_COL] == act, value_col]).to_numpy()
+        real_series = real_df.loc[real_df[ACT_COL] == act, value_col]
+        sim_series = sim_df.loc[sim_df[ACT_COL] == act, value_col]
+        real_vals = _clip_duration(real_series).to_numpy()
+        sim_vals = _clip_duration(sim_series).to_numpy()
         row = {"activity": act}
         row.update(compare_distributions(real_vals, sim_vals, seed))
+        _add_raw_companion(row, real_series, sim_series, seed)
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -263,9 +289,13 @@ def main() -> int:
     case_rows = []
     for col in ("turnaround_min", "n_events"):
         row = {"metric": col}
-        real_vals = _clip_duration(real_case[col]) if col == "turnaround_min" else real_case[col].dropna()
-        sim_vals = _clip_duration(sim_case[col]) if col == "turnaround_min" else sim_case[col].dropna()
+        real_series = real_case[col]
+        sim_series = sim_case[col]
+        real_vals = _clip_duration(real_series) if col == "turnaround_min" else real_series.dropna()
+        sim_vals = _clip_duration(sim_series) if col == "turnaround_min" else sim_series.dropna()
         row.update(compare_distributions(np.asarray(real_vals), np.asarray(sim_vals), args.seed))
+        if col == "turnaround_min":
+            _add_raw_companion(row, real_series, sim_series, args.seed)
         case_rows.append(row)
     case_metrics = pd.DataFrame(case_rows)
     case_metrics.to_csv(out_dir / "metrics_case.csv", index=False)
@@ -289,6 +319,15 @@ def main() -> int:
         vals = df["wasserstein_min"].replace([np.inf, -np.inf], np.nan).dropna()
         return float(vals.mean()) if not vals.empty else float("nan")
 
+    def _agg_column(df: pd.DataFrame, column: str, *, yard_only: bool = False) -> float:
+        scope = df
+        if yard_only:
+            scope = scope[~scope["activity"].isin(["Gate In", "Gate Out"])]
+        vals = scope[column].replace([np.inf, -np.inf], np.nan).dropna()
+        return float(vals.mean()) if not vals.empty else float("nan")
+
+    turnaround_row = case_metrics.loc[case_metrics["metric"] == "turnaround_min"].iloc[0]
+
     summary = {
         "label": args.label,
         "real_path": str(args.real),
@@ -298,10 +337,26 @@ def main() -> int:
         "real_cases": int(real_df[CASE_COL].nunique()),
         "sim_cases": int(sim_df[CASE_COL].nunique()),
         "n_activities_compared": int(activity_metrics.shape[0]),
+        "duration_reporting": {
+            "raw": "all finite non-negative observations",
+            "robust": f"observations in [0, {DURATION_UPPER:g}] minutes",
+            "note": "Raw and robust metrics are reported side by side; no outlier is silently removed.",
+        },
         "mean_service_time_emd_min": _agg_emd(activity_metrics),
+        "mean_service_time_emd_min_raw": _agg_column(activity_metrics, "wasserstein_min_raw"),
+        "mean_yard_service_time_emd_min": _agg_column(
+            activity_metrics, "wasserstein_min", yard_only=True
+        ),
+        "mean_yard_service_time_emd_min_raw": _agg_column(
+            activity_metrics, "wasserstein_min_raw", yard_only=True
+        ),
         "mean_waiting_time_emd_min": _agg_emd(waiting_metrics),
-        "case_turnaround_emd_min": float(case_metrics.loc[case_metrics["metric"] == "turnaround_min",
-                                                          "wasserstein_min"].iloc[0]),
+        "case_turnaround_emd_min": float(turnaround_row["wasserstein_min"]),
+        "case_turnaround_emd_min_raw": float(turnaround_row["wasserstein_min_raw"]),
+        "real_turnaround_cases_above_24h": int(turnaround_row["real_excluded_above_24h"]),
+        "sim_turnaround_cases_above_24h": int(turnaround_row["sim_excluded_above_24h"]),
+        "real_service_events_above_24h": int(activity_metrics["real_excluded_above_24h"].sum()),
+        "sim_service_events_above_24h": int(activity_metrics["sim_excluded_above_24h"].sum()),
         "inter_arrival_emd_min": float(arrival_metrics.loc[0, "wasserstein_min"]),
         "prepared_real_path": str(prepared_real),
         "prepared_sim_path": str(prepared_sim),

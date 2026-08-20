@@ -4,8 +4,9 @@
 Purpose:
 - run the actual ProSiT (Vinci et al., 2026) simulation-parameter discovery
   on the held-out training log s6_train.csv;
-- perform full process discovery: Petri net + directly-follows graph +
-  process tree + BPMN + variants;
+- discover the observed yard variants and build a domain-constrained,
+  sequential Petri-net trie for simulation;
+- retain the unconstrained Inductive-Miner tree as a diagnostic artefact;
 - report conformance (fitness, precision, generalisation, simplicity) on
   BOTH the training log and the held-out testing log s6_test.csv, which
   addresses reviewer Tier 1 item #1 (held-out validation) directly;
@@ -29,19 +30,23 @@ Outputs (under baseline/discovery_params/<paramset>_train80/prosit_discovery/):
 - prosit_run_summary.json              run metadata (timing, hyperparameters, paths)
 - sim_baseline_train80.csv             simulated event log at the test-window start
 - figures/
-    petri_net.png                      inductive-miner Petri net
+    petri_net.png                      sequential variant-trie Petri net
     petri_net_frequency.png            transitions coloured by token replay frequency
     petri_net_performance.png          transitions coloured by mean sojourn time
     dfg_frequency.png                  directly-follows graph (frequency)
     dfg_performance.png                directly-follows graph (mean waiting time)
-    process_tree.png                   inductive-miner process tree
+    process_tree_inductive_diagnostic.png  raw miner output (not simulated)
     bpmn.png                           BPMN translation of the Petri net
     variants_top20.png                 variant coverage bar chart
 
 Methodological note:
-- the Petri net is discovered with pm4py.discover_petri_net_inductive on
-  the TRAINING log only, following Vinci et al. (2026, "Full workflow with
-  evaluation" in the ProSiT README);
+- PM4Py receives explicit trace order instead of completion-time order.  The
+  authoritative Petri net is a training-variant trie constrained to Gate In,
+  one or more sequential yard activities, Gate Out.  The raw Inductive-Miner
+  tree is retained only as a transparent diagnostic because its optional and
+  parallel cuts overgeneralize the CTB domain;
+- ProSiT resource multitasking remains enabled across different truck cases.
+  The state-machine Petri net prevents concurrency only within one case;
 - fitness / precision are computed with token-based replay for tractability
   on the full 71k-case training log; alignment-based fitness is optionally
   computed on a 1000-case sample (--alignments-sample);
@@ -91,6 +96,17 @@ TS_START = "start:timestamp"
 TS_COMPLETE = "time:timestamp"
 
 _REPO_ROOT = _SCRIPT_DIR.parent
+sys.path.insert(0, str(_REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    PROSIT_CASE_ATTRIBUTE_ALLOWLIST,
+    build_sequential_variant_trie,
+    normalize_pm4py_event_log,
+    restrict_pm4py_log_for_prosit,
+    select_prosit_dataframe,
+    to_pm4py_event_log,
+    variant_coverage,
+)
+
 DEFAULT_TEST = _REPO_ROOT / "data" / "processed" / "CTB" / "s6_test.csv"
 DEFAULT_MANIFEST = _REPO_ROOT / "validation" / "results" / "split_manifest.json"
 DEFAULT_XES_DIR = _REPO_ROOT / "data" / "processed" / "CTB" / "xes_files"
@@ -114,6 +130,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--min-samples-leaf-cv", type=int, nargs="+", default=[50, 100, 200],
                         help="ProSiT min_samples_leaf CV grid (README default: 50 100 200).")
     parser.add_argument("--random-state", type=int, default=42)
+    parser.add_argument("--enable-multitasking", action=argparse.BooleanOptionalAction, default=True,
+                        help="Enable ProSiT resource multitasking detection. When True, ProSiT "
+                             "computes max_concurrency per resource from observed overlap in the "
+                             "training log (threshold: 5%% of events). Essential for CTB where "
+                             "each RMG block has multiple cranes. Default: True.")
+    parser.add_argument("--multitasking-thr", type=float, default=0.05,
+                        help="Fraction of events that must show concurrent work for a resource "
+                             "to be classified as multitasking (ProSiT default: 0.05).")
     parser.add_argument("--attribute-mode", choices=("empirical", "distribution"), default="empirical",
                         help="How ProSiT models case-level data attributes. 'empirical' samples "
                              "observed tuples (preserves correlations, safe for categorical); "
@@ -137,8 +161,9 @@ def parse_args() -> argparse.Namespace:
                              "baseline run.")
     parser.add_argument("--out-suffix", type=str, default=None,
                         help="Suffix appended to the prosit_discovery/ folder and sim CSV filename so a "
-                             "new run does not overwrite a previous one. Defaults to '_workload' when "
-                             "--use-workload-features is set (i.e. the default), '_no_workload' "
+                             "new run does not overwrite a previous one. Defaults to "
+                             "'_workload_sequential' when --use-workload-features is set, "
+                             "'_no_workload_sequential' "
                              "otherwise so the two configurations always land in distinct folders.")
     return parser.parse_args()
 
@@ -150,6 +175,11 @@ def parse_args() -> argparse.Namespace:
 def load_log(csv_path: str, label: str) -> "pd.DataFrame":
     print(f"[{label}] Reading {csv_path}")
     df = pd.read_csv(csv_path)
+    # Strip pm4py technical columns that must not be model features
+    for col in ("@@index", "@@case_index"):
+        if col in df.columns:
+            df = df.drop(columns=[col])
+            print(f"[{label}] Dropped technical column {col}")
     for col in (TS_ENABLED, TS_START, TS_COMPLETE):
         if col in df.columns:
             df[col] = pd.to_datetime(df[col], errors="coerce")
@@ -161,19 +191,37 @@ def load_log(csv_path: str, label: str) -> "pd.DataFrame":
     dropped = n_before - len(df)
     if dropped:
         print(f"[{label}] Dropped {dropped:,} events with missing {TS_COMPLETE}")
-    print(f"[{label}] events={len(df):,}  cases={df[CASE_COL].nunique():,}")
+    df, dropped_features = select_prosit_dataframe(df, label=label)
+    if dropped_features:
+        print(
+            f"[{label}] Excluded non-ProSiT attributes: "
+            + ", ".join(dropped_features)
+        )
+    contract = {
+        "gate_only_cases": 0,
+        "yard_events_per_case": {
+            "min": int(
+                (~df[ACT_COL].isin(["Gate In", "Gate Out"]))
+                .groupby(df[CASE_COL], sort=False)
+                .sum()
+                .min()
+            )
+        },
+    }
+    print(
+        f"[{label}] events={len(df):,}  cases={df[CASE_COL].nunique():,}  "
+        f"gate-only={contract['gate_only_cases']}  "
+        f"min-yard/case={contract['yard_events_per_case']['min']}"
+    )
     return df
 
 
 def to_pm4py_log(df: pd.DataFrame, label: str):
-    import pm4py
-    formatted = pm4py.format_dataframe(
-        df.copy(),
-        case_id=CASE_COL,
-        activity_key=ACT_COL,
-        timestamp_key=TS_COMPLETE,
-    )
-    log = pm4py.convert_to_event_log(formatted)
+    # PM4Py's dataframe formatter sorts on the completion timestamp.  CTB has
+    # a few legitimate timestamp overlaps, so that sort can move Gate Out
+    # ahead of a yard event and make the Inductive Miner infer concurrency.
+    # The shared builder keeps logical case order and original timestamps.
+    log = to_pm4py_event_log(df, label=label)
     print(f"[{label}] pm4py EventLog with {len(log)} traces")
     return log
 
@@ -182,7 +230,25 @@ def maybe_write_xes(log, out_path: Path, label: str) -> None:
     import pm4py
     out_path.parent.mkdir(parents=True, exist_ok=True)
     print(f"[{label}] Writing XES -> {out_path}")
-    pm4py.write_xes(log, str(out_path))
+    # pm4py.format_dataframe adds technical ordering attributes.  Keep them
+    # available to the in-memory log, but do not persist them to XES where
+    # downstream discovery could mistake them for data attributes.
+    removed_attributes = []
+    for trace in log:
+        for key in ("@@index", "@@case_index"):
+            if key in trace.attributes:
+                removed_attributes.append((trace.attributes, key, trace.attributes.pop(key)))
+        for event in trace:
+            for key in ("@@index", "@@case_index"):
+                if key in event:
+                    value = event[key]
+                    del event[key]
+                    removed_attributes.append((event, key, value))
+    try:
+        pm4py.write_xes(log, str(out_path))
+    finally:
+        for attributes, key, value in removed_attributes:
+            attributes[key] = value
 
 
 # ----------------------------------------------------------------------
@@ -275,7 +341,7 @@ def _save_gviz(gviz, out_path: Path, label: str) -> None:
     print(f"[figures] Wrote {out_path}")
 
 
-def render_visualisations(train_log, net, im, fm, tree, fig_dir: Path) -> None:
+def render_visualisations(train_log, net, im, fm, diagnostic_tree, fig_dir: Path) -> None:
     import pm4py
     fig_dir.mkdir(parents=True, exist_ok=True)
 
@@ -332,17 +398,22 @@ def render_visualisations(train_log, net, im, fm, tree, fig_dir: Path) -> None:
     except Exception as exc:
         print(f"[figures] dfg_performance failed: {exc}")
 
-    # 5. Process tree.
+    # 5. Raw Inductive-Miner process tree.  This is diagnostic only: the
+    # authoritative simulation model is the sequential variant-trie Petri net.
     try:
         from pm4py.visualization.process_tree import visualizer as tree_vis
-        gviz = tree_vis.apply(tree)
-        _save_gviz(gviz, fig_dir / "process_tree.png", "process_tree")
+        gviz = tree_vis.apply(diagnostic_tree)
+        _save_gviz(
+            gviz,
+            fig_dir / "process_tree_inductive_diagnostic.png",
+            "process_tree_inductive_diagnostic",
+        )
     except Exception as exc:
-        print(f"[figures] process_tree failed: {exc}")
+        print(f"[figures] diagnostic process_tree failed: {exc}")
 
-    # 6. BPMN translation of the Petri net.
+    # 6. BPMN translation of the authoritative constrained Petri net.
     try:
-        bpmn = pm4py.convert_to_bpmn(tree)
+        bpmn = pm4py.convert_to_bpmn(net, im, fm)
         from pm4py.visualization.bpmn import visualizer as bpmn_vis
         gviz = bpmn_vis.apply(bpmn)
         _save_gviz(gviz, fig_dir / "bpmn.png", "bpmn")
@@ -392,7 +463,13 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
           f"min_samples_leaf_cv={args.min_samples_leaf_cv}, "
           f"attribute_mode={args.attribute_mode!r}, "
           f"use_workload_features={args.use_workload_features}, "
+          f"enable_multitasking={args.enable_multitasking}, "
+          f"multitasking_thr={args.multitasking_thr}, "
           f"random_state={args.random_state}) ...")
+    print(
+        "[prosit] Approved case attributes: "
+        + ", ".join(PROSIT_CASE_ATTRIBUTE_ALLOWLIST)
+    )
     t0 = time.time()
     params.discover_from_eventlog(
         train_log,
@@ -400,6 +477,8 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
         min_samples_leaf_cv=args.min_samples_leaf_cv,
         attribute_mode=args.attribute_mode,
         use_workload_features=args.use_workload_features,
+        enable_multitasking=args.enable_multitasking,
+        multitasking_thr=args.multitasking_thr,
         random_state=args.random_state,
         verbose=True,
     )
@@ -452,7 +531,16 @@ def main() -> int:
     # --- Load logs: prefer XES (Vinci approach) over CSV ---
     if args.xes and args.xes.exists():
         print(f"[main] Reading training XES: {args.xes}")
-        train_log = pm4py.read_xes(str(args.xes))
+        train_log = normalize_pm4py_event_log(
+            pm4py.read_xes(str(args.xes), return_legacy_log_object=True),
+            label="training XES",
+        )
+        dropped_features = restrict_pm4py_log_for_prosit(train_log)
+        if dropped_features:
+            print(
+                "[train] Excluded non-ProSiT XES attributes: "
+                + ", ".join(dropped_features)
+            )
         print(f"[main] Training log: {len(train_log)} traces (from XES)")
         train_csv = str(args.xes)  # for paramset suffix
     else:
@@ -461,28 +549,50 @@ def main() -> int:
             print("[main] WARNING: input is not s6_train.csv.")
         train_df = load_log(train_csv, "train")
         train_log = to_pm4py_log(train_df, "train")
+        del train_df
 
     if args.test_xes and args.test_xes.exists():
         print(f"[main] Reading test XES: {args.test_xes}")
-        test_log = pm4py.read_xes(str(args.test_xes))
+        test_log = normalize_pm4py_event_log(
+            pm4py.read_xes(str(args.test_xes), return_legacy_log_object=True),
+            label="test XES",
+        )
+        dropped_features = restrict_pm4py_log_for_prosit(test_log)
+        if dropped_features:
+            print(
+                "[test] Excluded non-ProSiT XES attributes: "
+                + ", ".join(dropped_features)
+            )
         print(f"[main] Test log: {len(test_log)} traces (from XES)")
     else:
         if not args.test.exists():
             raise FileNotFoundError(f"Test log not found at {args.test}. Run validation/01_train_test_split.py first.")
         test_df = load_log(str(args.test), "test")
         test_log = to_pm4py_log(test_df, "test")
+        del test_df
 
     if args.write_xes:
         maybe_write_xes(train_log, DEFAULT_XES_DIR / "s6_train.xes", "train")
         maybe_write_xes(test_log, DEFAULT_XES_DIR / "s6_test.xes", "test")
 
-    # 1. Petri net + process tree
+    # 1. Diagnostic process tree + authoritative sequential control flow.
+    # The raw tree remains useful evidence about what an unconstrained miner
+    # infers, but ProSiT receives a state-machine trie of observed yard
+    # variants.  It therefore cannot skip all yard work or execute two
+    # activities concurrently inside the same truck case.
     import pm4py
-    print("[main] Discovering process tree (inductive miner) ...")
+    print("[main] Discovering diagnostic process tree (inductive miner) ...")
     t0 = time.time()
-    tree = pm4py.discover_process_tree_inductive(train_log)
-    net, im, fm = pm4py.convert_to_petri_net(tree)
-    print(f"[main] Inductive miner done in {time.time() - t0:.1f}s")
+    diagnostic_tree = pm4py.discover_process_tree_inductive(train_log)
+    net, im, fm, trie_info = build_sequential_variant_trie(train_log)
+    coverage = variant_coverage(train_log, test_log)
+    print(
+        f"[main] Sequential control flow: {trie_info.train_variants} train variants, "
+        f"{trie_info.places} places, {trie_info.transitions} transitions; "
+        f"unseen holdout cases={coverage['unseen_test_cases']} "
+        f"({coverage['unseen_test_case_share']:.3%})"
+    )
+    print(f"[main] Control-flow discovery done in {time.time() - t0:.1f}s")
 
     # 2. Conformance on train AND on test
     conformance_rows: list[dict] = []
@@ -507,8 +617,16 @@ def main() -> int:
     # features are the ADOPTED DEFAULT, "_workload" is the default suffix
     # and the no-workload variant lands in "_no_workload".
     if args.out_suffix is None:
-        args.out_suffix = "_workload" if args.use_workload_features else "_no_workload"
-    param_dir = Path(resolve_paramset_dir(str(_SCRIPT_DIR), paramset_suffix_for(train_csv)))
+        args.out_suffix = (
+            "_workload_sequential"
+            if args.use_workload_features
+            else "_no_workload_sequential"
+        )
+    # s6_train.xes is the same persisted training split as s6_train.csv.
+    # Do not mislabel an XES-based run as a full-log discovery.
+    source_name = Path(train_csv).stem.lower()
+    paramset_suffix = "train80" if source_name == "s6_train" else paramset_suffix_for(train_csv)
+    param_dir = Path(resolve_paramset_dir(str(_SCRIPT_DIR), paramset_suffix))
     prosit_dir = param_dir / f"prosit_discovery{args.out_suffix}"
     prosit_dir.mkdir(parents=True, exist_ok=True)
     fig_dir = prosit_dir / "figures"
@@ -517,9 +635,22 @@ def main() -> int:
     conformance_df.to_csv(prosit_dir / "prosit_conformance.csv", index=False)
     print(f"[main] Wrote {prosit_dir / 'prosit_conformance.csv'}")
 
+    control_flow_contract = {
+        "authoritative_model": "sequential_observed_variant_trie",
+        "diagnostic_model": "inductive_process_tree_not_used_for_simulation",
+        "case_language": ["Gate In", "one_or_more_yard_activities", "Gate Out"],
+        "within_case_parallelism": False,
+        "cross_case_resource_multitasking": bool(args.enable_multitasking),
+        "trie": trie_info.__dict__,
+        "holdout_variant_coverage": coverage,
+    }
+    with open(prosit_dir / "control_flow_contract.json", "w") as fh:
+        json.dump(control_flow_contract, fh, indent=2)
+    print(f"[main] Wrote {prosit_dir / 'control_flow_contract.json'}")
+
     # 4. Figures
     if not args.skip_figures:
-        render_visualisations(train_log, net, im, fm, tree, fig_dir)
+        render_visualisations(train_log, net, im, fm, diagnostic_tree, fig_dir)
     else:
         print("[main] --skip-figures: not generating Graphviz outputs.")
 
@@ -547,7 +678,7 @@ def main() -> int:
     n_traces = args.n_sim_traces
     if n_traces is None:
         test_meta = manifest.get("test", {})
-        n_traces = int(test_meta.get("n_cases", test_df[CASE_COL].nunique()))
+        n_traces = int(test_meta.get("n_cases", len(test_log)))
 
     sim_summary = {}
     sim_path: Path | None = None
@@ -579,7 +710,11 @@ def main() -> int:
             "use_workload_features": args.use_workload_features,
             "out_suffix": args.out_suffix,
             "random_state": args.random_state,
+            "prosit_case_attribute_allowlist": list(
+                PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+            ),
         },
+        "control_flow": control_flow_contract,
         "discovery_seconds": disc_seconds,
         "conformance": conformance_rows,
         "simulation": sim_summary,

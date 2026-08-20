@@ -19,7 +19,18 @@ Methodological note (2026-08 revision):
     The transition_baseline.csv is no longer loaded or used by this script.
 """
 
+import sys
+from pathlib import Path
+
 import pandas as pd
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    ORDER_COL,
+    canonicalize_case_order,
+    validate_eventlog_contract,
+)
 
 # ==========================================================
 # CONFIG
@@ -131,8 +142,13 @@ for case_id, case_df in fp.groupby(
     "FAHRPLAN_UID"
 ):
 
+    # Physical stop order is a domain attribute.  Do not infer it from event
+    # timestamps: timestamps can overlap slightly and would turn measurement
+    # noise into false within-case concurrency during process discovery.
     case_df = case_df.sort_values(
-        "ALP_ZEITPUNKT_BEREITMELDUNG"
+        ["ANLAUFPUNKT_SEQUENZNUMMER", "ALP_ZEITPUNKT_BEREITMELDUNG"],
+        kind="stable",
+        na_position="last",
     )
 
     first = case_df.iloc[0]
@@ -201,13 +217,18 @@ for case_id, case_df in fp.groupby(
         "ocr_timestamp":
             ocr_timestamp if pd.notna(ocr_timestamp) else pd.NaT,
 
+        ORDER_COL:
+            0,
+
         **case_features
     })
 
     # ------------------------------------------------------
-    # STOPS
+    # STOPS — one event per physical stop (deduplicated)
     # ------------------------------------------------------
 
+    stops_seen = set()
+    yard_order = 1
     for _, row in case_df.iterrows():
 
         stop = row[
@@ -226,6 +247,12 @@ for case_id, case_df in fp.groupby(
             "ALP_ZEITPUNKT_ERFUELLUNG"
         ]
 
+        # Deduplicate: one event per (stop, activity, start, complete)
+        stop_key = (stop, activity, str(start_ts), str(complete_ts))
+        if stop_key in stops_seen:
+            continue
+        stops_seen.add(stop_key)
+
         events.append({
 
             "case:concept:name":
@@ -243,8 +270,12 @@ for case_id, case_df in fp.groupby(
             "time:timestamp":
                 complete_ts,
 
+            ORDER_COL:
+                yard_order,
+
             **case_features
         })
+        yard_order += 1
 
     # ------------------------------------------------------
     # GATE OUT
@@ -272,6 +303,9 @@ for case_id, case_df in fp.groupby(
         "time:timestamp":
             gate_out_time,
 
+        ORDER_COL:
+            yard_order,
+
         **case_features
     })
 
@@ -281,12 +315,7 @@ for case_id, case_df in fp.groupby(
 
 eventlog = pd.DataFrame(events)
 
-eventlog = eventlog.sort_values(
-    [
-        "case:concept:name",
-        "start:timestamp"
-    ]
-)
+eventlog = canonicalize_case_order(eventlog)
 
 # ==========================================================
 # QUALITY REPORT
@@ -344,8 +373,15 @@ if n_negative > 0:
 else:
     print("OK: All yard-activity service times are non-negative")
 
-n_dup = eventlog.duplicated().sum()
+n_dup = eventlog.drop(columns=[ORDER_COL], errors="ignore").duplicated().sum()
 assert n_dup == 0, f"Found {n_dup} duplicate rows in the event log"
+
+contract = validate_eventlog_contract(eventlog, label="stage 1 real event log")
+print(
+    "OK: CTB case contract — "
+    f"gate-only cases={contract['gate_only_cases']}, "
+    f"minimum yard events/case={contract['yard_events_per_case']['min']}"
+)
 
 print("All assertions passed.")
 

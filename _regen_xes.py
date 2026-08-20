@@ -1,7 +1,16 @@
-"""Regenerate clean XES files from the train/test CSVs without enabled:timestamp."""
+"""Regenerate XES while preserving CTB's explicit within-case order."""
+import sys
+from pathlib import Path
+
 import pandas as pd
 import pm4py
-from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    select_prosit_dataframe,
+    to_pm4py_event_log,
+)
 
 XES_DIR = Path("data/processed/CTB/xes_files")
 XES_DIR.mkdir(parents=True, exist_ok=True)
@@ -21,15 +30,16 @@ for split in ("s6_train", "s6_test"):
     # Parse timestamps
     df["start:timestamp"] = pd.to_datetime(df["start:timestamp"], errors="coerce")
     df["time:timestamp"] = pd.to_datetime(df["time:timestamp"], errors="coerce")
+
+    df, dropped = select_prosit_dataframe(df, label=split)
+    if dropped:
+        print(f"  Excluded non-ProSiT attributes: {', '.join(dropped)}")
     
-    # Format for pm4py
-    formatted = pm4py.format_dataframe(
-        df,
-        case_id="case:concept:name",
-        activity_key="concept:name",
-        timestamp_key="time:timestamp",
-    )
-    log = pm4py.convert_to_event_log(formatted)
+    # Do not use pm4py.format_dataframe here: it sorts by completion time and
+    # can move Gate Out ahead of an overlapping yard event.  The shared
+    # builder uses case:event:order (or migrates legacy row order) and removes
+    # that technical column from the XES event attributes.
+    log = to_pm4py_event_log(df, label=split)
     
     print(f"  {len(log)} traces -> {xes_path}")
     pm4py.write_xes(log, str(xes_path))

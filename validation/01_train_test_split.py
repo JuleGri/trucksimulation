@@ -39,6 +39,13 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO_ROOT))
+from _eventlog_contract import (  # noqa: E402
+    canonicalize_case_order,
+    validate_eventlog_contract,
+)
+
 
 DEFAULT_INPUT = Path("data") / "processed" / "CTB" / "s6_eventlog_target_rank_features.csv"
 DEFAULT_TRAIN = Path("data") / "processed" / "CTB" / "s6_train.csv"
@@ -73,6 +80,13 @@ def load_eventlog(path: Path) -> pd.DataFrame:
             df[col] = pd.to_datetime(df[col], errors="coerce")
     if CASE_COL not in df.columns:
         raise KeyError(f"Event log is missing required column {CASE_COL!r}")
+    df = canonicalize_case_order(df)
+    contract = validate_eventlog_contract(df, label="full real event log")
+    print(
+        "[split] CTB case contract: "
+        f"gate-only cases={contract['gate_only_cases']}, "
+        f"minimum yard events/case={contract['yard_events_per_case']['min']}"
+    )
     return df
 
 
@@ -135,6 +149,10 @@ def main() -> int:
     test_ids_set = set(test_ids.tolist())
     train_df = df[df[CASE_COL].isin(train_ids_set)].copy()
     test_df = df[df[CASE_COL].isin(test_ids_set)].copy()
+    train_df = canonicalize_case_order(train_df)
+    test_df = canonicalize_case_order(test_df)
+    train_contract = validate_eventlog_contract(train_df, label="training split")
+    test_contract = validate_eventlog_contract(test_df, label="test split")
 
     # Sanity: no overlap and full coverage
     overlap = train_ids_set & test_ids_set
@@ -167,6 +185,11 @@ def main() -> int:
         "n_events_dropped_missing_ts": int(dropped),
         "train": summarize(train_df, "train"),
         "test": summarize(test_df, "test"),
+        "case_structure_contract": {
+            "required_order": ["Gate In", "one_or_more_yard_activities", "Gate Out"],
+            "train": train_contract,
+            "test": test_contract,
+        },
     }
     args.manifest.write_text(json.dumps(manifest, indent=2))
     print(f"[split] Manifest -> {args.manifest}")
