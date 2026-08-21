@@ -37,6 +37,8 @@ reconstruction.
 | 4 | `04_baseline_percentile_sensitivity.py` | Recomputes the transition baseline at the 5th, 10th, 25th and 50th percentile and reports the impact on discovered waiting times and the data-aware duration R² / MAE. Addresses the "circular reasoning" concern. |
 | 6 | `06_multi_seed_ci.py` | Repeats simulation for multiple seeds, reports raw/robust confidence intervals and rejects any seed that violates the sequential case contract. |
 | 8 | `08_validate_eventlog_contract.py` | Hard structural/causality gate for the real and simulated logs; also writes routing-rate and duration-outlier audits. |
+| 9 | `09_multi_seed_scenarios.py` | Runs the frozen baseline, T22 closure and demand increase with matched seeds. Optionally caps every RMG resource at a domain-defined maximum concurrency before deriving all three templates. |
+| 10 | `10_compare_rmg_capacity_sensitivity.py` | Joins the original and capped scenario replications by seed, reports the direct cap effect and the cap-by-scenario difference-in-differences with 95% paired intervals. |
 
 `run_full_validation.py` orchestrates the current core workflow (split
 consistency check, order-preserving XES export, hard case-contract check,
@@ -99,6 +101,38 @@ python validation/04_baseline_percentile_sensitivity.py
 
 All outputs are written under `validation/results/<run-label>/` so
 different discovery configurations can be compared side by side.
+
+### Physical RMG-capacity sensitivity
+
+The frozen model represents the 22 RMG block identifiers with an aggregate
+effective maximum concurrency of 100. To test the operational statement that
+at most three cranes can work in parallel at one block, run a separate
+domain-constrained sensitivity analysis. This does not overwrite or mutate the
+frozen source pickle:
+
+```powershell
+python validation/09_multi_seed_scenarios.py `
+    --label prosit_sequential_calibrated_scenarios_rmg_cap3_ci `
+    --rmg-max-concurrency 3 `
+    --n-seeds 10 `
+    --base-seed 42
+```
+
+The effective cap-3 baseline and both derived scenario bundles are serialized
+inside the labelled result directory. `scenario_parameter_changes.json`
+records the source and effective capacities, while `scenario_run_summary.json`
+records both parameter hashes and the contract status.
+
+After both the original and cap-3 runs are complete, generate the paired
+capacity comparison and interaction analysis:
+
+```powershell
+python validation/10_compare_rmg_capacity_sensitivity.py
+```
+
+The comparison refuses to run if source-model hashes, seeds, trace counts,
+start time, timestamp resolution or demand settings differ, or if either run
+failed a case or duration contract.
 
 ## Notes on framing
 

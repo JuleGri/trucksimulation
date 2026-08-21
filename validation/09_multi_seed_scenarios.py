@@ -9,10 +9,14 @@ baseline.  Two transparent white-box interventions are derived from it:
    dividing every empirical inter-arrival sample by 1.20.  Its zero mass and
    empirical distribution shape are retained.
 
-All other discovered and CTB-calibrated parameters remain unchanged.  For
-each seed, baseline and both interventions are simulated from the same start
-time with the same trace count and random seed.  Deltas are therefore paired
-by seed.  Every generated log must satisfy the sequential CTB case contract.
+All other discovered and CTB-calibrated parameters remain unchanged.  An
+optional robustness mode caps every resource eligible for an RMG activity at
+the same maximum concurrency before deriving all three scenario templates.
+This produces a domain-constrained sensitivity baseline without mutating the
+frozen source bundle.  For each seed, baseline and both interventions are
+simulated from the same start time with the same trace count and random seed.
+Deltas are therefore paired by seed.  Every generated log must satisfy the
+sequential CTB case contract.
 
 Outputs under ``validation/results/<label>/``:
 
@@ -22,7 +26,8 @@ Outputs under ``validation/results/<label>/``:
 * ``scenario_paired_delta_summary.csv``: paired effects and 95% t intervals;
 * ``scenario_contracts.csv``: contract audit for all 30 generated logs;
 * ``scenario_parameter_changes.json``: explicit white-box parameter diff;
-* ``params_*.pkl``: frozen derived parameter bundles;
+* ``params_*.pkl``: frozen derived parameter bundles, including the effective
+  baseline when a concurrency cap is requested;
 * ``figures/scenario_paired_deltas_ci.png``: paired-effect plot; and
 * ``scenario_run_summary.json``: reproducibility metadata.
 """
@@ -136,6 +141,16 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--rmg-max-concurrency",
+        type=int,
+        default=None,
+        help=(
+            "Optional robustness cap applied to max_concurrency for every "
+            "resource eligible for an RMG activity before all three templates "
+            "are derived. The frozen source pickle is never modified."
+        ),
+    )
+    parser.add_argument(
         "--timestamp-resolution",
         choices=("minute", "native"),
         default="minute",
@@ -197,6 +212,66 @@ def _resource_mapping(params, activity: str) -> list[str]:
     if activity not in params.act_to_resources:
         raise KeyError(f"Activity {activity!r} has no resource mapping.")
     return list(params.act_to_resources[activity])
+
+
+def _rmg_resource_names(params) -> list[str]:
+    """Return the sorted union of resources eligible for an RMG activity."""
+
+    resources = {
+        resource
+        for activity in RMG_ACTIVITIES
+        for resource in _resource_mapping(params, activity)
+    }
+    if not resources:
+        raise ValueError("The model has no resources eligible for RMG activities.")
+    return sorted(resources)
+
+
+def _rmg_concurrency_summary(params) -> dict:
+    """Return a JSON-serializable summary of the effective RMG capacities."""
+
+    resources = _rmg_resource_names(params)
+    missing = [
+        resource
+        for resource in resources
+        if resource not in getattr(params, "max_concurrency", {})
+    ]
+    if missing:
+        raise KeyError(f"RMG resources lack max_concurrency values: {missing}")
+    per_resource = {
+        resource: int(params.max_concurrency[resource])
+        for resource in resources
+    }
+    if any(value < 1 for value in per_resource.values()):
+        raise ValueError(f"RMG maximum concurrency must be positive: {per_resource}")
+    return {
+        "n_resources": len(resources),
+        "per_resource": per_resource,
+        "minimum": min(per_resource.values()),
+        "maximum": max(per_resource.values()),
+        "aggregate": sum(per_resource.values()),
+    }
+
+
+def apply_rmg_concurrency_cap(params, cap: int):
+    """Return a deep-copied bundle with RMG maximum concurrency clamped.
+
+    The intervention changes only ``max_concurrency`` entries of resources
+    reachable from an RMG activity. Existing values below the requested cap
+    are retained. Resource mappings, weights, calendars and all other model
+    families remain byte-for-byte represented by the deep copy.
+    """
+
+    if cap < 1:
+        raise ValueError("The RMG maximum-concurrency cap must be at least one.")
+    scenario = deepcopy(params)
+    before = _rmg_concurrency_summary(scenario)
+    for resource, discovered in before["per_resource"].items():
+        scenario.max_concurrency[resource] = min(int(discovered), int(cap))
+    after = _rmg_concurrency_summary(scenario)
+    if after["maximum"] > cap:
+        raise AssertionError("RMG maximum-concurrency cap was not applied completely.")
+    return scenario
 
 
 def apply_t22_closure(params, blocked_blocks: Iterable[str]):
@@ -315,23 +390,54 @@ def _calendar_active_slots(params, resource: str) -> int | None:
 
 
 def _parameter_change_report(
+    source_baseline,
     baseline,
     scenario_a,
     scenario_b,
     *,
     blocked_blocks: list[str],
     demand_increase_pct: float,
+    rmg_max_concurrency: int | None,
 ) -> dict:
     before_arrivals = _arrival_model_summary(baseline)
     after_arrivals = _arrival_model_summary(scenario_b)
     demand_multiplier = 1.0 + demand_increase_pct / 100.0
+    source_rmg = _rmg_concurrency_summary(source_baseline)
+    effective_rmg = _rmg_concurrency_summary(baseline)
     return {
         "principle": (
-            "Both scenarios are independently derived by deep copy from the frozen "
-            "calibrated baseline. Scenario A changes only the listed resource mappings "
-            "and blocked-resource calendar. Scenario B changes only the empirical "
-            "inter-arrival samples and their serialized fallback statistics."
+            "The effective baseline is derived by deep copy from the frozen calibrated "
+            "source bundle when an RMG concurrency cap is requested. Both operational "
+            "scenarios are then independently derived from that effective baseline. "
+            "Scenario A changes only the listed resource mappings and blocked-resource "
+            "calendar. Scenario B changes only the empirical inter-arrival samples and "
+            "their serialized fallback statistics."
         ),
+        "rmg_capacity_sensitivity": {
+            "enabled": rmg_max_concurrency is not None,
+            "requested_max_concurrency": rmg_max_concurrency,
+            "before": source_rmg,
+            "after": effective_rmg,
+            "changed_resources": {
+                resource: {
+                    "before": source_rmg["per_resource"][resource],
+                    "after": effective_rmg["per_resource"][resource],
+                }
+                for resource in source_rmg["per_resource"]
+                if source_rmg["per_resource"][resource]
+                != effective_rmg["per_resource"][resource]
+            },
+            "unchanged_parameter_families": [
+                "control-flow Petri net",
+                "arrival model and gate admission calendar",
+                "activity-duration and waiting-time models",
+                "routing decision models",
+                "activity/resource mappings",
+                "resource calendars, selection models, and weights",
+                "case attributes and feature schema",
+                "CTB minute timestamp observation model",
+            ],
+        },
         "blocked_blocks": blocked_blocks,
         "t22_closed": {
             "act_to_resources_changes": _mapping_diff(baseline, scenario_a),
@@ -658,7 +764,12 @@ def main() -> int:
     blocked_blocks = list(dict.fromkeys(args.blocked_blocks))
 
     print(f"[scenario] Loading frozen baseline: {params_path}")
-    baseline = _load_params(params_path)
+    source_baseline = _load_params(params_path)
+    baseline = (
+        apply_rmg_concurrency_cap(source_baseline, args.rmg_max_concurrency)
+        if args.rmg_max_concurrency is not None
+        else source_baseline
+    )
     scenario_a = apply_t22_closure(baseline, blocked_blocks)
     scenario_b = apply_demand_increase(baseline, args.demand_increase_pct)
     templates = {
@@ -667,22 +778,33 @@ def main() -> int:
         SCENARIO_DEMAND: scenario_b,
     }
 
+    baseline_path = params_path
+    if args.rmg_max_concurrency is not None:
+        baseline_path = (
+            out_dir
+            / f"params_baseline_rmg_max_concurrency_{args.rmg_max_concurrency}.pkl"
+        )
+        _write_pickle(baseline, baseline_path)
     scenario_a_path = out_dir / "params_t22_closed.pkl"
     scenario_b_path = out_dir / "params_demand_plus_20pct.pkl"
     _write_pickle(scenario_a, scenario_a_path)
     _write_pickle(scenario_b, scenario_b_path)
 
     parameter_report = _parameter_change_report(
+        source_baseline,
         baseline,
         scenario_a,
         scenario_b,
         blocked_blocks=blocked_blocks,
         demand_increase_pct=args.demand_increase_pct,
+        rmg_max_concurrency=args.rmg_max_concurrency,
     )
     parameter_report.update(
         {
-            "baseline_pickle": str(params_path),
-            "baseline_sha256": _sha256(params_path),
+            "source_baseline_pickle": str(params_path),
+            "source_baseline_sha256": _sha256(params_path),
+            "baseline_pickle": str(baseline_path),
+            "baseline_sha256": _sha256(baseline_path),
             "scenario_pickles": {
                 SCENARIO_T22: str(scenario_a_path),
                 SCENARIO_DEMAND: str(scenario_b_path),
@@ -700,7 +822,9 @@ def main() -> int:
     run_summary = {
         "status": "running",
         "started_at": datetime.now().astimezone().isoformat(),
-        "baseline_pickle": str(params_path),
+        "source_baseline_pickle": str(params_path),
+        "source_baseline_sha256": parameter_report["source_baseline_sha256"],
+        "baseline_pickle": str(baseline_path),
         "baseline_sha256": parameter_report["baseline_sha256"],
         "training_only_calibration": True,
         "holdout_used_for_parameter_changes": False,
@@ -712,6 +836,9 @@ def main() -> int:
         "timestamp_resolution": args.timestamp_resolution,
         "paired_common_random_numbers": True,
         "demand_increase_pct": float(args.demand_increase_pct),
+        "rmg_max_concurrency_cap": args.rmg_max_concurrency,
+        "rmg_concurrency_before": parameter_report["rmg_capacity_sensitivity"]["before"],
+        "rmg_concurrency_after": parameter_report["rmg_capacity_sensitivity"]["after"],
         "saved_event_logs": bool(args.save_seed_logs),
     }
     with run_summary_path.open("w", encoding="utf-8") as handle:
@@ -719,7 +846,8 @@ def main() -> int:
 
     print(
         f"[scenario] n_seeds={args.n_seeds} n_traces={n_traces:,} "
-        f"t_start={t_start} scenarios={list(templates)}"
+        f"t_start={t_start} rmg_cap={args.rmg_max_concurrency} "
+        f"scenarios={list(templates)}"
     )
     rows: list[dict] = []
     audits: list[dict] = []
