@@ -1,0 +1,230 @@
+{
+  "principle": "Both scenarios are independently derived by deep copy from the frozen calibrated baseline. Scenario A changes only the listed resource mappings and blocked-resource calendar. Scenario B changes only the empirical inter-arrival samples and their serialized fallback statistics.",
+  "blocked_blocks": [
+    "T22"
+  ],
+  "t22_closed": {
+    "act_to_resources_changes": {
+      "RMG_delivery": {
+        "before": [
+          "T13",
+          "T14",
+          "T16",
+          "T17",
+          "T12",
+          "T15",
+          "T21",
+          "T10",
+          "T20",
+          "T11",
+          "T24",
+          "T09",
+          "T06",
+          "T18",
+          "T22",
+          "T23",
+          "T27",
+          "T07",
+          "T19",
+          "T08",
+          "T25",
+          "T26"
+        ],
+        "after": [
+          "T13",
+          "T14",
+          "T16",
+          "T17",
+          "T12",
+          "T15",
+          "T21",
+          "T10",
+          "T20",
+          "T11",
+          "T24",
+          "T09",
+          "T06",
+          "T18",
+          "T23",
+          "T27",
+          "T07",
+          "T19",
+          "T08",
+          "T25",
+          "T26"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      },
+      "RMG_mixed": {
+        "before": [
+          "T13",
+          "T14",
+          "T24",
+          "T17",
+          "T21",
+          "T20",
+          "T23",
+          "T22",
+          "T27",
+          "T18",
+          "T16",
+          "T15",
+          "T12",
+          "T26",
+          "T19",
+          "T11",
+          "T25",
+          "T10",
+          "T09",
+          "T06",
+          "T08",
+          "T07"
+        ],
+        "after": [
+          "T13",
+          "T14",
+          "T24",
+          "T17",
+          "T21",
+          "T20",
+          "T23",
+          "T27",
+          "T18",
+          "T16",
+          "T15",
+          "T12",
+          "T26",
+          "T19",
+          "T11",
+          "T25",
+          "T10",
+          "T09",
+          "T06",
+          "T08",
+          "T07"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      },
+      "RMG_receive": {
+        "before": [
+          "T13",
+          "T24",
+          "T14",
+          "T16",
+          "T27",
+          "T11",
+          "T17",
+          "T20",
+          "T21",
+          "T23",
+          "T22",
+          "T10",
+          "T18",
+          "T12",
+          "T06",
+          "T15",
+          "T09",
+          "T26",
+          "T07",
+          "T08",
+          "T19",
+          "T25"
+        ],
+        "after": [
+          "T13",
+          "T24",
+          "T14",
+          "T16",
+          "T27",
+          "T11",
+          "T17",
+          "T20",
+          "T21",
+          "T23",
+          "T10",
+          "T18",
+          "T12",
+          "T06",
+          "T15",
+          "T09",
+          "T26",
+          "T07",
+          "T08",
+          "T19",
+          "T25"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      }
+    },
+    "calendar_active_slots_before": {
+      "T22": 168
+    },
+    "calendar_active_slots_after": {
+      "T22": 0
+    }
+  },
+  "demand_plus_20pct": {
+    "requested_demand_increase_pct": 20.0,
+    "arrival_intensity_multiplier": 1.2,
+    "inter_arrival_time_multiplier": 0.8333333333333334,
+    "arrival_model_before": {
+      "n_samples": 71530,
+      "mean_working_inter_arrival_min": 0.6830420802460506,
+      "implied_arrivals_per_working_hour": 87.84231855581481,
+      "zero_probability": 0.5509716202991751,
+      "minimum_working_inter_arrival_min": 0.0,
+      "maximum_working_inter_arrival_min": 19.0
+    },
+    "arrival_model_after": {
+      "n_samples": 71530,
+      "mean_working_inter_arrival_min": 0.5692017335383756,
+      "implied_arrivals_per_working_hour": 105.41078226697776,
+      "zero_probability": 0.5509716202991751,
+      "minimum_working_inter_arrival_min": 0.0,
+      "maximum_working_inter_arrival_min": 15.833333333333334
+    },
+    "act_to_resources_changes": {},
+    "arrival_calendar_changed": false,
+    "resource_calendars_changed": false
+  },
+  "scenario_specific_unchanged_parameter_families": {
+    "t22_closed": [
+      "control-flow Petri net",
+      "arrival model and gate admission calendar",
+      "activity-duration models",
+      "routing decision models",
+      "resource-selection models and weights",
+      "case attributes and feature schema",
+      "CTB minute timestamp observation model"
+    ],
+    "demand_plus_20pct": [
+      "control-flow Petri net",
+      "gate admission calendar",
+      "activity-duration models",
+      "routing decision models",
+      "activity/resource mappings",
+      "resource calendars, selection models, and weights",
+      "case attributes and feature schema",
+      "CTB minute timestamp observation model"
+    ]
+  },
+  "baseline_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.pkl",
+  "baseline_sha256": "11a982f4cb36de57648e4eb729145b7a9726459e8f190220d6d51cdece075698",
+  "scenario_pickles": {
+    "t22_closed": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\prosit_sequential_calibrated_scenarios_ci\\params_t22_closed.pkl",
+    "demand_plus_20pct": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\prosit_sequential_calibrated_scenarios_ci\\params_demand_plus_20pct.pkl"
+  },
+  "scenario_sha256": {
+    "t22_closed": "e2b8d7528d11c22c81fca895ae1ce3472bcce4d662c2f5c3a089adae0e4c6b39",
+    "demand_plus_20pct": "90e162a8a19004335343a094936125a94f89c6e573ed5cfb27f6e911f31fe094"
+  }
+}

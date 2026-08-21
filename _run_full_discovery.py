@@ -8,6 +8,7 @@ are already known to come from the corrected case-ordering pipeline.
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -27,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-contract-validation", action="store_true")
     parser.add_argument(
         "--validation-label",
-        default="prosit_sequential_workload_vs_holdout",
+        default="prosit_sequential_calibrated_vs_holdout",
     )
     return parser.parse_args()
 
@@ -47,13 +48,22 @@ def run_stage(index: int, total: int, name: str, command: list[str]) -> None:
 def latest_sequential_output() -> tuple[Path, Path]:
     candidates = list(
         (REPO_ROOT / "baseline" / "discovery_params").glob(
-            "*_train80/prosit_discovery_workload_sequential/prosit_run_summary.json"
+            "*_train80/prosit_discovery_workload_sequential*/prosit_run_summary.json"
         )
     )
     if not candidates:
         raise FileNotFoundError("No sequential ProSiT discovery output was created.")
     summary = max(candidates, key=lambda path: path.stat().st_mtime)
-    sim = summary.parent / "sim_baseline_train80_workload_sequential.csv"
+    with open(summary, "r") as fh:
+        run_summary = json.load(fh)
+    configured_output = run_summary.get("simulation", {}).get("output_csv")
+    if not configured_output:
+        raise FileNotFoundError(
+            f"Run summary does not contain a simulation output path: {summary}"
+        )
+    sim = Path(configured_output)
+    if not sim.is_absolute():
+        sim = REPO_ROOT / sim
     if not sim.exists():
         raise FileNotFoundError(f"Expected simulation output not found: {sim}")
     return summary, sim
@@ -111,7 +121,7 @@ def main() -> int:
         discovery.append("--skip-figures")
     stages.append(
         (
-            "Discover sequential control flow and ProSiT parameters; simulate holdout window",
+            "Discover, calibrate and simulate the sequential ProSiT model",
             discovery,
         )
     )

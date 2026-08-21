@@ -47,6 +47,9 @@ Methodological note:
   parallel cuts overgeneralize the CTB domain;
 - ProSiT resource multitasking remains enabled across different truck cases.
   The state-machine Petri net prevents concurrency only within one case;
+- a training-only CTB calibration retains zero inter-arrival mass, calibrates
+  data-aware trie routing to empirical prefix marginals, and lets trucks that
+  entered before the weekly closure finish without a multi-day interruption;
 - fitness / precision are computed with token-based replay for tractability
   on the full 71k-case training log; alignment-based fitness is optionally
   computed on a 1000-case sample (--alignments-sample);
@@ -106,6 +109,10 @@ from _eventlog_contract import (  # noqa: E402
     to_pm4py_event_log,
     variant_coverage,
 )
+from _prosit_ctb_calibration import (  # noqa: E402
+    calibrate_ctb_parameters,
+    simulate_ctb,
+)
 
 DEFAULT_TEST = _REPO_ROOT / "data" / "processed" / "CTB" / "s6_test.csv"
 DEFAULT_MANIFEST = _REPO_ROOT / "validation" / "results" / "split_manifest.json"
@@ -157,14 +164,32 @@ def parse_args() -> argparse.Namespace:
                         help="Enable ProSiT workload/queue-length features on the waiting-time and "
                              "resource-selection models (README section 'What the Models Learn'). "
                              "ADOPTED DEFAULT because it reduced the held-out case-turnaround EMD by "
-                             "20% on CTB. Use --no-use-workload-features to reproduce the earlier "
+                             "20%% on CTB. Use --no-use-workload-features to reproduce the earlier "
                              "baseline run.")
     parser.add_argument("--out-suffix", type=str, default=None,
                         help="Suffix appended to the prosit_discovery/ folder and sim CSV filename so a "
                              "new run does not overwrite a previous one. Defaults to "
-                             "'_workload_sequential' when --use-workload-features is set, "
-                             "'_no_workload_sequential' "
-                             "otherwise so the two configurations always land in distinct folders.")
+                             "a calibrated or uncalibrated sequential suffix derived from the "
+                             "selected workload/calibration flags.")
+    parser.add_argument(
+        "--ctb-calibration",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help=(
+            "Apply the training-only CTB fidelity calibration: empirical zero-inflated "
+            "arrivals, calibrated data-aware trie routing, non-preemptive completion "
+            "across the weekly closure, and minute-resolution output. Default: True."
+        ),
+    )
+    parser.add_argument(
+        "--timestamp-resolution",
+        choices=("minute", "native"),
+        default="minute",
+        help=(
+            "Observation resolution of simulated timestamps. CTB source timestamps are "
+            "minute-granular, so 'minute' is the calibrated default."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -487,26 +512,24 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
     return params, dt
 
 
-def simulate_prosit(params, n_traces: int, t_start: datetime | None, seed: int) -> pd.DataFrame:
-    import random
-    from prosit import SimulatorEngine
-    engine = SimulatorEngine(params)
+def simulate_prosit(
+    params,
+    n_traces: int,
+    t_start: datetime | None,
+    seed: int,
+    timestamp_resolution: str,
+) -> pd.DataFrame:
     print(f"[prosit] Simulating n_traces={n_traces:,}  t_start={t_start}  ...")
-    # ProSiT 1.0.3 no-rules mode passes numpy arrays to random.choice()
-    _orig = random.choice
-    def _safe(seq):
-        if isinstance(seq, np.ndarray):
-            return seq[np.random.randint(len(seq))]
-        return _orig(seq)
-    random.choice = _safe
     t0 = time.time()
-    try:
-        if t_start is None:
-            sim_log = engine.apply(n_traces=n_traces)
-        else:
-            sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
-    finally:
-        random.choice = _orig
+    sim_log = simulate_ctb(
+        params,
+        n_traces=n_traces,
+        t_start=t_start,
+        seed=seed,
+        timestamp_resolution=(
+            "min" if timestamp_resolution == "minute" else None
+        ),
+    )
     dt = time.time() - t0
     print(f"[prosit] Simulation finished in {dt:.1f}s (events={len(sim_log):,})")
     return sim_log
@@ -617,11 +640,18 @@ def main() -> int:
     # features are the ADOPTED DEFAULT, "_workload" is the default suffix
     # and the no-workload variant lands in "_no_workload".
     if args.out_suffix is None:
-        args.out_suffix = (
-            "_workload_sequential"
-            if args.use_workload_features
-            else "_no_workload_sequential"
-        )
+        if args.use_workload_features:
+            args.out_suffix = (
+                "_workload_sequential_calibrated"
+                if args.ctb_calibration
+                else "_workload_sequential"
+            )
+        else:
+            args.out_suffix = (
+                "_no_workload_sequential_calibrated"
+                if args.ctb_calibration
+                else "_no_workload_sequential"
+            )
     # s6_train.xes is the same persisted training split as s6_train.csv.
     # Do not mislabel an XES-based run as a full-log discovery.
     source_name = Path(train_csv).stem.lower()
@@ -657,6 +687,26 @@ def main() -> int:
     # 5. ProSiT parameter discovery
     params, disc_seconds = discover_prosit_params(train_log, net, im, fm, args)
 
+    calibration_report: dict[str, Any] = {
+        "enabled": False,
+        "holdout_used": False,
+    }
+    if args.ctb_calibration:
+        print("[ctb] Applying training-only arrival/routing/calendar calibration ...")
+        calibration_report = calibrate_ctb_parameters(params, train_log)
+        calibration_report["enabled"] = True
+        calibration_path = prosit_dir / "ctb_calibration.json"
+        with open(calibration_path, "w") as fh:
+            json.dump(calibration_report, fh, indent=2, default=str)
+        print(
+            "[ctb] Calibration complete: "
+            f"arrival P(IAT=0)={calibration_report['arrivals']['zero_probability']:.3%}, "
+            f"routing max error="
+            f"{calibration_report['routing']['max_abs_training_marginal_error']:.2e}, "
+            "resource completion calendar=168 h/week"
+        )
+        print(f"[ctb] Wrote {calibration_path}")
+
     params_json_path = prosit_dir / "prosit_params.json"
     params_pkl_path = prosit_dir / "prosit_params.pkl"
     try:
@@ -685,7 +735,13 @@ def main() -> int:
     if args.skip_simulation:
         print("[main] --skip-simulation: not running SimulatorEngine.apply.")
     else:
-        sim_log = simulate_prosit(params, n_traces=n_traces, t_start=t_start, seed=args.random_state)
+        sim_log = simulate_prosit(
+            params,
+            n_traces=n_traces,
+            t_start=t_start,
+            seed=args.random_state,
+            timestamp_resolution=args.timestamp_resolution,
+        )
         sim_path = prosit_dir / f"sim_baseline_train80{args.out_suffix}.csv"
         sim_log.to_csv(sim_path, index=False)
         print(f"[main] Wrote {sim_path}")
@@ -694,6 +750,8 @@ def main() -> int:
             "n_events": int(len(sim_log)),
             "t_start": None if t_start is None else t_start.isoformat(),
             "output_csv": str(sim_path),
+            "random_seed": int(args.random_state),
+            "timestamp_resolution": args.timestamp_resolution,
         }
 
     # 7. Run summary
@@ -708,6 +766,8 @@ def main() -> int:
             "min_samples_leaf_cv": args.min_samples_leaf_cv,
             "attribute_mode": args.attribute_mode,
             "use_workload_features": args.use_workload_features,
+            "ctb_calibration": args.ctb_calibration,
+            "timestamp_resolution": args.timestamp_resolution,
             "out_suffix": args.out_suffix,
             "random_state": args.random_state,
             "prosit_case_attribute_allowlist": list(
@@ -715,9 +775,24 @@ def main() -> int:
             ),
         },
         "control_flow": control_flow_contract,
+        "ctb_calibration": calibration_report,
         "discovery_seconds": disc_seconds,
         "conformance": conformance_rows,
         "simulation": sim_summary,
+        "parameter_artifacts": {
+            "authoritative_pickle": str(params_pkl_path),
+            "portable_prosit_json": str(params_json_path),
+            "calibration_companion": (
+                str(prosit_dir / "ctb_calibration.json")
+                if args.ctb_calibration
+                else None
+            ),
+            "note": (
+                "The pickle is authoritative for calibrated simulation because ProSiT's "
+                "JSON schema omits empirical sampled arrays. The calibration companion "
+                "records the complete compact arrival PMF and routing audit."
+            ),
+        },
     }
     with open(prosit_dir / "prosit_run_summary.json", "w") as fh:
         json.dump(summary, fh, indent=2, default=str)

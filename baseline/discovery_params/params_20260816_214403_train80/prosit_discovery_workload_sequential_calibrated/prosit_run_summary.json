@@ -1,0 +1,1251 @@
+{
+  "generated_at": "2026-08-21T06:35:50.531329Z",
+  "train_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_train.csv",
+  "test_csv": "data\\processed\\CTB\\s6_test.csv",
+  "paramset_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80",
+  "prosit_output_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated",
+  "hyperparameters": {
+    "max_depth_tree": 3,
+    "min_samples_leaf_cv": [
+      50,
+      100,
+      200
+    ],
+    "attribute_mode": "empirical",
+    "use_workload_features": true,
+    "ctb_calibration": true,
+    "timestamp_resolution": "minute",
+    "out_suffix": "_workload_sequential_calibrated",
+    "random_state": 42,
+    "prosit_case_attribute_allowlist": [
+      "process_flow_type",
+      "n_containers",
+      "n_stops",
+      "n_deliveries",
+      "n_receives",
+      "has_hazardous",
+      "has_reefer",
+      "full_ratio",
+      "visit_complexity",
+      "gate_demand",
+      "rmg_demand",
+      "vc_demand",
+      "mt_demand",
+      "gate_utilization",
+      "rmg_utilization",
+      "vc_utilization",
+      "mt_utilization",
+      "primary_target_area",
+      "target_area",
+      "target_utilization",
+      "target_demand",
+      "target_utilization_bin",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group"
+    ]
+  },
+  "control_flow": {
+    "authoritative_model": "sequential_observed_variant_trie",
+    "diagnostic_model": "inductive_process_tree_not_used_for_simulation",
+    "case_language": [
+      "Gate In",
+      "one_or_more_yard_activities",
+      "Gate Out"
+    ],
+    "within_case_parallelism": false,
+    "cross_case_resource_multitasking": true,
+    "trie": {
+      "train_variants": 70,
+      "places": 76,
+      "transitions": 144,
+      "yard_transition_edges": 73,
+      "terminal_prefixes": 70
+    },
+    "holdout_variant_coverage": {
+      "train_variants": 70,
+      "test_variants": 53,
+      "unseen_test_variants": 10,
+      "unseen_test_cases": 10,
+      "unseen_test_case_share": 0.0005589090096132349
+    }
+  },
+  "ctb_calibration": {
+    "version": 1,
+    "training_traces": 71568,
+    "holdout_used": false,
+    "routing": {
+      "method": "per_prefix_multiplicative_weight_calibration",
+      "holdout_used": false,
+      "conditional_data_effects_preserved": true,
+      "probability_floor": 1e-09,
+      "calibrated_branching_prefixes": 30,
+      "max_abs_training_marginal_error": 0.00038151583186596394,
+      "prefixes": [
+        {
+          "prefix": [],
+          "n_training_decisions": 71568,
+          "iterations": 500,
+          "transition_names": [
+            "yard_000",
+            "yard_001",
+            "yard_002",
+            "yard_003",
+            "yard_004",
+            "yard_005",
+            "yard_006",
+            "yard_007",
+            "yard_008"
+          ],
+          "target_probabilities": [
+            0.07984015202325062,
+            0.010255980326402861,
+            0.052495528727923096,
+            0.13297842611222893,
+            0.0007405544377375364,
+            0.023739660183322155,
+            0.24079197406662195,
+            0.05503856472166331,
+            0.4041191594008495
+          ],
+          "predicted_before": [
+            0.08041036295525497,
+            0.016578613327200082,
+            0.028403295320043893,
+            0.133670313032927,
+            0.0008203302094285415,
+            0.014417618907861496,
+            0.24013251115202952,
+            0.050764021422743416,
+            0.4348029336722544
+          ],
+          "predicted_after": [
+            0.07983990716522996,
+            0.010255980827218257,
+            0.0524957586116748,
+            0.13297778299202576,
+            0.0007405552017885032,
+            0.023739732847773663,
+            0.24079040197335083,
+            0.055038565802162855,
+            0.40412131457840567
+          ],
+          "multiplicative_factors": [
+            0.7446812570764766,
+            0.27644831201708564,
+            8.571343507782547,
+            0.7478228748073081,
+            0.5884071911134965,
+            2.15196394351052,
+            0.9322911064480036,
+            1.1546744595376308,
+            0.5559604853280916
+          ],
+          "max_abs_error_after": 2.155177556140142e-06
+        },
+        {
+          "prefix": [
+            "HO2_delivery"
+          ],
+          "n_training_decisions": 5714,
+          "iterations": 500,
+          "transition_names": [
+            "yard_009",
+            "yard_010",
+            "yard_011",
+            "yard_012",
+            "yard_013",
+            "gate_out_000"
+          ],
+          "target_probabilities": [
+            0.001225061253062653,
+            0.004375218760938047,
+            0.007000350017500875,
+            0.005950297514875744,
+            0.07227861393069654,
+            0.9091704585229261
+          ],
+          "predicted_before": [
+            0.000915548530967159,
+            0.0034795550047662686,
+            0.005091164634091745,
+            0.019403655823254748,
+            0.07105299963767216,
+            0.9000570763692123
+          ],
+          "predicted_after": [
+            0.0012250383287390715,
+            0.004328557330256994,
+            0.0069360017665712715,
+            0.005950395431493666,
+            0.07230456144958393,
+            0.9092554456933906
+          ],
+          "multiplicative_factors": [
+            0.024574811797844858,
+            234.4715582264107,
+            4808.602602141518,
+            0.0046142874756794185,
+            0.07916115974104294,
+            0.09880614299124416
+          ],
+          "max_abs_error_after": 8.49871704644567e-05
+        },
+        {
+          "prefix": [
+            "HO2_mixed"
+          ],
+          "n_training_decisions": 734,
+          "iterations": 500,
+          "transition_names": [
+            "yard_014",
+            "yard_015",
+            "yard_016",
+            "gate_out_001"
+          ],
+          "target_probabilities": [
+            0.0027247956403269754,
+            0.0013623978201634877,
+            0.035422343324250684,
+            0.9604904632152589
+          ],
+          "predicted_before": [
+            0.005193414702066436,
+            0.0013623988609317314,
+            0.0336394532984016,
+            0.9598047331386006
+          ],
+          "predicted_after": [
+            0.0027300218528622544,
+            0.00136241860660887,
+            0.03541893360131488,
+            0.960488625939223
+          ],
+          "multiplicative_factors": [
+            0.010497286482113798,
+            4.053398975211705,
+            5.741420014382152,
+            4.093400874542964
+          ],
+          "max_abs_error_after": 5.226212535278975e-06
+        },
+        {
+          "prefix": [
+            "HO2_receive"
+          ],
+          "n_training_decisions": 3757,
+          "iterations": 500,
+          "transition_names": [
+            "yard_017",
+            "yard_018",
+            "yard_019",
+            "yard_020",
+            "yard_021",
+            "gate_out_002"
+          ],
+          "target_probabilities": [
+            0.002927867979771094,
+            0.001064679265371307,
+            0.002927867979771094,
+            0.0005323396326856535,
+            0.013574660633484163,
+            0.9789725845089167
+          ],
+          "predicted_before": [
+            0.0044325522106376525,
+            0.0015840530302128892,
+            0.004481654509122346,
+            0.000814846274385897,
+            0.013399668576911201,
+            0.9752872253986524
+          ],
+          "predicted_after": [
+            0.0029278835866370545,
+            0.0010646894538472184,
+            0.0029279034486703807,
+            0.0005323460815764274,
+            0.013553503382919104,
+            0.9789936740463483
+          ],
+          "multiplicative_factors": [
+            1.1550964950239178,
+            0.018557199807588767,
+            1.1208692126435613,
+            1.1208692126435975,
+            12.534516784946417,
+            2.962455347655294
+          ],
+          "max_abs_error_after": 2.11572505650591e-05
+        },
+        {
+          "prefix": [
+            "LL_delivery"
+          ],
+          "n_training_decisions": 9517,
+          "iterations": 500,
+          "transition_names": [
+            "yard_022",
+            "yard_023",
+            "yard_024",
+            "yard_025",
+            "yard_026",
+            "yard_027",
+            "gate_out_003"
+          ],
+          "target_probabilities": [
+            0.0030471787327939477,
+            0.0006304507723021961,
+            0.029631186298203216,
+            0.05106651255647788,
+            0.003257328990228013,
+            0.3093411789429442,
+            0.6030261637070505
+          ],
+          "predicted_before": [
+            0.004866957188145493,
+            0.0016566389417532106,
+            0.029682387245561572,
+            0.05081006647133776,
+            0.004623774571461731,
+            0.3083623091436473,
+            0.5999978664381073
+          ],
+          "predicted_after": [
+            0.0030494490439052988,
+            0.0006309290624310833,
+            0.029664282170469534,
+            0.051034209590943284,
+            0.0032605450418274687,
+            0.3097159372153226,
+            0.6026446478751846
+          ],
+          "multiplicative_factors": [
+            0.5893277567374581,
+            0.34421667142941115,
+            0.6381484472334327,
+            4.116212645369859,
+            0.46227220688612153,
+            0.9862349084112606,
+            4.116361709950686
+          ],
+          "max_abs_error_after": 0.00038151583186596394
+        },
+        {
+          "prefix": [
+            "LL_mixed"
+          ],
+          "n_training_decisions": 53,
+          "iterations": 1,
+          "transition_names": [
+            "yard_028",
+            "gate_out_004"
+          ],
+          "target_probabilities": [
+            0.11320754716981132,
+            0.8867924528301887
+          ],
+          "predicted_before": [
+            0.1132075479433963,
+            0.8867924520566028
+          ],
+          "predicted_after": [
+            0.1132075479433963,
+            0.8867924520566028
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 7.7358586203502e-10
+        },
+        {
+          "prefix": [
+            "LL_receive"
+          ],
+          "n_training_decisions": 1699,
+          "iterations": 500,
+          "transition_names": [
+            "yard_029",
+            "yard_030",
+            "yard_031",
+            "yard_032",
+            "yard_033",
+            "yard_034",
+            "gate_out_005"
+          ],
+          "target_probabilities": [
+            0.002354326074161271,
+            0.0005885815185403178,
+            0.020011771630370805,
+            0.020600353148911125,
+            0.0011771630370806356,
+            0.20659211300765157,
+            0.7486756915832843
+          ],
+          "predicted_before": [
+            0.00235827087316122,
+            0.00019795302925410243,
+            0.02006959318435911,
+            0.024033153265551655,
+            0.0009878394746484758,
+            0.20543598871161262,
+            0.7469172014614285
+          ],
+          "predicted_after": [
+            0.002360176575311131,
+            0.0005894687408381045,
+            0.02001320241737702,
+            0.020652178447143024,
+            0.0011785505351153607,
+            0.20655336560051676,
+            0.7486530576837098
+          ],
+          "multiplicative_factors": [
+            0.05634720285184111,
+            427.67426417633123,
+            5.0470373234963555,
+            0.001410302594427518,
+            0.2396121895964615,
+            5.531651282249307,
+            4.398473684161092
+          ],
+          "max_abs_error_after": 5.182529823189938e-05
+        },
+        {
+          "prefix": [
+            "RMG_delivery"
+          ],
+          "n_training_decisions": 17233,
+          "iterations": 500,
+          "transition_names": [
+            "yard_035",
+            "yard_036",
+            "yard_037",
+            "yard_038",
+            "yard_039",
+            "gate_out_006"
+          ],
+          "target_probabilities": [
+            0.00029014100853014566,
+            0.002611269076771311,
+            0.003017466488713515,
+            0.008240004642256136,
+            0.0015667614460627866,
+            0.9842743573376661
+          ],
+          "predicted_before": [
+            0.00041542184203382203,
+            0.002577323696656214,
+            0.0032331607327402982,
+            0.007912207824622495,
+            0.0012964630237225188,
+            0.9845654228800966
+          ],
+          "predicted_after": [
+            0.00029016781099849105,
+            0.00258351611139614,
+            0.003017754814978202,
+            0.008152381503580603,
+            0.0015669408517326605,
+            0.984389238907344
+          ],
+          "multiplicative_factors": [
+            0.04554237997298902,
+            104.36468670153047,
+            0.014550421787350823,
+            128.94598067290764,
+            0.36348781356683263,
+            0.3085016253554961
+          ],
+          "max_abs_error_after": 0.00011488156967787155
+        },
+        {
+          "prefix": [
+            "RMG_mixed"
+          ],
+          "n_training_decisions": 3939,
+          "iterations": 500,
+          "transition_names": [
+            "yard_040",
+            "yard_041",
+            "yard_042",
+            "gate_out_007"
+          ],
+          "target_probabilities": [
+            0.0002538715410002539,
+            0.0005077430820005078,
+            0.0027925869510027927,
+            0.9964457984259965
+          ],
+          "predicted_before": [
+            0.00015753765687753253,
+            0.000508306607955271,
+            0.0037788651926969874,
+            0.9955552905423906
+          ],
+          "predicted_after": [
+            0.00025408452192379516,
+            0.0005088138631675986,
+            0.0027985621606743997,
+            0.9964385394542657
+          ],
+          "multiplicative_factors": [
+            74.93620168789573,
+            0.34577740619064673,
+            0.0016033081937642014,
+            24.071031414754568
+          ],
+          "max_abs_error_after": 7.258971730705888e-06
+        },
+        {
+          "prefix": [
+            "RMG_receive"
+          ],
+          "n_training_decisions": 28922,
+          "iterations": 500,
+          "transition_names": [
+            "yard_043",
+            "yard_044",
+            "yard_045",
+            "yard_046",
+            "yard_047",
+            "gate_out_008"
+          ],
+          "target_probabilities": [
+            0.00017287877740128623,
+            0.0014867574856510615,
+            0.0004149090657630869,
+            0.0013484544637300325,
+            0.0016250605075720905,
+            0.9949519396998825
+          ],
+          "predicted_before": [
+            0.00017303261578644963,
+            0.0016520586028045757,
+            0.0002704908667229181,
+            0.0014997952290054903,
+            0.0010221588662337833,
+            0.9953824638192991
+          ],
+          "predicted_after": [
+            0.00017321196227479044,
+            0.0014898143804656576,
+            0.00041577055282711025,
+            0.0013512269962365848,
+            0.0016245358137816348,
+            0.9949454402947904
+          ],
+          "multiplicative_factors": [
+            2.1783172092952467,
+            0.00795830430334342,
+            0.02386782014168125,
+            0.007950788492282914,
+            8730.414715489529,
+            34.81773415135774
+          ],
+          "max_abs_error_after": 6.499405092119659e-06
+        },
+        {
+          "prefix": [
+            "HO2_delivery",
+            "HO2_delivery"
+          ],
+          "n_training_decisions": 7,
+          "iterations": 1,
+          "transition_names": [
+            "yard_048",
+            "gate_out_009"
+          ],
+          "target_probabilities": [
+            0.14285714285714285,
+            0.8571428571428571
+          ],
+          "predicted_before": [
+            0.14285714357142856,
+            0.8571428564285714
+          ],
+          "predicted_after": [
+            0.14285714357142856,
+            0.8571428564285714
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 7.142857416653214e-10
+        },
+        {
+          "prefix": [
+            "HO2_delivery",
+            "LL_delivery"
+          ],
+          "n_training_decisions": 25,
+          "iterations": 1,
+          "transition_names": [
+            "yard_049",
+            "gate_out_010"
+          ],
+          "target_probabilities": [
+            0.04,
+            0.96
+          ],
+          "predicted_before": [
+            0.040000000920000015,
+            0.9599999990799999
+          ],
+          "predicted_after": [
+            0.040000000920000015,
+            0.9599999990799999
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.200000761211413e-10
+        },
+        {
+          "prefix": [
+            "HO2_delivery",
+            "RMG_delivery"
+          ],
+          "n_training_decisions": 34,
+          "iterations": 1,
+          "transition_names": [
+            "yard_050",
+            "gate_out_012"
+          ],
+          "target_probabilities": [
+            0.08823529411764706,
+            0.9117647058823529
+          ],
+          "predicted_before": [
+            0.08823529494117652,
+            0.9117647050588235
+          ],
+          "predicted_after": [
+            0.08823529494117652,
+            0.9117647050588235
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 8.235294668423876e-10
+        },
+        {
+          "prefix": [
+            "HO2_delivery",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 413,
+          "iterations": 500,
+          "transition_names": [
+            "yard_051",
+            "yard_052",
+            "gate_out_013"
+          ],
+          "target_probabilities": [
+            0.012106537530266344,
+            0.002421307506053269,
+            0.9854721549636803
+          ],
+          "predicted_before": [
+            0.006097561973758224,
+            0.001219513200605308,
+            0.9926829248256396
+          ],
+          "predicted_after": [
+            0.012083052351196876,
+            0.002416863642269285,
+            0.9855000840065389
+          ],
+          "multiplicative_factors": [
+            7.995495310816366,
+            7.7819515971546345,
+            0.016071858564348472
+          ],
+          "max_abs_error_after": 2.792904285853215e-05
+        },
+        {
+          "prefix": [
+            "HO2_mixed",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 26,
+          "iterations": 1,
+          "transition_names": [
+            "yard_053",
+            "gate_out_016"
+          ],
+          "target_probabilities": [
+            0.19230769230769232,
+            0.8076923076923077
+          ],
+          "predicted_before": [
+            0.19230769292307695,
+            0.8076923070769231
+          ],
+          "predicted_after": [
+            0.19230769292307695,
+            0.8076923070769231
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 6.153846321410583e-10
+        },
+        {
+          "prefix": [
+            "HO2_receive",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 51,
+          "iterations": 1,
+          "transition_names": [
+            "yard_054",
+            "gate_out_021"
+          ],
+          "target_probabilities": [
+            0.11764705882352941,
+            0.8823529411764706
+          ],
+          "predicted_before": [
+            0.11764705882352927,
+            0.8823529411764709
+          ],
+          "predicted_after": [
+            0.11764705882352927,
+            0.8823529411764709
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 3.3306690738754696e-16
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "HO2_mixed"
+          ],
+          "n_training_decisions": 6,
+          "iterations": 1,
+          "transition_names": [
+            "yard_055",
+            "gate_out_023"
+          ],
+          "target_probabilities": [
+            0.16666666666666666,
+            0.8333333333333334
+          ],
+          "predicted_before": [
+            0.16666666733333335,
+            0.8333333326666666
+          ],
+          "predicted_after": [
+            0.16666666733333335,
+            0.8333333326666666
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 6.66666721826914e-10
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "HO2_receive"
+          ],
+          "n_training_decisions": 282,
+          "iterations": 1,
+          "transition_names": [
+            "yard_056",
+            "gate_out_024"
+          ],
+          "target_probabilities": [
+            0.010638297872340425,
+            0.9893617021276596
+          ],
+          "predicted_before": [
+            0.010638298851063897,
+            0.9893617011489405
+          ],
+          "predicted_after": [
+            0.010638298851063897,
+            0.9893617011489405
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.787234720587401e-10
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "RMG_delivery"
+          ],
+          "n_training_decisions": 486,
+          "iterations": 1,
+          "transition_names": [
+            "yard_057",
+            "gate_out_025"
+          ],
+          "target_probabilities": [
+            0.00411522633744856,
+            0.9958847736625515
+          ],
+          "predicted_before": [
+            0.004115227329218171,
+            0.9958847726707889
+          ],
+          "predicted_after": [
+            0.004115227329218171,
+            0.9958847726707889
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.91769610880766e-10
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 2944,
+          "iterations": 500,
+          "transition_names": [
+            "yard_058",
+            "yard_059",
+            "gate_out_027"
+          ],
+          "target_probabilities": [
+            0.0010190217391304348,
+            0.002377717391304348,
+            0.9966032608695652
+          ],
+          "predicted_before": [
+            0.0007812220655770118,
+            0.002242576582689864,
+            0.9969762013517524
+          ],
+          "predicted_after": [
+            0.0010171010100614236,
+            0.002377715322128661,
+            0.9966051836678256
+          ],
+          "multiplicative_factors": [
+            27.273501963091856,
+            0.22977314315673408,
+            0.1595731540438709
+          ],
+          "max_abs_error_after": 1.9227982603897686e-06
+        },
+        {
+          "prefix": [
+            "LL_receive",
+            "HO2_delivery"
+          ],
+          "n_training_decisions": 4,
+          "iterations": 1,
+          "transition_names": [
+            "yard_060",
+            "gate_out_029"
+          ],
+          "target_probabilities": [
+            0.25,
+            0.75
+          ],
+          "predicted_before": [
+            0.2500000005,
+            0.7499999995
+          ],
+          "predicted_after": [
+            0.2500000005,
+            0.7499999995
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 5.000000413701855e-10
+        },
+        {
+          "prefix": [
+            "LL_receive",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 351,
+          "iterations": 1,
+          "transition_names": [
+            "yard_061",
+            "gate_out_034"
+          ],
+          "target_probabilities": [
+            0.008547008547008548,
+            0.9914529914529915
+          ],
+          "predicted_before": [
+            0.008547009529914591,
+            0.9914529904700911
+          ],
+          "predicted_after": [
+            0.008547009529914591,
+            0.9914529904700911
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.82906043014986e-10
+        },
+        {
+          "prefix": [
+            "RMG_delivery",
+            "HO2_receive"
+          ],
+          "n_training_decisions": 45,
+          "iterations": 1,
+          "transition_names": [
+            "yard_062",
+            "gate_out_036"
+          ],
+          "target_probabilities": [
+            0.022222222222222223,
+            0.9777777777777777
+          ],
+          "predicted_before": [
+            0.02222222317777784,
+            0.9777777768222212
+          ],
+          "predicted_after": [
+            0.02222222317777784,
+            0.9777777768222212
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.555565227969964e-10
+        },
+        {
+          "prefix": [
+            "RMG_delivery",
+            "LL_delivery"
+          ],
+          "n_training_decisions": 52,
+          "iterations": 1,
+          "transition_names": [
+            "yard_063",
+            "gate_out_037"
+          ],
+          "target_probabilities": [
+            0.038461538461538464,
+            0.9615384615384616
+          ],
+          "predicted_before": [
+            0.038461539384615426,
+            0.9615384606153834
+          ],
+          "predicted_after": [
+            0.038461539384615426,
+            0.9615384606153834
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.230781694569146e-10
+        },
+        {
+          "prefix": [
+            "RMG_delivery",
+            "RMG_delivery"
+          ],
+          "n_training_decisions": 27,
+          "iterations": 1,
+          "transition_names": [
+            "yard_064",
+            "gate_out_039"
+          ],
+          "target_probabilities": [
+            0.1111111111111111,
+            0.8888888888888888
+          ],
+          "predicted_before": [
+            0.11111111111111115,
+            0.8888888888888892
+          ],
+          "predicted_after": [
+            0.11111111111111115,
+            0.8888888888888892
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 3.3306690738754696e-16
+        },
+        {
+          "prefix": [
+            "RMG_receive",
+            "HO2_receive"
+          ],
+          "n_training_decisions": 43,
+          "iterations": 1,
+          "transition_names": [
+            "yard_067",
+            "gate_out_042"
+          ],
+          "target_probabilities": [
+            0.023255813953488372,
+            0.9767441860465116
+          ],
+          "predicted_before": [
+            0.0232558149069768,
+            0.9767441850930224
+          ],
+          "predicted_after": [
+            0.0232558149069768,
+            0.9767441850930224
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 9.53489176502842e-10
+        },
+        {
+          "prefix": [
+            "RMG_receive",
+            "LL_delivery"
+          ],
+          "n_training_decisions": 12,
+          "iterations": 1,
+          "transition_names": [
+            "yard_068",
+            "gate_out_043"
+          ],
+          "target_probabilities": [
+            0.9166666666666666,
+            0.08333333333333333
+          ],
+          "predicted_before": [
+            0.9166666658333332,
+            0.08333333416666668
+          ],
+          "predicted_after": [
+            0.9166666658333332,
+            0.08333333416666668
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 8.333334022836425e-10
+        },
+        {
+          "prefix": [
+            "RMG_receive",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 47,
+          "iterations": 1,
+          "transition_names": [
+            "yard_069",
+            "gate_out_045"
+          ],
+          "target_probabilities": [
+            0.1702127659574468,
+            0.8297872340425532
+          ],
+          "predicted_before": [
+            0.17021276674468092,
+            0.829787233255319
+          ],
+          "predicted_after": [
+            0.17021276674468092,
+            0.829787233255319
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 7.872341667436444e-10
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "HO2_receive",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 3,
+          "iterations": 1,
+          "transition_names": [
+            "yard_071",
+            "gate_out_053"
+          ],
+          "target_probabilities": [
+            0.3333333333333333,
+            0.6666666666666666
+          ],
+          "predicted_before": [
+            0.3333333336666666,
+            0.6666666663333333
+          ],
+          "predicted_after": [
+            0.3333333336666666,
+            0.6666666663333333
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 3.33333360913457e-10
+        },
+        {
+          "prefix": [
+            "LL_delivery",
+            "RMG_receive",
+            "RMG_receive"
+          ],
+          "n_training_decisions": 7,
+          "iterations": 1,
+          "transition_names": [
+            "yard_072",
+            "gate_out_056"
+          ],
+          "target_probabilities": [
+            0.2857142857142857,
+            0.7142857142857143
+          ],
+          "predicted_before": [
+            0.2857142861428571,
+            0.7142857138571428
+          ],
+          "predicted_after": [
+            0.2857142861428571,
+            0.7142857138571428
+          ],
+          "multiplicative_factors": [
+            1.0,
+            1.0
+          ],
+          "max_abs_error_after": 4.2857151161257434e-10
+        }
+      ]
+    },
+    "arrivals": {
+      "method": "robust_empirical_working_minute_pmf",
+      "holdout_used": false,
+      "n_raw_inter_arrivals": 71567,
+      "n_robust_inter_arrivals": 71530,
+      "mean_working_minutes": 0.6830420802460506,
+      "zero_probability": 0.5509716202991751,
+      "support_counts": {
+        "0": 39411,
+        "1": 24833,
+        "2": 3747,
+        "3": 1536,
+        "4": 733,
+        "5": 439,
+        "6": 276,
+        "7": 176,
+        "8": 115,
+        "9": 75,
+        "10": 64,
+        "11": 32,
+        "12": 27,
+        "13": 15,
+        "14": 15,
+        "15": 11,
+        "16": 11,
+        "17": 4,
+        "18": 7,
+        "19": 3
+      }
+    },
+    "resource_calendars": {
+      "method": "continuous_nonpreemptive_completion_after_admission",
+      "holdout_used": false,
+      "arrival_calendar_unchanged": true,
+      "original_active_slots_per_week": {
+        "Res.GateIn": 127,
+        "Res.GateOut": 128,
+        "LL": 127,
+        "HO2": 126,
+        "T13": 127,
+        "T14": 126,
+        "T16": 127,
+        "T24": 127,
+        "T17": 126,
+        "T12": 126,
+        "T21": 126,
+        "T15": 127,
+        "T20": 126,
+        "T11": 126,
+        "T27": 125,
+        "T23": 125,
+        "T22": 126,
+        "T10": 125,
+        "T18": 124,
+        "T06": 126,
+        "T09": 126,
+        "T07": 126,
+        "T08": 124,
+        "T26": 123,
+        "T19": 125,
+        "T25": 126
+      },
+      "calibrated_active_slots_per_week": 168,
+      "interpretation": "The gate calendar still controls admission. Resources finish work on trucks already inside instead of pausing an activity until the next opening window."
+    },
+    "timestamp_observation_model": {
+      "resolution": "minute",
+      "method": "floor",
+      "reason": "All CTB source timestamps are recorded at minute resolution."
+    },
+    "enabled": true
+  },
+  "discovery_seconds": 33343.44765782356,
+  "conformance": [
+    {
+      "log": "train",
+      "fitness_log": 1.0,
+      "fitness_perc_fit_traces": 100.0,
+      "fitness_average_trace": 1.0,
+      "precision_token": 1.0,
+      "compute_seconds": 10.470726251602173,
+      "generalization": 0.5767665694622635,
+      "simplicity": 0.6179775280898876
+    },
+    {
+      "log": "test",
+      "fitness_log": 0.9998498334516464,
+      "fitness_perc_fit_traces": 99.94410909903867,
+      "fitness_average_trace": 0.9998964687596477,
+      "precision_token": 0.9605736609437647,
+      "compute_seconds": 3.0102005004882812,
+      "generalization": 0.3732681248404536,
+      "simplicity": 0.6179775280898876
+    }
+  ],
+  "simulation": {
+    "n_traces": 17892,
+    "n_events": 55064,
+    "t_start": "2026-04-20T18:17:00",
+    "output_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\sim_baseline_train80_workload_sequential_calibrated.csv",
+    "random_seed": 42,
+    "timestamp_resolution": "minute"
+  },
+  "parameter_artifacts": {
+    "authoritative_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.pkl",
+    "portable_prosit_json": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.json",
+    "calibration_companion": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\ctb_calibration.json",
+    "note": "The pickle is authoritative for calibrated simulation because ProSiT's JSON schema omits empirical sampled arrays. The calibration companion records the complete compact arrival PMF and routing audit."
+  }
+}

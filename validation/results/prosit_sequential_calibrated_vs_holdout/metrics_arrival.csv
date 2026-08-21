@@ -1,0 +1,2 @@
+metric,real_n,real_mean,real_std,real_p50,real_p90,real_min,real_max,sim_n,sim_mean,sim_std,sim_p50,sim_p90,sim_min,sim_max,wasserstein_min,ks_stat,ks_pvalue,abs_error_mean,rel_error_mean,abs_error_p50,rel_error_p50,abs_error_p90,rel_error_p90
+inter_arrival_min,17891,0.7826840310770778,19.050447979593226,0.0,1.0,0.0,2539.0,17891,0.8192946174053993,18.469074024771256,0.0,1.0,0.0,2466.0,0.06265720194510593,0.0232,0.009048769877640625,0.03661058632832148,0.04677569092337354,0.0,,0.0,0.0

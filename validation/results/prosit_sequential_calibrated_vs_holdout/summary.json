@@ -1,0 +1,29 @@
+{
+  "label": "prosit_sequential_calibrated_vs_holdout",
+  "real_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\sim_baseline_train80_workload_sequential_calibrated.csv",
+  "real_events": 55360,
+  "sim_events": 55064,
+  "real_cases": 17892,
+  "sim_cases": 17892,
+  "n_activities_compared": 11,
+  "duration_reporting": {
+    "raw": "all finite non-negative observations",
+    "robust": "observations in [0, 1440] minutes",
+    "note": "Raw and robust metrics are reported side by side; no outlier is silently removed."
+  },
+  "mean_service_time_emd_min": 2.504942937010938,
+  "mean_service_time_emd_min_raw": 2.504942937010938,
+  "mean_yard_service_time_emd_min": 3.0615969230133686,
+  "mean_yard_service_time_emd_min_raw": 3.0615969230133686,
+  "mean_waiting_time_emd_min": NaN,
+  "case_turnaround_emd_min": 9.381567180862955,
+  "case_turnaround_emd_min_raw": 9.381567180862955,
+  "real_turnaround_cases_above_24h": 0,
+  "sim_turnaround_cases_above_24h": 0,
+  "real_service_events_above_24h": 0,
+  "sim_service_events_above_24h": 0,
+  "inter_arrival_emd_min": 0.06265720194510593,
+  "prepared_real_path": "validation\\results\\prosit_sequential_calibrated_vs_holdout\\prepared_real.csv",
+  "prepared_sim_path": "validation\\results\\prosit_sequential_calibrated_vs_holdout\\prepared_sim.csv"
+}

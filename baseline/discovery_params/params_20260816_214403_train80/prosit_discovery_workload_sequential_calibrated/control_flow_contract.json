@@ -1,0 +1,25 @@
+{
+  "authoritative_model": "sequential_observed_variant_trie",
+  "diagnostic_model": "inductive_process_tree_not_used_for_simulation",
+  "case_language": [
+    "Gate In",
+    "one_or_more_yard_activities",
+    "Gate Out"
+  ],
+  "within_case_parallelism": false,
+  "cross_case_resource_multitasking": true,
+  "trie": {
+    "train_variants": 70,
+    "places": 76,
+    "transitions": 144,
+    "yard_transition_edges": 73,
+    "terminal_prefixes": 70
+  },
+  "holdout_variant_coverage": {
+    "train_variants": 70,
+    "test_variants": 53,
+    "unseen_test_variants": 10,
+    "unseen_test_cases": 10,
+    "unseen_test_case_share": 0.0005589090096132349
+  }
+}

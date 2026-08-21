@@ -4,7 +4,7 @@
     "one_or_more_sequential_yard_events",
     "Gate Out"
   ],
-  "real_path": "data\\processed\\CTB\\s6_test.csv",
+  "real_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
   "sim_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential\\sim_baseline_train80_workload_sequential.csv",
   "real": {
     "events": 55360,

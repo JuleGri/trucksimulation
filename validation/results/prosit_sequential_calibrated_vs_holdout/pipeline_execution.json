@@ -1,0 +1,119 @@
+{
+  "label": "prosit_sequential_calibrated_vs_holdout",
+  "started_at": "2026-08-21T06:38:36.031892+00:00",
+  "python": "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+  "repo_root": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation",
+  "dry_run": false,
+  "steps": [
+    {
+      "name": "verify existing discovery split",
+      "status": "completed",
+      "finished_at": "2026-08-21T06:38:44.445072+00:00",
+      "details": {
+        "train_cases": 71568,
+        "test_cases": 17892,
+        "train_events": 220048,
+        "test_events": 55360,
+        "case_overlap": 0,
+        "train_gate_only_cases": 0,
+        "test_gate_only_cases": 0,
+        "cutoff_arrival_ts": "2026-04-20T18:17:00",
+        "manifest": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\split_manifest.json"
+      }
+    },
+    {
+      "name": "regenerate clean XES",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\_regen_xes.py"
+      ],
+      "started_at": "2026-08-21T06:38:44.461899+00:00",
+      "status": "completed",
+      "seconds": 189.89868550002575,
+      "returncode": 0,
+      "finished_at": "2026-08-21T06:41:54.365117+00:00"
+    },
+    {
+      "name": "08 CTB structural and temporal case contract",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\08_validate_eventlog_contract.py",
+        "--real",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+        "--sim",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\sim_baseline_train80_workload_sequential_calibrated.csv",
+        "--label",
+        "prosit_sequential_calibrated_vs_holdout"
+      ],
+      "started_at": "2026-08-21T06:41:54.365117+00:00",
+      "status": "completed",
+      "seconds": 3.968352900003083,
+      "returncode": 0,
+      "finished_at": "2026-08-21T06:41:58.331797+00:00"
+    },
+    {
+      "name": "02 held-out simulation validation",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\02_validate_simulation.py",
+        "--real",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+        "--sim",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\sim_baseline_train80_workload_sequential_calibrated.csv",
+        "--label",
+        "prosit_sequential_calibrated_vs_holdout",
+        "--seed",
+        "42"
+      ],
+      "started_at": "2026-08-21T06:41:58.331797+00:00",
+      "status": "completed",
+      "seconds": 8.978696000005584,
+      "returncode": 0,
+      "finished_at": "2026-08-21T06:42:07.318893+00:00"
+    },
+    {
+      "name": "03 validation plots",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\03_validation_plots.py",
+        "--run-label",
+        "prosit_sequential_calibrated_vs_holdout",
+        "--max-activities",
+        "12"
+      ],
+      "started_at": "2026-08-21T06:42:07.357329+00:00",
+      "status": "completed",
+      "seconds": 13.665193399996497,
+      "returncode": 0,
+      "finished_at": "2026-08-21T06:42:21.023475+00:00"
+    },
+    {
+      "name": "06 multi-seed confidence intervals",
+      "command": [
+        "C:\\Users\\Jule\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\06_multi_seed_ci.py",
+        "--params",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.pkl",
+        "--real",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+        "--manifest",
+        "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\split_manifest.json",
+        "--n-seeds",
+        "10",
+        "--base-seed",
+        "42",
+        "--label",
+        "prosit_sequential_calibrated_vs_holdout_ci",
+        "--t-start",
+        "2026-04-20T18:17:00"
+      ],
+      "started_at": "2026-08-21T06:42:21.023475+00:00",
+      "status": "completed",
+      "seconds": 984.9297942999983,
+      "returncode": 0,
+      "finished_at": "2026-08-21T06:58:45.961060+00:00"
+    }
+  ],
+  "status": "completed",
+  "finished_at": "2026-08-21T06:58:45.965063+00:00"
+}

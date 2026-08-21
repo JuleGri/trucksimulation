@@ -8,8 +8,10 @@ Purpose:
   held-out test log for each run;
 - produce 95 % confidence intervals for the four headline KPIs
   (service-time EMD, waiting-time EMD, case turnaround EMD, inter-arrival
-  EMD) so that Chapter 5 can report point estimates with error bars
-  instead of single Monte-Carlo draws.
+  EMD), plus replication-wise checks of the calibrated CTB fidelity
+  constraints (no artificial >24 h durations, simultaneous-arrival share,
+  and yard-activity-rate error), so that Chapter 5 can report point
+  estimates with error bars instead of single Monte-Carlo draws.
 
 Usage (from the workspace root):
 
@@ -48,7 +50,6 @@ from __future__ import annotations
 import argparse
 import json
 import pickle
-import random
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -73,6 +74,7 @@ from _eventlog_contract import (  # noqa: E402
     ORDER_COL,
     eventlog_contract_report,
 )
+from _prosit_ctb_calibration import simulate_ctb  # noqa: E402
 
 CASE_COL = _step2.CASE_COL
 ACT_COL = _step2.ACT_COL
@@ -107,6 +109,12 @@ def parse_args() -> argparse.Namespace:
         action=argparse.BooleanOptionalAction,
         default=True,
         help="Stop if any replication produces a structurally/temporally invalid case.",
+    )
+    parser.add_argument(
+        "--timestamp-resolution",
+        choices=("minute", "native"),
+        default="minute",
+        help="Use the CTB log's minute observation resolution (default) or native ProSiT timestamps.",
     )
     return parser.parse_args()
 
@@ -144,24 +152,20 @@ def _dedupe_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df.loc[:, ~df.columns.duplicated()].copy()
 
 
-def _run_one_seed(engine, seed: int, n_traces: int, t_start: datetime | None) -> pd.DataFrame:
-    random.seed(seed)
-    np.random.seed(seed)
-    # ProSiT 1.0.3 no-rules mode passes numpy arrays to random.choice(),
-    # which crashes on `if not seq:` in Python 3.11. Patch for the call.
-    _orig_choice = random.choice
-    def _safe_choice(seq):
-        if isinstance(seq, np.ndarray):
-            return seq[np.random.randint(len(seq))]
-        return _orig_choice(seq)
-    random.choice = _safe_choice
-    try:
-        if t_start is None:
-            sim_log = engine.apply(n_traces=n_traces)
-        else:
-            sim_log = engine.apply(n_traces=n_traces, t_start=t_start)
-    finally:
-        random.choice = _orig_choice
+def _run_one_seed(
+    params,
+    seed: int,
+    n_traces: int,
+    t_start: datetime | None,
+    timestamp_resolution: str = "minute",
+) -> pd.DataFrame:
+    sim_log = simulate_ctb(
+        params,
+        n_traces=n_traces,
+        t_start=t_start,
+        seed=seed,
+        timestamp_resolution=("min" if timestamp_resolution == "minute" else None),
+    )
     return _dedupe_columns(sim_log)
 
 
@@ -212,6 +216,26 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
     sim_iat = _step2.inter_arrival_series(sim)
     iat_stats = _step2.compare_distributions(real_iat, sim_iat, seed)
 
+    # Calibration-specific fidelity diagnostics.  Durations are evaluated
+    # on the raw (unclipped) values so a long artificial tail cannot be
+    # hidden by the plotting/EMD clipping used in the headline metrics.
+    sim_service_raw = _step2._raw_duration(sim["service_time_min"])
+    sim_turnaround_raw = _step2._raw_duration(sim_case["turnaround_min"])
+
+    yard_activities = [
+        activity for activity in activities
+        if activity not in {"Gate In", "Gate Out"}
+    ]
+    real_activity_rate = (
+        real_df[ACT_COL].value_counts().reindex(yard_activities, fill_value=0)
+        / max(int(real_df[CASE_COL].nunique()), 1)
+    )
+    sim_activity_rate = (
+        sim[ACT_COL].value_counts().reindex(yard_activities, fill_value=0)
+        / max(int(sim[CASE_COL].nunique()), 1)
+    )
+    activity_rate_abs_error = (real_activity_rate - sim_activity_rate).abs()
+
     sim_contract_input = sim.copy()
     sim_contract_input[ORDER_COL] = sim_contract_input.groupby(
         CASE_COL, sort=False
@@ -238,6 +262,16 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
         "case_turnaround_sim_p90": float(turnaround_stats.get("sim_p90", float("nan"))),
         "inter_arrival_emd_min": float(iat_stats.get("wasserstein_min", float("nan"))),
         "inter_arrival_ks": float(iat_stats.get("ks_stat", float("nan"))),
+        "sim_zero_inter_arrival_share": (
+            float(np.mean(np.asarray(sim_iat) == 0.0)) if len(sim_iat) else float("nan")
+        ),
+        "sim_service_events_above_24h": int((sim_service_raw > 24.0 * 60.0).sum()),
+        "sim_turnaround_cases_above_24h": int((sim_turnaround_raw > 24.0 * 60.0).sum()),
+        "yard_activity_rate_l1_error": float(activity_rate_abs_error.sum()),
+        "yard_activity_rate_max_abs_error": (
+            float(activity_rate_abs_error.max())
+            if not activity_rate_abs_error.empty else float("nan")
+        ),
         "gate_only_cases": int(contract["gate_only_cases"]),
         "wrong_case_boundary_cases": int(contract["wrong_case_boundary_cases"]),
         "within_case_overlap_cases": int(contract.get("within_case_overlap_cases", 0)),
@@ -336,9 +370,6 @@ def main() -> int:
     print(f"[mc] Loading params from {args.params}")
     params = _load_params(args.params)
 
-    from prosit import SimulatorEngine  # local import to keep tests light
-    engine = SimulatorEngine(params)
-
     print(f"[mc] Loading real log from {args.real}")
     real_df = _step2.load_and_prepare(args.real, label="real")
 
@@ -353,7 +384,13 @@ def main() -> int:
     for i in range(args.n_seeds):
         seed = args.base_seed + i
         print(f"[mc]   seed={seed} ...", end=" ", flush=True)
-        sim_df = _run_one_seed(engine, seed, n_traces, t_start)
+        sim_df = _run_one_seed(
+            params,
+            seed,
+            n_traces,
+            t_start,
+            args.timestamp_resolution,
+        )
         row = _metrics_for_seed(seed, sim_df, real_df, activities)
         rows.append(row)
         contract_violations = sum(
@@ -369,6 +406,9 @@ def main() -> int:
         print(
             f"turnaround_emd={row['case_turnaround_emd_min']:.3f} min  "
             f"raw={row['case_turnaround_emd_min_raw']:.3f} min  "
+            f"iat_zero={row['sim_zero_inter_arrival_share']:.3%}  "
+            f">24h(service/case)={row['sim_service_events_above_24h']}/"
+            f"{row['sim_turnaround_cases_above_24h']}  "
             f"contract_violations={contract_violations}"
         )
         if contract_violations and args.fail_on_contract_violations:
@@ -393,6 +433,11 @@ def main() -> int:
                 "case_turnaround_emd_min_raw", "case_turnaround_ks",
                 "case_turnaround_sim_mean", "case_turnaround_sim_p90",
                 "inter_arrival_emd_min", "inter_arrival_ks",
+                "sim_zero_inter_arrival_share",
+                "sim_service_events_above_24h",
+                "sim_turnaround_cases_above_24h",
+                "yard_activity_rate_l1_error",
+                "yard_activity_rate_max_abs_error",
                 "gate_only_cases", "wrong_case_boundary_cases",
                 "within_case_overlap_cases", "decreasing_completion_cases",
                 "gate_out_before_final_yard_cases"):
