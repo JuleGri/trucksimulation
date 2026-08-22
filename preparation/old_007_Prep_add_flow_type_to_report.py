@@ -5,7 +5,7 @@ INPUT_FILE = (
 )
 
 OUTPUT_FILE = (
-    "data/interim/CTB/Report_week_0304_mapped_flowtype.csv"
+    "data/interim/CTB/Report_0304_mapped_flowtype.csv"
 )
 
 print("Loading report...")

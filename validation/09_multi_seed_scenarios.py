@@ -9,11 +9,13 @@ baseline.  Two transparent white-box interventions are derived from it:
    dividing every empirical inter-arrival sample by 1.20.  Its zero mass and
    empirical distribution shape are retained.
 
-All other discovered and CTB-calibrated parameters remain unchanged.  An
-optional robustness mode caps every resource eligible for an RMG activity at
-the same maximum concurrency before deriving all three scenario templates.
-This produces a domain-constrained sensitivity baseline without mutating the
-frozen source bundle.  For each seed, baseline and both interventions are
+All other discovered and CTB-calibrated parameters remain unchanged.  Every
+resource eligible for an RMG activity is capped at maximum concurrency three
+before deriving all three scenario templates.  This is the final domain
+constraint: CTB has three RMG cranes and three truck waiting lanes per block,
+whereas timestamp overlap can overestimate physical simultaneous capacity.
+The freely discovered source bundle is retained unchanged for diagnosis.  For
+each seed, the effective baseline and both interventions are
 simulated from the same start time with the same trace count and random seed.
 Deltas are therefore paired by seed.  Every generated log must satisfy the
 sequential CTB case contract.
@@ -28,7 +30,9 @@ Outputs under ``validation/results/<label>/``:
 * ``scenario_parameter_changes.json``: explicit white-box parameter diff;
 * ``params_*.pkl``: frozen derived parameter bundles, including the effective
   baseline when a concurrency cap is requested;
-* ``figures/scenario_paired_deltas_ci.png``: paired-effect plot; and
+* ``t22_receive_delivery_summary.csv``: focused T22 effects by operation type;
+* ``figures/scenario_paired_deltas_ci.png``: paired-effect plot;
+* ``figures/t22_receive_delivery_deltas_ci.png``: focused T22 plot; and
 * ``scenario_run_summary.json``: reproducibility metadata.
 """
 
@@ -76,11 +80,12 @@ DEFAULT_PARAMS = (
 )
 DEFAULT_MANIFEST = REPO_ROOT / "validation" / "results" / "split_manifest.json"
 DEFAULT_OUT_ROOT = REPO_ROOT / "validation" / "results"
-DEFAULT_LABEL = "prosit_sequential_calibrated_scenarios_ci"
+DEFAULT_LABEL = "prosit_sequential_calibrated_scenarios_rmg_cap3_ci"
 
 RMG_ACTIVITIES = ("RMG_receive", "RMG_delivery", "RMG_mixed")
 DEFAULT_BLOCKED_BLOCKS = ("T22",)
 DEFAULT_DEMAND_INCREASE_PCT = 20.0
+DEFAULT_RMG_MAX_CONCURRENCY = 3
 
 SCENARIO_BASELINE = "baseline"
 SCENARIO_T22 = "t22_closed"
@@ -106,6 +111,20 @@ KPI_COLUMNS = (
     "median_rmg_pre_service_min",
     "p90_rmg_pre_service_min",
     "rmg_events",
+    "rmg_receive_events",
+    "mean_rmg_receive_service_min",
+    "median_rmg_receive_service_min",
+    "p90_rmg_receive_service_min",
+    "mean_rmg_receive_pre_service_min",
+    "median_rmg_receive_pre_service_min",
+    "p90_rmg_receive_pre_service_min",
+    "rmg_delivery_events",
+    "mean_rmg_delivery_service_min",
+    "median_rmg_delivery_service_min",
+    "p90_rmg_delivery_service_min",
+    "mean_rmg_delivery_pre_service_min",
+    "median_rmg_delivery_pre_service_min",
+    "p90_rmg_delivery_pre_service_min",
     "mean_inter_arrival_min",
     "zero_inter_arrival_share",
     "arrival_rate_per_elapsed_hour",
@@ -143,12 +162,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--rmg-max-concurrency",
         type=int,
-        default=None,
+        default=DEFAULT_RMG_MAX_CONCURRENCY,
         help=(
-            "Optional robustness cap applied to max_concurrency for every "
-            "resource eligible for an RMG activity before all three templates "
-            "are derived. The frozen source pickle is never modified."
+            "Hard domain cap applied to max_concurrency for every RMG resource "
+            "before all three templates are derived (default: 3). The freely "
+            "discovered source pickle is never modified."
         ),
+    )
+    parser.add_argument(
+        "--no-rmg-cap",
+        action="store_true",
+        help="Diagnostic only: reproduce the freely discovered capacities without the cap.",
     )
     parser.add_argument(
         "--timestamp-resolution",
@@ -160,7 +184,10 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Also persist all 30 event logs (disabled by default due to size).",
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if args.no_rmg_cap:
+        args.rmg_max_concurrency = None
+    return args
 
 
 def _sha256(path: Path) -> str:
@@ -407,13 +434,15 @@ def _parameter_change_report(
     return {
         "principle": (
             "The effective baseline is derived by deep copy from the frozen calibrated "
-            "source bundle when an RMG concurrency cap is requested. Both operational "
+            "source bundle. The default RMG cap of three is a final domain constraint, "
+            "while --no-rmg-cap retains the discovered overlap capacities only for "
+            "diagnosis. Both operational "
             "scenarios are then independently derived from that effective baseline. "
             "Scenario A changes only the listed resource mappings and blocked-resource "
             "calendar. Scenario B changes only the empirical inter-arrival samples and "
             "their serialized fallback statistics."
         ),
-        "rmg_capacity_sensitivity": {
+        "rmg_capacity_constraint": {
             "enabled": rmg_max_concurrency is not None,
             "requested_max_concurrency": rmg_max_concurrency,
             "before": source_rmg,
@@ -440,6 +469,11 @@ def _parameter_change_report(
         },
         "blocked_blocks": blocked_blocks,
         "t22_closed": {
+            "interpretation": (
+                "Resource-pool reallocation experiment: T22 is removed from the "
+                "eligible RMG pools. Receive and delivery effects are reported "
+                "separately; no physical container relocation is simulated."
+            ),
             "act_to_resources_changes": _mapping_diff(baseline, scenario_a),
             "calendar_active_slots_before": {
                 block: _calendar_active_slots(baseline, block)
@@ -513,6 +547,8 @@ def _summarize_simulation(df: pd.DataFrame, *, seed: int, scenario: str) -> dict
         grouped["time:timestamp"].max() - grouped["start:timestamp"].min()
     ).dt.total_seconds() / 60.0
     rmg = prepared[prepared[ACT_COL].isin(RMG_ACTIVITIES)]
+    rmg_receive = prepared[prepared[ACT_COL].eq("RMG_receive")]
+    rmg_delivery = prepared[prepared[ACT_COL].eq("RMG_delivery")]
     gate_in_starts = (
         prepared.loc[prepared[ACT_COL].eq(GATE_IN), "start:timestamp"]
         .dropna()
@@ -560,6 +596,20 @@ def _summarize_simulation(df: pd.DataFrame, *, seed: int, scenario: str) -> dict
         "mean_rmg_pre_service_min": _stat(rmg["pre_service_time_min"], "mean"),
         "median_rmg_pre_service_min": _stat(rmg["pre_service_time_min"], "median"),
         "p90_rmg_pre_service_min": _stat(rmg["pre_service_time_min"], "p90"),
+        "rmg_receive_events": int(len(rmg_receive)),
+        "mean_rmg_receive_service_min": _stat(rmg_receive["service_time_min"], "mean"),
+        "median_rmg_receive_service_min": _stat(rmg_receive["service_time_min"], "median"),
+        "p90_rmg_receive_service_min": _stat(rmg_receive["service_time_min"], "p90"),
+        "mean_rmg_receive_pre_service_min": _stat(rmg_receive["pre_service_time_min"], "mean"),
+        "median_rmg_receive_pre_service_min": _stat(rmg_receive["pre_service_time_min"], "median"),
+        "p90_rmg_receive_pre_service_min": _stat(rmg_receive["pre_service_time_min"], "p90"),
+        "rmg_delivery_events": int(len(rmg_delivery)),
+        "mean_rmg_delivery_service_min": _stat(rmg_delivery["service_time_min"], "mean"),
+        "median_rmg_delivery_service_min": _stat(rmg_delivery["service_time_min"], "median"),
+        "p90_rmg_delivery_service_min": _stat(rmg_delivery["service_time_min"], "p90"),
+        "mean_rmg_delivery_pre_service_min": _stat(rmg_delivery["pre_service_time_min"], "mean"),
+        "median_rmg_delivery_pre_service_min": _stat(rmg_delivery["pre_service_time_min"], "median"),
+        "p90_rmg_delivery_pre_service_min": _stat(rmg_delivery["pre_service_time_min"], "p90"),
         "mean_inter_arrival_min": _stat(observed_inter_arrivals, "mean"),
         "zero_inter_arrival_share": float(
             np.mean(observed_inter_arrivals.to_numpy() == 0.0)
@@ -738,6 +788,56 @@ def _plot_paired_deltas(summary: pd.DataFrame, out_path: Path) -> None:
     plt.close(fig)
 
 
+def _plot_t22_receive_delivery(summary: pd.DataFrame, out_path: Path) -> None:
+    """Plot the matched T22 effect separately for receive and delivery work."""
+
+    metrics = (
+        ("mean_rmg_receive_service_min", "Receive service-time delta (min)"),
+        ("mean_rmg_delivery_service_min", "Delivery service-time delta (min)"),
+        ("mean_rmg_receive_pre_service_min", "Receive pre-service delta (min)"),
+        ("mean_rmg_delivery_pre_service_min", "Delivery pre-service delta (min)"),
+    )
+    focused = summary[summary["scenario"].eq(SCENARIO_T22)].set_index("metric")
+    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.4))
+    for ax, (metric, title) in zip(axes.ravel(), metrics):
+        row = focused.loc[metric]
+        mean = float(row["mean_delta"])
+        lower = float(row["ci95_delta_lo"])
+        upper = float(row["ci95_delta_hi"])
+        ax.bar(
+            [0],
+            [mean],
+            yerr=np.array([[mean - lower], [upper - mean]]),
+            capsize=7,
+            color="#1f77b4",
+            alpha=0.85,
+            edgecolor="black",
+            width=0.55,
+        )
+        ax.axhline(0.0, color="black", linewidth=0.9)
+        ax.text(
+            0.5,
+            0.96,
+            f"delta {mean:+.3f} min\n95% CI [{lower:+.3f}, {upper:+.3f}]",
+            transform=ax.transAxes,
+            ha="center",
+            va="top",
+            fontsize=9,
+            bbox={"facecolor": "white", "edgecolor": "none", "alpha": 0.85},
+        )
+        ax.set_xticks([])
+        ax.margins(y=0.28)
+        ax.set_title(title, fontsize=10)
+        ax.grid(True, axis="y", linestyle=":", alpha=0.45)
+    fig.suptitle(
+        "T22 resource-pool reallocation: operation-specific effects\n"
+        "(n=10 matched seeds; 95% paired t intervals)"
+    )
+    fig.tight_layout(rect=(0, 0, 1, 0.92))
+    fig.savefig(out_path, dpi=180)
+    plt.close(fig)
+
+
 def _write_pickle(params, path: Path) -> None:
     with path.open("wb") as handle:
         pickle.dump(params, handle)
@@ -837,8 +937,8 @@ def main() -> int:
         "paired_common_random_numbers": True,
         "demand_increase_pct": float(args.demand_increase_pct),
         "rmg_max_concurrency_cap": args.rmg_max_concurrency,
-        "rmg_concurrency_before": parameter_report["rmg_capacity_sensitivity"]["before"],
-        "rmg_concurrency_after": parameter_report["rmg_capacity_sensitivity"]["after"],
+        "rmg_concurrency_before": parameter_report["rmg_capacity_constraint"]["before"],
+        "rmg_concurrency_after": parameter_report["rmg_capacity_constraint"]["after"],
         "saved_event_logs": bool(args.save_seed_logs),
     }
     with run_summary_path.open("w", encoding="utf-8") as handle:
@@ -901,9 +1001,24 @@ def main() -> int:
     deltas.to_csv(out_dir / "scenario_paired_deltas.csv", index=False)
     kpi_summary.to_csv(out_dir / "scenario_kpi_summary.csv", index=False)
     delta_summary.to_csv(out_dir / "scenario_paired_delta_summary.csv", index=False)
+    t22_metrics = [
+        "mean_rmg_receive_service_min",
+        "mean_rmg_delivery_service_min",
+        "mean_rmg_receive_pre_service_min",
+        "mean_rmg_delivery_pre_service_min",
+    ]
+    t22_focus = delta_summary[
+        delta_summary["scenario"].eq(SCENARIO_T22)
+        & delta_summary["metric"].isin(t22_metrics)
+    ].copy()
+    t22_focus.to_csv(out_dir / "t22_receive_delivery_summary.csv", index=False)
     _plot_paired_deltas(
         delta_summary,
         figures_dir / "scenario_paired_deltas_ci.png",
+    )
+    _plot_t22_receive_delivery(
+        delta_summary,
+        figures_dir / "t22_receive_delivery_deltas_ci.png",
     )
 
     headline = delta_summary[
@@ -923,6 +1038,7 @@ def main() -> int:
             "all_contracts_passed": True,
             "all_duration_tail_counts_zero": True,
             "headline_paired_effects": headline.to_dict(orient="records"),
+            "t22_receive_delivery_effects": t22_focus.to_dict(orient="records"),
             "artifacts": {
                 "replications": str(out_dir / "scenario_replications.csv"),
                 "contracts": str(out_dir / "scenario_contracts.csv"),
@@ -930,6 +1046,12 @@ def main() -> int:
                 "kpi_summary": str(out_dir / "scenario_kpi_summary.csv"),
                 "paired_delta_summary": str(out_dir / "scenario_paired_delta_summary.csv"),
                 "figure": str(figures_dir / "scenario_paired_deltas_ci.png"),
+                "t22_receive_delivery_summary": str(
+                    out_dir / "t22_receive_delivery_summary.csv"
+                ),
+                "t22_receive_delivery_figure": str(
+                    figures_dir / "t22_receive_delivery_deltas_ci.png"
+                ),
                 "parameter_changes": str(out_dir / "scenario_parameter_changes.json"),
             },
         }
@@ -942,6 +1064,19 @@ def main() -> int:
         headline[
             [
                 "scenario",
+                "metric",
+                "mean_delta",
+                "ci95_delta_lo",
+                "ci95_delta_hi",
+                "mean_delta_pct",
+                "ci_excludes_zero",
+            ]
+        ].to_string(index=False)
+    )
+    print("\n[scenario] === T22 receive/delivery effects ===")
+    print(
+        t22_focus[
+            [
                 "metric",
                 "mean_delta",
                 "ci95_delta_lo",

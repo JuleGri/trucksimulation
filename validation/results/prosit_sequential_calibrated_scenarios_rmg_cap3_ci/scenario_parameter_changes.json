@@ -1,6 +1,6 @@
 {
-  "principle": "The effective baseline is derived by deep copy from the frozen calibrated source bundle when an RMG concurrency cap is requested. Both operational scenarios are then independently derived from that effective baseline. Scenario A changes only the listed resource mappings and blocked-resource calendar. Scenario B changes only the empirical inter-arrival samples and their serialized fallback statistics.",
-  "rmg_capacity_sensitivity": {
+  "principle": "The effective baseline is derived by deep copy from the frozen calibrated source bundle. The default RMG cap of three is a final domain constraint, while --no-rmg-cap retains the discovered overlap capacities only for diagnosis. Both operational scenarios are then independently derived from that effective baseline. Scenario A changes only the listed resource mappings and blocked-resource calendar. Scenario B changes only the empirical inter-arrival samples and their serialized fallback statistics.",
+  "rmg_capacity_constraint": {
     "enabled": true,
     "requested_max_concurrency": 3,
     "before": {
@@ -168,6 +168,7 @@
     "T22"
   ],
   "t22_closed": {
+    "interpretation": "Resource-pool reallocation experiment: T22 is removed from the eligible RMG pools. Receive and delivery effects are reported separately; no physical container relocation is simulated.",
     "act_to_resources_changes": {
       "RMG_delivery": {
         "before": [
@@ -384,13 +385,13 @@
   "source_baseline_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.pkl",
   "source_baseline_sha256": "11a982f4cb36de57648e4eb729145b7a9726459e8f190220d6d51cdece075698",
   "baseline_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\prosit_sequential_calibrated_scenarios_rmg_cap3_ci\\params_baseline_rmg_max_concurrency_3.pkl",
-  "baseline_sha256": "5eebe74bad0f56c27b8e0b7a07526a75204614759097088b0e29f2a5b716fcc9",
+  "baseline_sha256": "484adebdb4f6324ff87eedc5e5b941c7d150b33683f8d9d575df60fc14bd196d",
   "scenario_pickles": {
     "t22_closed": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\prosit_sequential_calibrated_scenarios_rmg_cap3_ci\\params_t22_closed.pkl",
     "demand_plus_20pct": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\prosit_sequential_calibrated_scenarios_rmg_cap3_ci\\params_demand_plus_20pct.pkl"
   },
   "scenario_sha256": {
-    "t22_closed": "9186b56996eb46e743ba921fc4f0653d9a777645a8716680c4e3b528ab534662",
-    "demand_plus_20pct": "2f099bc56d3aa9dddf31f933fad53173d3a5b15629116b7c46fd6cc45443d9d6"
+    "t22_closed": "c27cf8b33fceb1b5e6c3878e47d195ffa900779071d251d5b07e10dfa76edca2",
+    "demand_plus_20pct": "568f0dcd22c7d8a89651f2c244c2922b978f34f800fc24ffe73a44622ef50479"
   }
 }

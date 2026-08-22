@@ -1,0 +1,44 @@
+family,feature,count
+resource_selection,primary_target_area = T06,1
+resource_selection,primary_target_area = T12,1
+resource_selection,primary_target_area = T16,1
+resource_selection,primary_target_area = T20,1
+resource_selection,primary_target_area = T22,1
+resource_selection,primary_target_area = T25,1
+resource_selection,primary_target_area = T26,1
+resource_selection,target_area = T07,1
+resource_selection,target_area = T08,1
+resource_selection,target_area = T09,1
+resource_selection,target_area = T10,1
+resource_selection,target_area = T11,1
+resource_selection,target_area = T13,1
+resource_selection,target_area = T14,1
+resource_selection,target_area = T15,1
+resource_selection,target_area = T17,1
+resource_selection,target_area = T18,1
+resource_selection,target_area = T19,1
+resource_selection,target_area = T21,1
+resource_selection,target_area = T23,1
+resource_selection,target_area = T24,1
+resource_selection,target_area = T27,1
+transition_routing,n_stops,23
+transition_routing,n_receives,22
+transition_routing,visit_complexity,17
+transition_routing,n_deliveries,16
+transition_routing,full_ratio,9
+transition_routing,process_flow_type = delivery,8
+transition_routing,primary_target_area = MT,7
+transition_routing,target_rank_group = non_rmg,7
+transition_routing,n_containers,6
+transition_routing,process_flow_type = receive,5
+transition_routing,vc_utilization,5
+transition_routing,mt_demand,4
+transition_routing,primary_target_area = VC,3
+transition_routing,process_flow_type = mixed,3
+transition_routing,target_rank,3
+transition_routing,target_area = VC,2
+transition_routing,has_reefer,1
+transition_routing,primary_target_area = T11,1
+transition_routing,target_area = MT,1
+transition_routing,target_utilization,1
+waiting_time,queue_length,3

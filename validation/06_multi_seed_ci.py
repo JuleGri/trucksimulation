@@ -32,6 +32,10 @@ Inputs:
 Outputs (under validation/results/<label>/):
 - mc_replications.csv        one row per seed, all metrics.
 - mc_summary.csv             one row per metric, with mean/std/95 % CI.
+- yard_activity_emd_replications.csv
+                            one row per seed and yard activity; gates excluded.
+- yard_activity_emd_summary.csv
+                            per-yard-activity EMD means and 95 % CIs.
 - figures/mc_violin.png      violin plot of the four EMD metrics across
                              seeds.
 - figures/mc_kpi_ci.png      point-plus-CI bar for the four EMD metrics.
@@ -194,6 +198,8 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
     # in both logs).
     svc_rows = _step2.compare_by_activity(real_df, sim, "service_time_min", seed)
     wait_rows = _step2.compare_by_activity(real_df, sim, "waiting_time_min", seed)
+    yard_robust = _step2.yard_service_emd_aggregates(svc_rows, "wasserstein_min")
+    yard_raw = _step2.yard_service_emd_aggregates(svc_rows, "wasserstein_min_raw")
 
     def _mean_emd(df: pd.DataFrame) -> float:
         vals = df["wasserstein_min"].replace([np.inf, -np.inf], np.nan).dropna()
@@ -244,7 +250,7 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
         sim_contract_input, _already_ordered=True
     )
 
-    return {
+    result = {
         "seed": int(seed),
         "sim_events": int(len(sim)),
         "sim_cases": int(sim[CASE_COL].nunique()),
@@ -252,6 +258,14 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
         "mean_service_time_emd_min_raw": float(
             svc_rows["wasserstein_min_raw"].replace([np.inf, -np.inf], np.nan).dropna().mean()
         ),
+        "yard_service_time_emd_unweighted_min": yard_robust["unweighted_mean_min"],
+        "yard_service_time_emd_frequency_weighted_min": yard_robust[
+            "frequency_weighted_mean_min"
+        ],
+        "yard_service_time_emd_unweighted_min_raw": yard_raw["unweighted_mean_min"],
+        "yard_service_time_emd_frequency_weighted_min_raw": yard_raw[
+            "frequency_weighted_mean_min"
+        ],
         "mean_waiting_time_emd_min": _mean_emd(wait_rows),
         "case_turnaround_emd_min": float(turnaround_stats.get("wasserstein_min", float("nan"))),
         "case_turnaround_emd_min_raw": float(
@@ -280,6 +294,16 @@ def _metrics_for_seed(seed: int, sim_df: pd.DataFrame, real_df: pd.DataFrame,
             contract.get("gate_out_before_final_yard_cases", 0)
         ),
     }
+    yard_rows = svc_rows.loc[
+        ~svc_rows["activity"].isin(["Gate In", "Gate Out"])
+    ]
+    for _, activity_row in yard_rows.iterrows():
+        activity = str(activity_row["activity"])
+        result[f"yard_service_emd__{activity}"] = float(activity_row["wasserstein_min"])
+        result[f"yard_service_emd_raw__{activity}"] = float(
+            activity_row["wasserstein_min_raw"]
+        )
+    return result
 
 
 def _ci_from_samples(samples: np.ndarray, confidence: float = 0.95) -> tuple[float, float, float, float]:
@@ -297,7 +321,7 @@ def _ci_from_samples(samples: np.ndarray, confidence: float = 0.95) -> tuple[flo
 
 def _plot_violin(replications: pd.DataFrame, out_path: Path) -> None:
     metrics = [
-        ("mean_service_time_emd_min", "Service EMD (min)"),
+        ("yard_service_time_emd_unweighted_min", "Yard service EMD (min)"),
         ("mean_waiting_time_emd_min", "Waiting EMD (min)"),
         ("case_turnaround_emd_min", "Turnaround EMD (min)"),
         ("inter_arrival_emd_min", "IAT EMD (min)"),
@@ -330,7 +354,7 @@ def _plot_violin(replications: pd.DataFrame, out_path: Path) -> None:
 
 def _plot_ci_bar(summary: pd.DataFrame, out_path: Path) -> None:
     df = summary[summary["metric"].isin([
-        "mean_service_time_emd_min",
+        "yard_service_time_emd_unweighted_min",
         "mean_waiting_time_emd_min",
         "case_turnaround_emd_min",
         "inter_arrival_emd_min",
@@ -338,7 +362,7 @@ def _plot_ci_bar(summary: pd.DataFrame, out_path: Path) -> None:
     if df.empty:
         return
     df["label"] = df["metric"].map({
-        "mean_service_time_emd_min": "Service EMD",
+        "yard_service_time_emd_unweighted_min": "Yard service EMD",
         "mean_waiting_time_emd_min": "Waiting EMD",
         "case_turnaround_emd_min": "Turnaround EMD",
         "inter_arrival_emd_min": "IAT EMD",
@@ -428,7 +452,12 @@ def main() -> int:
 
     # Aggregate.
     summary_rows = []
-    for col in ("mean_service_time_emd_min", "mean_service_time_emd_min_raw",
+    summary_columns = [
+                "mean_service_time_emd_min", "mean_service_time_emd_min_raw",
+                "yard_service_time_emd_unweighted_min",
+                "yard_service_time_emd_frequency_weighted_min",
+                "yard_service_time_emd_unweighted_min_raw",
+                "yard_service_time_emd_frequency_weighted_min_raw",
                 "mean_waiting_time_emd_min", "case_turnaround_emd_min",
                 "case_turnaround_emd_min_raw", "case_turnaround_ks",
                 "case_turnaround_sim_mean", "case_turnaround_sim_p90",
@@ -440,7 +469,14 @@ def main() -> int:
                 "yard_activity_rate_max_abs_error",
                 "gate_only_cases", "wrong_case_boundary_cases",
                 "within_case_overlap_cases", "decreasing_completion_cases",
-                "gate_out_before_final_yard_cases"):
+                "gate_out_before_final_yard_cases",
+    ]
+    summary_columns.extend(sorted(
+        column for column in replications.columns
+        if column.startswith("yard_service_emd__")
+        or column.startswith("yard_service_emd_raw__")
+    ))
+    for col in summary_columns:
         m, s, lo, hi = _ci_from_samples(replications[col].to_numpy())
         summary_rows.append({
             "metric": col,
@@ -455,6 +491,29 @@ def main() -> int:
     summary_path = out_dir / "mc_summary.csv"
     summary.to_csv(summary_path, index=False)
     print(f"[mc] Wrote {summary_path}")
+
+    yard_replication_columns = [
+        column for column in replications.columns
+        if column.startswith("yard_service_emd__")
+    ]
+    yard_replications = replications[["seed", *yard_replication_columns]].melt(
+        id_vars="seed", var_name="metric", value_name="wasserstein_min"
+    )
+    yard_replications["activity"] = yard_replications["metric"].str.replace(
+        "yard_service_emd__", "", regex=False
+    )
+    yard_replications[["seed", "activity", "wasserstein_min"]].to_csv(
+        out_dir / "yard_activity_emd_replications.csv", index=False
+    )
+    yard_summary = summary[
+        summary["metric"].str.startswith("yard_service_emd__")
+    ].copy()
+    yard_summary["activity"] = yard_summary["metric"].str.replace(
+        "yard_service_emd__", "", regex=False
+    )
+    yard_summary[["activity", "n", "mean", "std", "ci95_lo", "ci95_hi", "half_width"]].to_csv(
+        out_dir / "yard_activity_emd_summary.csv", index=False
+    )
 
     _plot_violin(replications, out_dir / "figures" / "mc_violin.png")
     _plot_ci_bar(summary, out_dir / "figures" / "mc_kpi_ci.png")

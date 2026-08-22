@@ -36,6 +36,7 @@ Inputs:
 
 Outputs (under validation/results/<label>/):
 - metrics_activity.csv       per-activity service-time metrics
+- metrics_yard_activity.csv  per-yard-activity service-time metrics; Gate In/Out excluded
 - metrics_waiting.csv        per-activity pre-service-delay metrics (sim only)
 - metrics_case.csv           case-level KPIs (turnaround, n_events, etc.)
 - metrics_arrival.csv        inter-arrival time metrics
@@ -233,6 +234,41 @@ def compare_by_activity(real_df: pd.DataFrame, sim_df: pd.DataFrame, value_col: 
     return pd.DataFrame(rows)
 
 
+def yard_service_emd_aggregates(
+    activity_metrics: pd.DataFrame,
+    column: str = "wasserstein_min",
+) -> dict[str, float | int]:
+    """Aggregate yard-only activity EMDs with and without frequency weights.
+
+    Gate In and Gate Out are deliberately excluded.  The unweighted mean
+    gives every yard activity equal influence.  The frequency-weighted mean
+    weights each activity by its number of valid observations in the real
+    held-out log, so common truck operations contribute proportionally more.
+    """
+    scope = activity_metrics.loc[
+        ~activity_metrics["activity"].isin(["Gate In", "Gate Out"])
+    ].copy()
+    weight_column = "real_n_raw" if column.endswith("_raw") else "real_n"
+    values = pd.to_numeric(scope[column], errors="coerce")
+    weights = pd.to_numeric(scope[weight_column], errors="coerce")
+    valid = np.isfinite(values) & np.isfinite(weights) & weights.gt(0)
+    values = values.loc[valid]
+    weights = weights.loc[valid]
+    if values.empty:
+        return {
+            "n_yard_activities": 0,
+            "unweighted_mean_min": float("nan"),
+            "frequency_weighted_mean_min": float("nan"),
+            "real_events_weight": 0,
+        }
+    return {
+        "n_yard_activities": int(len(values)),
+        "unweighted_mean_min": float(values.mean()),
+        "frequency_weighted_mean_min": float(np.average(values, weights=weights)),
+        "real_events_weight": int(weights.sum()),
+    }
+
+
 def case_kpis(df: pd.DataFrame) -> pd.DataFrame:
     """Case turnaround = last complete − first start (observed timestamps only)."""
     ts_cols = [c for c in (TS_START, TS_COMPLETE) if c in df.columns]
@@ -277,6 +313,20 @@ def main() -> int:
     activity_metrics = compare_by_activity(real_df, sim_df, "service_time_min", args.seed)
     activity_metrics.insert(0, "kind", "service_time")
     activity_metrics.to_csv(out_dir / "metrics_activity.csv", index=False)
+    yard_activity_metrics = activity_metrics.loc[
+        ~activity_metrics["activity"].isin(["Gate In", "Gate Out"])
+    ].copy()
+    robust_weight_total = float(yard_activity_metrics["real_n"].sum())
+    raw_weight_total = float(yard_activity_metrics["real_n_raw"].sum())
+    yard_activity_metrics["real_frequency_weight"] = (
+        yard_activity_metrics["real_n"] / robust_weight_total
+        if robust_weight_total > 0 else np.nan
+    )
+    yard_activity_metrics["real_frequency_weight_raw"] = (
+        yard_activity_metrics["real_n_raw"] / raw_weight_total
+        if raw_weight_total > 0 else np.nan
+    )
+    yard_activity_metrics.to_csv(out_dir / "metrics_yard_activity.csv", index=False)
 
     print("[validate] Comparing waiting-time distributions per activity ...")
     waiting_metrics = compare_by_activity(real_df, sim_df, "waiting_time_min", args.seed)
@@ -319,14 +369,13 @@ def main() -> int:
         vals = df["wasserstein_min"].replace([np.inf, -np.inf], np.nan).dropna()
         return float(vals.mean()) if not vals.empty else float("nan")
 
-    def _agg_column(df: pd.DataFrame, column: str, *, yard_only: bool = False) -> float:
-        scope = df
-        if yard_only:
-            scope = scope[~scope["activity"].isin(["Gate In", "Gate Out"])]
-        vals = scope[column].replace([np.inf, -np.inf], np.nan).dropna()
+    def _agg_column(df: pd.DataFrame, column: str) -> float:
+        vals = df[column].replace([np.inf, -np.inf], np.nan).dropna()
         return float(vals.mean()) if not vals.empty else float("nan")
 
     turnaround_row = case_metrics.loc[case_metrics["metric"] == "turnaround_min"].iloc[0]
+    yard_robust = yard_service_emd_aggregates(activity_metrics, "wasserstein_min")
+    yard_raw = yard_service_emd_aggregates(activity_metrics, "wasserstein_min_raw")
 
     summary = {
         "label": args.label,
@@ -344,12 +393,19 @@ def main() -> int:
         },
         "mean_service_time_emd_min": _agg_emd(activity_metrics),
         "mean_service_time_emd_min_raw": _agg_column(activity_metrics, "wasserstein_min_raw"),
-        "mean_yard_service_time_emd_min": _agg_column(
-            activity_metrics, "wasserstein_min", yard_only=True
-        ),
-        "mean_yard_service_time_emd_min_raw": _agg_column(
-            activity_metrics, "wasserstein_min_raw", yard_only=True
-        ),
+        "yard_metric_scope": "all non-gate activities; Gate In and Gate Out excluded",
+        "n_yard_activities_compared": yard_robust["n_yard_activities"],
+        "yard_service_time_emd_unweighted_min": yard_robust["unweighted_mean_min"],
+        "yard_service_time_emd_frequency_weighted_min": yard_robust[
+            "frequency_weighted_mean_min"
+        ],
+        "yard_service_time_emd_unweighted_min_raw": yard_raw["unweighted_mean_min"],
+        "yard_service_time_emd_frequency_weighted_min_raw": yard_raw[
+            "frequency_weighted_mean_min"
+        ],
+        # Backwards-compatible aliases used by earlier thesis-export scripts.
+        "mean_yard_service_time_emd_min": yard_robust["unweighted_mean_min"],
+        "mean_yard_service_time_emd_min_raw": yard_raw["unweighted_mean_min"],
         "mean_waiting_time_emd_min": _agg_emd(waiting_metrics),
         "case_turnaround_emd_min": float(turnaround_row["wasserstein_min"]),
         "case_turnaround_emd_min_raw": float(turnaround_row["wasserstein_min_raw"]),

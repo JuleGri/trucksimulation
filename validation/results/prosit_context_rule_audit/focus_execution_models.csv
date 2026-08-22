@@ -1,0 +1,5 @@
+family,model_key,target_labels,process_prefix,focus_target,split_features,is_utilisation_feature,is_demand_feature,is_queue_feature,is_area_feature,is_complexity_feature,model_type,n_nodes,n_split_nodes,n_leaves,max_depth,root_is_leaf,root_value,root_distribution,root_n_sampled
+execution_time,RMG_receive,RMG_receive,,True,,False,False,False,False,False,DecisionRules,1,0,1,0,True,11.591083734829542,lognorm,32794.0
+execution_time,HO2_receive,HO2_receive,,True,,False,False,False,False,False,DecisionRules,1,0,1,0,True,16.46800382043935,lognorm,4188.0
+execution_time,HO2_delivery,HO2_delivery,,True,,False,False,False,False,False,DecisionRules,1,0,1,0,True,10.117402597402597,lognorm,5775.0
+execution_time,RMG_delivery,RMG_delivery,,True,,False,False,False,False,False,DecisionRules,1,0,1,0,True,8.99225719575829,lognorm,17823.0

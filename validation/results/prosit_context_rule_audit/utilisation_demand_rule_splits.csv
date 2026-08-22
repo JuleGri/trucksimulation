@@ -1,0 +1,11 @@
+family,model_key,target_labels,process_prefix,focus_target,node_id,depth,feature,threshold,is_utilisation_feature,is_demand_feature,is_queue_feature,is_area_feature,is_complexity_feature
+transition_routing,yard_038,LL_receive,RMG_delivery,False,2,2,mt_demand,1.635,False,True,False,False,False
+transition_routing,gate_out_001,Gate Out,HO2_mixed,False,4,2,mt_demand,25.235,False,True,False,False,False
+transition_routing,yard_016,RMG_receive,HO2_mixed,True,1,1,vc_utilization,0.549,True,False,False,False,False
+transition_routing,yard_015,RMG_delivery,HO2_mixed,True,0,0,target_utilization,0.255,True,False,False,False,False
+transition_routing,yard_055,RMG_receive,LL_delivery > HO2_mixed,True,0,0,vc_utilization,0.557,True,False,False,False,False
+transition_routing,gate_out_023,Gate Out,LL_delivery > HO2_mixed,False,0,0,vc_utilization,0.557,True,False,False,False,False
+transition_routing,yard_071,HO2_receive,LL_delivery > HO2_receive > RMG_receive,True,0,0,vc_utilization,0.464,True,False,False,False,False
+transition_routing,gate_out_053,Gate Out,LL_delivery > HO2_receive > RMG_receive,False,0,0,vc_utilization,0.464,True,False,False,False,False
+transition_routing,gate_out_029,Gate Out,LL_receive > HO2_delivery,False,0,0,mt_demand,27.975,False,True,False,False,False
+transition_routing,yard_060,RMG_receive,LL_receive > HO2_delivery,True,0,0,mt_demand,27.975,False,True,False,False,False

@@ -1,0 +1,102 @@
+family,model_key,target_labels,process_prefix,focus_target,node_id,depth,feature,threshold,is_utilisation_feature,is_demand_feature,is_queue_feature,is_area_feature,is_complexity_feature
+resource_selection,T13,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T13,0.5,False,False,False,True,False
+resource_selection,T14,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T14,0.5,False,False,False,True,False
+resource_selection,T16,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T16,0.5,False,False,False,True,False
+resource_selection,T24,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T24,0.5,False,False,False,True,False
+resource_selection,T17,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T17,0.5,False,False,False,True,False
+resource_selection,T12,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T12,0.5,False,False,False,True,False
+resource_selection,T21,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T21,0.5,False,False,False,True,False
+resource_selection,T15,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T15,0.5,False,False,False,True,False
+resource_selection,T20,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T20,0.5,False,False,False,True,False
+resource_selection,T11,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T11,0.5,False,False,False,True,False
+resource_selection,T27,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T27,0.5,False,False,False,True,False
+resource_selection,T23,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T23,0.5,False,False,False,True,False
+resource_selection,T22,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T22,0.5,False,False,False,True,False
+resource_selection,T10,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T10,0.5,False,False,False,True,False
+resource_selection,T18,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T18,0.5,False,False,False,True,False
+resource_selection,T06,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T06,0.5,False,False,False,True,False
+resource_selection,T09,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T09,0.5,False,False,False,True,False
+resource_selection,T07,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T07,0.5,False,False,False,True,False
+resource_selection,T08,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T08,0.5,False,False,False,True,False
+resource_selection,T26,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T26,0.5,False,False,False,True,False
+resource_selection,T19,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,target_area = T19,0.5,False,False,False,True,False
+resource_selection,T25,RMG_delivery | RMG_mixed | RMG_receive,,True,0,0,primary_target_area = T25,0.5,False,False,False,True,False
+transition_routing,yard_006,RMG_delivery,<start>,True,0,0,n_receives,0.5,False,False,False,False,True
+transition_routing,yard_006,RMG_delivery,<start>,True,1,1,target_rank,inf,False,False,False,False,False
+transition_routing,yard_006,RMG_delivery,<start>,True,6,1,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_006,RMG_delivery,<start>,True,2,2,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_006,RMG_delivery,<start>,True,8,2,has_reefer,0.5,False,False,False,False,False
+transition_routing,yard_000,HO2_delivery,<start>,True,0,0,target_area = VC,0.5,False,False,False,True,False
+transition_routing,yard_000,HO2_delivery,<start>,True,1,1,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_000,HO2_delivery,<start>,True,6,1,process_flow_type = delivery,0.5,False,False,False,False,False
+transition_routing,yard_000,HO2_delivery,<start>,True,3,2,full_ratio,0.917,False,False,False,False,True
+transition_routing,yard_008,RMG_receive,<start>,True,0,0,process_flow_type = receive,0.5,False,False,False,False,False
+transition_routing,yard_002,HO2_receive,<start>,True,0,0,target_area = VC,0.5,False,False,False,True,False
+transition_routing,yard_002,HO2_receive,<start>,True,1,1,n_receives,1.5,False,False,False,False,True
+transition_routing,yard_002,HO2_receive,<start>,True,4,1,process_flow_type = receive,0.5,False,False,False,False,False
+transition_routing,yard_039,RMG_delivery,RMG_delivery,True,0,0,n_deliveries,3.5,False,False,False,False,True
+transition_routing,yard_035,HO2_delivery,RMG_delivery,True,0,0,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_036,HO2_receive,RMG_delivery,True,0,0,visit_complexity,11.5,False,False,False,False,True
+transition_routing,yard_036,HO2_receive,RMG_delivery,True,1,1,visit_complexity,10.5,False,False,False,False,True
+transition_routing,yard_036,HO2_receive,RMG_delivery,True,4,1,full_ratio,0.833,False,False,False,False,True
+transition_routing,yard_038,LL_receive,RMG_delivery,False,2,2,mt_demand,1.635,False,True,False,False,False
+transition_routing,yard_044,HO2_receive,RMG_receive,True,0,0,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_047,RMG_receive,RMG_receive,True,0,0,n_receives,2.5,False,False,False,False,True
+transition_routing,yard_047,RMG_receive,RMG_receive,True,1,1,n_receives,1.5,False,False,False,False,True
+transition_routing,yard_047,RMG_receive,RMG_receive,True,6,1,n_containers,2.5,False,False,False,False,False
+transition_routing,yard_047,RMG_receive,RMG_receive,True,3,2,n_containers,1.5,False,False,False,False,False
+transition_routing,yard_047,RMG_receive,RMG_receive,True,7,2,primary_target_area = T11,0.5,False,False,False,True,False
+transition_routing,yard_025,RMG_delivery,LL_delivery,True,0,0,n_deliveries,1.5,False,False,False,False,True
+transition_routing,yard_025,RMG_delivery,LL_delivery,True,2,1,target_rank_group = non_rmg,0.5,False,False,False,False,False
+transition_routing,yard_025,RMG_delivery,LL_delivery,True,3,2,process_flow_type = mixed,0.5,False,False,False,False,False
+transition_routing,yard_027,RMG_receive,LL_delivery,True,0,0,process_flow_type = delivery,0.5,False,False,False,False,False
+transition_routing,yard_027,RMG_receive,LL_delivery,True,1,1,target_rank_group = non_rmg,0.5,False,False,False,False,False
+transition_routing,yard_027,RMG_receive,LL_delivery,True,2,2,visit_complexity,12.5,False,False,False,False,True
+transition_routing,yard_024,HO2_receive,LL_delivery,True,0,0,process_flow_type = delivery,0.5,False,False,False,False,False
+transition_routing,yard_024,HO2_receive,LL_delivery,True,1,1,target_rank_group = non_rmg,0.5,False,False,False,False,False
+transition_routing,yard_058,HO2_receive,LL_delivery > RMG_receive,True,0,0,n_stops,2.5,False,False,False,False,True
+transition_routing,yard_059,RMG_receive,LL_delivery > RMG_receive,True,0,0,full_ratio,0.583,False,False,False,False,True
+transition_routing,yard_059,RMG_receive,LL_delivery > RMG_receive,True,1,1,n_receives,1.5,False,False,False,False,True
+transition_routing,yard_059,RMG_receive,LL_delivery > RMG_receive,True,4,1,n_containers,2.5,False,False,False,False,False
+transition_routing,yard_013,RMG_receive,HO2_delivery,True,0,0,target_rank,21.5,False,False,False,False,False
+transition_routing,yard_013,RMG_receive,HO2_delivery,True,1,1,process_flow_type = mixed,0.5,False,False,False,False,False
+transition_routing,yard_013,RMG_receive,HO2_delivery,True,3,2,n_stops,2.5,False,False,False,False,True
+transition_routing,yard_012,RMG_delivery,HO2_delivery,True,0,0,n_deliveries,1.5,False,False,False,False,True
+transition_routing,yard_012,RMG_delivery,HO2_delivery,True,2,1,target_rank,5.0,False,False,False,False,False
+transition_routing,yard_009,HO2_delivery,HO2_delivery,True,0,0,n_deliveries,1.5,False,False,False,False,True
+transition_routing,yard_009,HO2_delivery,HO2_delivery,True,2,1,n_containers,1.5,False,False,False,False,False
+transition_routing,yard_021,RMG_receive,HO2_receive,True,0,0,target_rank_group = non_rmg,0.5,False,False,False,False,False
+transition_routing,yard_021,RMG_receive,HO2_receive,True,1,1,n_receives,1.5,False,False,False,False,True
+transition_routing,yard_017,HO2_receive,HO2_receive,True,0,0,visit_complexity,11.5,False,False,False,False,True
+transition_routing,yard_057,HO2_delivery,LL_delivery > RMG_delivery,True,0,0,n_stops,2.5,False,False,False,False,True
+transition_routing,yard_040,HO2_receive,RMG_mixed,True,0,0,n_receives,2.5,False,False,False,False,True
+transition_routing,yard_051,HO2_delivery,HO2_delivery > RMG_receive,True,0,0,n_deliveries,1.5,False,False,False,False,True
+transition_routing,yard_051,HO2_delivery,HO2_delivery > RMG_receive,True,2,1,n_containers,2.5,False,False,False,False,False
+transition_routing,gate_out_001,Gate Out,HO2_mixed,False,4,2,mt_demand,25.235,False,True,False,False,False
+transition_routing,yard_016,RMG_receive,HO2_mixed,True,0,0,primary_target_area = VC,0.5,False,False,False,True,False
+transition_routing,yard_016,RMG_receive,HO2_mixed,True,1,1,vc_utilization,0.549,True,False,False,False,False
+transition_routing,yard_015,RMG_delivery,HO2_mixed,True,0,0,target_utilization,0.255,True,False,False,False,False
+transition_routing,yard_056,RMG_receive,LL_delivery > HO2_receive,True,0,0,target_rank_group = non_rmg,0.5,False,False,False,False,False
+transition_routing,yard_034,RMG_receive,LL_receive,True,0,0,target_area = MT,0.5,False,False,False,True,False
+transition_routing,yard_034,RMG_receive,LL_receive,True,1,1,n_deliveries,0.5,False,False,False,False,True
+transition_routing,yard_032,RMG_delivery,LL_receive,True,0,0,process_flow_type = mixed,0.5,False,False,False,False,False
+transition_routing,yard_031,HO2_receive,LL_receive,True,0,0,n_receives,1.5,False,False,False,False,True
+transition_routing,yard_031,HO2_receive,LL_receive,True,2,1,primary_target_area = MT,0.5,False,False,False,True,False
+transition_routing,yard_031,HO2_receive,LL_receive,True,4,2,n_stops,1.5,False,False,False,False,True
+transition_routing,yard_055,RMG_receive,LL_delivery > HO2_mixed,True,0,0,vc_utilization,0.557,True,False,False,False,False
+transition_routing,gate_out_023,Gate Out,LL_delivery > HO2_mixed,False,0,0,vc_utilization,0.557,True,False,False,False,False
+transition_routing,yard_069,RMG_receive,RMG_receive > RMG_receive,True,0,0,n_receives,2.5,False,False,False,False,True
+transition_routing,yard_063,RMG_delivery,RMG_delivery > LL_delivery,True,0,0,n_deliveries,2.5,False,False,False,False,True
+transition_routing,yard_062,HO2_receive,RMG_delivery > HO2_receive,True,0,0,visit_complexity,18.0,False,False,False,False,True
+transition_routing,yard_067,HO2_receive,RMG_receive > HO2_receive,True,0,0,n_receives,2.5,False,False,False,False,True
+transition_routing,yard_028,RMG_receive,LL_mixed,True,0,0,primary_target_area = MT,0.5,False,False,False,True,False
+transition_routing,yard_072,RMG_receive,LL_delivery > RMG_receive > RMG_receive,True,0,0,full_ratio,0.708,False,False,False,False,True
+transition_routing,yard_061,HO2_receive,LL_receive > RMG_receive,True,0,0,n_stops,2.5,False,False,False,False,True
+transition_routing,yard_048,HO2_delivery,HO2_delivery > HO2_delivery,True,0,0,n_deliveries,2.5,False,False,False,False,True
+transition_routing,yard_068,RMG_receive,RMG_receive > LL_delivery,True,0,0,full_ratio,0.583,False,False,False,False,True
+transition_routing,yard_071,HO2_receive,LL_delivery > HO2_receive > RMG_receive,True,0,0,vc_utilization,0.464,True,False,False,False,False
+transition_routing,gate_out_053,Gate Out,LL_delivery > HO2_receive > RMG_receive,False,0,0,vc_utilization,0.464,True,False,False,False,False
+transition_routing,yard_049,RMG_receive,HO2_delivery > LL_delivery,True,0,0,process_flow_type = delivery,0.5,False,False,False,False,False
+transition_routing,yard_050,HO2_delivery,HO2_delivery > RMG_delivery,True,0,0,n_deliveries,2.5,False,False,False,False,True
+transition_routing,gate_out_029,Gate Out,LL_receive > HO2_delivery,False,0,0,mt_demand,27.975,False,True,False,False,False
+transition_routing,yard_060,RMG_receive,LL_receive > HO2_delivery,True,0,0,mt_demand,27.975,False,True,False,False,False

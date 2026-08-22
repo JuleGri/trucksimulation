@@ -32,13 +32,15 @@ reconstruction.
 | Order | Script | What it does |
 |-------|--------|--------------|
 | 1 | `01_train_test_split.py` | Case-level temporal 80/20 split of the s6 event log. Writes `s6_train.csv`, `s6_test.csv` and a `split_manifest.json` recording cutoff, coverage and per-activity counts. |
-| 2 | `02_validate_simulation.py` | Compares a simulated log against the held-out real log. Reports raw and robust (up to 24 h) EMD/KS side by side, so long-tail failures are never silently discarded. |
+| 2 | `02_validate_simulation.py` | Compares a simulated log against the held-out real log. Reports raw and robust (up to 24 h) EMD/KS side by side. Service-time fidelity is additionally exported for yard activities only: per activity, as an unweighted mean and weighted by real held-out activity frequency; Gate In/Out are excluded. |
 | 3 | `03_validation_plots.py` | Generates CDF overlays, box plots and QQ plots per activity + a case-level turnaround CDF. Reads the metrics file produced by step 2. |
 | 4 | `04_baseline_percentile_sensitivity.py` | Recomputes the transition baseline at the 5th, 10th, 25th and 50th percentile and reports the impact on discovered waiting times and the data-aware duration R² / MAE. Addresses the "circular reasoning" concern. |
-| 6 | `06_multi_seed_ci.py` | Repeats simulation for multiple seeds, reports raw/robust confidence intervals and rejects any seed that violates the sequential case contract. |
+| 6 | `06_multi_seed_ci.py` | Repeats simulation for multiple seeds, reports raw/robust confidence intervals (including yard-only unweighted, real-frequency-weighted and per-activity EMD) and rejects any seed that violates the sequential case contract. |
 | 8 | `08_validate_eventlog_contract.py` | Hard structural/causality gate for the real and simulated logs; also writes routing-rate and duration-outlier audits. |
-| 9 | `09_multi_seed_scenarios.py` | Runs the frozen baseline, T22 closure and demand increase with matched seeds. Optionally caps every RMG resource at a domain-defined maximum concurrency before deriving all three templates. |
+| 9 | `09_multi_seed_scenarios.py` | Runs the final cap-3 effective baseline, T22 resource-pool reallocation and demand increase with matched seeds. It reports T22 effects separately for RMG receive and delivery work. `--no-rmg-cap` reproduces the freely discovered overlap capacities for diagnosis only. |
 | 10 | `10_compare_rmg_capacity_sensitivity.py` | Joins the original and capped scenario replications by seed, reports the direct cap effect and the cap-by-scenario difference-in-differences with 95% paired intervals. |
+| 11 | `11_receive_delivery_utilization_analysis.py` | Tests the association between target-area utilisation and RMG receive/delivery operational response time. Fits an adjusted model on the temporal training split, clusters uncertainty by calendar day, evaluates predictions on the holdout and checks whether the receive-delivery slope difference replicates. |
+| 12 | `12_audit_prosit_context_rules.py` | Audits every rule in the frozen ProSiT pickle and separates execution-time, waiting-time, resource-selection and transition-routing effects. Reconstructs each transition's process prefix and lists all retained utilisation/demand splits without mutating the model. |
 
 `run_full_validation.py` orchestrates the current core workflow (split
 consistency check, order-preserving XES export, hard case-contract check,
@@ -102,13 +104,15 @@ python validation/04_baseline_percentile_sensitivity.py
 All outputs are written under `validation/results/<run-label>/` so
 different discovery configurations can be compared side by side.
 
-### Physical RMG-capacity sensitivity
+### Final domain-constrained RMG baseline
 
-The frozen model represents the 22 RMG block identifiers with an aggregate
-effective maximum concurrency of 100. To test the operational statement that
-at most three cranes can work in parallel at one block, run a separate
-domain-constrained sensitivity analysis. This does not overwrite or mutate the
-frozen source pickle:
+The freely discovered source model represents the 22 RMG block identifiers
+with an aggregate effective maximum concurrency of 100 because timestamp
+overlaps yield per-block values of four or five. The physical upper bound is
+three: CTB has three RMG cranes and three truck waiting lanes at a block. The
+scenario workflow therefore deep-copies the discovery bundle, clamps every RMG
+resource to at most three, and uses that effective bundle as the final baseline.
+This does not overwrite or mutate the freely discovered source pickle:
 
 ```powershell
 python validation/09_multi_seed_scenarios.py `
@@ -120,11 +124,15 @@ python validation/09_multi_seed_scenarios.py `
 
 The effective cap-3 baseline and both derived scenario bundles are serialized
 inside the labelled result directory. `scenario_parameter_changes.json`
-records the source and effective capacities, while `scenario_run_summary.json`
-records both parameter hashes and the contract status.
+records the discovered and effective capacities, while
+`scenario_run_summary.json` records both parameter hashes and the contract
+status. The cap is an upper bound, not a claim that all three cranes serve
+landside trucks simultaneously: actual waterside/landside allocation is absent
+from the data and remains outside model scope.
 
-After both the original and cap-3 runs are complete, generate the paired
-capacity comparison and interaction analysis:
+For the diagnostic comparison only, reproduce the unconstrained overlap model
+with `--no-rmg-cap`. After both runs are complete, generate the paired capacity
+comparison and interaction analysis:
 
 ```powershell
 python validation/10_compare_rmg_capacity_sensitivity.py
@@ -133,6 +141,29 @@ python validation/10_compare_rmg_capacity_sensitivity.py
 The comparison refuses to run if source-model hashes, seeds, trace counts,
 start time, timestamp resolution or demand settings differ, or if either run
 failed a case or duration contract.
+
+### Receive/delivery utilisation and frozen-rule audit
+
+Run the empirical holdout analysis and inspect the exact white-box rules with:
+
+```powershell
+python validation/11_receive_delivery_utilization_analysis.py
+python validation/12_audit_prosit_context_rules.py
+```
+
+The first script interprets `ALP_ZEITPUNKT_BEREITMELDUNG` to completion as an
+**operational response duration** containing both resource waiting and physical
+handling, not as pure service time. Its utilisation feature is observational, so
+the analysis can support conditional associations but not a causal prioritisation
+claim. Utilisation bands, covariate scaling and category levels are learned from
+the training period and reused unchanged for the temporal holdout.
+
+The second script reads the frozen pickle and records its SHA-256 hash. A retained
+utilisation split in a transition-weight tree is a data-aware routing choice at a
+specific process prefix; it must not be described as an execution-duration or
+physical-capacity rule. Outputs are written to
+`validation/results/receive_delivery_utilisation/` and
+`validation/results/prosit_context_rule_audit/`.
 
 ## Notes on framing
 

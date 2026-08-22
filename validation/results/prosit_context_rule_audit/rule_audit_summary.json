@@ -1,0 +1,92 @@
+{
+  "source_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_sequential_calibrated\\prosit_params.pkl",
+  "source_pickle_sha256": "11a982f4cb36de57648e4eb729145b7a9726459e8f190220d6d51cdece075698",
+  "rules_mode": true,
+  "use_workload_features": true,
+  "net_places": 76,
+  "net_transitions": 144,
+  "mapped_transition_contexts": 144,
+  "family_summary": {
+    "execution_time": {
+      "n_models": 11,
+      "n_decision_rule_models": 11,
+      "n_models_with_splits": 0,
+      "n_split_nodes": 0,
+      "n_utilisation_splits": 0,
+      "n_demand_splits": 0,
+      "n_queue_splits": 0,
+      "n_area_splits": 0,
+      "n_complexity_splits": 0
+    },
+    "resource_selection": {
+      "n_models": 26,
+      "n_decision_rule_models": 22,
+      "n_models_with_splits": 22,
+      "n_split_nodes": 22,
+      "n_utilisation_splits": 0,
+      "n_demand_splits": 0,
+      "n_queue_splits": 0,
+      "n_area_splits": 22,
+      "n_complexity_splits": 0
+    },
+    "transition_routing": {
+      "n_models": 144,
+      "n_decision_rule_models": 87,
+      "n_models_with_splits": 87,
+      "n_split_nodes": 144,
+      "n_utilisation_splits": 6,
+      "n_demand_splits": 4,
+      "n_queue_splits": 0,
+      "n_area_splits": 14,
+      "n_complexity_splits": 87
+    },
+    "waiting_time": {
+      "n_models": 26,
+      "n_decision_rule_models": 26,
+      "n_models_with_splits": 3,
+      "n_split_nodes": 3,
+      "n_utilisation_splits": 0,
+      "n_demand_splits": 0,
+      "n_queue_splits": 3,
+      "n_area_splits": 0,
+      "n_complexity_splits": 0
+    }
+  },
+  "focused_execution_models": [
+    {
+      "activity": "RMG_receive",
+      "n_split_nodes": 0,
+      "root_value_min": 11.591083734829542,
+      "distribution": "lognorm",
+      "n_sampled": 32794
+    },
+    {
+      "activity": "HO2_receive",
+      "n_split_nodes": 0,
+      "root_value_min": 16.46800382043935,
+      "distribution": "lognorm",
+      "n_sampled": 4188
+    },
+    {
+      "activity": "HO2_delivery",
+      "n_split_nodes": 0,
+      "root_value_min": 10.117402597402597,
+      "distribution": "lognorm",
+      "n_sampled": 5775
+    },
+    {
+      "activity": "RMG_delivery",
+      "n_split_nodes": 0,
+      "root_value_min": 8.99225719575829,
+      "distribution": "lognorm",
+      "n_sampled": 17823
+    }
+  ],
+  "key_interpretation": {
+    "execution_duration_uses_utilisation_or_demand": false,
+    "waiting_duration_uses_utilisation_or_demand": false,
+    "resource_selection_uses_utilisation_or_demand": false,
+    "transition_routing_uses_utilisation_or_demand": true,
+    "routing_effect_is_duration_prioritisation_evidence": false
+  }
+}
