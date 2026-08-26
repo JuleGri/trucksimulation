@@ -32,6 +32,7 @@ OUTPUTS_DIR = PACKAGE_ROOT / "outputs"
 
 MODEL_FILES = {
     "discovered_source": MODELS_DIR / "params_discovered_rules_workload.pkl",
+    "rules_only_workload_blind": MODELS_DIR / "params_rules_only_workload_blind.pkl",
     "baseline": MODELS_DIR / "params_baseline_rmg_max_concurrency_3.pkl",
     "t22_closed": MODELS_DIR / "params_t22_closed.pkl",
     "demand_plus_20pct": MODELS_DIR / "params_demand_plus_20pct.pkl",
@@ -236,7 +237,7 @@ def assert_model_contracts(models: dict[str, Any]) -> pd.DataFrame:
     demand = models["demand_plus_20pct"]
     signatures = {name: petri_net_signature(model) for name, model in models.items()}
     checks = {
-        "all four bundles use the identical Petri net": len(set(signatures.values())) == 1,
+        "all stored parameter bundles use the identical Petri net": len(set(signatures.values())) == 1,
         "baseline RMG capacity is 22 x 3 = 66": model_summary({"x": baseline}).iloc[0]["aggregate_rmg_max_concurrency"] == 66,
         "source overlap-derived RMG capacity is 100": model_summary({"x": source}).iloc[0]["aggregate_rmg_max_concurrency"] == 100,
         "T22 is absent from every scenario-A RMG pool": all(

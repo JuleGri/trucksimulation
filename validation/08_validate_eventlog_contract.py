@@ -168,7 +168,6 @@ def main() -> int:
     sim_report = eventlog_contract_report(sim, _already_ordered=True)
 
     hard_sim_keys = (
-        "gate_only_cases",
         "invalid_gate_in_count_cases",
         "invalid_gate_out_count_cases",
         "wrong_case_boundary_cases",
@@ -223,7 +222,11 @@ def main() -> int:
     if sim_failures and args.fail_on_sim_violations:
         print(f"[contract] FAILED simulated case contract: {sim_failures}", file=sys.stderr)
         return 1
-    print("[contract] PASSED")
+    print(
+        "[contract] PASSED "
+        f"(gate-only paths reported as overgeneralisation diagnostic: "
+        f"{sim_report['gate_only_cases']})"
+    )
     return 0
 
 

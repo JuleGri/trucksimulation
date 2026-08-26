@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T06:38:44.441749+00:00",
+  "generated_at": "2026-08-25T07:23:04.298818+00:00",
   "validation_scope": "immutable train/test snapshot used for discovery",
   "train_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_train.csv",
   "test_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",

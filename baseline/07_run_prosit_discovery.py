@@ -4,9 +4,10 @@
 Purpose:
 - run the actual ProSiT (Vinci et al., 2026) simulation-parameter discovery
   on the held-out training log s6_train.csv;
-- discover the observed yard variants and build a domain-constrained,
-  sequential Petri-net trie for simulation;
-- retain the unconstrained Inductive-Miner tree as a diagnostic artefact;
+- discover an Inductive-Miner process tree from the order-preserving training
+  log and use its equivalent Petri net as the simulation control flow;
+- reject the discovered model if it contains a parallel operator, because one
+  physical truck cannot execute two yard activities concurrently;
 - report conformance (fitness, precision, generalisation, simplicity) on
   BOTH the training log and the held-out testing log s6_test.csv, which
   addresses reviewer Tier 1 item #1 (held-out validation) directly;
@@ -30,26 +31,27 @@ Outputs (under baseline/discovery_params/<paramset>_train80/prosit_discovery/):
 - prosit_run_summary.json              run metadata (timing, hyperparameters, paths)
 - sim_baseline_train80.csv             simulated event log at the test-window start
 - figures/
-    petri_net.png                      sequential variant-trie Petri net
+    petri_net.png                      discovered Inductive-Miner Petri net
     petri_net_frequency.png            transitions coloured by token replay frequency
     petri_net_performance.png          transitions coloured by mean sojourn time
     dfg_frequency.png                  directly-follows graph (frequency)
     dfg_performance.png                directly-follows graph (mean waiting time)
-    process_tree_inductive_diagnostic.png  raw miner output (not simulated)
+    process_tree_inductive_diagnostic.png  process-tree view of the simulated net
     bpmn.png                           BPMN translation of the Petri net
     variants_top20.png                 variant coverage bar chart
 
 Methodological note:
 - PM4Py receives explicit trace order instead of completion-time order.  The
-  authoritative Petri net is a training-variant trie constrained to Gate In,
-  one or more sequential yard activities, Gate Out.  The raw Inductive-Miner
-  tree is retained only as a transparent diagnostic because its optional and
-  parallel cuts overgeneralize the CTB domain;
+  authoritative Petri net is converted from the resulting Inductive-Miner
+  process tree.  A hard structural guard rejects any model containing an
+  ``and`` operator; sequential generalisation across yard activities is
+  accepted as intended process-discovery behaviour;
 - ProSiT resource multitasking remains enabled across different truck cases.
-  The state-machine Petri net prevents concurrency only within one case;
-- a training-only CTB calibration retains zero inter-arrival mass, calibrates
-  data-aware trie routing to empirical prefix marginals, and lets trucks that
-  entered before the weekly closure finish without a multi-day interruption;
+  The discovered Petri net prevents concurrency only within one case;
+- a training-only CTB calibration retains zero inter-arrival mass and lets
+  trucks that entered before the weekly closure finish without a multi-day
+  interruption.  Routing remains the direct ProSiT discovery result because
+  the former prefix calibration was specific to the removed trie;
 - fitness / precision are computed with token-based replay for tractability
   on the full 71k-case training log; alignment-based fitness is optionally
   computed on a 1000-case sample (--alignments-sample);
@@ -64,6 +66,7 @@ Methodological note:
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import json
 import os
 import pickle
@@ -102,7 +105,6 @@ _REPO_ROOT = _SCRIPT_DIR.parent
 sys.path.insert(0, str(_REPO_ROOT))
 from _eventlog_contract import (  # noqa: E402
     PROSIT_CASE_ATTRIBUTE_ALLOWLIST,
-    build_sequential_variant_trie,
     normalize_pm4py_event_log,
     restrict_pm4py_log_for_prosit,
     select_prosit_dataframe,
@@ -117,6 +119,50 @@ from _prosit_ctb_calibration import (  # noqa: E402
 DEFAULT_TEST = _REPO_ROOT / "data" / "processed" / "CTB" / "s6_test.csv"
 DEFAULT_MANIFEST = _REPO_ROOT / "validation" / "results" / "split_manifest.json"
 DEFAULT_XES_DIR = _REPO_ROOT / "data" / "processed" / "CTB" / "xes_files"
+
+# These event-log fields encode contemporaneous terminal load directly or are
+# deterministic derivatives of it.  They are removed from the rules-only
+# ablation so that the middle configuration differs from the workload-aware
+# endpoint by design, rather than merely because a fitted tree happened not to
+# retain a workload split.
+WORKLOAD_PROXY_ATTRIBUTES = frozenset(
+    {
+        "gate_demand",
+        "rmg_demand",
+        "vc_demand",
+        "mt_demand",
+        "gate_utilization",
+        "rmg_utilization",
+        "vc_utilization",
+        "mt_utilization",
+        "target_utilization",
+        "target_demand",
+        "target_utilization_bin",
+        "target_demand_bin",
+        "target_rank",
+        "target_rank_group",
+    }
+)
+WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST = tuple(
+    attribute
+    for attribute in PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+    if attribute not in WORKLOAD_PROXY_ATTRIBUTES
+)
+
+
+def process_tree_parallel_count(tree) -> int:
+    """Return the number of explicit parallel operators in a process tree."""
+
+    from pm4py.objects.process_tree.obj import Operator
+
+    count = 0
+    stack = [tree]
+    while stack:
+        node = stack.pop()
+        if node.operator == Operator.PARALLEL:
+            count += 1
+        stack.extend(node.children)
+    return count
 
 
 def parse_args() -> argparse.Namespace:
@@ -163,13 +209,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--use-workload-features", action=argparse.BooleanOptionalAction, default=True,
                         help="Enable ProSiT workload/queue-length features on the waiting-time and "
                              "resource-selection models (README section 'What the Models Learn'). "
-                             "ADOPTED DEFAULT because it reduced the held-out case-turnaround EMD by "
-                             "20%% on CTB. Use --no-use-workload-features to reproduce the earlier "
-                             "baseline run.")
+                             "Use --no-use-workload-features for the distribution-only comparator.")
+    parser.add_argument(
+        "--workload-blind-attributes",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help=(
+            "Remove demand, utilisation, and their derived rank/bin attributes from "
+            "every event before discovery. This creates the strict rules-only "
+            "ablation and requires --no-use-workload-features."
+        ),
+    )
     parser.add_argument("--out-suffix", type=str, default=None,
                         help="Suffix appended to the prosit_discovery/ folder and sim CSV filename so a "
                              "new run does not overwrite a previous one. Defaults to "
-                             "a calibrated or uncalibrated sequential suffix derived from the "
+                             "a calibrated or uncalibrated Inductive-model suffix derived from the "
                              "selected workload/calibration flags.")
     parser.add_argument(
         "--ctb-calibration",
@@ -177,7 +231,7 @@ def parse_args() -> argparse.Namespace:
         default=True,
         help=(
             "Apply the training-only CTB fidelity calibration: empirical zero-inflated "
-            "arrivals, calibrated data-aware trie routing, non-preemptive completion "
+            "arrivals, native ProSiT routing, non-preemptive completion "
             "across the weekly closure, and minute-resolution output. Default: True."
         ),
     )
@@ -423,8 +477,7 @@ def render_visualisations(train_log, net, im, fm, diagnostic_tree, fig_dir: Path
     except Exception as exc:
         print(f"[figures] dfg_performance failed: {exc}")
 
-    # 5. Raw Inductive-Miner process tree.  This is diagnostic only: the
-    # authoritative simulation model is the sequential variant-trie Petri net.
+    # 5. Process-tree view of the authoritative Inductive-Miner model.
     try:
         from pm4py.visualization.process_tree import visualizer as tree_vis
         gviz = tree_vis.apply(diagnostic_tree)
@@ -493,7 +546,11 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
           f"random_state={args.random_state}) ...")
     print(
         "[prosit] Approved case attributes: "
-        + ", ".join(PROSIT_CASE_ATTRIBUTE_ALLOWLIST)
+        + ", ".join(
+            WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST
+            if args.workload_blind_attributes
+            else PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+        )
     )
     t0 = time.time()
     params.discover_from_eventlog(
@@ -547,9 +604,32 @@ def _read_manifest(path: Path) -> dict:
         return json.load(fh)
 
 
+def _drop_event_attributes(log, attributes: frozenset[str], label: str) -> dict[str, int]:
+    """Remove forbidden attributes from every event and report their counts."""
+
+    removed = Counter()
+    for trace in log:
+        for event in trace:
+            for attribute in attributes:
+                if attribute in event:
+                    del event[attribute]
+                    removed[attribute] += 1
+    if removed:
+        print(
+            f"[{label}] Workload-blind attribute removal: "
+            + ", ".join(f"{name} ({count:,})" for name, count in sorted(removed.items()))
+        )
+    return dict(sorted(removed.items()))
+
+
 def main() -> int:
     args = parse_args()
     import pm4py
+
+    if args.workload_blind_attributes and args.use_workload_features:
+        raise ValueError(
+            "--workload-blind-attributes requires --no-use-workload-features."
+        )
 
     # --- Load logs: prefer XES (Vinci approach) over CSV ---
     if args.xes and args.xes.exists():
@@ -594,25 +674,42 @@ def main() -> int:
         test_log = to_pm4py_log(test_df, "test")
         del test_df
 
+    workload_blind_removal = {"train": {}, "test": {}}
+    if args.workload_blind_attributes:
+        workload_blind_removal = {
+            "train": _drop_event_attributes(
+                train_log, WORKLOAD_PROXY_ATTRIBUTES, "train"
+            ),
+            "test": _drop_event_attributes(
+                test_log, WORKLOAD_PROXY_ATTRIBUTES, "test"
+            ),
+        }
+
     if args.write_xes:
         maybe_write_xes(train_log, DEFAULT_XES_DIR / "s6_train.xes", "train")
         maybe_write_xes(test_log, DEFAULT_XES_DIR / "s6_test.xes", "test")
 
-    # 1. Diagnostic process tree + authoritative sequential control flow.
-    # The raw tree remains useful evidence about what an unconstrained miner
-    # infers, but ProSiT receives a state-machine trie of observed yard
-    # variants.  It therefore cannot skip all yard work or execute two
-    # activities concurrently inside the same truck case.
+    # 1. Discover the authoritative control flow from the order-preserving log.
+    # Sequential generalisation is acceptable for CTB; within-case parallelism
+    # is not.  The explicit operator guard makes that domain requirement
+    # executable rather than relying on visual inspection.
     import pm4py
-    print("[main] Discovering diagnostic process tree (inductive miner) ...")
+    print("[main] Discovering authoritative process tree (inductive miner) ...")
     t0 = time.time()
     diagnostic_tree = pm4py.discover_process_tree_inductive(train_log)
-    net, im, fm, trie_info = build_sequential_variant_trie(train_log)
+    parallel_operators = process_tree_parallel_count(diagnostic_tree)
+    if parallel_operators:
+        raise RuntimeError(
+            "Inductive-Miner control flow contains "
+            f"{parallel_operators} parallel operator(s); CTB requires sequential "
+            "activity execution within each truck case."
+        )
+    net, im, fm = pm4py.convert_to_petri_net(diagnostic_tree)
     coverage = variant_coverage(train_log, test_log)
     print(
-        f"[main] Sequential control flow: {trie_info.train_variants} train variants, "
-        f"{trie_info.places} places, {trie_info.transitions} transitions; "
-        f"unseen holdout cases={coverage['unseen_test_cases']} "
+        f"[main] Inductive control flow: {len(net.places)} places, "
+        f"{len(net.transitions)} transitions, {parallel_operators} parallel operators; "
+        f"unseen holdout variants={coverage['unseen_test_variants']} "
         f"({coverage['unseen_test_case_share']:.3%})"
     )
     print(f"[main] Control-flow discovery done in {time.time() - t0:.1f}s")
@@ -642,15 +739,21 @@ def main() -> int:
     if args.out_suffix is None:
         if args.use_workload_features:
             args.out_suffix = (
-                "_workload_sequential_calibrated"
+                "_workload_inductive_calibrated"
                 if args.ctb_calibration
-                else "_workload_sequential"
+                else "_workload_inductive"
+            )
+        elif args.workload_blind_attributes:
+            args.out_suffix = (
+                "_rules_only_workload_blind_inductive_calibrated"
+                if args.ctb_calibration
+                else "_rules_only_workload_blind_inductive"
             )
         else:
             args.out_suffix = (
-                "_no_workload_sequential_calibrated"
+                "_no_workload_inductive_calibrated"
                 if args.ctb_calibration
-                else "_no_workload_sequential"
+                else "_no_workload_inductive"
             )
     # s6_train.xes is the same persisted training split as s6_train.csv.
     # Do not mislabel an XES-based run as a full-log discovery.
@@ -666,12 +769,18 @@ def main() -> int:
     print(f"[main] Wrote {prosit_dir / 'prosit_conformance.csv'}")
 
     control_flow_contract = {
-        "authoritative_model": "sequential_observed_variant_trie",
-        "diagnostic_model": "inductive_process_tree_not_used_for_simulation",
-        "case_language": ["Gate In", "one_or_more_yard_activities", "Gate Out"],
+        "authoritative_model": "inductive_miner_petri_net",
+        "process_tree": str(diagnostic_tree),
+        "observed_case_language": ["Gate In", "one_or_more_yard_activities", "Gate Out"],
+        "model_language": ["Gate In", "zero_or_more_sequential_yard_activities", "Gate Out"],
         "within_case_parallelism": False,
+        "parallel_operator_count": parallel_operators,
         "cross_case_resource_multitasking": bool(args.enable_multitasking),
-        "trie": trie_info.__dict__,
+        "petri_net": {
+            "places": len(net.places),
+            "transitions": len(net.transitions),
+            "arcs": len(net.arcs),
+        },
         "holdout_variant_coverage": coverage,
     }
     with open(prosit_dir / "control_flow_contract.json", "w") as fh:
@@ -692,8 +801,12 @@ def main() -> int:
         "holdout_used": False,
     }
     if args.ctb_calibration:
-        print("[ctb] Applying training-only arrival/routing/calendar calibration ...")
-        calibration_report = calibrate_ctb_parameters(params, train_log)
+        print("[ctb] Applying training-only arrival/calendar calibration ...")
+        calibration_report = calibrate_ctb_parameters(
+            params,
+            train_log,
+            calibrate_routing=False,
+        )
         calibration_report["enabled"] = True
         calibration_path = prosit_dir / "ctb_calibration.json"
         with open(calibration_path, "w") as fh:
@@ -701,8 +814,7 @@ def main() -> int:
         print(
             "[ctb] Calibration complete: "
             f"arrival P(IAT=0)={calibration_report['arrivals']['zero_probability']:.3%}, "
-            f"routing max error="
-            f"{calibration_report['routing']['max_abs_training_marginal_error']:.2e}, "
+            "routing=native ProSiT discovery, "
             "resource completion calendar=168 h/week"
         )
         print(f"[ctb] Wrote {calibration_path}")
@@ -766,12 +878,17 @@ def main() -> int:
             "min_samples_leaf_cv": args.min_samples_leaf_cv,
             "attribute_mode": args.attribute_mode,
             "use_workload_features": args.use_workload_features,
+            "workload_blind_attributes": args.workload_blind_attributes,
+            "workload_proxy_attributes_removed": sorted(WORKLOAD_PROXY_ATTRIBUTES),
+            "workload_blind_removal_counts": workload_blind_removal,
             "ctb_calibration": args.ctb_calibration,
             "timestamp_resolution": args.timestamp_resolution,
             "out_suffix": args.out_suffix,
             "random_state": args.random_state,
             "prosit_case_attribute_allowlist": list(
-                PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+                WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST
+                if args.workload_blind_attributes
+                else PROSIT_CASE_ATTRIBUTE_ALLOWLIST
             ),
         },
         "control_flow": control_flow_contract,

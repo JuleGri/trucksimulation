@@ -23,11 +23,11 @@
   "files": {
     "CTB_simulation_models_and_what_if.ipynb": {
       "role": "reviewer-facing Run All entry point",
-      "sha256": "301389b0a6de3b555b94d7895310a3c165bc0400d35a3d0b354388cbd77efcfa"
+      "sha256": "3b7977a9612b63eab0b6981e0f1f5000068f3eb0c8ce53a29aadb80de6009d27"
     },
     "reviewer_runner.py": {
       "role": "self-contained model inspection, deterministic execution and exact comparison helper",
-      "sha256": "eab95b63256d6cfe1c5a98e8f2d4f88e53cf81cebf27061becae198b5a261be2"
+      "sha256": "acb9a73e1dc01ecf56b967b622922dc2709d8d9c692ae4935a4e176cd7045978"
     },
     "requirements.txt": {
       "role": "pinned isolated reproduction environment",
@@ -36,6 +36,30 @@
     "models/params_discovered_rules_workload.pkl": {
       "role": "training-only calibrated rules+workload source before the RMG domain cap",
       "sha256": "a008bff5fc8ee9cc97d0e40e96dc91c979fe18face8390fce46708f1a721587a"
+    },
+    "models/params_rules_only_workload_blind.pkl": {
+      "role": "intermediate training-only rules-enabled, workload-blind baseline parameter pickle",
+      "sha256": "da53ad9153e2b8c78f4dacbdedf4b0818d84e50b42872fe72ab7ed7fb112c4aa"
+    },
+    "models/params_rules_only_workload_blind.json": {
+      "role": "portable ProSiT JSON export for the rules-only workload-blind baseline",
+      "sha256": "09b4bba74b92c7ada39546c24a32d51c86c293adfb9a15d461142f220e530b2f"
+    },
+    "models/rules_only_workload_blind_run_summary.json": {
+      "role": "configuration and provenance for the rules-only workload-blind baseline discovery",
+      "sha256": "11e81cb86bbd92073d92babbb528b853d1cc6f336576ff8724b0d61e6d6223d5"
+    },
+    "models/rules_only_workload_blind_conformance.csv": {
+      "role": "train/test conformance for the rules-only workload-blind baseline",
+      "sha256": "05c5bad3d49308023e742374552738235329ae816192b24d407ed797c92fb3bd"
+    },
+    "models/rules_only_workload_blind_ctb_calibration.json": {
+      "role": "CTB calibration companion for the rules-only workload-blind baseline",
+      "sha256": "b944f99d25876af675ef48e1f17f2ca70f351a3745d5d90032da683c75a2f675"
+    },
+    "models/rules_only_workload_blind_control_flow_contract.json": {
+      "role": "control-flow contract for the rules-only workload-blind baseline",
+      "sha256": "a113af6b80e8ce2dc55f6f822f1cd3929988d819e2e7d086f80501edee5a87bb"
     },
     "models/params_baseline_rmg_max_concurrency_3.pkl": {
       "role": "authoritative matched-run baseline with 22 RMG blocks at capacity 3",

@@ -12,7 +12,16 @@ the parent `trucksimulation` repository.
 
 ## Start here
 
-Open `CTB_simulation_models_and_what_if.ipynb` and select **Run All**.
+For a short reviewer-facing local version, open
+`CTB_minimal_prosit_load_and_run.ipynb` and select **Run All**. For Google
+Colab, open `CTB_colab_prosit_load_and_run.ipynb`; its first executable cell is
+Colab-only and mounts Google Drive before running the same saved-model
+reproduction. Both notebooks keep the workflow close to the ProSiT README
+commands: load the Petri net, load saved parameters, demonstrate `to_json()` /
+`from_json()`, run the saved models, and compare the regenerated tables with
+the frozen thesis outputs.
+
+The more detailed audit notebook is `CTB_simulation_models_and_what_if.ipynb`.
 
 The first notebook cell creates an isolated `.reviewer_env` beside the
 notebook and installs the pinned requirements there when necessary. All model
@@ -30,6 +39,9 @@ computer. To test the mechanics more quickly, change `RUN_MODE = "full"` to
 The `models/` directory contains:
 
 - the calibrated `rules+workload` source discovered from the training log;
+- the intermediate `rules-only, workload-blind` baseline configuration, which
+  keeps process-state rules enabled but removes explicit workload features and
+  workload proxy attributes before discovery;
 - the domain-constrained baseline used by the what-if experiment;
 - Scenario A, in which T22 is removed from all RMG resource pools and its
   calendar is closed;
@@ -37,9 +49,12 @@ The `models/` directory contains:
   divided by 1.20; and
 - the common Inductive-Miner Petri net as PNML and a rendered PNG.
 
-The three executable experiment models are the exact frozen parameter pickles
-used to obtain the thesis results. The source model is included to make the
-RMG concurrency correction from 100 to 66 auditable.
+The three executable what-if experiment models are the exact frozen parameter
+pickles used to obtain the thesis scenario results. The source model is
+included to make the RMG concurrency correction from 100 to 66 auditable. The
+rules-only workload-blind model is included as an intermediate baseline for
+inspecting the effect of process-state rules without workload attributes; it is
+not part of the three-scenario what-if run.
 
 ## Serialization contract
 

@@ -1,0 +1,164 @@
+{
+  "contract": [
+    "Gate In",
+    "one_or_more_sequential_yard_events",
+    "Gate Out"
+  ],
+  "real_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "sim_path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated\\sim_baseline_train80_no_rules_inductive_calibrated.csv",
+  "real": {
+    "events": 55360,
+    "cases": 17892,
+    "activities": 11,
+    "gate_only_cases": 0,
+    "invalid_gate_in_count_cases": 0,
+    "invalid_gate_out_count_cases": 0,
+    "wrong_case_boundary_cases": 0,
+    "gate_only_case_examples": [],
+    "invalid_gate_in_examples": [],
+    "invalid_gate_out_examples": [],
+    "wrong_case_boundary_examples": [],
+    "yard_events_per_case": {
+      "min": 1,
+      "max": 4,
+      "mean": 1.0941202772188687
+    },
+    "activity_counts": {
+      "Gate In": 17892,
+      "RMG_receive": 7171,
+      "Gate Out": 17892,
+      "LL_delivery": 3618,
+      "HO2_receive": 1276,
+      "RMG_delivery": 4681,
+      "RMG_mixed": 953,
+      "HO2_mixed": 276,
+      "HO2_delivery": 1449,
+      "LL_receive": 141,
+      "LL_mixed": 11
+    },
+    "overlap_tolerance_min": 2.0,
+    "within_case_overlap_events": 0,
+    "within_case_overlap_cases": 0,
+    "within_case_overlap_case_examples": [],
+    "decreasing_completion_events": 3,
+    "decreasing_completion_cases": 3,
+    "decreasing_completion_case_examples": [
+      "TP_15977962604",
+      "TP_16000912604",
+      "TP_16078752604"
+    ],
+    "negative_service_events": 0,
+    "negative_service_cases": 0,
+    "gate_out_before_final_yard_cases": 0,
+    "gate_out_before_final_yard_examples": []
+  },
+  "sim": {
+    "events": 55044,
+    "cases": 17892,
+    "activities": 11,
+    "gate_only_cases": 12,
+    "invalid_gate_in_count_cases": 0,
+    "invalid_gate_out_count_cases": 0,
+    "wrong_case_boundary_cases": 0,
+    "gate_only_case_examples": [
+      "case_1953",
+      "case_2765",
+      "case_3092",
+      "case_8111",
+      "case_8229",
+      "case_8854",
+      "case_11194",
+      "case_12062",
+      "case_15881",
+      "case_16273",
+      "case_16366",
+      "case_17584"
+    ],
+    "invalid_gate_in_examples": [],
+    "invalid_gate_out_examples": [],
+    "wrong_case_boundary_examples": [],
+    "yard_events_per_case": {
+      "min": 0,
+      "max": 4,
+      "mean": 1.0764587525150906
+    },
+    "activity_counts": {
+      "Gate In": 17892,
+      "RMG_receive": 8252,
+      "LL_delivery": 2424,
+      "RMG_delivery": 4505,
+      "HO2_delivery": 1426,
+      "HO2_receive": 1050,
+      "Gate Out": 17892,
+      "LL_receive": 460,
+      "HO2_mixed": 168,
+      "RMG_mixed": 962,
+      "LL_mixed": 13
+    },
+    "overlap_tolerance_min": 0.0,
+    "within_case_overlap_events": 0,
+    "within_case_overlap_cases": 0,
+    "within_case_overlap_case_examples": [],
+    "decreasing_completion_events": 0,
+    "decreasing_completion_cases": 0,
+    "decreasing_completion_case_examples": [],
+    "negative_service_events": 0,
+    "negative_service_cases": 0,
+    "gate_out_before_final_yard_cases": 0,
+    "gate_out_before_final_yard_examples": []
+  },
+  "sim_hard_failures": {},
+  "duration_audit": {
+    "real": {
+      "service_time": {
+        "n": 55360,
+        "negative": 0,
+        "over_24h": 0,
+        "mean_min": 4.7688222543352605,
+        "p99_min": 45.0,
+        "max_min": 234.0
+      },
+      "case_turnaround": {
+        "n": 17892,
+        "negative": 0,
+        "over_24h": 0,
+        "mean_min": 39.74245472837022,
+        "p99_min": 141.0,
+        "max_min": 318.0
+      }
+    },
+    "sim": {
+      "service_time": {
+        "n": 55044,
+        "negative": 0,
+        "over_24h": 0,
+        "mean_min": 3.8755904367415157,
+        "p99_min": 36.0,
+        "max_min": 172.0
+      },
+      "case_turnaround": {
+        "n": 17892,
+        "negative": 0,
+        "over_24h": 0,
+        "mean_min": 31.813100827185334,
+        "p99_min": 91.0,
+        "max_min": 188.0
+      }
+    }
+  },
+  "case_length_distribution": {
+    "real": {
+      "3": 16234,
+      "4": 1634,
+      "5": 22,
+      "6": 2
+    },
+    "sim": {
+      "2": 12,
+      "3": 16579,
+      "4": 1227,
+      "5": 69,
+      "6": 5
+    }
+  }
+}

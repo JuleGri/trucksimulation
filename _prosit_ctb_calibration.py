@@ -7,9 +7,8 @@ assumptions explicit where the generic defaults do not match the CTB log:
   being smoothed away by a continuous distribution;
 * trucks admitted before the weekly gate closure finish non-preemptively;
   their yard service is not paused until the terminal reopens;
-* data-aware transition weights are multiplicatively calibrated at every
-  sequential-trie prefix so their training-log marginal equals the empirical
-  branching probability while their conditional variation is preserved.
+* optional routing calibration is retained for legacy sequential-trie runs;
+  discovered Inductive-Miner models keep ProSiT's native transition models.
 
 No holdout observation is accepted by the calibration API.  This is important:
 the temporal test split remains a genuine out-of-sample validation set.
@@ -265,18 +264,35 @@ def _calibrate_arrivals(params, train_log) -> dict:
         raise ValueError("No inter-arrival observations remain after robust filtering.")
 
     mean_value = float(np.mean(robust_minutes))
-    empirical_model = DecisionRules()
-    # ``sampled`` is the runtime source used by DecisionRules.  ``dist`` is a
-    # portable fallback for ProSiT JSON, while the authoritative pickle and
-    # calibration audit preserve the zero-inflated empirical sample exactly.
-    empirical_model.rules = {
-        0: {
-            "value": mean_value,
-            "dist": ("fixed", (mean_value,), min(robust_minutes), max(robust_minutes)),
-            "sampled": robust_minutes,
+    if params.rules_mode:
+        empirical_model = DecisionRules()
+        # ``sampled`` is the runtime source used by DecisionRules.  ``dist`` is
+        # a portable fallback for ProSiT JSON, while the authoritative pickle
+        # and calibration audit preserve the zero-inflated sample exactly.
+        empirical_model.rules = {
+            0: {
+                "value": mean_value,
+                "dist": ("fixed", (mean_value,), min(robust_minutes), max(robust_minutes)),
+                "sampled": robust_minutes,
+            }
         }
-    }
-    params.arrival_time_distribution = empirical_model
+        params.arrival_time_distribution = empirical_model
+        runtime_representation = "decision_rules_empirical_sample"
+    else:
+        # ProSiT 1.0.3 expects a five-element distribution tuple whenever
+        # ``rules_mode`` is false.  Keep a compact sentinel in that tuple and
+        # preserve the empirical sample on the authoritative pickle.  The CTB
+        # simulation adapter recognises the sentinel and samples from this
+        # array; the stock engine would otherwise try to unpack DecisionRules.
+        params.arrival_time_distribution = (
+            "ctb_empirical",
+            (),
+            min(robust_minutes),
+            max(robust_minutes),
+            mean_value,
+        )
+        params.ctb_arrival_empirical_sample = robust_minutes
+        runtime_representation = "no_rules_tuple_sentinel"
 
     support = Counter(robust_minutes)
     return {
@@ -286,6 +302,7 @@ def _calibrate_arrivals(params, train_log) -> dict:
         "n_robust_inter_arrivals": len(robust_minutes),
         "mean_working_minutes": mean_value,
         "zero_probability": float(support[0.0] / len(robust_minutes)),
+        "runtime_representation": runtime_representation,
         "support_counts": {
             str(int(value) if float(value).is_integer() else value): int(count)
             for value, count in sorted(support.items())
@@ -318,17 +335,35 @@ def _configure_nonpreemptive_completion(params) -> dict:
     }
 
 
-def calibrate_ctb_parameters(params, train_log) -> dict:
+def calibrate_ctb_parameters(
+    params,
+    train_log,
+    *,
+    calibrate_routing: bool = True,
+) -> dict:
     """Apply all CTB corrections to freshly discovered parameters in place."""
 
     if getattr(params, "ctb_calibration", None):
         raise ValueError("CTB calibration has already been applied to these parameters.")
 
+    routing_report = (
+        _calibrate_routing(params, train_log)
+        if calibrate_routing
+        else {
+            "method": "native_prosit_transition_weight_discovery",
+            "holdout_used": False,
+            "applied": False,
+            "reason": (
+                "Prefix-marginal calibration is specific to the legacy "
+                "sequential trie and is not applied to the Inductive-Miner net."
+            ),
+        }
+    )
     report = {
         "version": CALIBRATION_VERSION,
         "training_traces": int(len(train_log)),
         "holdout_used": False,
-        "routing": _calibrate_routing(params, train_log),
+        "routing": routing_report,
         "arrivals": _calibrate_arrivals(params, train_log),
         "resource_calendars": _configure_nonpreemptive_completion(params),
         "timestamp_observation_model": {
@@ -370,6 +405,7 @@ def simulate_ctb(
     """Run ProSiT reproducibly and apply only the CTB observation model."""
 
     from prosit import SimulatorEngine
+    import prosit.simulator as prosit_simulator
 
     random.seed(seed)
     np.random.seed(seed)
@@ -377,13 +413,67 @@ def simulate_ctb(
 
     # ProSiT 1.0.3 no-rules mode may pass numpy arrays to random.choice().
     original_choice = random.choice
+    original_sampling_from_dist = prosit_simulator.sampling_from_dist
+    original_return_fired_transition = prosit_simulator.return_fired_transition
 
     def safe_choice(sequence):
         if isinstance(sequence, np.ndarray):
             return sequence[np.random.randint(len(sequence))]
         return original_choice(sequence)
 
+    def sampling_with_ctb_empirical(
+        dist,
+        distribution_params,
+        min_value,
+        max_value,
+        mean_value,
+        n_sample=1000,
+    ):
+        if dist == "ctb_empirical":
+            empirical = np.asarray(
+                getattr(params, "ctb_arrival_empirical_sample", []),
+                dtype=float,
+            )
+            if empirical.size == 0:
+                raise ValueError("Missing CTB empirical arrival sample on parameter bundle.")
+            return np.random.choice(empirical, size=n_sample, replace=True)
+        return original_sampling_from_dist(
+            dist,
+            distribution_params,
+            min_value,
+            max_value,
+            mean_value,
+            n_sample=n_sample,
+        )
+
+    def deterministic_return_fired_transition(
+        transition_weights,
+        enabled_transitions,
+    ):
+        """Sample enabled transitions in a stable, process-independent order.
+
+        ProSiT obtains enabled transitions from a set. PM4Py hashes transition
+        objects by identity, so iteration order can change after a model is
+        unpickled in another Python process. Sorting by the Petri-net transition
+        name makes the existing weighted draw reproducible without changing the
+        net, the weights, or the random-number stream.
+        """
+
+        ordered_transitions = sorted(
+            enabled_transitions,
+            key=lambda transition: (
+                str(transition.name),
+                "" if transition.label is None else str(transition.label),
+            ),
+        )
+        return original_return_fired_transition(
+            transition_weights,
+            ordered_transitions,
+        )
+
     random.choice = safe_choice
+    prosit_simulator.sampling_from_dist = sampling_with_ctb_empirical
+    prosit_simulator.return_fired_transition = deterministic_return_fired_transition
     try:
         if t_start is None:
             simulated = engine.apply(n_traces=n_traces)
@@ -391,9 +481,10 @@ def simulate_ctb(
             simulated = engine.apply(n_traces=n_traces, t_start=t_start)
     finally:
         random.choice = original_choice
+        prosit_simulator.sampling_from_dist = original_sampling_from_dist
+        prosit_simulator.return_fired_transition = original_return_fired_transition
 
     return quantize_simulated_timestamps(
         simulated,
         resolution=timestamp_resolution,
     )
-

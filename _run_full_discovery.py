@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-contract-validation", action="store_true")
     parser.add_argument(
         "--validation-label",
-        default="prosit_sequential_calibrated_vs_holdout",
+        default="prosit_inductive_calibrated_vs_holdout",
     )
     return parser.parse_args()
 
@@ -45,14 +45,14 @@ def run_stage(index: int, total: int, name: str, command: list[str]) -> None:
         )
 
 
-def latest_sequential_output() -> tuple[Path, Path]:
+def latest_inductive_output() -> tuple[Path, Path]:
     candidates = list(
         (REPO_ROOT / "baseline" / "discovery_params").glob(
-            "*_train80/prosit_discovery_workload_sequential*/prosit_run_summary.json"
+            "*_train80/prosit_discovery_workload_inductive*/prosit_run_summary.json"
         )
     )
     if not candidates:
-        raise FileNotFoundError("No sequential ProSiT discovery output was created.")
+        raise FileNotFoundError("No Inductive-Miner ProSiT discovery output was created.")
     summary = max(candidates, key=lambda path: path.stat().st_mtime)
     with open(summary, "r") as fh:
         run_summary = json.load(fh)
@@ -121,7 +121,7 @@ def main() -> int:
         discovery.append("--skip-figures")
     stages.append(
         (
-            "Discover, calibrate and simulate the sequential ProSiT model",
+            "Discover, calibrate and simulate the Inductive-Miner ProSiT model",
             discovery,
         )
     )
@@ -130,7 +130,7 @@ def main() -> int:
     for index, (name, command) in enumerate(stages, start=1):
         run_stage(index, total, name, command)
 
-    summary, sim = latest_sequential_output()
+    summary, sim = latest_inductive_output()
     if not args.skip_contract_validation:
         run_stage(
             len(stages) + 1,

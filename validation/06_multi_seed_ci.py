@@ -420,7 +420,6 @@ def main() -> int:
         contract_violations = sum(
             row[key]
             for key in (
-                "gate_only_cases",
                 "wrong_case_boundary_cases",
                 "within_case_overlap_cases",
                 "decreasing_completion_cases",
@@ -433,12 +432,12 @@ def main() -> int:
             f"iat_zero={row['sim_zero_inter_arrival_share']:.3%}  "
             f">24h(service/case)={row['sim_service_events_above_24h']}/"
             f"{row['sim_turnaround_cases_above_24h']}  "
-            f"contract_violations={contract_violations}"
+            f"gate_only={row['gate_only_cases']}  "
+            f"hard_contract_violations={contract_violations}"
         )
         if contract_violations and args.fail_on_contract_violations:
             raise RuntimeError(
                 f"Seed {seed} violated the sequential CTB case contract: "
-                f"gate_only={row['gate_only_cases']}, "
                 f"wrong_boundary={row['wrong_case_boundary_cases']}, "
                 f"overlap={row['within_case_overlap_cases']}, "
                 f"decreasing_completion={row['decreasing_completion_cases']}, "

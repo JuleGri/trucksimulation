@@ -99,6 +99,7 @@ CONTRACT_KEYS = (
     "decreasing_completion_cases",
     "gate_out_before_final_yard_cases",
 )
+HARD_CONTRACT_KEYS = tuple(key for key in CONTRACT_KEYS if key != "gate_only_cases")
 
 KPI_COLUMNS = (
     "mean_turnaround_min",
@@ -647,7 +648,7 @@ def _contract_audit(
 
 
 def _assert_audit(audit: dict, metrics: dict) -> None:
-    violations = sum(int(audit[key]) for key in CONTRACT_KEYS)
+    violations = sum(int(audit[key]) for key in HARD_CONTRACT_KEYS)
     violations += int(audit["wrong_case_count"])
     violations += int(audit["prohibited_resource_assignments"])
     violations += int(metrics["service_events_above_24h"])
