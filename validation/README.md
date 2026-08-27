@@ -1,16 +1,15 @@
 # Validation pipeline
 
-This folder implements the held-out validation stage that was missing from
-the baseline discovery pipeline. It is the response to the Tier 1 review
-items on train/test rigor, distributional validation and sensitivity of
-the transition-baseline choice.
+This folder implements the held-out validation and diagnostic audits for the
+CTB simulation. It covers train/test rigor, distributional validation,
+configuration ablation, temporal transfer, structural repair, bottleneck
+analysis, and sensitivity of the transition-baseline choice.
 
 ## Purpose
 
-The scripts under `baseline/` fit ProSiT-style simulation parameters
-directly on the full CTB event log
-(`data/processed/CTB/s6_eventlog_target_rank_features.csv`). The
-validation pipeline in this folder does three things:
+The authoritative discovery scripts fit ProSiT parameters on the frozen
+temporal training partition. The validation pipeline in this folder does six
+things:
 
 1. Split the real event log at **case level, chronologically** into a
    training portion (used for discovery) and a held-out testing portion
@@ -22,8 +21,12 @@ validation pipeline in this folder does three things:
 3. Produce publication-ready CDF, box and QQ plots for the thesis.
 4. Enforce the CTB case contract: exactly one Gate In, at least one Yard
    activity, exactly one Gate Out, and strictly sequential simulated events.
+5. Separate observed train-to-test change from simulation mismatch and compare
+   the three contextual-expressiveness levels with paired seeds.
+6. Audit bottleneck candidates and a precision-oriented Petri-net repair
+   without silently replacing the automatic discovery result.
 
-An additional script performs a sensitivity analysis on the 10th
+An additional script performs a sensitivity analysis on the 5th
 percentile transition baseline used for enabled-timestamp
 reconstruction.
 
@@ -41,6 +44,31 @@ reconstruction.
 | 10 | `10_compare_rmg_capacity_sensitivity.py` | Joins the original and capped scenario replications by seed, reports the direct cap effect and the cap-by-scenario difference-in-differences with 95% paired intervals. |
 | 11 | `11_receive_delivery_utilization_analysis.py` | Tests the association between target-area utilisation and RMG receive/delivery operational response time. Fits an adjusted model on the temporal training split, clusters uncertainty by calendar day, evaluates predictions on the holdout and checks whether the receive-delivery slope difference replicates. |
 | 12 | `12_audit_prosit_context_rules.py` | Audits every rule in the frozen ProSiT pickle and separates execution-time, waiting-time, resource-selection and transition-routing effects. Reconstructs each transition's process prefix and lists all retained utilisation/demand splits without mutating the model. |
+| 13 | `13_bottleneck_analysis.py` | Decomposes held-out turnaround into recorded service and composite pre-service delay, then ranks frequency-weighted accumulation points without treating them as causal queues. |
+| 14 | `14_temporal_transfer_audit.py` | Compares the observed training and held-out periods: turnaround, yard-service distributions, case mix, target areas, demand and utilisation proxies. |
+| 15 | `15_three_configuration_ablation.py` | Joins identical seeds for no-rules, workload-blind rules and rules+workload and reports paired incremental effects with 95% Student-t intervals. |
+| 16 | `16_gate_only_structural_repair.py` | Exports a separate PNML and ProSiT bundle that removes only the silent gate-only bypass and compares before/after conformance and structure. |
+| 17 | `17_compare_scenario_state_ablation.py` | Compares matched-seed T22 and demand responses between workload-blind rules and rules+workload, including a paired difference-in-differences. |
+| 18 | `18_rmg_capacity_pressure_audit.py` | Tests whether the 20 percent demand intervention approaches the stated capacity of three concurrent RMG tasks per block using held-out offered load and minute-grid overlap diagnostics. |
+
+### Layered validity audits
+
+After the three ten-seed configuration runs exist, reproduce the additional
+audits from the repository root with:
+
+```powershell
+python validation/13_bottleneck_analysis.py
+python validation/14_temporal_transfer_audit.py
+python validation/15_three_configuration_ablation.py
+python validation/16_gate_only_structural_repair.py
+python validation/17_compare_scenario_state_ablation.py
+python validation/18_rmg_capacity_pressure_audit.py
+```
+
+The structural-repair pickle is a robustness model, not a replacement for the
+primary baseline. It must undergo the same simulation and scenario validation
+before it is used operationally. The temporal-transfer audit is descriptive and
+never refits a model on the hold-out.
 
 `run_full_validation.py` orchestrates the current core workflow (split
 consistency check, order-preserving XES export, hard case-contract check,

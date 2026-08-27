@@ -1,0 +1,60 @@
+{
+  "design": "separate precision-oriented structural robustness model",
+  "source_params": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_workload_inductive_calibrated\\prosit_params.pkl",
+  "before": {
+    "train": {
+      "fitness": 1.0,
+      "fit_traces_percent": 100.0,
+      "precision": 0.7842828715419722,
+      "generalization": 0.9723400308839559,
+      "simplicity": 0.5609756097560976,
+      "seconds": 6.162200689315796
+    },
+    "test": {
+      "fitness": 0.9999922234059927,
+      "fit_traces_percent": 99.99441090990386,
+      "precision": 0.7557904162879672,
+      "generalization": 0.9413186600123149,
+      "simplicity": 0.5609756097560976,
+      "seconds": 1.3141000270843506
+    }
+  },
+  "after": {
+    "train": {
+      "fitness": 1.0,
+      "fit_traces_percent": 100.0,
+      "precision": 0.8241507847215119,
+      "generalization": 0.9499524733426169,
+      "simplicity": 0.5813953488372092,
+      "seconds": 5.433358669281006
+    },
+    "test": {
+      "fitness": 0.9999922234059927,
+      "fit_traces_percent": 99.99441090990386,
+      "precision": 0.7938720624058351,
+      "generalization": 0.8859469741292376,
+      "simplicity": 0.5813953488372092,
+      "seconds": 1.5045197010040283
+    }
+  },
+  "repair": {
+    "repair": "split post-Gate-In state by whether LL_mixed has fired",
+    "initial_skip": "skip_1",
+    "exit_skip": "skip_2",
+    "original_loop_entry": "init_loop_3",
+    "added_place": "after_gate_in_without_ll_mixed",
+    "added_transition": "enter_yard_after_initial_skip",
+    "language_effect": "forbids Gate In -> Gate Out while preserving LL_mixed-only cases and all cases with at least one other yard activity"
+  },
+  "added_transition_weight": 1.0,
+  "structure_after": {
+    "places": 8,
+    "transitions": 17,
+    "arcs": 34
+  },
+  "outputs": {
+    "pnml": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\gate_only_structural_repair\\ctb_inductive_gate_only_restricted.pnml",
+    "pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\gate_only_structural_repair\\prosit_params_gate_only_restricted.pkl"
+  },
+  "warning": "The repaired model is not the unchanged discovery result. Its simulation and scenarios must be revalidated before it replaces any primary baseline."
+}
