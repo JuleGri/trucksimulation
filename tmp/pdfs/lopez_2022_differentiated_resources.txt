@@ -1,0 +1,921 @@
+
+
+===== PAGE 1 / 18 =====
+
+Business Process Simulation
+with Diﬀerentiated Resources:
+Does it Make a Diﬀerence?
+Orlenys L´opez-Pintado and Marlon Dumas(B)
+University of Tartu, Tartu, Estonia
+{orlenyslp,marlon.dumas}@ut.ee
+Abstract. Business process simulation is a versatile technique to pre-
+dict the impact of one or more changes on the performance of a pro-
+cess. Mainstream approaches in this space suﬀer from various limitations,
+some stemming from the fact that they treat resources as undiﬀerenti-
+ated entities grouped into resource pools. These approaches assume that
+all resources in a pool have the same performance and share the same
+availability calendars. Previous studies have acknowledged these assump-
+tions, without quantifying their impact on simulation model accuracy.
+This paper addresses this gap in the context of simulation models auto-
+matically discovered from event logs. The paper proposes a simulation
+approach and a method for discovering simulation models, wherein each
+resource is treated as an individual entity, with its own performance and
+availability calendar. An evaluation shows that simulation models with
+diﬀerentiated resources more closely replicate the distributions of cycle
+times and the work rhythm in a process than models with undiﬀerenti-
+ated resources.
+Keywords: Process simulation
+· Resource allocation · Process mining
+1 Introduction
+Business Process (BP) simulation [ 1] is a technique to analyze “what-if” sce-
+narios, such as “what would be the cycle time of a process if the number of
+daily new cases increases by 20%?” (S1) or “what if two resources involved in a
+process become unavailable for an extended period of time?” ( S2).
+The starting point for BP simulation is a simulation model consisting of a
+process model enhanced with parameters capturing the available resource capac-
+ity, activity processing times, arrival rate of new cases, etc. It has been noted
+that existing BP simulation approaches suﬀer from various limitations [ 1,2,8].
+Some of these limitations stem from incompleteness of, or inaccuracies in, the
+BP simulation model. These limitations are partly addressed by data-driven sim-
+ulation methods [ 5,11], which automatically discover and calibrate simulation
+models from execution data (event logs). These methods ensure that the simula-
+tion model is better aligned with the observed reality [1,5,11]. Other limitations
+c⃝ The Author(s) 2022
+C. Di Ciccio et al. (Eds.): BPM 2022, LNCS 13420, pp. 361–378, 2022.
+https://doi.org/10.1007/978-3-031-16103-2
+_24
+
+===== PAGE 2 / 18 =====
+
+362 O. L´ opez-Pintado and M. Dumas
+of BP simulation approaches relate to assumptions made by the underlying BP
+simulator [1,8], most notably the assumption that resources are interchange-
+able entities. Speciﬁcally, mainstream BP simulation approaches, including data-
+driven ones, make the following assumptions:
+A1 Pooled resource allocation. Each resource belongs to one resource pool (e.g.,
+a role or group). Resource pools are disjoint. All instances of an activity are
+allocated to the same resource pool. For example, all instances of tasksCheck
+invoice and Schedule payment are allocated to an Accountant pool.
+A2 Undiﬀerentiated performance. The processing time of an activity does not
+depend on the resource who performs it.
+A3 Undiﬀerentiated availability. All resources in a pool are available for work
+during the same time periods, e.g., Monday to Friday, 9:00–17:00.
+In practice, each (human) resource has their own capabilities, performance,
+and availability. Previous studies have hypothesized that the above assumptions
+aﬀect the accuracy of simulation models [1– 3,8], but without quantifying their
+impact. In this setting, this paper addresses the following question:Do assump-
+tions A1–A3 aﬀect the accuracy of a business process simulation model, and if
+so, to what extent? The paper studies this question in the context of simulation
+models discovered from event logs. To address this question, the paper proposes
+and evaluates: (1) a business process simulation approach with diﬀerentiated
+resources; and (2) an automated method to discover a simulation model with
+diﬀerentiated resources from an event log. In the proposed approach, resources
+are not grouped into pools, but treated as individuals (unpooled allocation), the
+performance of each resource is independent of that of other resources (diﬀeren-
+tiated performance), and each resource may have its own availability calendar
+(diﬀerentiated availability). As a result, a simulation model can be used not only
+to answer what-if scenarios S1 and S2 above, but also scenarios such as: “what
+if resource R is replaced by resource R
+′ with lower performance?” (S3) or “what
+if a resource changes their availability from full-time to part-time?” (S4).
+The paper is structured as follows. Section2 discusses related work. Section3
+formalizes assumptions A1–A3 by presenting a simulation approach with undif-
+ferentiated resources. Section4 presents a simulation approach with diﬀerentiated
+resources, while Sect. 5 proposes a corresponding method to discover simulation
+models. Section6 empirically compares simulation models with diﬀerentiated vs.
+undiﬀerentiated resources, and Sect.7 concludes and sketches future work.
+2 Related Work
+Van der Aalst et al. [1,2] analyze three limitations of BP simulation approaches:
+unreliability of simulation models for short-term prediction, insuﬃcient reliance
+on execution data to construct simulation models, and incorrect modeling of
+resources. The authors emphasize that resources often work part-time and that
+failure to capture this, leads to inaccurate simulations. In [13], the authors study
+the impact of workload on resource performance, i.e., to what extent resource
+
+===== PAGE 3 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 363
+performance varies depending on workload and the impact of this variability on
+simulation accuracy. Our contribution is related to these studies, but we focus
+on limitations that arise when resources are modeled as undiﬀerentiated entities.
+Aﬁﬁ et al. [ 3] note that existing BP simulation approaches, including the
+BPSim simulation modeling standard [16], rely on role-based resource allocation,
+and do not support a wider range of resource allocation styles such as those iden-
+tiﬁed in [ 15]. However, the authors do not quantify the impact of the identiﬁed
+limitations (e.g., role-based allocation) on concrete simulation scenarios.
+Freitas & Pereira [8] reviews ﬁve BP simulation tools. They ﬁnd that these
+tools do not allow one to deﬁne unavailability periods for individual resources.
+However, they do not evaluate the impact of this limitation. Some commercial
+simulation engines such as IBM Websphere Modeler
+1 support the deﬁnition of
+“named resources”, which can have their own timetables (diﬀerentiated avail-
+ability). However, the activity processing times are deﬁned at the level of tasks,
+and hence they do not support diﬀerentiated performance.
+This paper studies the impact of resource diﬀerentiation on simulation models
+discovered from logs. Prior studies on BP simulation model discovery [5,11,14]
+assume that resources are available 24/7. In [7], the authors address this limita-
+tion by integrating a technique for discovering timetables into a simulation model
+discovery pipeline, assuming all resources in a pool have the same timetable.
+3 Simulation Models with Undiﬀerentiated Resources
+A BP simulation model with pooled allocation and undiﬀerentiated resources
+(herein, a classic BP simulation model) consists of a process model M (e.g., a
+BPMN diagram) enhanced with simulation metadata described in Deﬁnition 1.
+Deﬁnition 1 (Classic BP Simulation Model). A classic BP simulation
+model is a tuple < E,A ,G ,F,RPo o ls ,A llo c ,PT,BP,A T,A C>,w h e r eE,A,G
+are respectively the sets of events, activities, and gateways of a BPMN model,F
+is the set of directed ﬂow arcs of a BPMN model, and the remaining elements
+capture simulation parameters as follows:
+1. RPools is a set of resource pools. Each resource pool p ∈ RP represents a
+group of resources. The resource pools are disjoint, i.e.,∀ p
+1,p 2 ∈ RPools :
+p1 ∩ p2 = ∅. Each resource pool is described by the following properties:
+– Size(p) ∈ N is the number of resources in the pool.
+– Ava i l ( p )is a calendar (a set of intervals) during which every resource
+in p is available to perform activity instances.
+– Cost(p) is the cost of each poolp per time unit (e.g., hour).
+2. Alloc : A → RP is a function mapping each activity a ∈ A to one resource
+pool p ∈ RPools. A resource pool can perform many activities.
+3. PT : A →P (R+) is a mapping from each activity a ∈ A to a probability
+density function, modeling the the processing times of activitya.
+1 https://www.ibm.com/support/pages/download-websphere-business-modeler-
+advanced-v70.
+
+===== PAGE 4 / 18 =====
+
+364 O. L´ opez-Pintado and M. Dumas
+4. BP: F → [0,1] is a function that maps each ﬂow f ∈ F s.t., the source of f
+is an element of G to a probability (a.k.a., the branching probability).
+5. AT ∈P (R+) is a probability density function modeling the inter-arrival times
+between consecutive case creations.
+6. AC is calendar (set of intervals) such that cases can only be created during
+an interval in AC.
+Given that in classic BP simulation models, resource pools are disjoint, they
+cannot capture scenarios where participants share their time across multiple
+pools (cf. assumption A1 in Sect.1). Also, since all resources in a pool have the
+same timetable, these models cannot capture scenarios where a pool incorporates
+some part-time resources and some full-time ones (assumption A3). Finally, in
+classic BP simulation models, the processing times of an activity do not depend
+on the resource that performs it. Hence, such models cannot capture scenarios
+where some resources in a pool are faster or slower than others (assumptionA2).
+When executed in a simulation engine, a (classic) BP simulation model pro-
+duces an event log as per Deﬁnition 2. Herein, we call simulated logs those logs
+produced by a simulation andreal logsthose extracted from information systems.
+Deﬁnition 2 (Event log). An event logE is a set of events, each representing
+the execution of an activity instance in a process. An event e ∈ E is a tuple
+e = < α ,r ,τ
+0,τs,τc>,w h e r eα is the label of one activity in a business process
+(i.e., e is an instance of the activity α), r is the resource who performed α, τ0
+is the timestamp in which the activity instance was enabled to be executed, and
+τs, τc are, respectively, the timestamps corresponding to the beginning and end
+of the activity instance. A trace (a.k.a., process case) is a non-empty sequence of
+events t = <e1,e 2, ..., en>, and an event log L = <t1,t 2, ..., tm> is a non-empty
+sequence of traces, each capturing one instance of a process (i.e., a case).
+Various performance metrics can be computed from a log, including:waiting
+time – the time-span from the moment the activity is enabled until the starting
+of the corresponding event; processing time – the time-span between beginning
+and end of the event;cycle time – the diﬀerence between the end time and start
+time of a case; and resource utilization – the ratio between the time a resource
+is busy executing activity instances, divided and its total availability time.
+4 Simulation Models with Diﬀerentiated Resources
+To lift the limitations imposed by assumptionsA1–A3 (cf. Sect.1), we propose
+an approach to BP simulation with diﬀerentiated resources. In this simulation
+model, the notion of resource pool is replaced by that of resource proﬁle.L i k ea
+resource pool, a resource proﬁle models a set of resources that share the same
+availability calendar. However, unlike classic BP simulation models, an activity
+in a process model may be assigned to multiple resource proﬁles and the same
+resource proﬁle may be shared by multiple pools. For example, in a claims han-
+dling process, there may be a resource proﬁle for junior claims handler, another
+
+===== PAGE 5 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 365
+for senior claims handler and a third forlead claims handler, each with diﬀerent
+calendars. Activity Analyze claim may be assigned tojunior claims handler and
+senior claims handler, i.e., an instance of Analyze claim may be performed by
+a junior or by a senior claims handler. Meanwhile, activity Assess claim may
+be assigned to senior claims handler and lead claims handler . Finally, activ-
+ity Approve large claim may be assigned to lead claims handler, i.e., only lead
+claims handlers may perform this activity. Another diﬀerence is that in a classic
+simulation model, each activity is mapped to a distribution of processing times.
+Meanwhile, in a simulation model with diﬀerentiated resources, the distribution
+of processing times depends not only on the activity, but also on the resource
+proﬁle. Thus, the distribution of processing times of the activity Analyze claim
+when assigned to a junior claims handler is diﬀerent than when assigned to a
+senior claims handler, e.g., seniors may be faster, on average, than juniors.
+Deﬁnition 3 (BP simulation model with diﬀerentiated resources). A
+BP simulation model with diﬀerentiated resourcesDSM is a tuple < E,A ,G ,F,
+RProf,BP,A T,A C>,w h e r eE,A,G are the sets of events, activities, and gate-
+ways of a BPMN model, F is the set of directed ﬂow arcs of a BPMN model,
+and the remaining elements capture simulation parameters as follows:
+1. RProf = {r
+1, ..., rn} is a set of resource proﬁles, where n is the number of
+resources in the process, and each resourcer ∈ R is described by:
+– Alloc (r)= {α | α ∈ A} is the set of activities that r can execute,
+– Perf (r, α)= R ×Am →P m(R+) is a mapping from the resourcer to a
+list of density functions over positive real numbers, corresponding to the
+distribution of processing times of each activityα ∈ Alloc,w i t hm being
+the number of activities that r can perform,
+– Ava i l(r) is the calendar (a set of intervals) in which the resource r is
+available to perform each activity α ∈ Alloc,
+– Cost(r) is the cost of the resourcer per time unit (e.g., hour)
+2. BP, AT,a n dAC are deﬁned as in Deﬁnition 1.
+The key diﬀerence between Deﬁnition 3 and Deﬁnition 1 is that instead of
+mapping each activity to a pool, Deﬁnition 1 maps each resource proﬁle to the
+set of activities, and for each activity, it captures the corresponding probability
+density function of processing times. Note that a classic simulation model can be
+converted into a model with diﬀerentiated resources by mapping each resource
+pool to one resource proﬁle. However, a scenario where an activity is assigned to
+multiple resource proﬁles cannot be captured as a classic simulation model. Note
+also that if every resource proﬁle has a size of one (i.e., one proﬁle per resource),
+each resource may have diﬀerent performance and availability. In Sect. 5,w e
+focus on discovering such models with individualized resources.
+The operational semantics of simulation models with diﬀerentiated resources
+is captured by Algorithm 1. This algorithm takes as input a simulation model
+DSM according to Deﬁnition 3, the numberpCases of process instances to sim-
+ulate, and the timestamp startAt of the beginning of the simulation. Like in a
+classic BP simulation engine, the simulation produces a log and the performance
+
+===== PAGE 6 / 18 =====
+
+366 O. L´ opez-Pintado and M. Dumas
+Algorithm 1. Snippet of processes simulation with diﬀerentiated resources
+1: function SimulateProcess(DSM , pCases, startAt)
+2: for each resource r ∈ DSM do
+3: readyAt[r] ← minFrom (Ava i l,s t a r t A t)
+4: diffResQ ← DiffResourceQueue (Alloc, Ava i l, SortingCriteria= min(readyAt))
+5: evtQ ← GenerateAllArrivalEvents (pCases, DSM , AT, AC)
+6: while evtQ not empty do
+7: e ← PopEvent(evtQ)
+8: e[r] ← PopResource(diffResQ, e[α])
+9: e[τs] ← max(e[τ0],r e a d y A t[e[r]])
+10: e[τc] ← e[τs]+ IdleProcessingTime (e[τs], e[r], e[α], Ava i l, Perf)
+11: readyAt[e[r]] ← e[τc]+ IdleTime (r, Ava i l, e[τc ])
+12: UpdateResourceA vailability(diffResQ, e[r])
+13: UpdateSimulatedEventLog(e)
+14: state, enabled ← UpdateProcessState(e[α], e[pState], DSM , BP)
+15: for each α′ ∈ enabled do
+16: nE ← Event(α = α′,τ0 = e[τc ],p St a t e= state)
+17: EnqueueEnabledEvent(evtQ, nE)
+indicators in Sect. 3. Due to space limitations, we illustrate steps related to the
+generation and update of the simulation events, focusing on the functions in Def-
+inition 3, but omitting the details of the data structures and algorithms required
+to handle the event logs, calendars, scheduling, and estimation of performance
+indicators.
+The ﬁrst issue to handle in models with diﬀerentiated resources is that they
+can be shared among several tasks. Unlike undiﬀerentiated models, which allow
+only one pool per activity, multiple resource proﬁles may be allocated to each
+activity in diﬀerentiated scenarios. To address this, we use a multi-queue data
+structure named DiffResourceQueue, initialized in line 4. The queue groups
+the resources by activities according to function Alloc, restricting allocated
+resources to the remaining shared activities. Besides, resources are sorted in
+the queue according to a priority function SortingCriteria given as input.
+By default, the resource sorting criteria consider the minimum timestamp in
+which each resource will be ready to perform an activity, i.e., stored in the map
+readyAt. Thus, the values in the mapreadyAt (initialized in lines 2–3) are calcu-
+lated considering the resources working calendars, given by the function Ava i l,
+and the periods in which resources are busy performing activities during the
+simulation. The support for multiple sorting criteria in DiffResourceQueue
+opens many options for prioritizing and sorting resources following diﬀerent cri-
+teria, e.g., allocate resources according to their expertise given some conditions.
+Next, function GenerateAllArrivalEventsin line 5 produces the initial
+event (see Deﬁnition 2) of each process case to simulate, i.e., according to the
+arrival time distribution AT, in the intervals deﬁned by the arrival calendar
+AC. The queue evtQ stores and retrieves all the simulated events according
+to the timestamp in which the corresponding activity α was enabled. Then the
+simulation proceeds until there is not enabled event inevtQ (line 6). We are using
+the notation e[r], e[α], e[τ
+0], e[τs]a n de[τc] referring respectively to the resource
+allocated, activity name, enabling, starting and completing times of the event e
+(see Deﬁnition 2). Additionally, e[pState] represents the marking over the ﬂow-
+arcs of the corresponding process instance at the moment of the event creation.
+
+===== PAGE 7 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 367
+This marking simulates the token game as speciﬁed in the BPMN standard. For
+each process instance created by the function GenerateAllArrivalEvents,
+it generates tokens that traverse the ﬂow-arcs in the model until reaching the
+end event in the BPMN model. An element in the control ﬂow becomes enabled
+when one or many tokens arrive at its incoming ﬂow-arcs (i.e., according to the
+element execution semantics). Similarly, the execution of an enabled element
+consumes the incoming tokens, generating new ones on its outgoing ﬂow-arcs.
+The queue evtQ only stores enabled events. Thus, the attributes e[r], e[τ
+s]
+and e[τc] are determined and updated once the corresponding event is popped
+from evtQ, i.e., the event is then executed. In lines 7–8 of Algorithm1, the event
+with the lowest enabling timestamp in evQ is allocated to a resource, according
+to availability and allocation criteria passed to the resources queue diffResQ,
+i.e., selecting the participant being available the earliest as default criteria.
+When the event is enabled, the allocated resource may not be according to
+their calendar (and vice-versa). Thus, the starting timestamp of the event relies
+on both task and resource availability (line 9). Next, in line 10, the completion
+timestamp is calculated by the function IdleProcessingTime which adjusts
+the ideal processing time (if the resource works in the task without interruption
+according to Perf), plus the time the resource may rest from their calendar in
+Ava i l. Similarly, functionIdleTime calculates the next timestamp the resource
+is available after completing the task, updating the resource queue accordingly
+(lines 11–12). Finally, lines 14–17 update the process state, retrieving the activ-
+ities enabled after executing the current event, queuing them as events in evtQ
+with enabling time equal to the completion time of the previous event.
+5 Discovering Diﬀerentiated Resources Proﬁles
+This section proposes an approach to discover simulation models with diﬀeren-
+tiated resources described in Sect. 4. Due to space limitations, we focus only
+on the main steps to discover diﬀerentiated resource proﬁles from event logs,
+i.e., to model each resource performance and availability independently. Before
+describing our proposal, Deﬁnition 4 formalizes the weekly calendars, followed
+by Deﬁnition 5 introducing some notations we will use across this section.
+Deﬁnition 4. A weekly calendar ˆC is binary relation W × Δ between the
+set of weekdays, W = {Monday, ..., Sunday}, and a set of time granules
+Δ = {δ1, ..., δn} where ⋂n
+i=1 δi = ∅.E a c ht i m eg r a n u l eδi ∈ Δ is a sorted
+pair of time points <τw
+s ,τw
+c >, such that τw
+s ,τw
+c = <hour, minute, second>,
+hour ∈ [0, ...,23], minute, second∈ [0, ...,60],a n dτw
+s ≤ τw
+c . A calendar entry κ
+is a tuple<ω, τw
+s ,τw
+c > representing a time interval for a given day. For example,
+κ = <Monday, 08:15:00, 12:00:00> describes Monday from 08:15 to 10:30.
+Deﬁnition 5 (Notations).
+– Given an event log L: E is the set of all the events in L, R and A are,
+respectively, the sets of resources and activities in any evente ∈ E. Besides,
+
+===== PAGE 8 / 18 =====
+
+368 O. L´ opez-Pintado and M. Dumas
+Ar = {α ∈ A |∃ e ∈ E,r ∈ R,α ∈ A : r, α ∈ e},a n dEr= {e ∈ E | r ∈
+R ∧ r ∈ e} are the set of activities and events executed by the resource r,
+respectively. With, Eα = {e ∈ E | α ∈ A ∧ α ∈ e} being the set of events,
+which are instances of the activityα,a n dEr,α = {e | e ∈ Er ∩ Eα} the set of
+instances of α executed by the resourcer.
+– Γ is function mapping a timestamp in the event log into a calendar entry
+κ = <ω, τw
+s ,τw
+c >,w h e r e<τw
+s ,τw
+c > spans n minutes. Speciﬁcally, Γ retrieves
+an interval of size n containing the timestamp received as input. Note that,
+Γ retrieves intervals assuming that days are split into intervals of equal size
+n starting from the 00 : 00 : 00 h, e.g., from n = 15 min days are split as
+[00 : 00 : 00 − 00 : 15 : 00),[ 0 0:1 5:0 0 − 00 : 30 : 00), ...,[ 2 3:4 5:0 0 − 00 :
+00 : 00). For example, consider a calendar with time intervals of 15min, for
+the timestamp 2022 − 01 − 01T08 : 12, the function Γ returns the calendar
+entry candidate <Saturday, <08,00,00>, <08,15,00>>.
+– Ωn
+r = {κm(κ) |∀ <τs,τc> ∈ Er,n > 0,κ = Γ(τs,n) ∧ κ = Γ(τc,n)} is a
+multi-set of calendar entry candidates of durationn mapped from the starting
+and ending timestamps of each event executed by the resource r, with the
+supra-index m(κ) being the number of calendar entries κ in Ωn
+r .
+– Ωn
+r,α = {κm | κ ∈ Ωn
+r ∧ α ∼ κ, n > 0} is the subset of Ωn
+r containing all
+the calendar entry candidates that are instances of the activity α,w i t h∼
+representing that an instance of α occurred in the calendar entryκ.
+To discover resource availability calendars, we take inspiration from the app-
+roach in [9], which discovers repetition patterns from a set of time granules with
+a certain level of conﬁdence and support. The latter approach assumes time
+intervals that are covered entirely. This condition does not hold when discovering
+working intervals of a resource, since the event log shows only the start and com-
+pletion timestamps of each event, and gives no information about what happens
+in two timestamps. Also, the start of an event is conditioned by the enablement
+of the related activity, i.e., a resource can be available but still needs to wait to
+start an activity until it becomes enabled in the process. Thus, we redeﬁned the
+conﬁdence and support metrics in [9] to discover calendars over time granules not
+fully described by the input data. Furthermore, we ﬁlter the resources with low
+frequency according to their relative participation, to exclude external resources
+(i.e., resource who seldom participate in the process), as there is insuﬃcient data
+to discover availability calendars for such resources individually.
+Other approaches such as [12] can be used to discover resource availability
+calendars. In this latter work, the authors use the activity waiting and processing
+times of each activity to estimate the intervals resources are available according
+to an input event log. Thus, [ 12] assumes that available resources will work as
+soon as an activity is enabled, and they keep working during the entire activ-
+ity’s execution interval (without any break). In this paper, do not make this
+assumption. Instead, we only assume that the resource was working when the
+activity instance starts and when it completes, and in-between, we consider that
+the resource may or may not be working. In any case, the calendar discovery
+approach in [12] could be used as an alternative to the approach presented here.
+
+===== PAGE 9 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 369
+Deﬁnitions 6, 7,a n d8 describe, respectively, the metrics of conﬁdence, sup-
+port, and resource participation we use to ﬁlter and discover the resource pro-
+ﬁles. The metrics retrieve a real number between 0 (worst assessment) and 1,
+the best possible value. The activity-conditional conﬁdence, given a calendar
+entry κ = <ω, τ
+w
+s ,τw
+c > related to an activity α, measures the ratio between the
+number of times α was started or completed on the weekday ω between τw
+s and
+τw
+c , divided by the total of weekdays ω that α occurred. For example, it mea-
+sures from every Monday a resource was observed executing a given activity,
+how often it happened between 8:00 AM–8:15 AM. Deﬁnition 6 generalizes the
+metric to a set of tasks executed by a resource in the same time granules as the
+maximum between the individual value computed for each activity. The support
+metric computes from all the timestamps a resource was active in the log, what
+ratio is covered by some calendar entry. Finally, the participation metric esti-
+mates the ratio of events performed by a resource compared with the number
+of events executed by the most frequent resource. The comparison is relative to
+the activities each resource can perform. For example, resources r
+1 and r2 may
+execute 10 and 1000 events, respectively. If we comparer1 and r2 globally, then
+r1 has a participation ratio of 0.01 compared tor2. However, ifr1 and r2 execute
+diﬀerent activities, and ifr1 is the only executing all the instances of an activity,
+the relative ratio is 1.0 as r1 is relevant to the activity r1 performs alone.
+Deﬁnition 6. Confidence(r, κ)=
+max
+α ∈ Ar,α ∼ κ
+|Ω n
+r,α |
+|{ωm | ω∈W ∧ ω∈Ω n
+r,α }| computes the
+activity-conditioned conﬁdence of a calendar entryκ = <ω, τw
+s ,τw
+e >.T h em u l t i -
+set in the fraction denominator computes how many times each activity α was
+executed on the weekday ω.
+Deﬁnition 7. Support(r, ˆC)= |{κm | κ∈Ω n
+r ∧κ∈ ˆC}|
+|Ω nr | computes the support of a
+given calendar ˆC, where the multi-set in the fraction numerator computes how
+many calendar entries κ from the multi-set of candidates Ωn
+r are covered by ˆC.
+Deﬁnition 8. RParticipation(r)=
+∑
+α ∈ Ar |Er,α |∑
+α ∈ Ar max
+r′∈ R
+|{Er′,α }| computes the relative
+participation of a resource r. The fraction numerator computes the number of
+events executed by r. The denominator sums up all the events executed by each
+resource who executed the most events for each activity executed byr.
+Algorithm 2 captures the main steps to calculate diﬀerentiated resource pro-
+ﬁles. It takes as input an event log, a BPMN model, the sizen of the granules in
+the calendar, the desired support, conﬁdence, and participation values, and the
+minimum number of data points required to infer the processing-time distribu-
+tions. Line 2 extracts from the log the sets and multi-sets described in Deﬁni-
+tion 5, followed by the initialization of the mappings Alloc, Ava i land Perf
+in Deﬁnition 3. Lines 4–9 discard the resources with low relative participation
+(Deﬁnition 8), storing (in the mapping Ava i l) the discovered calendars of each
+resource over the required threshold. FunctionExtractCalendarEntries,i n
+line 5 transforms the timestamps in which each resource was active into calendar
+
+===== PAGE 10 / 18 =====
+
+370 O. L´ opez-Pintado and M. Dumas
+Algorithm 2. Resource Proﬁles Discovery (from event logs)
+1: function DiscoverResourceProfiles(L, DSM , n, dSupp, dConf , dPart )
+2: ParseEventLog(L) ⊿ To extract sets and multi-sets in Def. 5
+3: Alloc, Ava i l, Perf ←∅ , ∅, ∅
+4: for each r ∈ R do
+5: Ω n
+r ← ExtractCalendarEntries(Er , Γ , n)
+6: if RParticipation(r) ≥ dPart then
+7: Ava i l[r] ← DiscoverCalendar(Ω n
+r , dSupp, dConf )
+8: else
+9: Ava i l[r] ←∅
+10: for each α ∈ A do
+11: discarded ←∅
+12: for each r ∈ R : Ava i l[r]= ∅ and Er,α ̸= ∅ do
+13: discarded.Add(Er,α )
+14: jointR ← MaxDisjointIntervals(discarded)
+15: for each r ∈ jointR do
+16: Ω n
+r ← ExtractCalendarEntries(jointR, Γ , n)
+17: ˆC ← DiscoverCalendar(Ω n
+r , dSupp, dConf )
+18: if ˆC ̸= ∅ then
+19: Ava i l[r].Add( ˆC)
+20: if IsUnallocated(α) then
+21: BuildUnrestrictedCalendar(jointR, Ava i l)
+22: for each r ∈ Ava i l: Ava i l[r] ̸= ∅ do
+23: Alloc[r] ← Ar
+24: for each α ∈ A do
+25: Perf[α].Add(DiscoverProcessingTimes(Eα , R))
+26: return Alloc, Ava i l, Perf
+Algorithm 3. Calendar Discovery
+1: function DiscoverCalendar(Ω n
+r , dSupp, dConf )
+2: ˆC, discarded ←∅ , ∅
+3: for each <ω, τw
+s ,τ w
+c > ∈ Ω n
+r do
+4: if Confidence(<ω, τw
+s ,τ w
+c >, Ω n
+r ) ≥ dConf then
+5: ˆC.Add(<ω, τw
+s ,τ w
+c >)
+6: else
+7: discarded.Add(<ω, ˆτs, ˆτc>)
+8: if Support( ˆC, Ω n
+r ) <d S u p pthen
+9: SortMultisetByMultiplicity(discarded[r], order= decreasing)
+10: for <ω, τw
+s ,τ w
+c > ∈ discarded do
+11: ˆC.Add(<ω, τw
+s ,τ w
+c >)
+12: discarded.Remove(<ω, τw
+s ,τ w
+c >)
+13: if Support( ˆC, Ω n
+r ) ≥ dSupp then
+14: break
+15: return ˆC
+Algorithm 4. Processing Time Distribution Discovery
+1: function DiscoverProcessingTimes(Eα , R, binSize = 50)
+2: ˆD ←∅
+3: pendingResources ←∅
+4: for each r ∈ R do
+5: if |Er,α |≥ binSize then
+6: ˆD[r]= BestFittedDistribution(Er,α , Alloc, binSize)
+7: else
+8: pendingResources.Add(r)
+9: jointD ← BestFittedDistribution(Eα , binSize)
+10: for each r ∈ pendingResources do
+11: ˆD[r] ← jointD
+12: return ˆD
+
+===== PAGE 11 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 371
+entries according to Γ (cf. Deﬁnition 5). Function DiscoverCalendar in line
+7 is described by Algorithm 3.
+To discover a calendar, Algorithm 3 receives a multi-set of calendar entry
+candidates of a given resource r. Then, lines 3–7 iterate over each candidate,
+adding those with conﬁdence above dConf in the calendar ˆC, discarding the
+remaining ones. Next, line 8 veriﬁes if the calendar achieved the required support
+dSupp. If not, the algorithm adds the most frequent entries until reaching the
+required support (lines 9–14). Thus, the algorithm relies on conﬁdence only to
+ﬁlter potential outliers among the entry candidates, prioritizing that the calendar
+always covers the ratio of timestamps described by the support.
+Filtering the resource and calendar entries in lines 6–7 of Algorithm 2 may
+cause the coverage of some tasks to become too low. As a result, an activity
+that is executed rarely or that is executed by external resources (i.e., resources
+from outside the organization, who seldom participate in the process) can lose all
+their resources, if none of them fulﬁlls the participation threshold. This issue is
+addressed by Algorithm 2 in lines 10–21 by grouping the events of the removed
+resources related to each activity and assigning them to aggregated resources.
+Function MaxDisjointIntervals takes those grouped events and: (1) Sort
+them in ascending order of their start timesτ
+s, (2) add evente′ with the highest
+τs, deleting all events whose time interval intersectse′, (3) repeat (1)–(2) until no
+intervals remain. Next, an aggregated resource is created from each set of events
+retrieved. The calendar of the aggregated resource is built from the maximal set
+of mutually disjoint time intervals [4], i.e., by grouping the calendar entries that
+were discarded due to low conﬁdence. Then, lines 15–19 create a calendar for
+each aggregated resource. If none fulﬁlls the conﬁdence and support requirement,
+lines 20–21 retrieve a single calendar as an aggregation of all the discarded events
+of the related activity without checking for conﬁdence and support values.
+Lines 22–23 of Algorithm 2 allocate, to each discovered resource, the activi-
+ties executed by them in the event log. Then, function DiscoverProcessing-
+Times (line 25) estimates the diﬀerentiated resource performance as described
+in Algorithm 4, which from every pair activity resource (lines 4–5), validates the
+number of events extracted fulﬁlls a certain level of signiﬁcancebinSize (above 50
+by default). Resources below the threshold binSize are grouped, with their per-
+formance discovered as an aggregation of all their events (lines 7–11). Function
+BestFittedDistribution adjusts each event duration by the calendar of the
+corresponding resource. Then, it builds a histogram from the event durations and
+applies curve-ﬁtting to ﬁnd a probability distribution, from a library of distribu-
+tions, that best approximates the histogram (the one with lowest residual sum).
+6 Implementation and Evaluation
+We implemented the proposed approach as an open-source (Python-based) sim-
+ulation engine, namely Prosimos, available at https://github.com/Automated
+ProcessImprovement/Prosimos. Prosimos supports the simulation of processes
+with an unpooled allocation model and diﬀerentiated availability and perfor-
+mance as per Sect.4. Besides, it provides a component to automatically discover
+
+===== PAGE 12 / 18 =====
+
+372 O. L´ opez-Pintado and M. Dumas
+T able 1. Characteristics of the business processes used in the experimentation.
+LO-SL/ LO-SH/ LO-ML/ LO-MH/ P-EX/ PRD/ C-DM/ INS/ BPI-12/ BPI-17
+T races 1000 1000 1000 1000 608 225 954 1182 8616 30 276
+Events 9844 9782 9768 9569 9119 4503 4962 23 141 59 302 240 854
+Activities 15 15 15 15 23 23 18 11 8 9
+Resources 19 19 34 34 47 54 337 125 68 141
+Simulation Time 1.27 1.24 1.25 1.24 1.07 0.72 0.73 1.29 10.32 41.97
+a simulation model with diﬀerentiated resources from an event log, as described
+in Sect. 5. Prosimos takes as input a BPMN process model with simulation
+parameters as per Deﬁnition 3 (encoded in JSON format). Like other simulation
+engines, Prosimos produces an event log and a set of performance indicators
+such as waiting, processing, and cycle times, and resource utilization.
+Using Prosimos, we conducted an empirical evaluation aimed at answer-
+ing the following sub-questions derived from the question posed in Sect.1: EQ1
+What impact does unpooled resource allocation have compared to pooled allo-
+cation? EQ2 What impact does diﬀerentiated resource performance have com-
+pared to undiﬀerentiated performance? EQ3 What impact does diﬀerentiated
+resource availability have compared to undiﬀerentiated availability?
+Datasets. We use ﬁve simulated (synthetic) logs and ﬁve real-life ones. Since our
+proposal does not deal with process model discovery, we use the BPMN models
+generated from the input logs using the Apromore open-source platform,
+2,w h i c h
+we manually adjusted to obtain 90% replay-based ﬁtness. Table 1 gives descrip-
+tive statistics of the employed logs, including number of traces and events and
+number of activities and resources. Row “simulation time” shows the average
+execution times (in seconds) across ﬁve simulation runs.
+The ﬁrst four event logs were obtained by simulating a Loan Origination
+(LO) process model using Apromore. The model contains 15 tasks assigned to 5
+resource pools. We ﬁrst simulated the model by assigning the same calendar to
+all resource pools. Using this single-calendar (S) model, we generated two logs:
+one where the resource utilization of each pool is around 50% (Low Utilization
+– L) and another with a resource utilization of 80% (High Utilization – H). The
+simulation parameters of the H model were identical to the ones of the L model,
+except that we adjusted the case arrival rate to obtain higher resource utilization.
+To test the techniques in the presence of multiple calendars, we simulated the
+same model after assigning diﬀerent (overlapping) calendars to each of the ﬁve
+resource pools. We simulated this multi-calendar (M) model twice: once with
+a low utilization (L) and once with high utilization (H). This procedure led to
+four simulated logs: LO-SL, LO-SH, LO-ML, LO-MH. The ﬁfth log (purchasing-
+example (P-EX)) is part of the academic material of the Fluxicon Disco tool.
+3
+The ﬁrst real-life log (PRD) is a log of a manufacturing process.4. The second
+and third are anonymized real-life logs from private processes. TheC-DM comes
+2 https://apromore.com.
+3 https://ﬂuxicon.com/academic/material/ .
+4 https://doi.org/10.4121/uuid:68726926-5ac5-4fab-b873-ee76ea412399 .
+
+===== PAGE 13 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 373
+from an academic recognition process executed at a Colombian University. The
+INS log belongs to an insurance claims process. The fourth real-life log is a
+subset of the BPIC-2012 log 5 – of a loan application process from a Dutch
+ﬁnancial institution. We focused on the subset of this log consisting of activities
+that have both start and end timestamps. Similarly, we used the equivalent
+subset of the BPIC-2017 log
+6, which is an updated version of the BPI-2012 log
+(extracted in 2017 instead of 2012). We extracted the subsets of the BPI-2012
+and BPI-2017 logs by following the recommendations provided by the winning
+teams of the BPIC-2017 challenge.
+7
+Experiment Setup and Goodness Measures.To address questionsEQ1–EQ3 ,w e
+discovered ﬁve simulation models from each log using the following approaches:
+– SP-NP-NA corresponds to an unpooled allocation with undiﬀerentiated per-
+formances and availability. We allocate the resources into a single pool, where
+each resource can execute the same activities as in the log. The resources share
+an aggregated calendar built from the entire log. The processing time of each
+activity is discovered by aggregating all its instances without considering the
+resource who executes them.
+– MP-NP-NA represents a pooled resource allocation with undiﬀerentiated
+resource proﬁles. Resources are grouped into disjoint pools assigned to one or
+several activities according to [5]. Each resource pool shares a single calendar
+and shares processing time distribution functions for each related activity,
+i.e., built by aggregating the events of the resources in the pool.
+– MP-DP-NA is a pooled resource allocation with diﬀerentiated performance
+and undiﬀerentiated availability. We retain the pools and calendars discov-
+ered for MP-NP-NA. However, we extract diﬀerentiated processing time
+distributions for each pair activity-resource.
+– MP-NP-DA is pooled resource allocation with undiﬀerentiated performance
+and diﬀerentiated availability. We retain the pools and processing-time dis-
+tributions discovered for MP-NP-NA. However, we extract a diﬀerentiated
+calendar from the activity instances of each resource in the pool.
+– SP-DP-DA corresponds to the unpooled resource allocation with diﬀerenti-
+ated resources and performances proposed in this paper.
+We assessed the goodness of the discovered models by simulating them using
+Prosimos and measuring the distance between the simulated logs and the orig-
+inal ones. Camargo et al. [ 5] propose several measures to assess the goodness
+of simulation models discovered from data. These measures cover two dimen-
+sions: the control-ﬂow and the temporal dimension. The techniques proposed in
+this paper do not aﬀect the control ﬂow. They only deal with resource perfor-
+mance and availability. Accordingly, we evaluate them using temporal measures.
+In line with [ 6], we compare simulated and real logs by extracting temporal
+5 https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f .
+6 https://doi.org/10.4121/uuid:5f3067df-f10b-45da-b98b-86ae4c7a310b .
+7 https://www.win.tue.nl/bpi/doku.php?id=2017:challenge.
+
+===== PAGE 14 / 18 =====
+
+374 O. L´ opez-Pintado and M. Dumas
+histograms from each log and computing the Earth Movers’ Distance (EMD)
+between these histograms. We use two EMD metrics, namely EMD-CT and
+EMD-WR. EMD-CT compares the distributions of cycle time of the traces
+in the logs. This metric captures to what extent the total durations produced by
+the simulation model resemble those in the real log. To calculate theEMD-CT,
+we group the cycle times in the real log into 100 equidistant bins. Then, we
+discretize the simulated log by grouping the cycle times of its traces into bins
+of the same width as those of the real log. We then measure the EMD between
+these histograms. The second metric (EMD-WR) compares the distribution of
+timestamps of the events in the two logs. This measure allows us to assess if
+the simulated and the real log capture similar work rhythms. To calculate the
+EMD-WR, we transform each log into a histogram by extracting the start and
+end timestamps of each event in the log, and we group the resulting set of times-
+tamps by hour. We then calculate the EMD between the resulting histograms.
+The EMD is deﬁned on an absolute dataset-dependent scale. Thus, EMD
+distances should not be used to compare the performance of the approach across
+multiple logs. Below, we use the EMD metrics to assess the relative performance
+of multiple simulation discovery approaches within a given dataset.
+The selection of parameters for simulation model discovery may impact the
+accuracy. Choosing a small granule size, e.g.,n = 60 s, may lead to a fragmented
+calendar with many intervals. Conversely, a large value, e.g., n =2 4h ,m a y
+lead to unrealistic calendars in which resources are always available. With a
+low support threshold, the algorithm may discard many timestamps in the log,
+leading to low coverage of the observed events. To mitigate these issues, we run a
+grid search over a range of parameters to ﬁnd a conﬁguration with low conﬁdence
+(to ﬁlter outliers), high support (to cover a representative set of events), and mid-
+to-low resource participation (to discard resources that rarely participate in the
+process). The grid search returned a granule size of 60 min for all experiments.
+The conﬁdence values ranged from 0.1 to 0.5, and the support and resource
+participation ranged between 0.5 and 1.0.
+Results. Tables2 and 3 show the results of theEMD-CT and EMD-WR met-
+rics, respectively. The results of theSP-NP-NA models illustrate that unpooled
+resource allocations with undiﬀerentiated resource proﬁles yield, on average, poor
+results on both metrics. This suggests that undiﬀerentiated availability and per-
+formance may lead to less accurate results, especially when resources have con-
+siderable diﬀerences in availability and performance. Another drawback of this
+unpooled approach, due to the activities sharing resources, is that resources
+may become busy executing an activity that they execute rarely. Thus, increas-
+ing the waiting times of other shared activities (with higher frequencies) due
+to the unavailability of the resource. This problem may have more impact on
+processes with external resources. Still, these unpooled resource allocations with
+undiﬀerentiated resources may perform well in processes where resources have
+similar calendars and performance, as shown in the BPI challenge logs.
+Comparing the pooled models MP-NP-NA, MP-DP-NA,a n dMP-NP-
+DA is not straightforward. On average, they exhibited better results than the
+
+===== PAGE 15 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 375
+T able 2. Results of the EMD-CT metric.
+LO-SL/ LO-SH/ LO-ML/ LO-MH/ P-EX/ PRD/ C-DM/ INS/ BPI-12/ BPI-17 Mean
+SP-NP-NA 4.49 3.83 15.77 35.1 17.54 21.73 10.53 11.24 10.04 3.95 13.42
+MP-NP-NA 3.77 3.58 4.64 14.44 15.11 17.2 10.53 11.28 9.99 3.94 9.45
+MP-DP-NA 3.65 4.15 7.35 17.72 15.54 18.1 10.53 11.23 9.98 3.95 10.22
+MP-NP-DA 4.31 6.06 4.64 8.5 10.49 18.32 10.02 11.25 6.55 3.85 8.4
+SP-DP-DA 2.19 1.82 2.44 4.9 10.26 7.32 8.83 3.33 3.84 1.32 4.63
+T able 3. Results of the EMD-WR metric.
+LO-SL/ LO-SH/ LO-ML/ LO-MH/ P-EX/ PRD/ C-DM/ INS/ BPI-12/ BPI-17 Mean
+SP-NP-NA 491.4 264.5 341.4 195.1 1728.8 511.9 302.7 9244.1 2510.3 5177.0 2076.7
+MP-NP-NA 375.1 276.2 369.5 64.5 1755.7 518.0 254.8 9176.4 2545.8 5141.5 2047.8
+MP-DP-NA 507.5 207.6 344.2 64.9 1722.7 447.5 266.9 9178.5 2518.9 5134.5 2039.3
+MP-NP-DA 402.5 273.1 388.5 169.5 1807.7 467.1 347.1 9384.5 2638.4 5129.9 2100.8
+SP-DP-DA 378.4 273.5 331.3 76.7 1692.2 216.8 238.7 8510.9 2628.9 5277.4 1962.5
+unpooled and undiﬀerentiated model SP-NP-NA. The latter is a consequence
+of the pooled models preventing the issue of resources allocated to low-frequency
+tasks (outliers), but at the cost of not modeling processes with resources shared
+among tasks. Also, in pooled models, the similarity criteria used to group the
+resources adjust the data points to discover the aggregated calendars and pro-
+cessing time distributions, leading to more accurate approximations. The exper-
+iment shows that, on average, the model MP-NP-DA gets better values for
+the EMD-CT metric than the models MP-NP-NA and MP-DP-NA. Sug-
+gesting that a pooled model with diﬀerentiated availability and undiﬀerentiated
+performance approximates trace cycle times better than the baseline of pooled
+allocation with undiﬀerentiated resources. In contrast, the pooled model with
+undiﬀerentiated availability and diﬀerentiated performance MP-DP-NA per-
+forms better on the metric EMD-WR than MP-NP-DA and MP-NP-NA.
+As highlighted in Table2, the unpooled model SP-DP-DA with fully diﬀer-
+entiated performance and availability yields the best results w.r.t. metricEMD-
+CT. On average, the values achieved bySP-DP-DA are twice better thanMP-
+NP-NA and almost three times better than SP-NP-NA. This shows that ﬁl-
+tering resources with low resource participation (Deﬁnition 8), combined with
+diﬀerentiated modeling of performance and availability, heightens the temporal
+accuracy of the discovered simulation models. With respect to metric EMD-
+WR (Table3), the unpooled models with diﬀerentiated resource performance
+and availability exhibited the best average results. Here, diﬀerences are not as
+signiﬁcant as with the cycle time estimations. However, unlike with the EMD-
+CT, histograms built for the metricEDM-WR are also impacted by the inter-
+arrival times discovered. For example, assume the discovered inter-arrival inter-
+vals would produce more dispersed starting events in the simulation than in the
+actual process. Consequently, it may lead to a shift in the timestamps of the sub-
+sequently simulated events. The EMD-WR metric compares the exact times-
+tamps in which each event occurs. Then, a shift of those events may have a more
+signiﬁcant impact on the metric evaluation than in theEMD-CT metric, which
+
+===== PAGE 16 / 18 =====
+
+376 O. L´ opez-Pintado and M. Dumas
+compares the trace durations without taking into account the exact timestamps
+involved. The inter-arrival time discovery is orthogonal to the primary goal of this
+paper, thus, kept as future work [10].
+8
+To summarize, with respect to question EQ1, unpooled models oﬀer the
+best results. However, as expected, these models perform poorly when the pro-
+cess involves homogeneous resource pools. Regarding questions EQ2–EQ3,t h e
+experiments show that, on average, models with diﬀerentiated performance yield
+better results (w.r.t. replicating the work rhythm) than undiﬀerentiated models.
+Conversely, models with diﬀerentiated availability are able to better replicate the
+cycle times. If we only take into account one dimension at a time (diﬀerentiated
+performance or availability), we do not observe signiﬁcant accuracy improve-
+ments (w.r.t. to models with undiﬀerentiated resources). Instead, the experi-
+ments show that modeling diﬀerentiated performance and availability together
+yield the most visible improvements, both when it comes to replicating the cycle
+time distribution and the work rhythm.
+Threats to Validity. The evaluation reported above is potentially aﬀected by
+the following threats to validity: (1) Internal validity : the experiments rely
+only on ten events logs. The results could diﬀer on other datasets. To mitigate
+this limitation, we selected logs with diﬀerent sizes and characteristics and from
+diﬀerent domains. (2) Construct validity : we used two measures of goodness
+based on histogram abstractions. The results could be diﬀerent if we employed
+other measures, e.g. similarity measures between time series based on dynamic
+time warping. (3) Ecological validity: the evaluation compares the simulation
+results against the original log. While this allows us to measure how well the
+simulation models replicate the as-is process, it does not allow us to assess the
+accuracy improvements of using diﬀerentiated resources in a what-if setting, i.e.,
+predicting the performance of the process after a change.
+7 Conclusion
+The paper outlined an approach to discover simulation models where each
+resource may have its own performance proﬁle (diﬀerentiated performance) and
+its own calendar (diﬀerentiated availability). The paper empirically shows that
+models with diﬀerentiated performance and availability produce simulation logs
+that are closer to the actual logs from which the simulation model is discovered.
+The proposal has a few limitations that warrant further research. First, to
+estimate inter-arrival times, it applies curve-ﬁtting to the data series consisting of
+the start time of the ﬁrst activity instance of each trace. However, the actual case
+creation time may be earlier than the start time of the ﬁrst activity instance. This
+limitation may be tackled by using specialized approaches such as the one in [10].
+Second, the approach to discover availability calendars is designed to discover
+8 We estimate the inter-case arrival distribution by applying curve-ﬁtting to the data
+series consisting of the start time of each trace. Branching probabilities are estimated
+by replaying the log over the model and counting the conditional ﬂow traversals.
+
+===== PAGE 17 / 18 =====
+
+Business Process Simulation with Diﬀerentiated Resources 377
+calendars with weekly periodicity. In practice, the availability of a resource may
+vary across the year (e.g. diﬀerent availability in summer months than in winter
+ones), or across a month (e.g., diﬀerent availability at the start than at the
+end of a month). Another future work direction is to discover calendars with
+more complex periodicity. Third, the approach for calendar discovery relies on
+three parameters: conﬁdence, support, and resource participation. In the current
+implementation, we apply a grid search over narrow parameter ranges to ﬁnd an
+optimal conﬁguration. Another future work direction is to enhance the approach
+with a hyperparameter tuning algorithm to explore large conﬁguration spaces.
+Reproducibility. The experiments on public datasets may be reproduced
+by cloning the repository https://github.com/AutomatedProcessImprovement/
+Prosimos (tag bpm2022) and following the instructions given thereon.
+Acknowledgment. Work funded by European Research Council (PIX project).
+References
+1. van der Aalst, W.M.P.: Business process simulation survival guide. In: vom Brocke,
+J., Rosemann, M. (eds.) Handbook on Business Process Management 1. IHIS, pp.
+337–370. Springer, Heidelberg (2015). https://doi.org/10.1007/978-3-642-45100-
+3 15
+2. van der Aalst, W.M.P., Nakatumba-Nabende, J., Rozinat, A., Russell, N.: Business
+process simulation: how to get it right? In: vom Brocke, J., Rosemann, M. (eds.)
+Handbook on Business Process Management 1, pp. 313–338. Springer, Heidelberg
+(2010). https://doi.org/10.1007/978-3-642-00416-2
+15
+3. Aﬁﬁ, N., Awad, A., Abdelsalam, H.M.: RBPSim: a resource-aware extension of
+BPSim using workﬂow resource patterns. In: ZEUS 2018, pp. 32–39 (2018)
+4. Agarwal, P.K., van Kreveld, M.J., Suri, S.: Label placement by maximum inde-
+pendent set in rectangles. Comput. Geom. 11(3–4), 209–218 (1998)
+5. Camargo, M., Dumas, M., Gonz´alez, O.: Automated discovery of business process
+simulation models from event logs. Decis. Support Syst. 134, 113284 (2020)
+6. Camargo, M., Dumas, M., Rojas, O.G.: Learning accurate business process simu-
+lation models from event logs via automated process discovery and deep learning.
+In: Franch, X., Poels, G., Gailly, F., Snoeck, M. (eds.) CAiSE 2022, pp. 55–71.
+Springer, Cham (2022). https://doi.org/10.1007/978-3-031-07472-1 4
+7. Estrada-Torres, B., Camargo, M., Dumas, M., Garc´ ıa-Ba˜nuelos, L., Mahdy, I.,
+Yerokhin, M.: Discovering business process simulation models in the presence of
+multitasking and availability constraints. Data Knowl. Eng. 134, 101897 (2021)
+8. Freitas, A.P., Pereira, J.L.M.: Process simulation support in BPM tools: the case
+of BPMN (2015)
+9. Li, Y., Wang, X.S., Jajodia, S.: Discovering temporal patterns in multiple granu-
+larities. In: TSDM 2000 Workshops, pp. 5–19 (2000)
+10. Martin, N., Depaire, B., Caris, A.: Using event logs to model interarrival times in
+business process simulation. In: BPM 2015 Workshops, pp. 255–267 (2015)
+11. Martin, N., Depaire, B., Caris, A.: The use of process mining in business process
+simulation model construction - structuring the ﬁeld. Bus. Inf. Syst. Eng. 58(1),
+73–87 (2016)
+
+===== PAGE 18 / 18 =====
+
+378 O. L´ opez-Pintado and M. Dumas
+12. Martin, N., Depaire, B., Caris, A., Schepers, D.: Retrieving the resource availability
+calendars of a process from an event log. Inf. Syst. 88, 101463 (2020)
+13. Nakatumba, J., Westergaard, M., van der Aalst, W.M.P.: Generating event logs
+with workload-dependent speeds from simulation models. In: Bajec, M., Eder, J.
+(eds.) CAiSE 2012. LNBIP, vol. 112, pp. 383–397. Springer, Heidelberg (2012).
+https://doi.org/10.1007/978-3-642-31069-0 31
+14. Rozinat, A., Mans, R.S., Song, M., van der Aalst, W.: Discovering simulation
+models. Inf. Syst. 34(3), 305–327 (2009)
+15. Russell, N., van der Aalst, W.M.P., ter Hofstede, A.H.M., Edmond, D.: Workﬂow
+resource patterns: identiﬁcation, representation and tool support. In: Pastor, O.,
+Falc˜ao e Cunha, J. (eds.) CAiSE 2005. LNCS, vol. 3520, pp. 216–232. Springer,
+Heidelberg (2005). https://doi.org/10.1007/11431855 16
+16. Workﬂow Management Coalition: Business process simulation speciﬁcation, v2.0
+(2016). https://www.bpsim.org/speciﬁcations/2.0/WFMC-BPSWG-2016-01.pdf
+Open Access This chapter is licensed under the terms of the Creative Commons
+Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/),
+which permits use, sharing, adaptation, distribution and reproduction in any medium
+or format, as long as you give appropriate credit to the original author(s) and the
+source, provide a link to the Creative Commons license and indicate if changes were
+made.
+The images or other third party material in this chapter are included in the
+chapter’s Creative Commons license, unless indicated otherwise in a credit line to the
+material. If material is not included in the chapter’s Creative Commons license and
+your intended use is not permitted by statutory regulation or exceeds the permitted
+use, you will need to obtain permission directly from the copyright holder.

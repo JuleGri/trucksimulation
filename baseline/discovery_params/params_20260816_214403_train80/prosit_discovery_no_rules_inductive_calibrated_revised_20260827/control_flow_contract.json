@@ -1,0 +1,29 @@
+{
+  "authoritative_model": "inductive_miner_petri_net",
+  "process_tree": "->( 'Gate In', X( tau, 'LL_mixed' ), X( tau, *( X( 'HO2_receive', 'RMG_mixed', 'HO2_mixed', 'LL_receive', 'HO2_delivery', 'RMG_receive', 'RMG_delivery', 'LL_delivery' ), tau ) ), 'Gate Out' )",
+  "observed_case_language": [
+    "Gate In",
+    "one_or_more_yard_activities",
+    "Gate Out"
+  ],
+  "model_language": [
+    "Gate In",
+    "zero_or_more_sequential_yard_activities",
+    "Gate Out"
+  ],
+  "within_case_parallelism": false,
+  "parallel_operator_count": 0,
+  "cross_case_resource_multitasking": true,
+  "petri_net": {
+    "places": 7,
+    "transitions": 16,
+    "arcs": 32
+  },
+  "holdout_variant_coverage": {
+    "train_variants": 70,
+    "test_variants": 53,
+    "unseen_test_variants": 10,
+    "unseen_test_cases": 10,
+    "unseen_test_case_share": 0.0005589090096132349
+  }
+}

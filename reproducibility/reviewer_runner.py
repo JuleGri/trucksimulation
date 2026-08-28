@@ -28,11 +28,20 @@ PACKAGE_ROOT = Path(__file__).resolve().parent
 RUNTIME_ROOT = PACKAGE_ROOT / "runtime"
 MODELS_DIR = PACKAGE_ROOT / "models"
 EXPECTED_DIR = PACKAGE_ROOT / "expected_results"
+THESIS_RESULTS_DIR = PACKAGE_ROOT / "thesis_results"
 OUTPUTS_DIR = PACKAGE_ROOT / "outputs"
+
+# Jupyter and Colab may save execution counts and outputs back into a notebook
+# while it is running. These two interface files are therefore intentionally
+# excluded from the frozen-artifact integrity check.
+MUTABLE_NOTEBOOKS = {
+    "CTB_colab_prosit_load_and_run.ipynb",
+    "CTB_local_prosit_load_and_run.ipynb",
+}
 
 MODEL_FILES = {
     "discovered_source": MODELS_DIR / "params_discovered_rules_workload.pkl",
-    "rules_only_workload_blind": MODELS_DIR / "params_rules_only_workload_blind.pkl",
+    "rules_only_workload_blind": MODELS_DIR / "params_rules_only_revised.pkl",
     "baseline": MODELS_DIR / "params_baseline_rmg_max_concurrency_3.pkl",
     "t22_closed": MODELS_DIR / "params_t22_closed.pkl",
     "demand_plus_20pct": MODELS_DIR / "params_demand_plus_20pct.pkl",
@@ -40,6 +49,13 @@ MODEL_FILES = {
 
 RMG_ACTIVITIES = ("RMG_receive", "RMG_delivery", "RMG_mixed")
 EXPERIMENT_MODELS = ("baseline", "t22_closed", "demand_plus_20pct")
+
+ANALYSIS_MODEL_FILES = {
+    "no_rules": MODELS_DIR / "params_no_rules.pkl",
+    "rules_only": MODELS_DIR / "params_rules_only_revised.pkl",
+    "rules_workload": MODELS_DIR / "params_discovered_rules_workload.pkl",
+    "precision_repair": THESIS_RESULTS_DIR / "structural_repair" / "prosit_params_gate_only_restricted.pkl",
+}
 
 
 def sha256(path: Path) -> str:
@@ -61,6 +77,8 @@ def verify_package_files() -> pd.DataFrame:
     manifest = load_manifest()
     rows: list[dict[str, Any]] = []
     for relative, metadata in manifest["files"].items():
+        if relative in MUTABLE_NOTEBOOKS:
+            continue
         path = PACKAGE_ROOT / relative
         exists = path.is_file()
         actual = sha256(path) if exists else None
@@ -87,6 +105,17 @@ def load_models() -> dict[str, Any]:
     verify_package_files()
     models: dict[str, Any] = {}
     for name, path in MODEL_FILES.items():
+        with path.open("rb") as handle:
+            models[name] = pickle.load(handle)
+    return models
+
+
+def load_analysis_models() -> dict[str, Any]:
+    """Load the three state-ablation bundles and the structural repair."""
+
+    verify_package_files()
+    models: dict[str, Any] = {}
+    for name, path in ANALYSIS_MODEL_FILES.items():
         with path.open("rb") as handle:
             models[name] = pickle.load(handle)
     return models
@@ -237,7 +266,9 @@ def assert_model_contracts(models: dict[str, Any]) -> pd.DataFrame:
     demand = models["demand_plus_20pct"]
     signatures = {name: petri_net_signature(model) for name, model in models.items()}
     checks = {
-        "all stored parameter bundles use the identical Petri net": len(set(signatures.values())) == 1,
+        "source and three scenario bundles use the identical Petri net": len(
+            {signatures[name] for name in ("discovered_source", "baseline", "t22_closed", "demand_plus_20pct")}
+        ) == 1,
         "baseline RMG capacity is 22 x 3 = 66": model_summary({"x": baseline}).iloc[0]["aggregate_rmg_max_concurrency"] == 66,
         "source overlap-derived RMG capacity is 100": model_summary({"x": source}).iloc[0]["aggregate_rmg_max_concurrency"] == 100,
         "T22 is absent from every scenario-A RMG pool": all(
@@ -520,3 +551,120 @@ def package_versions() -> pd.DataFrame:
     return pd.DataFrame(
         [{"package": name, "version": metadata.version(name)} for name in packages]
     )
+
+
+def frozen_evidence_inventory() -> pd.DataFrame:
+    """List the non-confidential evidence shipped for every thesis claim."""
+
+    rows = []
+    for path in sorted(THESIS_RESULTS_DIR.rglob("*")):
+        if path.is_file():
+            rows.append(
+                {
+                    "file": path.relative_to(PACKAGE_ROOT).as_posix(),
+                    "size_kb": round(path.stat().st_size / 1024, 1),
+                    "sha256": sha256(path),
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def reconstruct_historical_ablation() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Recompute the three-configuration headline means and paired contrasts.
+
+    The per-seed tables are outputs of validation against the confidential
+    hold-out log. Shipping them permits exact arithmetic reconstruction without
+    disclosing terminal records. It does not claim to rerun event-level
+    validation from the raw log.
+    """
+
+    from scipy.stats import t
+
+    folders = {
+        "no_rules": THESIS_RESULTS_DIR / "historical" / "no_rules",
+        "rules_only": THESIS_RESULTS_DIR / "historical" / "rules_only",
+        "rules_workload": THESIS_RESULTS_DIR / "historical" / "rules_workload",
+    }
+    metrics = (
+        "case_turnaround_emd_min",
+        "case_turnaround_sim_mean",
+        "case_turnaround_sim_p90",
+        "yard_service_time_emd_frequency_weighted_min",
+        "yard_activity_rate_l1_error",
+        "gate_only_cases",
+    )
+    replications = {
+        name: pd.read_csv(folder / "mc_replications.csv")
+        for name, folder in folders.items()
+    }
+
+    summary_rows = []
+    for config, frame in replications.items():
+        for metric in metrics:
+            values = frame[metric].astype(float).dropna()
+            half_width = float(t.ppf(0.975, len(values) - 1) * values.std(ddof=1) / np.sqrt(len(values)))
+            summary_rows.append(
+                {
+                    "configuration": config,
+                    "metric": metric,
+                    "n": len(values),
+                    "mean": float(values.mean()),
+                    "ci95_lo": float(values.mean() - half_width),
+                    "ci95_hi": float(values.mean() + half_width),
+                }
+            )
+
+    contrast_rows = []
+    for contrast, left_name, right_name in (
+        ("rules_only - no_rules", "rules_only", "no_rules"),
+        ("rules_workload - rules_only", "rules_workload", "rules_only"),
+    ):
+        paired = replications[left_name].merge(
+            replications[right_name], on="seed", suffixes=("_left", "_right"), validate="one_to_one"
+        )
+        for metric in metrics:
+            values = paired[f"{metric}_left"] - paired[f"{metric}_right"]
+            half_width = float(t.ppf(0.975, len(values) - 1) * values.std(ddof=1) / np.sqrt(len(values)))
+            contrast_rows.append(
+                {
+                    "contrast": contrast,
+                    "metric": metric,
+                    "n": len(values),
+                    "mean_delta": float(values.mean()),
+                    "ci95_lo": float(values.mean() - half_width),
+                    "ci95_hi": float(values.mean() + half_width),
+                    "resolved": bool(values.mean() - half_width > 0 or values.mean() + half_width < 0),
+                }
+            )
+    return pd.DataFrame(summary_rows), pd.DataFrame(contrast_rows)
+
+
+def load_claim_evidence() -> dict[str, Any]:
+    """Load the compact evidence objects behind the manuscript's main claims."""
+
+    def read_json(relative: str) -> Any:
+        with (THESIS_RESULTS_DIR / relative).open(encoding="utf-8") as handle:
+            return json.load(handle)
+
+    evidence: dict[str, Any] = {
+        "temporal_transfer": read_json("temporal_transfer/temporal_transfer_summary.json"),
+        "structural_repair": read_json("structural_repair/structural_repair_summary.json"),
+        "bottleneck": read_json("bottleneck/bottleneck_analysis_summary.json"),
+        "capacity_pressure": read_json("capacity_pressure/rmg_capacity_pressure_summary.json"),
+        "bottleneck_ranking": pd.read_csv(
+            THESIS_RESULTS_DIR / "bottleneck" / "activity_bottleneck_summary.csv"
+        ),
+        "capacity_by_block": pd.read_csv(
+            THESIS_RESULTS_DIR / "capacity_pressure" / "rmg_block_capacity_pressure.csv"
+        ),
+    }
+    for state in ("rules_only", "rules_workload"):
+        folder = THESIS_RESULTS_DIR / "scenarios" / state
+        if folder.is_dir():
+            evidence[f"scenario_deltas_{state}"] = pd.read_csv(
+                folder / "scenario_paired_delta_summary.csv"
+            )
+    did = THESIS_RESULTS_DIR / "scenario_state_ablation" / "scenario_response_difference_in_differences.csv"
+    if did.is_file():
+        evidence["scenario_state_ablation"] = pd.read_csv(did)
+    return evidence

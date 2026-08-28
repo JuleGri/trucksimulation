@@ -1,0 +1,134 @@
+{
+  "design": "observed training period versus chronologically held-out period",
+  "train": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_train.csv",
+  "test": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "turnaround": {
+    "train_n": 71568,
+    "test_n": 17892,
+    "train_mean_min": 37.29291023921306,
+    "test_mean_min": 39.74245472837022,
+    "train_median_min": 29.0,
+    "test_median_min": 32.0,
+    "train_p90_min": 67.0,
+    "test_p90_min": 71.0,
+    "wasserstein_min": 3.234979320366644,
+    "mean_shift": {
+      "difference_test_minus_train": 2.4495444891571623,
+      "ci95_lo": 2.0029887339621215,
+      "ci95_hi": 2.896100244352203,
+      "welch_df": 28903.869011334977
+    },
+    "p90_shift": {
+      "difference_test_minus_train": 4.0,
+      "bootstrap_repetitions": 1000,
+      "ci95_lo": 3.0,
+      "ci95_hi": 6.0
+    }
+  },
+  "yard_service_frequency_weighted_wasserstein_min": 2.131317445425338,
+  "yard_service_frequency_weighted_mean_shift_min": 2.11993365498154,
+  "categorical_case_drift": [
+    {
+      "attribute": "process_flow_type",
+      "total_variation_distance": 0.07216912586630897,
+      "largest_share_shift_level": "receive",
+      "largest_share_shift_pp": -7.216912586630897
+    },
+    {
+      "attribute": "primary_target_area",
+      "total_variation_distance": 0.10170746702436843,
+      "largest_share_shift_level": "T15",
+      "largest_share_shift_pp": -3.708361278783814
+    }
+  ],
+  "numeric_case_drift": [
+    {
+      "attribute": "n_stops",
+      "train_mean": 1.0723647440196735,
+      "test_mean": 1.0918846411804157,
+      "mean_shift_test_minus_train": 0.019519897160742206,
+      "standardized_mean_shift": 0.07328198686375287,
+      "wasserstein_distance": 0.019519897160742206
+    },
+    {
+      "attribute": "n_deliveries",
+      "train_mean": 0.5631287726358148,
+      "test_mean": 0.6476078694388554,
+      "mean_shift_test_minus_train": 0.08447909680304055,
+      "standardized_mean_shift": 0.1456577762576608,
+      "wasserstein_distance": 0.08473060585736669
+    },
+    {
+      "attribute": "n_receives",
+      "train_mean": 0.617273082942097,
+      "test_mean": 0.5518108651911469,
+      "mean_shift_test_minus_train": -0.06546221775095018,
+      "standardized_mean_shift": -0.12629349117873842,
+      "wasserstein_distance": 0.0654901632014307
+    },
+    {
+      "attribute": "gate_utilization",
+      "train_mean": 0.586554735356584,
+      "test_mean": 0.5498118450892598,
+      "mean_shift_test_minus_train": -0.036742890267324135,
+      "standardized_mean_shift": -1.0953529652355394,
+      "wasserstein_distance": 0.03674578541599398
+    },
+    {
+      "attribute": "rmg_utilization",
+      "train_mean": 0.5595452478761458,
+      "test_mean": 0.5312881781706111,
+      "mean_shift_test_minus_train": -0.028257069705534654,
+      "standardized_mean_shift": -0.6747471205367849,
+      "wasserstein_distance": 0.030006361735163876
+    },
+    {
+      "attribute": "vc_utilization",
+      "train_mean": 0.4507823147216633,
+      "test_mean": 0.4792867942082921,
+      "mean_shift_test_minus_train": 0.02850447948662882,
+      "standardized_mean_shift": 0.5305153205558784,
+      "wasserstein_distance": 0.04169143477833461
+    },
+    {
+      "attribute": "mt_utilization",
+      "train_mean": 0.8256253814553991,
+      "test_mean": 0.693913095307321,
+      "mean_shift_test_minus_train": -0.13171228614807806,
+      "standardized_mean_shift": -2.3541951533257484,
+      "wasserstein_distance": 0.131712286148078
+    },
+    {
+      "attribute": "gate_demand",
+      "train_mean": 128.20234993293093,
+      "test_mean": 134.60078079588646,
+      "mean_shift_test_minus_train": 6.398430862955536,
+      "standardized_mean_shift": 0.12823804200961345,
+      "wasserstein_distance": 8.183513302034429
+    },
+    {
+      "attribute": "rmg_demand",
+      "train_mean": 100.08393835233625,
+      "test_mean": 100.35577297116028,
+      "mean_shift_test_minus_train": 0.27183461882403037,
+      "standardized_mean_shift": 0.007150812875481907,
+      "wasserstein_distance": 3.071567739771965
+    },
+    {
+      "attribute": "vc_demand",
+      "train_mean": 20.117844986586178,
+      "test_mean": 23.525582942097024,
+      "mean_shift_test_minus_train": 3.4077379555108465,
+      "standardized_mean_shift": 0.2958598169915934,
+      "wasserstein_distance": 3.4130213223787162
+    },
+    {
+      "attribute": "mt_demand",
+      "train_mean": 19.180687737536328,
+      "test_mean": 25.83313547954393,
+      "mean_shift_test_minus_train": 6.6524477420076025,
+      "standardized_mean_shift": 0.6545762417916646,
+      "wasserstein_distance": 6.770219371786275
+    }
+  ]
+}

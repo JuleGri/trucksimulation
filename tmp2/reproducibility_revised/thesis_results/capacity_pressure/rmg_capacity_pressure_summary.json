@@ -1,0 +1,22 @@
+{
+  "design": "held-out block-level offered-load diagnostic; scenario utilization holds routing and service distributions fixed and scales arrivals only",
+  "log": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "horizon_start": "2026-04-20 18:17:00",
+  "horizon_end": "2026-04-30 11:54:00",
+  "horizon_hours": 233.61666666666667,
+  "capacity_per_block": 3,
+  "demand_multiplier": 1.2,
+  "rmg_events": 12805,
+  "blocks": 21,
+  "highest_pressure_block": "T13",
+  "highest_baseline_nominal_utilization": 0.42191624456017696,
+  "highest_scenario_nominal_utilization": 0.5062994934722124,
+  "smallest_multiplier_to_mean_saturation": 2.370138654041258,
+  "blocks_with_observed_minutes_above_capacity": 12,
+  "limitations": [
+    "The calculation is a utilization diagnostic, not a queueing-time estimate.",
+    "The demand multiplier assumes unchanged block routing and service times.",
+    "Minute-resolved timestamps can create or hide short overlaps.",
+    "Recorded org:resource values are block-level pools, not crane trajectories."
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "generated_at": "2026-08-27T12:53:02.893516Z",
+  "train_csv": "data\\processed\\CTB\\xes_files\\s6_train.xes",
+  "test_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_test.csv",
+  "paramset_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80",
+  "prosit_output_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated_revised_20260827",
+  "hyperparameters": {
+    "max_depth_tree": 0,
+    "min_samples_leaf_cv": [
+      50,
+      100,
+      200
+    ],
+    "attribute_mode": "empirical",
+    "use_workload_features": false,
+    "workload_blind_attributes": false,
+    "workload_proxy_attributes_removed": [
+      "gate_demand",
+      "gate_utilization",
+      "mt_demand",
+      "mt_utilization",
+      "rmg_demand",
+      "rmg_utilization",
+      "target_demand",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group",
+      "target_utilization",
+      "target_utilization_bin",
+      "vc_demand",
+      "vc_utilization"
+    ],
+    "workload_blind_removal_counts": {
+      "train": {},
+      "test": {}
+    },
+    "ctb_calibration": true,
+    "timestamp_resolution": "minute",
+    "out_suffix": "_no_rules_inductive_calibrated_revised_20260827",
+    "random_state": 42,
+    "prosit_case_attribute_allowlist": [
+      "process_flow_type",
+      "n_containers",
+      "n_stops",
+      "n_deliveries",
+      "n_receives",
+      "has_hazardous",
+      "has_reefer",
+      "full_ratio",
+      "visit_complexity",
+      "gate_demand",
+      "rmg_demand",
+      "vc_demand",
+      "mt_demand",
+      "gate_utilization",
+      "rmg_utilization",
+      "vc_utilization",
+      "mt_utilization",
+      "primary_target_area",
+      "target_area",
+      "target_utilization",
+      "target_demand",
+      "target_utilization_bin",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group"
+    ]
+  },
+  "control_flow": {
+    "authoritative_model": "inductive_miner_petri_net",
+    "process_tree": "->( 'Gate In', X( tau, 'LL_mixed' ), X( tau, *( X( 'HO2_receive', 'RMG_mixed', 'HO2_mixed', 'LL_receive', 'HO2_delivery', 'RMG_receive', 'RMG_delivery', 'LL_delivery' ), tau ) ), 'Gate Out' )",
+    "observed_case_language": [
+      "Gate In",
+      "one_or_more_yard_activities",
+      "Gate Out"
+    ],
+    "model_language": [
+      "Gate In",
+      "zero_or_more_sequential_yard_activities",
+      "Gate Out"
+    ],
+    "within_case_parallelism": false,
+    "parallel_operator_count": 0,
+    "cross_case_resource_multitasking": true,
+    "petri_net": {
+      "places": 7,
+      "transitions": 16,
+      "arcs": 32
+    },
+    "holdout_variant_coverage": {
+      "train_variants": 70,
+      "test_variants": 53,
+      "unseen_test_variants": 10,
+      "unseen_test_cases": 10,
+      "unseen_test_case_share": 0.0005589090096132349
+    }
+  },
+  "ctb_calibration": {
+    "version": 1,
+    "training_traces": 71568,
+    "holdout_used": false,
+    "routing": {
+      "method": "native_prosit_transition_weight_discovery",
+      "holdout_used": false,
+      "applied": false,
+      "reason": "Prefix-marginal calibration is specific to the legacy sequential trie and is not applied to the Inductive-Miner net."
+    },
+    "arrivals": {
+      "method": "robust_empirical_working_minute_pmf",
+      "holdout_used": false,
+      "n_raw_inter_arrivals": 71567,
+      "n_robust_inter_arrivals": 71530,
+      "mean_working_minutes": 0.6830420802460506,
+      "zero_probability": 0.5509716202991751,
+      "runtime_representation": "no_rules_tuple_sentinel",
+      "support_counts": {
+        "0": 39411,
+        "1": 24833,
+        "2": 3747,
+        "3": 1536,
+        "4": 733,
+        "5": 439,
+        "6": 276,
+        "7": 176,
+        "8": 115,
+        "9": 75,
+        "10": 64,
+        "11": 32,
+        "12": 27,
+        "13": 15,
+        "14": 15,
+        "15": 11,
+        "16": 11,
+        "17": 4,
+        "18": 7,
+        "19": 3
+      }
+    },
+    "resource_calendars": {
+      "method": "continuous_nonpreemptive_completion_after_admission",
+      "holdout_used": false,
+      "arrival_calendar_unchanged": true,
+      "original_active_slots_per_week": {
+        "Res.GateIn": 127,
+        "Res.GateOut": 128,
+        "LL": 127,
+        "HO2": 126,
+        "T13": 127,
+        "T14": 126,
+        "T16": 127,
+        "T24": 127,
+        "T17": 126,
+        "T12": 126,
+        "T21": 126,
+        "T15": 127,
+        "T20": 126,
+        "T11": 126,
+        "T27": 125,
+        "T23": 125,
+        "T22": 126,
+        "T10": 125,
+        "T18": 124,
+        "T06": 126,
+        "T09": 126,
+        "T07": 126,
+        "T08": 124,
+        "T26": 123,
+        "T19": 125,
+        "T25": 126
+      },
+      "calibrated_active_slots_per_week": 168,
+      "interpretation": "The gate calendar still controls admission. Resources finish work on trucks already inside instead of pausing an activity until the next opening window."
+    },
+    "timestamp_observation_model": {
+      "resolution": "minute",
+      "method": "floor",
+      "reason": "All CTB source timestamps are recorded at minute resolution."
+    },
+    "enabled": true
+  },
+  "discovery_seconds": 485.0222101211548,
+  "conformance": [
+    {
+      "log": "train",
+      "fitness_log": 1.0,
+      "fitness_perc_fit_traces": 100.0,
+      "fitness_average_trace": 1.0,
+      "precision_token": 0.7842828715419722,
+      "compute_seconds": 3.8895044326782227,
+      "generalization": 0.9723400308839559,
+      "simplicity": 0.5609756097560976
+    },
+    {
+      "log": "test",
+      "fitness_log": 0.9999922234059927,
+      "fitness_perc_fit_traces": 99.99441090990386,
+      "fitness_average_trace": 0.9999930136373798,
+      "precision_token": 0.7557904162879672,
+      "compute_seconds": 1.313866376876831,
+      "generalization": 0.9413186600123149,
+      "simplicity": 0.5609756097560976
+    }
+  ],
+  "simulation": {
+    "n_traces": 17892,
+    "n_events": 55009,
+    "t_start": "2026-04-20T18:17:00",
+    "output_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated_revised_20260827\\sim_baseline_train80_no_rules_inductive_calibrated_revised_20260827.csv",
+    "random_seed": 42,
+    "timestamp_resolution": "minute"
+  },
+  "parameter_artifacts": {
+    "authoritative_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated_revised_20260827\\prosit_params.pkl",
+    "portable_prosit_json": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated_revised_20260827\\prosit_params.json",
+    "calibration_companion": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_no_rules_inductive_calibrated_revised_20260827\\ctb_calibration.json",
+    "note": "The pickle is authoritative for calibrated simulation because ProSiT's JSON schema omits empirical sampled arrays. The calibration companion records the complete compact arrival PMF and routing audit."
+  }
+}

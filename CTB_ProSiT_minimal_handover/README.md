@@ -1,35 +1,41 @@
-# CTB ProSiT minimal reviewer handover
+# CTB ProSiT reproduction
 
-Open `CTB_ProSiT_minimal_loader.ipynb` from this folder and choose **Run All**.
-The notebook uses ProSiT's documented loading pattern:
+This folder contains the three final simulation models used in the thesis:
 
-```python
-params = SimulatorParameters(net, initial_marking, final_marking)
-params.from_json(JSON_FILE)
-simulator = SimulatorEngine(params)
-```
+- the calibrated baseline;
+- the T22-closure scenario; and
+- the 20% demand-increase scenario.
 
-`models/ctb_inductive_miner.pnml` is the shared Petri net. The three JSON files
-are the final baseline, T22-pool reallocation, and +20% demand models.
+Open either `CTB_ProSiT_Colab.ipynb` or `CTB_ProSiT_Local.ipynb` and select
+**Run All**. The full run simulates 17,892 cases for each model with the ten
+matched seeds 42--51. It takes approximately 30 minutes.
 
-## Why JSON is included
+## What is loaded
 
-PNML provides only the process structure. JSON stores the learned ProSiT
-parameters needed to inspect how the model routes cases, selects resources,
-applies calendars/capacities, and samples arrival, service and waiting times.
-Together they allow a reviewer to reconstruct and inspect each ProSiT model
-using the upstream API.
+The PNML file contains the common Petri-net control flow. The JSON files are
+readable ProSiT parameter exports and are loaded with the documented
+`SimulatorParameters.from_json()` method. The PKL files preserve the exact
+calibrated Python objects used for the thesis runs, including empirical sample
+arrays that are not restored completely by ProSiT 1.0.3 JSON import. Therefore
+JSON is used for inspection and PKL for exact numerical reproduction. Only
+load the PKL files supplied in this folder.
 
-The JSON files are intentionally **inspection files**, not a claim of bitwise
-numerical replication. Standard ProSiT JSON omits cached stochastic `sampled`
-arrays. CTB's empirical attribute tuples also contain missing values; these
-are encoded as JSON `null` so `from_json()` can load the files. Exact reruns of
-the archived thesis tables need the frozen binary bundles and controlled
-runner retained in the main project.
+## What the notebook does
 
-## Google Drive
+1. installs the pinned environment;
+2. loads the PNML and all three JSON exports;
+3. loads the exact PKL models;
+4. checks the two intervention definitions;
+5. runs 10 matched seeds for all three models;
+6. calculates the five reported result tables; and
+7. compares every fresh table with `expected_results/`.
 
-Upload this complete folder, then download it locally and open the notebook in
-Jupyter. If using Google Colab, mount Google Drive, set `ROOT` in the second
-cell to this folder's Drive path, and run all cells. The first cell uses the
-same `prosit-pm==1.0.3` installation pattern as the ProSiT documentation.
+Successful completion ends with five `values_match = True` rows and a maximum
+absolute numerical difference of `0.0`. New files are written only to
+`outputs/full/` (or `outputs/smoke/` when the short test is selected).
+
+## Scope
+
+The notebook reproduces the final simulations from frozen models. It does not
+repeat discovery or event-level validation because the confidential CTB event
+log is not distributed.

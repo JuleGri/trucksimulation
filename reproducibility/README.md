@@ -1,118 +1,14 @@
-# CTB ProSiT model and scenario reproduction
+# CTB ProSiT reproduction
 
-This folder is the reviewer-facing reproduction package for the CTB thesis.
-It is intentionally separate from model discovery and raw-data preparation.
-The saved models are loaded directly, inspected, simulated with the published
-settings, and compared with the frozen result tables.
+Upload or copy this directory as one folder. It contains two notebooks:
 
-The folder is self-contained and may be copied to Google Drive on its own. It
-includes a frozen three-file runtime containing the exact metric, contract and
-CTB simulation-call code needed by the notebook; it does not import code from
-the parent `trucksimulation` repository.
+- `CTB_local_prosit_load_and_run.ipynb` for a local Python 3.11 Jupyter environment.
+- `CTB_colab_prosit_load_and_run.ipynb` for Google Colab. Upload the folder to `MyDrive/reproducibility` and select the Colab runtime version stated in the notebook.
 
-## Start here
+Choose **Run All**. Both notebooks verify the saved files, load the Petri net and ProSiT parameters, demonstrate the documented JSON interface, reconstruct the non-confidential thesis evidence, and rerun the saved workload-aware baseline and the two what-if models. The full scenario run uses 10 matched seeds and 17,892 cases for each of three models and can take about 30 minutes.
 
-For a short reviewer-facing local version, open
-`CTB_minimal_prosit_load_and_run.ipynb` and select **Run All**. For Google
-Colab, open `CTB_colab_prosit_load_and_run.ipynb`; its first executable cell is
-Colab-only and mounts Google Drive before running the same saved-model
-reproduction. Both notebooks keep the workflow close to the ProSiT README
-commands: load the Petri net, load saved parameters, demonstrate `to_json()` /
-`from_json()`, run the saved models, and compare the regenerated tables with
-the frozen thesis outputs.
+The raw CTB event log cannot be distributed. Results that require the real hold-out log are therefore recalculated from the included per-seed validation outputs. The saved baseline and what-if models are simulated again from the verified PKL files and compared with the frozen thesis tables.
 
-The more detailed audit notebook is `CTB_simulation_models_and_what_if.ipynb`.
+PNML stores the control flow. JSON is included for readable inspection and the ProSiT `to_json()` / `from_json()` interface. The verified PKL files are the authoritative executable state because the ProSiT 1.0.3 JSON representation does not preserve all empirical sampled arrays used by the CTB calibration.
 
-The first notebook cell creates an isolated `.reviewer_env` beside the
-notebook and installs the pinned requirements there when necessary. All model
-inspection and simulation commands run in that environment as subprocesses;
-the active Jupyter kernel is never modified and does not need to be restarted.
-The first run therefore needs internet access to obtain the pinned packages.
-Python 3.11 or 3.12 is required.
-The default is the complete thesis reproduction: 3 models x 10 matched seeds x
-17,892 cases. The original run took approximately 30 minutes on the author's
-computer. To test the mechanics more quickly, change `RUN_MODE = "full"` to
-`RUN_MODE = "smoke"` in the configuration cell.
-
-## Included models
-
-The `models/` directory contains:
-
-- the calibrated `rules+workload` source discovered from the training log;
-- the intermediate `rules-only, workload-blind` baseline configuration, which
-  keeps process-state rules enabled but removes explicit workload features and
-  workload proxy attributes before discovery;
-- the domain-constrained baseline used by the what-if experiment;
-- Scenario A, in which T22 is removed from all RMG resource pools and its
-  calendar is closed;
-- Scenario B, in which empirical working-time inter-arrival samples are
-  divided by 1.20; and
-- the common Inductive-Miner Petri net as PNML and a rendered PNG.
-
-The three executable what-if experiment models are the exact frozen parameter
-pickles used to obtain the thesis scenario results. The source model is
-included to make the RMG concurrency correction from 100 to 66 auditable. The
-rules-only workload-blind model is included as an intermediate baseline for
-inspecting the effect of process-state rules without workload attributes; it is
-not part of the three-scenario what-if run.
-
-## Serialization contract
-
-ProSiT documents `SimulatorParameters.to_json()` and `from_json()` as its
-portable save/load interface. The notebook demonstrates and audits this
-interface. For the CTB bundle, `to_json()` succeeds, but `from_json()` cannot
-parse empirical attribute-tuple keys that contain `nan`. ProSiT 1.0.3 also
-deliberately omits each decision-rule leaf's runtime `sampled` array from JSON.
-The CTB calibration uses those arrays, especially for the empirical arrival
-model. Therefore:
-
-- PNML is the portable control-flow representation;
-- JSON is generated for human inspection and API demonstration; and
-- the trusted pickle files are authoritative for exact numerical
-  reproduction.
-
-Python pickle is version-specific and can execute code during loading. Load
-these files only from this trusted package and verify their SHA-256 hashes with
-the notebook before unpickling them.
-
-## Outputs
-
-Notebook-generated files are written under `outputs/`. A complete run creates
-fresh replication, contract, KPI, and paired-delta tables. The final notebook
-cell compares them with `expected_results/` and raises an error if they differ.
-
-The raw CTB event log is not required: simulation starts from the frozen
-models, while the frozen result tables provide the numerical target for the
-replication check.
-
-## Google Drive handoff
-
-Upload the complete `reproducibility/` folder, including `models/`,
-`expected_results/`, and `runtime/`. Do not upload `.reviewer_env/`,
-`__pycache__/`, or `outputs/`; they are machine-specific or regenerated by
-**Run All** and are excluded by the supplied `.gitignore`. The four model
-pickles occupy approximately 95 MB, so Google Drive may take a moment to
-synchronise them. The recipient should download the folder locally before
-opening the notebook, because repeated simulation writes files below
-`outputs/`.
-
-## Fixed-seed execution contract
-
-The reviewer runner canonicalises enabled Petri-net transitions by their
-stable transition name immediately before ProSiT performs its existing
-weighted draw. This is necessary because ProSiT 1.0.3 obtains enabled
-transitions from a set and PM4Py hashes transition objects by in-memory
-identity. Without canonicalisation, a reloaded model can consume the same
-random-number stream in a different transition order, even when Python and
-NumPy receive the same seed. The wrapper changes neither the Petri net nor its
-transition weights; it only makes the published fixed-seed contract stable
-across Python processes. The patch is contained in `reviewer_runner.py` and
-does not modify the thesis simulation source files.
-
-## Scope of the scenarios
-
-The scenarios are executable model interventions, not claims about physical
-terminal causality. T22 is a statistical resource-pool reallocation, without
-container relocation or crane travel. The demand scenario changes working-time
-arrival intensity while retaining the gate calendar. These limitations match
-the manuscript.
+Generated files are written to `outputs/`.
