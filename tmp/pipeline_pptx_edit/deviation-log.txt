@@ -1,0 +1,2 @@
+Slide 1: no deviation.
+Slide 2: mark the two terminal-expert constraints at the domain-audit and calibration stages; replace the obsolete prefix-trie stage with the accepted Inductive-Miner Petri-net skeleton and its held-out contract check; extend the robustness description to include the demand-saturation ladder. No geometry or style changes.

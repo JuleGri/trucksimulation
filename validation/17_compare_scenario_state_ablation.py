@@ -14,8 +14,8 @@ from scipy import stats
 REPO = Path(__file__).resolve().parents[1]
 RESULTS = REPO / "validation/results"
 DEFAULT_CONFIGS = {
-    "rules_only": RESULTS / "prosit_rules_only_workload_blind_scenarios_rmg_cap3_ci",
-    "rules_workload": RESULTS / "prosit_inductive_calibrated_scenarios_rmg_cap3_ci",
+    "rules_only": RESULTS / "revised_20260827_rules_only_scenarios_cap3_ci",
+    "rules_workload": RESULTS / "final_deterministic_20260829_rules_workload_scenarios_cap3_ci",
 }
 
 
@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=RESULTS / "scenario_state_ablation",
+        default=RESULTS / "final_deterministic_20260829_scenario_state_ablation",
     )
     return parser.parse_args()
 

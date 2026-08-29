@@ -1,0 +1,67 @@
+{
+  "schema": "ctb-prosit-research-provenance-1",
+  "frozen_on": "2026-08-29",
+  "common_contract": {
+    "runner": "_prosit_ctb_calibration.py",
+    "runner_sha256": "1c821e4e378b208b5cd02421f2209a455e2253e8f95d019fd0c9fe32e7691c32",
+    "seeds": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+    "cases_per_run": 17892,
+    "start_time": "2026-04-20T18:17:00",
+    "timestamp_resolution": "minute",
+    "split_manifest": "validation/results/split_manifest.json",
+    "split_manifest_sha256": "9d58c68f0013be32dbf139f326c19d3231277db783f5f83c8b355f1146a9121b"
+  },
+  "source_model": {
+    "path": "baseline/discovery_params/params_20260816_214403_train80/prosit_discovery_workload_inductive_calibrated/prosit_params.pkl",
+    "sha256": "a008bff5fc8ee9cc97d0e40e96dc91c979fe18face8390fce46708f1a721587a"
+  },
+  "authoritative_outputs": {
+    "rq1_cap3_holdout": {
+      "directory": "validation/results/final_deterministic_20260829_rules_workload_cap3_vs_holdout_ci",
+      "mc_summary_sha256": "ffd9d494e625e8e7a596e41b7c3d0708f39b3487b1364ef1878234cff11cae70",
+      "yard_activity_emd_summary_sha256": "f23b1868d4998869956172b5dee89929d2719a30653d46c03104c078aabbcd25"
+    },
+    "rq3_three_configuration_ablation": {
+      "directory": "validation/results/final_deterministic_20260829_three_configuration_ablation",
+      "configuration_summary_sha256": "1e05b84b186727b0ca6820238123a31153afbd8d20bfd047797e689fe16ea302",
+      "paired_contrasts_sha256": "3a673ca106f899cfee2e4285f67be6c50c68661b1c9fed1d22cae09738e8c2dd"
+    },
+    "rq4_cap3_scenarios": {
+      "directory": "validation/results/final_deterministic_20260829_rules_workload_scenarios_cap3_ci",
+      "scenario_paired_delta_summary_sha256": "20373dcd72807fc6ce13d71d1af797bcf2e469cb57af76769d0b5e3b294f636e"
+    },
+    "rq4_scenario_state_ablation": {
+      "directory": "validation/results/final_deterministic_20260829_scenario_state_ablation",
+      "difference_in_differences_sha256": "4ed420f9c6e5e1e265f9036d52d1912ffed15258d2a404227f950f47831250a4"
+    },
+    "rmg_capacity_sensitivity": {
+      "uncapped_directory": "validation/results/final_deterministic_20260829_rules_workload_scenarios_uncapped_ci",
+      "comparison_directory": "validation/results/final_deterministic_20260829_rmg_capacity_sensitivity",
+      "uncapped_replications_sha256": "874b9c0af7a3a4ae0ce8eba3d0347a9ae46fcdfb29ef18c4dc0d6dcd589b5246",
+      "direct_effects_sha256": "60da3bf3e6a55c4649ef679a421cd34e72d9afce17be72edc2ed97c975e2de82",
+      "interactions_sha256": "b7cd677bdf9d6c6c78c5ee1873828ec9f9b9de9dc840ef3c524d28929652d3be"
+    }
+  },
+  "drivers": {
+    "holdout": {
+      "path": "validation/06_multi_seed_ci.py",
+      "sha256": "310429d87c41a6563167e86aa1739722ab588d2dbb57a48bd7054ec37af7a1d1"
+    },
+    "scenarios": {
+      "path": "validation/09_multi_seed_scenarios.py",
+      "sha256": "79f6c428af7f7e5e33e5138120dc307874fefd1391d85f4cefb843b676343560"
+    },
+    "capacity_comparison": {
+      "path": "validation/10_compare_rmg_capacity_sensitivity.py",
+      "sha256": "080872dbfe7ceda92101c46ea722adf388078d1de80c81e239d9a2ccb2eb6e0c"
+    },
+    "configuration_ablation": {
+      "path": "validation/15_three_configuration_ablation.py",
+      "sha256": "757004e03b6391d32ad7cb2b287d4585de5103327607b434ba600022ca764240"
+    },
+    "scenario_state_ablation": {
+      "path": "validation/17_compare_scenario_state_ablation.py",
+      "sha256": "1407464f00565791ba0c28eb93a3fb855c632f6c47afcb8feb2f2bd5cea873a6"
+    }
+  }
+}

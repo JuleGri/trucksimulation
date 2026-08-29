@@ -1,0 +1,411 @@
+{
+  "design": "paired comparison over identical simulation seeds 42--51",
+  "configuration_folders": {
+    "no_rules": "revised_20260827_no_rules_vs_holdout_ci",
+    "rules_only": "revised_20260827_rules_only_vs_holdout_ci",
+    "rules_workload": "final_deterministic_20260829_rules_workload_vs_holdout_ci"
+  },
+  "summary": [
+    {
+      "configuration": "no_rules",
+      "metric": "case_turnaround_emd_min",
+      "n": 10,
+      "mean": 7.9427230046948365,
+      "sd": 0.2151739211077177,
+      "ci95_lo": 7.788796854245644,
+      "ci95_hi": 8.096649155144028
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "case_turnaround_sim_mean",
+      "n": 10,
+      "mean": 31.799731723675382,
+      "sd": 0.21517392110771758,
+      "ci95_lo": 31.64580557322619,
+      "ci95_hi": 31.953657874124573
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "case_turnaround_sim_p90",
+      "n": 10,
+      "mean": 54.5,
+      "sd": 0.5270462766947299,
+      "ci95_lo": 54.1229738062003,
+      "ci95_hi": 54.8770261937997
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n": 10,
+      "mean": 2.350965124815553,
+      "sd": 0.10884631647083184,
+      "ci95_lo": 2.273101160638675,
+      "ci95_hi": 2.428829088992431
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "yard_activity_rate_l1_error",
+      "n": 10,
+      "mean": 0.175340934495864,
+      "sd": 0.008373436096102345,
+      "ci95_lo": 0.16935093915781313,
+      "ci95_hi": 0.18133092983391486
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "inter_arrival_emd_min",
+      "n": 10,
+      "mean": 0.07650774132244668,
+      "sd": 0.009725339043284941,
+      "ci95_lo": 0.06955065287492666,
+      "ci95_hi": 0.0834648297699667
+    },
+    {
+      "configuration": "no_rules",
+      "metric": "gate_only_cases",
+      "n": 10,
+      "mean": 10.5,
+      "sd": 2.6352313834736494,
+      "ci95_lo": 8.614869031001497,
+      "ci95_hi": 12.385130968998503
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "case_turnaround_emd_min",
+      "n": 10,
+      "mean": 7.82781131231836,
+      "sd": 0.16691167682296712,
+      "ci95_lo": 7.708409891615907,
+      "ci95_hi": 7.947212733020813
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "case_turnaround_sim_mean",
+      "n": 10,
+      "mean": 32.11808629555109,
+      "sd": 0.20893165207460515,
+      "ci95_lo": 31.968625595363658,
+      "ci95_hi": 32.26754699573851
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "case_turnaround_sim_p90",
+      "n": 10,
+      "mean": 54.4,
+      "sd": 0.6992058987801011,
+      "ci95_lo": 53.89981823161223,
+      "ci95_hi": 54.90018176838777
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n": 10,
+      "mean": 2.3563225892077355,
+      "sd": 0.06377209061949443,
+      "ci95_lo": 2.310702783774893,
+      "ci95_hi": 2.401942394640578
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "yard_activity_rate_l1_error",
+      "n": 10,
+      "mean": 0.16504583053878819,
+      "sd": 0.007349694798256795,
+      "ci95_lo": 0.1597881756080785,
+      "ci95_hi": 0.17030348546949786
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "inter_arrival_emd_min",
+      "n": 10,
+      "mean": 0.07241070929517024,
+      "sd": 0.007032301118551268,
+      "ci95_lo": 0.06738010412514936,
+      "ci95_hi": 0.07744131446519112
+    },
+    {
+      "configuration": "rules_only",
+      "metric": "gate_only_cases",
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.0
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "case_turnaround_emd_min",
+      "n": 10,
+      "mean": 8.203264028616141,
+      "sd": 0.14218499910910176,
+      "ci95_lo": 8.101551007578012,
+      "ci95_hi": 8.304977049654271
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "case_turnaround_sim_mean",
+      "n": 10,
+      "mean": 31.542130561144642,
+      "sd": 0.14476268392635203,
+      "ci95_lo": 31.43857357547108,
+      "ci95_hi": 31.645687546818206
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "case_turnaround_sim_p90",
+      "n": 10,
+      "mean": 53.4,
+      "sd": 0.5163977794943222,
+      "ci95_lo": 53.03059128221082,
+      "ci95_hi": 53.769408717789176
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n": 10,
+      "mean": 2.380294987136175,
+      "sd": 0.03659338412399807,
+      "ci95_lo": 2.354117657090236,
+      "ci95_hi": 2.4064723171821143
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "yard_activity_rate_l1_error",
+      "n": 10,
+      "mean": 0.2248826291079812,
+      "sd": 0.0075753742672166596,
+      "ci95_lo": 0.2194635328106153,
+      "ci95_hi": 0.2303017254053471
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "inter_arrival_emd_min",
+      "n": 10,
+      "mean": 0.07241070929517024,
+      "sd": 0.007032301118551268,
+      "ci95_lo": 0.06738010412514936,
+      "ci95_hi": 0.07744131446519112
+    },
+    {
+      "configuration": "rules_workload",
+      "metric": "gate_only_cases",
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.0
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "case_turnaround_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.11491169237647618,
+      "sd_difference": 0.21168710527411655,
+      "ci95_lo": -0.26634352503925457,
+      "ci95_hi": 0.0365201402863022,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "case_turnaround_sim_mean",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.3183545718756989,
+      "sd_difference": 0.19785479459470218,
+      "ci95_lo": 0.17681777818297134,
+      "ci95_hi": 0.4598913655684264,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "case_turnaround_sim_p90",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.1,
+      "sd_difference": 0.8755950357709131,
+      "ci95_lo": -0.7263629556723539,
+      "ci95_hi": 0.5263629556723539,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.005357464392182232,
+      "sd_difference": 0.10658320203130961,
+      "ci95_lo": -0.07088756524138166,
+      "ci95_hi": 0.08160249402574614,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "yard_activity_rate_l1_error",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.010295103957075788,
+      "sd_difference": 0.013115461495166226,
+      "ci95_lo": -0.01967733991263529,
+      "ci95_hi": -0.0009128680015162895,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "inter_arrival_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.004097032027276463,
+      "sd_difference": 0.01328416096339092,
+      "ci95_lo": -0.013599948312464076,
+      "ci95_hi": 0.0054058842579111505,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_only_minus_no_rules",
+      "metric": "gate_only_cases",
+      "n_paired_seeds": 10,
+      "mean_difference": -10.5,
+      "sd_difference": 2.6352313834736494,
+      "ci95_lo": -12.385130968998503,
+      "ci95_hi": -8.614869031001497,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "case_turnaround_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.3754527162977813,
+      "sd_difference": 0.21510376808770026,
+      "ci95_lo": 0.22157675029593266,
+      "ci95_hi": 0.5293286822996299,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "case_turnaround_sim_mean",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.5759557344064387,
+      "sd_difference": 0.25686903679828926,
+      "ci95_lo": -0.7597087738101277,
+      "ci95_hi": -0.3922026950027496,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "case_turnaround_sim_p90",
+      "n_paired_seeds": 10,
+      "mean_difference": -1.0,
+      "sd_difference": 0.816496580927726,
+      "ci95_lo": -1.5840864678680844,
+      "ci95_hi": -0.4159135321319155,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.02397239792843977,
+      "sd_difference": 0.06945370783445245,
+      "ci95_lo": -0.025711791616204648,
+      "ci95_hi": 0.07365658747308418,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "yard_activity_rate_l1_error",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.059836798569193016,
+      "sd_difference": 0.010092644300115352,
+      "ci95_lo": 0.052616955769600036,
+      "ci95_hi": 0.067056641368786,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "inter_arrival_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.0,
+      "sd_difference": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.0,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_workload_minus_rules_only",
+      "metric": "gate_only_cases",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.0,
+      "sd_difference": 0.0,
+      "ci95_lo": 0.0,
+      "ci95_hi": 0.0,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "case_turnaround_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.2605410239213051,
+      "sd_difference": 0.26912196048980025,
+      "ci95_lo": 0.06802277093656214,
+      "ci95_hi": 0.4530592769060481,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "case_turnaround_sim_mean",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.25760116253073984,
+      "sd_difference": 0.26966545567078015,
+      "ci95_lo": -0.45050820854655854,
+      "ci95_hi": -0.06469411651492113,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "case_turnaround_sim_p90",
+      "n_paired_seeds": 10,
+      "mean_difference": -1.1,
+      "sd_difference": 0.7378647873726218,
+      "ci95_lo": -1.627836671319581,
+      "ci95_hi": -0.572163328680419,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "yard_service_time_emd_frequency_weighted_min",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.029329862320622003,
+      "sd_difference": 0.126444745607712,
+      "ci95_lo": -0.06112325967355864,
+      "ci95_hi": 0.11978298431480264,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "yard_activity_rate_l1_error",
+      "n_paired_seeds": 10,
+      "mean_difference": 0.04954169461211723,
+      "sd_difference": 0.009865379962684686,
+      "ci95_lo": 0.04248442692578612,
+      "ci95_hi": 0.05659896229844834,
+      "interval_excludes_zero": true
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "inter_arrival_emd_min",
+      "n_paired_seeds": 10,
+      "mean_difference": -0.004097032027276463,
+      "sd_difference": 0.01328416096339092,
+      "ci95_lo": -0.013599948312464076,
+      "ci95_hi": 0.0054058842579111505,
+      "interval_excludes_zero": false
+    },
+    {
+      "contrast": "rules_workload_minus_no_rules",
+      "metric": "gate_only_cases",
+      "n_paired_seeds": 10,
+      "mean_difference": -10.5,
+      "sd_difference": 2.6352313834736494,
+      "ci95_lo": -12.385130968998503,
+      "ci95_hi": -8.614869031001497,
+      "interval_excludes_zero": true
+    }
+  ]
+}

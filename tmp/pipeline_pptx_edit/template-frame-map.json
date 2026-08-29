@@ -1,0 +1,25 @@
+{
+  "outputSlides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "preserve-only event-log engineering source diagram",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 2,
+      "narrativeRole": "corrected experiments and evaluation pipeline",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {"sourceElementId": "sh/9o7ulg3y", "action": "rewrite"},
+        {"sourceElementId": "sh/a9gvulkj", "action": "rewrite"},
+        {"sourceElementId": "sh/ba9cn6l4", "action": "rewrite"},
+        {"sourceElementId": "sh/je9crql0", "action": "rewrite"},
+        {"sourceElementId": "sh/exgvmlcv", "action": "rewrite"}
+      ]
+    }
+  ],
+  "omittedSourceSlides": []
+}

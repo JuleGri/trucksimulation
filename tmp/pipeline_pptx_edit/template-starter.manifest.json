@@ -1,0 +1,34 @@
+{
+  "sourcePptx": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\figures\\schemas\\CTB_pipeline_diagrams_black_white.pptx",
+  "mapPath": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-frame-map.json",
+  "output": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter.pptx",
+  "outputBytes": 21084,
+  "sourceSlideCount": 2,
+  "slideCount": 2,
+  "previewDir": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-preview",
+  "layoutDir": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-layout",
+  "slides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "preserve-only event-log engineering source diagram",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 0,
+      "previewPath": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-preview\\starter-slide-01.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-01.png",
+      "layoutPath": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-layout\\starter-slide-01.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-01.layout.json"
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 2,
+      "narrativeRole": "corrected experiments and evaluation pipeline",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 5,
+      "previewPath": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-preview\\starter-slide-02.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-02.png",
+      "layoutPath": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\Data-Aware-Process-Simulation-at-CTB\\tmp\\pipeline_pptx_edit\\template-starter-layout\\starter-slide-02.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-02.layout.json"
+    }
+  ]
+}

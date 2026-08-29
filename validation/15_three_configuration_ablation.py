@@ -15,9 +15,9 @@ REPO = Path(__file__).resolve().parents[1]
 DEFAULT_RESULTS = REPO / "validation/results"
 
 CONFIGS = {
-    "no_rules": "prosit_no_rules_inductive_calibrated_vs_holdout_ci",
-    "rules_only": "prosit_rules_only_workload_blind_inductive_calibrated_vs_holdout_ci",
-    "rules_workload": "prosit_inductive_calibrated_vs_holdout_ci",
+    "no_rules": "revised_20260827_no_rules_vs_holdout_ci",
+    "rules_only": "revised_20260827_rules_only_vs_holdout_ci",
+    "rules_workload": "final_deterministic_20260829_rules_workload_vs_holdout_ci",
 }
 METRICS = [
     "case_turnaround_emd_min",
@@ -44,7 +44,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=DEFAULT_RESULTS / "three_configuration_ablation",
+        default=DEFAULT_RESULTS / "final_deterministic_20260829_three_configuration_ablation",
     )
     return parser.parse_args()
 

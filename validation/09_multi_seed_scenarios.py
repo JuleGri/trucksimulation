@@ -75,12 +75,12 @@ DEFAULT_PARAMS = (
     / "baseline"
     / "discovery_params"
     / "params_20260816_214403_train80"
-    / "prosit_discovery_workload_sequential_calibrated"
+    / "prosit_discovery_workload_inductive_calibrated"
     / "prosit_params.pkl"
 )
 DEFAULT_MANIFEST = REPO_ROOT / "validation" / "results" / "split_manifest.json"
 DEFAULT_OUT_ROOT = REPO_ROOT / "validation" / "results"
-DEFAULT_LABEL = "prosit_sequential_calibrated_scenarios_rmg_cap3_ci"
+DEFAULT_LABEL = "final_deterministic_20260829_rules_workload_scenarios_cap3_ci"
 
 RMG_ACTIVITIES = ("RMG_receive", "RMG_delivery", "RMG_mixed")
 DEFAULT_BLOCKED_BLOCKS = ("T22",)

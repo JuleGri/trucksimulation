@@ -1,0 +1,6 @@
+Source deck: CTB_pipeline_diagrams_black_white.pptx
+Slides: 2, both 16:9, white background, black/grey process-diagram style.
+Typography: Arial for visible labels and body copy; 20 pt bold box headings; 16 pt descriptions.
+Structure: slide-local shapes and connectors on one empty title layout; no inherited placeholders, images, charts, or tables.
+Reuse contract: preserve slide 1 unchanged. Duplicate slide 2 and edit only three inherited text shapes. Keep all geometry, connectors, colours, fonts, and spacing.
+

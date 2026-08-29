@@ -28,9 +28,11 @@ from scipy import stats
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parent
 RESULTS_ROOT = SCRIPT_DIR / "results"
-DEFAULT_REFERENCE = RESULTS_ROOT / "prosit_sequential_calibrated_scenarios_ci"
+DEFAULT_REFERENCE = (
+    RESULTS_ROOT / "final_deterministic_20260829_rules_workload_scenarios_uncapped_ci"
+)
 DEFAULT_SENSITIVITY = (
-    RESULTS_ROOT / "prosit_sequential_calibrated_scenarios_rmg_cap3_ci"
+    RESULTS_ROOT / "final_deterministic_20260829_rules_workload_scenarios_cap3_ci"
 )
 
 SCENARIO_BASELINE = "baseline"
