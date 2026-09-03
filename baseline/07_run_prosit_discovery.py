@@ -149,6 +149,45 @@ WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST = tuple(
     if attribute not in WORKLOAD_PROXY_ATTRIBUTES
 )
 
+# Sensitivity configuration with one semantically coherent terminal-state
+# representation.  The three yard-area demand and utilisation measurements
+# remain available; aggregate, target-derived, binned, and rank variants are
+# removed to avoid presenting several transformations of the same state to the
+# discovery trees.
+CLEAN_STATIC_REMOVED_ATTRIBUTES = frozenset(
+    {
+        "gate_demand",
+        "gate_utilization",
+        "target_demand",
+        "target_utilization",
+        "target_demand_bin",
+        "target_utilization_bin",
+        "target_rank",
+        "target_rank_group",
+    }
+)
+CLEAN_STATIC_CASE_ATTRIBUTE_ALLOWLIST = tuple(
+    attribute
+    for attribute in PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+    if attribute not in CLEAN_STATIC_REMOVED_ATTRIBUTES
+)
+
+
+def configured_case_attribute_allowlist(args) -> tuple[str, ...]:
+    if args.workload_blind_attributes:
+        return WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST
+    if args.clean_static_attributes:
+        return CLEAN_STATIC_CASE_ATTRIBUTE_ALLOWLIST
+    return PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+
+
+def configured_removed_attributes(args) -> frozenset[str]:
+    if args.workload_blind_attributes:
+        return WORKLOAD_PROXY_ATTRIBUTES
+    if args.clean_static_attributes:
+        return CLEAN_STATIC_REMOVED_ATTRIBUTES
+    return frozenset()
+
 
 def process_tree_parallel_count(tree) -> int:
     """Return the number of explicit parallel operators in a process tree."""
@@ -163,6 +202,56 @@ def process_tree_parallel_count(tree) -> int:
             count += 1
         stack.extend(node.children)
     return count
+
+
+def build_ctb_sequential_contract_tree(train_log):
+    """Build the expert-validated CTB case language over observed yard labels.
+
+    The Inductive Miner remains the diagnostic discovery method. This tree is
+    the pre-specified source-model repair used when the raw tree admits
+    within-truck parallelism or a Gate-only bypass. It permits one or more
+    yard activities, in any sequential order and with arbitrary repetition,
+    between the mandatory Gate In and Gate Out events.
+    """
+
+    from pm4py.objects.process_tree.obj import Operator, ProcessTree
+
+    yard_labels = sorted(
+        {
+            event[ACT_COL]
+            for trace in train_log
+            for event in trace
+            if event.get(ACT_COL) not in {None, "Gate In", "Gate Out"}
+        }
+    )
+    if not yard_labels:
+        raise RuntimeError("No yard activities observed in the training log.")
+
+    def leaf(label):
+        return ProcessTree(label=label)
+
+    yard_choice = ProcessTree(
+        operator=Operator.XOR,
+        children=[leaf(label) for label in yard_labels],
+    )
+    for child in yard_choice.children:
+        child.parent = yard_choice
+
+    # LOOP(do, redo=tau) executes ``do`` at least once and may repeat it.
+    repeat_yard = ProcessTree(
+        operator=Operator.LOOP,
+        children=[yard_choice, ProcessTree(label=None)],
+    )
+    for child in repeat_yard.children:
+        child.parent = repeat_yard
+
+    root = ProcessTree(
+        operator=Operator.SEQUENCE,
+        children=[leaf("Gate In"), repeat_yard, leaf("Gate Out")],
+    )
+    for child in root.children:
+        child.parent = root
+    return root, yard_labels
 
 
 def parse_args() -> argparse.Namespace:
@@ -180,6 +269,18 @@ def parse_args() -> argparse.Namespace:
                         help="split_manifest.json produced by validation/01_train_test_split.py.")
     parser.add_argument("--max-depth-tree", type=int, default=3,
                         help="ProSiT DecisionTree max_depth (README default: 3).")
+    parser.add_argument(
+        "--control-flow-policy",
+        choices=("reject_parallel", "expert_sequential_contract"),
+        default="reject_parallel",
+        help=(
+            "How to handle the discovered control flow. 'reject_parallel' keeps "
+            "the historical hard guard. 'expert_sequential_contract' records the "
+            "raw Inductive-Miner tree but discovers ProSiT parameters on the "
+            "expert-validated CTB language: Gate In, one or more sequential yard "
+            "activities in arbitrary order with repetitions, Gate Out."
+        ),
+    )
     parser.add_argument("--min-samples-leaf-cv", type=int, nargs="+", default=[50, 100, 200],
                         help="ProSiT min_samples_leaf CV grid (README default: 50 100 200).")
     parser.add_argument("--random-state", type=int, default=42)
@@ -216,8 +317,20 @@ def parse_args() -> argparse.Namespace:
         default=False,
         help=(
             "Remove demand, utilisation, and their derived rank/bin attributes from "
-            "every event before discovery. This creates the strict rules-only "
-            "ablation and requires --no-use-workload-features."
+            "every event before discovery. Combine with "
+            "--no-use-workload-features for strict visit-only rules, or with "
+            "--use-workload-features to isolate ProSiT's native dynamic state."
+        ),
+    )
+    parser.add_argument(
+        "--clean-static-attributes",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help=(
+            "Keep visit/process, location, and the continuous RMG/VC/MT demand "
+            "and utilisation attributes, while removing aggregate, target-derived, "
+            "binned, and rank workload proxies. This is the pre-specified cleaned "
+            "static-state sensitivity configuration."
         ),
     )
     parser.add_argument("--out-suffix", type=str, default=None,
@@ -547,9 +660,7 @@ def discover_prosit_params(train_log, net, im, fm, args) -> Any:
     print(
         "[prosit] Approved case attributes: "
         + ", ".join(
-            WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST
-            if args.workload_blind_attributes
-            else PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+            configured_case_attribute_allowlist(args)
         )
     )
     t0 = time.time()
@@ -616,7 +727,7 @@ def _drop_event_attributes(log, attributes: frozenset[str], label: str) -> dict[
                     removed[attribute] += 1
     if removed:
         print(
-            f"[{label}] Workload-blind attribute removal: "
+            f"[{label}] Configured attribute removal: "
             + ", ".join(f"{name} ({count:,})" for name, count in sorted(removed.items()))
         )
     return dict(sorted(removed.items()))
@@ -626,10 +737,19 @@ def main() -> int:
     args = parse_args()
     import pm4py
 
-    if args.workload_blind_attributes and args.use_workload_features:
+    if args.workload_blind_attributes and args.clean_static_attributes:
         raise ValueError(
-            "--workload-blind-attributes requires --no-use-workload-features."
+            "--workload-blind-attributes and --clean-static-attributes are mutually exclusive"
         )
+    if args.clean_static_attributes and args.use_workload_features:
+        raise ValueError(
+            "The cleaned static-state sensitivity requires --no-use-workload-features"
+        )
+
+    # ``workload_blind_attributes`` removes the manually engineered demand,
+    # utilisation, and rank/bin proxy columns.  It is intentionally
+    # independent of ProSiT's native dynamic workload/queue features so the
+    # two information sources can be separated in a 2x2 factorial ablation.
 
     # --- Load logs: prefer XES (Vinci approach) over CSV ---
     if args.xes and args.xes.exists():
@@ -674,14 +794,15 @@ def main() -> int:
         test_log = to_pm4py_log(test_df, "test")
         del test_df
 
-    workload_blind_removal = {"train": {}, "test": {}}
-    if args.workload_blind_attributes:
-        workload_blind_removal = {
+    removed_attributes = configured_removed_attributes(args)
+    attribute_removal_counts = {"train": {}, "test": {}}
+    if removed_attributes:
+        attribute_removal_counts = {
             "train": _drop_event_attributes(
-                train_log, WORKLOAD_PROXY_ATTRIBUTES, "train"
+                train_log, removed_attributes, "train"
             ),
             "test": _drop_event_attributes(
-                test_log, WORKLOAD_PROXY_ATTRIBUTES, "test"
+                test_log, removed_attributes, "test"
             ),
         }
 
@@ -697,18 +818,43 @@ def main() -> int:
     print("[main] Discovering authoritative process tree (inductive miner) ...")
     t0 = time.time()
     diagnostic_tree = pm4py.discover_process_tree_inductive(train_log)
-    parallel_operators = process_tree_parallel_count(diagnostic_tree)
-    if parallel_operators:
+    raw_parallel_operators = process_tree_parallel_count(diagnostic_tree)
+    if raw_parallel_operators and args.control_flow_policy == "reject_parallel":
         raise RuntimeError(
             "Inductive-Miner control flow contains "
-            f"{parallel_operators} parallel operator(s); CTB requires sequential "
+            f"{raw_parallel_operators} parallel operator(s); CTB requires sequential "
             "activity execution within each truck case."
         )
-    net, im, fm = pm4py.convert_to_petri_net(diagnostic_tree)
+    if args.control_flow_policy == "expert_sequential_contract":
+        authoritative_tree, yard_labels = build_ctb_sequential_contract_tree(train_log)
+        repair_applied = str(authoritative_tree) != str(diagnostic_tree)
+        print(
+            "[main] Applying expert sequential CTB control-flow contract; "
+            f"raw parallel operators={raw_parallel_operators}, "
+            f"yard activities={len(yard_labels)}"
+        )
+    else:
+        authoritative_tree = diagnostic_tree
+        yard_labels = sorted(
+            {
+                event[ACT_COL]
+                for trace in train_log
+                for event in trace
+                if event.get(ACT_COL) not in {None, "Gate In", "Gate Out"}
+            }
+        )
+        repair_applied = False
+    authoritative_parallel_operators = process_tree_parallel_count(authoritative_tree)
+    if authoritative_parallel_operators:
+        raise RuntimeError(
+            "Authoritative CTB source model still contains parallel operators."
+        )
+    net, im, fm = pm4py.convert_to_petri_net(authoritative_tree)
     coverage = variant_coverage(train_log, test_log)
     print(
-        f"[main] Inductive control flow: {len(net.places)} places, "
-        f"{len(net.transitions)} transitions, {parallel_operators} parallel operators; "
+        f"[main] Authoritative control flow: {len(net.places)} places, "
+        f"{len(net.transitions)} transitions, "
+        f"{authoritative_parallel_operators} parallel operators; "
         f"unseen holdout variants={coverage['unseen_test_variants']} "
         f"({coverage['unseen_test_case_share']:.3%})"
     )
@@ -749,6 +895,12 @@ def main() -> int:
                 if args.ctb_calibration
                 else "_rules_only_workload_blind_inductive"
             )
+        elif args.clean_static_attributes:
+            args.out_suffix = (
+                "_clean_static_inductive_calibrated"
+                if args.ctb_calibration
+                else "_clean_static_inductive"
+            )
         else:
             args.out_suffix = (
                 "_no_workload_inductive_calibrated"
@@ -769,12 +921,28 @@ def main() -> int:
     print(f"[main] Wrote {prosit_dir / 'prosit_conformance.csv'}")
 
     control_flow_contract = {
-        "authoritative_model": "inductive_miner_petri_net",
-        "process_tree": str(diagnostic_tree),
+        "authoritative_model": (
+            "expert_sequential_contract_repair"
+            if args.control_flow_policy == "expert_sequential_contract"
+            else "inductive_miner_petri_net"
+        ),
+        "control_flow_policy": args.control_flow_policy,
+        "raw_inductive_process_tree": str(diagnostic_tree),
+        "raw_parallel_operator_count": raw_parallel_operators,
+        "process_tree": str(authoritative_tree),
+        "repair_applied": repair_applied,
+        "repair_basis": (
+            "Terminal experts validated mandatory Gate In and Gate Out, at least "
+            "one yard activity, arbitrary sequential yard order, repetitions, and "
+            "no within-truck parallel activity."
+            if args.control_flow_policy == "expert_sequential_contract"
+            else None
+        ),
+        "yard_activity_labels": yard_labels,
         "observed_case_language": ["Gate In", "one_or_more_yard_activities", "Gate Out"],
-        "model_language": ["Gate In", "zero_or_more_sequential_yard_activities", "Gate Out"],
+        "model_language": ["Gate In", "one_or_more_sequential_yard_activities", "Gate Out"],
         "within_case_parallelism": False,
-        "parallel_operator_count": parallel_operators,
+        "parallel_operator_count": authoritative_parallel_operators,
         "cross_case_resource_multitasking": bool(args.enable_multitasking),
         "petri_net": {
             "places": len(net.places),
@@ -789,7 +957,7 @@ def main() -> int:
 
     # 4. Figures
     if not args.skip_figures:
-        render_visualisations(train_log, net, im, fm, diagnostic_tree, fig_dir)
+        render_visualisations(train_log, net, im, fm, authoritative_tree, fig_dir)
     else:
         print("[main] --skip-figures: not generating Graphviz outputs.")
 
@@ -879,16 +1047,24 @@ def main() -> int:
             "attribute_mode": args.attribute_mode,
             "use_workload_features": args.use_workload_features,
             "workload_blind_attributes": args.workload_blind_attributes,
-            "workload_proxy_attributes_removed": sorted(WORKLOAD_PROXY_ATTRIBUTES),
-            "workload_blind_removal_counts": workload_blind_removal,
+            "clean_static_attributes": args.clean_static_attributes,
+            "case_attribute_mode": (
+                "workload_blind"
+                if args.workload_blind_attributes
+                else "clean_static"
+                if args.clean_static_attributes
+                else "all_available"
+            ),
+            "workload_proxy_attribute_universe": sorted(WORKLOAD_PROXY_ATTRIBUTES),
+            "workload_proxy_attributes_removed": sorted(removed_attributes),
+            "attribute_removal_counts": attribute_removal_counts,
+            "workload_blind_removal_counts": attribute_removal_counts,
             "ctb_calibration": args.ctb_calibration,
             "timestamp_resolution": args.timestamp_resolution,
             "out_suffix": args.out_suffix,
             "random_state": args.random_state,
             "prosit_case_attribute_allowlist": list(
-                WORKLOAD_BLIND_CASE_ATTRIBUTE_ALLOWLIST
-                if args.workload_blind_attributes
-                else PROSIT_CASE_ATTRIBUTE_ALLOWLIST
+                configured_case_attribute_allowlist(args)
             ),
         },
         "control_flow": control_flow_contract,
@@ -905,9 +1081,10 @@ def main() -> int:
                 else None
             ),
             "note": (
-                "The pickle is authoritative for calibrated simulation because ProSiT's "
-                "JSON schema omits empirical sampled arrays. The calibration companion "
-                "records the complete compact arrival PMF and routing audit."
+                "The JSON is the portable ProSiT representation. The pickle is the "
+                "authoritative numerical-reproduction snapshot because it preserves "
+                "the exact post-calibration in-memory object used for these runs. The "
+                "calibration companion records the compact arrival PMF and routing audit."
             ),
         },
     }

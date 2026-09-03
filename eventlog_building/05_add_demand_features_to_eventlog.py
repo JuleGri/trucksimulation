@@ -91,10 +91,7 @@ def add_demand_feature(
         "ZEITPUNKT"
     )
 
-    merged = pd.merge_asof(
-        gate_df.sort_values(
-            "start:timestamp"
-        ),
+    merged = gate_df.merge(
         tmp[
             [
                 "ZEITPUNKT",
@@ -103,8 +100,8 @@ def add_demand_feature(
         ],
         left_on="start:timestamp",
         right_on="ZEITPUNKT",
-        direction="backward",
-        tolerance=pd.Timedelta("2h")
+        how="left",
+        validate="many_to_one",
     )
 
     return merged[

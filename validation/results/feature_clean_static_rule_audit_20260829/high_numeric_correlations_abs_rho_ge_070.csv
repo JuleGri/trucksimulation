@@ -1,0 +1,7 @@
+level,feature_left,cluster_left,feature_right,cluster_right,spearman_rho,abs_spearman_rho
+aligned_event_static_native,n_deliveries,visit_process,n_receives,visit_process,-0.7414493987390026,0.7414493987390026
+case_static,gate_utilization,utilisation,rmg_utilization,utilisation,0.9224105062630034,0.9224105062630034
+case_static,gate_demand,demand,rmg_demand,demand,0.8976766591698144,0.8976766591698144
+case_static,target_utilization,utilisation,target_rank,utilisation,-0.790480166204088,0.790480166204088
+case_static,n_deliveries,visit_process,n_receives,visit_process,-0.766181315348044,0.766181315348044
+case_static,gate_demand,demand,vc_demand,demand,0.729723901421644,0.729723901421644

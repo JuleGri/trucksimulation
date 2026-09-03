@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "training_traces": 71568,
+  "holdout_used": false,
+  "routing": {
+    "method": "native_prosit_transition_weight_discovery",
+    "holdout_used": false,
+    "applied": false,
+    "reason": "Prefix-marginal calibration is specific to the legacy sequential trie and is not applied to the Inductive-Miner net."
+  },
+  "arrivals": {
+    "method": "robust_empirical_working_minute_pmf",
+    "holdout_used": false,
+    "n_raw_inter_arrivals": 71567,
+    "n_robust_inter_arrivals": 71530,
+    "mean_working_minutes": 0.6830420802460506,
+    "zero_probability": 0.5509716202991751,
+    "runtime_representation": "decision_rules_empirical_sample",
+    "support_counts": {
+      "0": 39411,
+      "1": 24833,
+      "2": 3747,
+      "3": 1536,
+      "4": 733,
+      "5": 439,
+      "6": 276,
+      "7": 176,
+      "8": 115,
+      "9": 75,
+      "10": 64,
+      "11": 32,
+      "12": 27,
+      "13": 15,
+      "14": 15,
+      "15": 11,
+      "16": 11,
+      "17": 4,
+      "18": 7,
+      "19": 3
+    }
+  },
+  "resource_calendars": {
+    "method": "continuous_nonpreemptive_completion_after_admission",
+    "holdout_used": false,
+    "arrival_calendar_unchanged": true,
+    "original_active_slots_per_week": {
+      "Res.GateIn": 127,
+      "Res.GateOut": 128,
+      "LL": 127,
+      "HO2": 126,
+      "T13": 127,
+      "T14": 126,
+      "T16": 127,
+      "T24": 127,
+      "T17": 126,
+      "T12": 126,
+      "T21": 126,
+      "T15": 127,
+      "T20": 126,
+      "T11": 126,
+      "T27": 125,
+      "T23": 125,
+      "T22": 126,
+      "T10": 125,
+      "T18": 124,
+      "T06": 126,
+      "T09": 126,
+      "T07": 126,
+      "T08": 124,
+      "T26": 123,
+      "T19": 125,
+      "T25": 126
+    },
+    "calibrated_active_slots_per_week": 168,
+    "interpretation": "The gate calendar still controls admission. Resources finish work on trucks already inside instead of pausing an activity until the next opening window."
+  },
+  "timestamp_observation_model": {
+    "resolution": "minute",
+    "method": "floor",
+    "reason": "All CTB source timestamps are recorded at minute resolution."
+  },
+  "enabled": true
+}

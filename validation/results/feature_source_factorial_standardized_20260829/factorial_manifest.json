@@ -1,0 +1,28 @@
+{
+  "schema": "ctb-feature-source-factorial-1",
+  "design": {
+    "common_features": "visit/process, container, and location attributes",
+    "static_factor": "manual demand, utilisation, and derived rank/bin proxies",
+    "native_factor": "ProSiT workload and queue_length",
+    "paired_seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ]
+  },
+  "configuration_folders": {
+    "visit_only": "feature_factorial_20260829_visit_only_common_vs_holdout_ci",
+    "static_only": "feature_factorial_20260829_static_only_vs_holdout_ci",
+    "native_only": "feature_factorial_20260829_native_only_vs_holdout_ci",
+    "both": "feature_factorial_20260829_both_common_vs_holdout_ci"
+  },
+  "ngd_replications": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_source_factorial_standardized_ngd_20260829\\ngd_replications.csv",
+  "interaction": "both - static_only - native_only + visit_only"
+}

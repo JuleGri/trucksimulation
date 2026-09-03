@@ -1,0 +1,9 @@
+model,cluster,retained_split_nodes
+clean_static,container,2
+clean_static,location,30
+clean_static,other_or_activity_history,13
+clean_static,visit_process,25
+visit_only,container,2
+visit_only,location,37
+visit_only,other_or_activity_history,13
+visit_only,visit_process,43

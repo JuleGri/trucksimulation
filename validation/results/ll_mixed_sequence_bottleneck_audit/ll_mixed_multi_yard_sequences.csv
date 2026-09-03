@@ -1,0 +1,8 @@
+split,case:concept:name,activity_sequence
+train,TP_14996502603,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+train,TP_15004072603,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+train,TP_15129752603,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+train,TP_15157682603,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+train,TP_15179622603,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+train,TP_15774772604,Gate In -> LL_mixed -> RMG_receive -> Gate Out
+holdout,TP_15933622604,Gate In -> RMG_delivery -> LL_mixed -> Gate Out

@@ -1,0 +1,166 @@
+model,family,feature,base_feature,cluster,node_path
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/20657ac0-6336-4344-820f-69392bd3917e/0
+visit_only,transition_params,primary_target_area = MT,primary_target_area,location,transition_weights/20657ac0-6336-4344-820f-69392bd3917e/2
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/20657ac0-6336-4344-820f-69392bd3917e/3
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/20657ac0-6336-4344-820f-69392bd3917e/6
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/skip_1/0
+visit_only,transition_params,primary_target_area = MT,primary_target_area,location,transition_weights/skip_1/2
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_1/3
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/skip_1/6
+visit_only,transition_params,LL_mixed,LL_mixed,other_or_activity_history,transition_weights/init_loop_3/0
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/init_loop_3/2
+visit_only,transition_params,LL_mixed,LL_mixed,other_or_activity_history,transition_weights/skip_2/0
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/skip_2/2
+visit_only,transition_params,process_flow_type = receive,process_flow_type,visit_process,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/0
+visit_only,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/1
+visit_only,transition_params,HO2_delivery,HO2_delivery,other_or_activity_history,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/2
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/5
+visit_only,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/8
+visit_only,transition_params,target_area = MT,target_area,location,transition_weights/850f6255-83f8-487b-bc37-ab75585d94c4/9
+visit_only,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/acf3d8cb-4915-4f58-8295-59d8f669c989/0
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/acf3d8cb-4915-4f58-8295-59d8f669c989/1
+visit_only,transition_params,full_ratio,full_ratio,container,transition_weights/acf3d8cb-4915-4f58-8295-59d8f669c989/3
+visit_only,transition_params,process_flow_type = delivery,process_flow_type,visit_process,transition_weights/acf3d8cb-4915-4f58-8295-59d8f669c989/6
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/0
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/1
+visit_only,transition_params,target_area = T23,target_area,location,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/2
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/5
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/8
+visit_only,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/9
+visit_only,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/2a7022b6-c464-4766-9b9f-4559a2c10a03/12
+visit_only,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/92f52c1c-8a15-4e74-8629-cac78c9f06c8/0
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/92f52c1c-8a15-4e74-8629-cac78c9f06c8/1
+visit_only,transition_params,target_area = MT,target_area,location,transition_weights/92f52c1c-8a15-4e74-8629-cac78c9f06c8/3
+visit_only,transition_params,process_flow_type = receive,process_flow_type,visit_process,transition_weights/92f52c1c-8a15-4e74-8629-cac78c9f06c8/6
+visit_only,transition_params,primary_target_area = MT,primary_target_area,location,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/0
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/1
+visit_only,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/3
+visit_only,transition_params,process_flow_type = delivery,process_flow_type,visit_process,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/6
+visit_only,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/7
+visit_only,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/85f51e84-d987-42a2-8a8b-ee852b78e013/10
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/0
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/1
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/2
+visit_only,transition_params,target_area = VC,target_area,location,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/5
+visit_only,transition_params,target_area = VC,target_area,location,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/8
+visit_only,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/9
+visit_only,transition_params,process_flow_type = mixed,process_flow_type,visit_process,transition_weights/dd858166-8d7c-467d-adb8-5567985f2c91/12
+visit_only,transition_params,primary_target_area = MT,primary_target_area,location,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/0
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/1
+visit_only,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/2
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/5
+visit_only,transition_params,process_flow_type = receive,process_flow_type,visit_process,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/8
+visit_only,transition_params,HO2_delivery,HO2_delivery,other_or_activity_history,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/9
+visit_only,transition_params,LL_receive,LL_receive,other_or_activity_history,transition_weights/7916c031-ecc7-4e5f-85b5-cd7237ca9469/12
+visit_only,transition_params,process_flow_type = delivery,process_flow_type,visit_process,transition_weights/16ecace1-9160-4bae-b363-5642b457a419/0
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/16ecace1-9160-4bae-b363-5642b457a419/1
+visit_only,transition_params,has_reefer,has_reefer,container,transition_weights/16ecace1-9160-4bae-b363-5642b457a419/3
+visit_only,transition_params,target_area = MT,target_area,location,transition_weights/16ecace1-9160-4bae-b363-5642b457a419/6
+visit_only,transition_params,target_area = VC,target_area,location,transition_weights/16ecace1-9160-4bae-b363-5642b457a419/7
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/skip_6/0
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_6/1
+visit_only,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/skip_6/2
+visit_only,transition_params,n_containers,n_containers,visit_process,transition_weights/skip_6/5
+visit_only,transition_params,RMG_receive,RMG_receive,other_or_activity_history,transition_weights/skip_6/8
+visit_only,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/skip_6/9
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_6/12
+visit_only,transition_params,n_stops,n_stops,visit_process,transition_weights/skip_5/0
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_5/1
+visit_only,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/skip_5/2
+visit_only,transition_params,n_containers,n_containers,visit_process,transition_weights/skip_5/5
+visit_only,transition_params,RMG_receive,RMG_receive,other_or_activity_history,transition_weights/skip_5/8
+visit_only,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/skip_5/9
+visit_only,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_5/12
+visit_only,resource_params,primary_target_area = T13,primary_target_area,location,resource_weights/T13/0
+visit_only,resource_params,primary_target_area = T14,primary_target_area,location,resource_weights/T14/0
+visit_only,resource_params,target_area = T16,target_area,location,resource_weights/T16/0
+visit_only,resource_params,primary_target_area = T24,primary_target_area,location,resource_weights/T24/0
+visit_only,resource_params,primary_target_area = T17,primary_target_area,location,resource_weights/T17/0
+visit_only,resource_params,target_area = T12,target_area,location,resource_weights/T12/0
+visit_only,resource_params,primary_target_area = T21,primary_target_area,location,resource_weights/T21/0
+visit_only,resource_params,target_area = T15,target_area,location,resource_weights/T15/0
+visit_only,resource_params,target_area = T20,target_area,location,resource_weights/T20/0
+visit_only,resource_params,primary_target_area = T11,primary_target_area,location,resource_weights/T11/0
+visit_only,resource_params,primary_target_area = T27,primary_target_area,location,resource_weights/T27/0
+visit_only,resource_params,primary_target_area = T23,primary_target_area,location,resource_weights/T23/0
+visit_only,resource_params,primary_target_area = T22,primary_target_area,location,resource_weights/T22/0
+visit_only,resource_params,target_area = T10,target_area,location,resource_weights/T10/0
+visit_only,resource_params,target_area = T18,target_area,location,resource_weights/T18/0
+visit_only,resource_params,primary_target_area = T06,primary_target_area,location,resource_weights/T06/0
+visit_only,resource_params,target_area = T09,target_area,location,resource_weights/T09/0
+visit_only,resource_params,target_area = T07,target_area,location,resource_weights/T07/0
+visit_only,resource_params,target_area = T08,target_area,location,resource_weights/T08/0
+visit_only,resource_params,target_area = T26,target_area,location,resource_weights/T26/0
+visit_only,resource_params,target_area = T19,target_area,location,resource_weights/T19/0
+visit_only,resource_params,primary_target_area = T25,primary_target_area,location,resource_weights/T25/0
+visit_only,waiting_time_params,n_stops,n_stops,visit_process,waiting_time_distributions/T18/0
+clean_static,transition_params,LL_mixed,LL_mixed,other_or_activity_history,transition_weights/init_loop_3/0
+clean_static,transition_params,full_ratio,full_ratio,container,transition_weights/init_loop_3/2
+clean_static,transition_params,LL_mixed,LL_mixed,other_or_activity_history,transition_weights/skip_2/0
+clean_static,transition_params,full_ratio,full_ratio,container,transition_weights/skip_2/2
+clean_static,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/45c7ad59-6400-4cb3-83e6-e6bb0c0f1d5d/0
+clean_static,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/87248109-7229-4a07-966a-1c1f78eef277/0
+clean_static,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/0
+clean_static,transition_params,visit_complexity,visit_complexity,visit_process,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/1
+clean_static,transition_params,target_area = T23,target_area,location,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/2
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/5
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/8
+clean_static,transition_params,target_area = VC,target_area,location,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/9
+clean_static,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/336a845c-2a42-4d3e-b9cf-5bd855798e64/12
+clean_static,transition_params,target_area = MT,target_area,location,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/0
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/1
+clean_static,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/2
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/5
+clean_static,transition_params,process_flow_type = receive,process_flow_type,visit_process,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/8
+clean_static,transition_params,HO2_delivery,HO2_delivery,other_or_activity_history,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/9
+clean_static,transition_params,LL_receive,LL_receive,other_or_activity_history,transition_weights/7e50e395-9f77-4f0b-8494-ae478f974b5e/12
+clean_static,transition_params,process_flow_type = receive,process_flow_type,visit_process,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/0
+clean_static,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/1
+clean_static,transition_params,HO2_delivery,HO2_delivery,other_or_activity_history,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/2
+clean_static,transition_params,process_flow_type = mixed,process_flow_type,visit_process,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/5
+clean_static,transition_params,primary_target_area = VC,primary_target_area,location,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/8
+clean_static,transition_params,primary_target_area = MT,primary_target_area,location,transition_weights/3c5c0d2b-2b25-459d-9916-1ef27c812d4b/9
+clean_static,transition_params,target_area = MT,target_area,location,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/0
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/1
+clean_static,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/3
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/6
+clean_static,transition_params,LL_delivery,LL_delivery,other_or_activity_history,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/7
+clean_static,transition_params,process_flow_type = mixed,process_flow_type,visit_process,transition_weights/a7eaec4f-3010-498d-afce-6192fd327b8e/10
+clean_static,transition_params,process_flow_type = delivery,process_flow_type,visit_process,transition_weights/bb4da0a0-7bb9-4146-89b2-096f11b639d0/0
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/skip_6/0
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_6/1
+clean_static,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/skip_6/2
+clean_static,transition_params,n_containers,n_containers,visit_process,transition_weights/skip_6/5
+clean_static,transition_params,RMG_receive,RMG_receive,other_or_activity_history,transition_weights/skip_6/8
+clean_static,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/skip_6/9
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_6/12
+clean_static,transition_params,n_stops,n_stops,visit_process,transition_weights/skip_5/0
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_5/1
+clean_static,transition_params,n_deliveries,n_deliveries,visit_process,transition_weights/skip_5/2
+clean_static,transition_params,n_containers,n_containers,visit_process,transition_weights/skip_5/5
+clean_static,transition_params,RMG_receive,RMG_receive,other_or_activity_history,transition_weights/skip_5/8
+clean_static,transition_params,RMG_delivery,RMG_delivery,other_or_activity_history,transition_weights/skip_5/9
+clean_static,transition_params,n_receives,n_receives,visit_process,transition_weights/skip_5/12
+clean_static,resource_params,primary_target_area = T13,primary_target_area,location,resource_weights/T13/0
+clean_static,resource_params,primary_target_area = T14,primary_target_area,location,resource_weights/T14/0
+clean_static,resource_params,target_area = T16,target_area,location,resource_weights/T16/0
+clean_static,resource_params,target_area = T24,target_area,location,resource_weights/T24/0
+clean_static,resource_params,primary_target_area = T17,primary_target_area,location,resource_weights/T17/0
+clean_static,resource_params,primary_target_area = T12,primary_target_area,location,resource_weights/T12/0
+clean_static,resource_params,primary_target_area = T21,primary_target_area,location,resource_weights/T21/0
+clean_static,resource_params,primary_target_area = T15,primary_target_area,location,resource_weights/T15/0
+clean_static,resource_params,target_area = T20,target_area,location,resource_weights/T20/0
+clean_static,resource_params,target_area = T11,target_area,location,resource_weights/T11/0
+clean_static,resource_params,primary_target_area = T27,primary_target_area,location,resource_weights/T27/0
+clean_static,resource_params,target_area = T23,target_area,location,resource_weights/T23/0
+clean_static,resource_params,primary_target_area = T22,primary_target_area,location,resource_weights/T22/0
+clean_static,resource_params,primary_target_area = T10,primary_target_area,location,resource_weights/T10/0
+clean_static,resource_params,target_area = T18,target_area,location,resource_weights/T18/0
+clean_static,resource_params,target_area = T06,target_area,location,resource_weights/T06/0
+clean_static,resource_params,primary_target_area = T09,primary_target_area,location,resource_weights/T09/0
+clean_static,resource_params,target_area = T07,target_area,location,resource_weights/T07/0
+clean_static,resource_params,primary_target_area = T08,primary_target_area,location,resource_weights/T08/0
+clean_static,resource_params,primary_target_area = T26,primary_target_area,location,resource_weights/T26/0
+clean_static,resource_params,target_area = T19,target_area,location,resource_weights/T19/0
+clean_static,resource_params,primary_target_area = T25,primary_target_area,location,resource_weights/T25/0
+clean_static,waiting_time_params,n_stops,n_stops,visit_process,waiting_time_distributions/T18/0

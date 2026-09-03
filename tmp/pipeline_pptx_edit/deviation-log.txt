@@ -1,2 +1,3 @@
-Slide 1: no deviation.
-Slide 2: mark the two terminal-expert constraints at the domain-audit and calibration stages; replace the obsolete prefix-trie stage with the accepted Inductive-Miner Petri-net skeleton and its held-out contract check; extend the robustness description to include the demand-saturation ladder. No geometry or style changes.
+Slide 1: no change.
+
+Slide 2: wording only. The former 80/20 label is replaced by the final train/validation/test design. The bundle step now states validation-based selection and rediscovery on the 80 percent development period. The simulation and evaluation labels identify the untouched test set. The what-if description identifies the native-only scenario model. Two semicolons are replaced by normal conjunction or comma phrasing. No visual styling, object position, connector, master, layout, or note is changed.

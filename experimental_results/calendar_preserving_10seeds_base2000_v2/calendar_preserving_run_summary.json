@@ -1,0 +1,34 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-31T16:23:09.416099+02:00",
+  "finished_at": "2026-08-31T16:34:01.424689+02:00",
+  "experiment": "calendar_preserving_demand_intensity",
+  "base_cases": 2000,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    1.5,
+    2.0,
+    2.4,
+    3.0
+  ],
+  "case_count_rule": "round(base_cases * demand_multiplier)",
+  "inter_arrival_rule": "working_minute_inter_arrivals / demand_multiplier",
+  "arrival_quantisation": "nearest integer working minute (CTB minute observation grid)",
+  "closed_boundary_handling": "advance exact closed-hour boundary to next active arrival hour",
+  "gate_calendar_unchanged": true,
+  "all_arrival_calendar_audits_passed": true,
+  "all_cases_complete": true
+}

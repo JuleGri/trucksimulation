@@ -261,9 +261,7 @@ case_info = case_info.sort_values(
     "gate_in_ts"
 )
 
-case_info = pd.merge_asof(
-
-    case_info,
+case_info = case_info.merge(
 
     yard[
         [
@@ -276,13 +274,11 @@ case_info = pd.merge_asof(
         ]
     ],
 
-    on="gate_in_ts",
+    on=["gate_in_ts", "target_area"],
 
-    by="target_area",
+    how="left",
 
-    direction="backward",
-
-    tolerance=pd.Timedelta("2h")
+    validate="many_to_one",
 
 )
 
@@ -311,9 +307,7 @@ demand = demand.sort_values(
     "gate_in_ts"
 )
 
-case_info = pd.merge_asof(
-
-    case_info,
+case_info = case_info.merge(
 
     demand[
         [
@@ -325,13 +319,11 @@ case_info = pd.merge_asof(
         ]
     ],
 
-    on="gate_in_ts",
+    on=["gate_in_ts", "target_area"],
 
-    by="target_area",
+    how="left",
 
-    direction="backward",
-
-    tolerance=pd.Timedelta("2h")
+    validate="many_to_one",
 
 )
 # =====================================================

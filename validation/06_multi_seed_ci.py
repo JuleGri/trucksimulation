@@ -9,8 +9,8 @@ Purpose:
 - produce 95 % confidence intervals for the four headline KPIs
   (service-time EMD, waiting-time EMD, case turnaround EMD, inter-arrival
   EMD), plus replication-wise checks of the calibrated CTB fidelity
-  constraints (no artificial >24 h durations, simultaneous-arrival share,
-  and yard-activity-rate error), so that Chapter 5 can report point
+  diagnostics (counts above the robust 24 h threshold,
+  simultaneous-arrival share, and yard-activity-rate error), so that Chapter 5 can report point
   estimates with error bars instead of single Monte-Carlo draws.
 
 Usage (from the workspace root):

@@ -1,4 +1,102 @@
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"EVENT-LOG ENGINEERING","textShapes":24}
+{"kind":"textbox","id":"sh/036h8but","slide":1,"name":"event-log-engineering-label","text":"EVENT-LOG ENGINEERING","textPreview":"EVENT-LOG ENGINEERING","textChars":21,"textLines":1,"bbox":[48,28,390,28]}
+{"kind":"shape","id":"sh/547294r6","slide":1,"name":"event-log-engineering-rule","bbox":[48,63,1184,0]}
+{"kind":"shape","id":"sh/k3yl0zql","slide":1,"name":"sources-anchor","bbox":[42,125,158,130]}
+{"kind":"shape","id":"sh/7qp4be9c","slide":1,"name":"clean-anchor","bbox":[255,150,205,78]}
+{"kind":"shape","id":"sh/65g3298r","slide":1,"name":"integrate-anchor","bbox":[505,150,205,78]}
+{"kind":"shape","id":"sh/ts7md4r2","slide":1,"name":"cases-anchor","bbox":[755,150,205,78]}
+{"kind":"shape","id":"sh/sryl4zqx","slide":1,"name":"lifecycle-anchor","bbox":[1005,150,205,78]}
+{"kind":"shape","id":"sh/fu94fe98","slide":1,"name":"context-anchor","bbox":[1005,420,205,78]}
+{"kind":"shape","id":"sh/utg3698n","slide":1,"name":"quality-anchor","bbox":[755,420,205,78]}
+{"kind":"shape","id":"sh/wn6dc7eh","slide":1,"name":"export-anchor","bbox":[505,420,205,78]}
+{"kind":"shape","id":"sh/hofulsf2","slide":1,"name":"output-anchor","bbox":[255,420,205,78]}
+{"kind":"shape","id":"sh/0budg3mp","slide":1,"bbox":[200,189,55,1]}
+{"kind":"shape","id":"sh/lc3up83u","slide":1,"bbox":[460,189,45,0]}
+{"kind":"shape","id":"sh/361wzy5w","slide":1,"bbox":[710,189,45,0]}
+{"kind":"shape","id":"sh/25sv6dob","slide":1,"bbox":[960,189,45,0]}
+{"kind":"shape","id":"sh/p8je18n2","slide":1,"bbox":[1210,189,24,270]}
+{"kind":"shape","id":"sh/o7ad836h","slide":1,"bbox":[960,459,45,0]}
+{"kind":"shape","id":"sh/balw3i5s","slide":1,"bbox":[710,459,45,0]}
+{"kind":"shape","id":"sh/q9cfadon","slide":1,"bbox":[460,459,45,0]}
+{"kind":"textbox","id":"sh/1cvuxc7e","slide":1,"name":"source-database-1","text":"ITS","textPreview":"ITS","textChars":3,"textLines":1,"bbox":[46,124,63,50]}
+{"kind":"textbox","id":"sh/0bmd476t","slide":1,"name":"source-database-2","text":"Report","textPreview":"Report","textChars":6,"textLines":1,"bbox":[124,124,63,50]}
+{"kind":"textbox","id":"sh/zadcv2p8","slide":1,"name":"source-database-3","text":"Yard","textPreview":"Yard","textChars":4,"textLines":1,"bbox":[46,192,63,50]}
+{"kind":"textbox","id":"sh/e94v2hon","slide":1,"name":"source-database-4","text":"Master","textPreview":"Master","textChars":6,"textLines":1,"bbox":[124,192,63,50]}
+{"kind":"textbox","id":"sh/90ve1w7q","slide":1,"name":"source-description","text":"Operational source tables","textPreview":"Operational source tables","textChars":25,"textLines":1,"bbox":[34,254,180,46]}
+{"kind":"textbox","id":"sh/ozmd8r65","slide":1,"name":"clean-and-harmonise","text":"Clean and harmonise","textPreview":"Clean and harmonise","textChars":19,"textLines":1,"bbox":[255,150,205,78]}
+{"kind":"textbox","id":"sh/nydczmpk","slide":1,"name":"clean-and-harmonise-description","text":"Remove invalid cases; standardise identifiers and timestamps","textPreview":"Remove invalid cases; standardise identifiers and timestamps","textChars":60,"textLines":1,"bbox":[251,235,213,48]}
+{"kind":"textbox","id":"sh/mx4v6hoz","slide":1,"name":"integrate-systems","text":"Integrate systems","textPreview":"Integrate systems","textChars":17,"textLines":1,"bbox":[505,150,205,78]}
+{"kind":"textbox","id":"sh/p4bu5s76","slide":1,"name":"integrate-systems-description","text":"Match visits, container records and nearest yard snapshots","textPreview":"Match visits, container records and nearest yard snapshots","textChars":58,"textLines":1,"bbox":[501,235,213,48]}
+{"kind":"textbox","id":"sh/432dwn6l","slide":1,"name":"define-cases","text":"Define cases","textPreview":"Define cases","textChars":12,"textLines":1,"bbox":[755,150,205,78]}
+{"kind":"textbox","id":"sh/uxgjq907","slide":1,"name":"define-cases-description","text":"One truck visit = one case; retain one-RMG-block visits","textPreview":"One truck visit = one case; retain one-RMG-block visits","textChars":55,"textLines":1,"bbox":[751,235,213,48]}
+{"kind":"textbox","id":"sh/vyp0je1s","slide":1,"name":"construct-lifecycle","text":"Build activities and lifecycle","textPreview":"Build activities and lifecycle","textChars":30,"textLines":1,"bbox":[1005,150,205,78]}
+{"kind":"textbox","id":"sh/wzy1szid","slide":1,"name":"construct-lifecycle-description","text":"Gate In, yard handling and Gate Out with start/complete times","textPreview":"Gate In, yard handling and Gate Out with start/complete times","textChars":61,"textLines":1,"bbox":[1001,235,213,48]}
+{"kind":"textbox","id":"sh/h072l4jy","slide":1,"name":"context-enrichment","text":"Enrich context","textPreview":"Enrich context","textChars":14,"textLines":1,"bbox":[1005,420,205,78]}
+{"kind":"textbox","id":"sh/i1gje90j","slide":1,"name":"context-enrichment-description","text":"Manifest, container, demand, utilisation, target and time features","textPreview":"Manifest, container, demand, utilisation, target and time features","textChars":66,"textLines":1,"bbox":[1001,505,213,48]}
+{"kind":"textbox","id":"sh/j2pkne14","slide":1,"name":"quality-validation","text":"Validate event log","textPreview":"Validate event log","textChars":18,"textLines":1,"bbox":[755,420,205,78]}
+{"kind":"textbox","id":"sh/43y1gji9","slide":1,"name":"quality-validation-description","text":"Check completeness, order, duplicates, durations and trace contract","textPreview":"Check completeness, order, duplicates, durations and trace contract","textChars":67,"textLines":1,"bbox":[751,505,213,48]}
+{"kind":"textbox","id":"sh/54r2poju","slide":1,"name":"export-formats","text":"Export formats","textPreview":"Export formats","textChars":14,"textLines":1,"bbox":[505,420,205,78]}
+{"kind":"textbox","id":"sh/y5wjip0z","slide":1,"name":"export-formats-description","text":"CSV for the pipeline; XES for process-mining tools","textPreview":"CSV for the pipeline; XES for process-mining tools","textChars":50,"textLines":1,"bbox":[501,505,213,48]}
+{"kind":"textbox","id":"sh/z650ba1k","slide":1,"name":"simulation-ready-log","text":"Simulation-ready event log","textPreview":"Simulation-ready event log","textChars":26,"textLines":1,"bbox":[255,420,205,78]}
+{"kind":"textbox","id":"sh/z2xgf6to","slide":1,"name":"simulation-ready-log-description","text":"89,460 cases and 275,408 events","textPreview":"89,460 cases and 275,408 events","textChars":31,"textLines":1,"bbox":[251,505,213,42]}
+{"kind":"textbox","id":"sh/e1oz61c3","slide":1,"name":"engineering-bubble-context","text":"case-level context","textPreview":"case-level context","textChars":18,"textLines":1,"bbox":[1035,368,145,34]}
+{"kind":"textbox","id":"sh/14fyhgbe","slide":1,"name":"engineering-bubble-contract","text":"quality contract","textPreview":"quality contract","textChars":16,"textLines":1,"bbox":[785,368,145,34]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"[Sources]\n- Thesis Chapter 3: Case Study and Data Engineering (project workspace)\n- User-provided pipeline screenshots used as visual references only\n[/Sources]"}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"EXPERIMENTS AND EVALUATION","textShapes":30}
+{"kind":"textbox","id":"sh/d8zit87m","slide":2,"name":"experiments-and-evaluation-label","text":"EXPERIMENTS AND EVALUATION","textPreview":"EXPERIMENTS AND EVALUATION","textChars":26,"textLines":1,"bbox":[48,28,390,28]}
+{"kind":"shape","id":"sh/9072xkry","slide":2,"name":"experiments-and-evaluation-rule","bbox":[48,63,1184,0]}
+{"kind":"shape","id":"sh/ozy1ofad","slide":2,"name":"input-anchor","bbox":[42,120,170,74]}
+{"kind":"shape","id":"sh/b29kza94","slide":2,"name":"split-anchor","bbox":[270,120,180,74]}
+{"kind":"shape","id":"sh/a10jqpsj","slide":2,"name":"miner-anchor","bbox":[505,120,180,74]}
+{"kind":"shape","id":"sh/x4r21kru","slide":2,"name":"audit-anchor","bbox":[740,120,180,74]}
+{"kind":"shape","id":"sh/w3i1sfa9","slide":2,"name":"trie-anchor","bbox":[975,120,230,74]}
+{"kind":"shape","id":"sh/r65knqtk","slide":2,"name":"prosit-anchor","bbox":[975,325,230,74]}
+{"kind":"shape","id":"sh/q5wjelsz","slide":2,"name":"freeze-anchor","bbox":[740,325,180,74]}
+{"kind":"shape","id":"sh/ove9o7yd","slide":2,"name":"simulate-anchor","bbox":[505,325,180,74]}
+{"kind":"shape","id":"sh/9wnqhczy","slide":2,"name":"evaluate-anchor","bbox":[270,325,180,74]}
+{"kind":"shape","id":"sh/mtwrmxg7","slide":2,"name":"sensitivity-anchor","bbox":[270,535,220,74]}
+{"kind":"shape","id":"sh/nu58f2hs","slide":2,"name":"scenarios-anchor","bbox":[555,535,220,74]}
+{"kind":"shape","id":"sh/wjy9sry9","slide":2,"name":"interpret-anchor","bbox":[840,535,300,74]}
+{"kind":"shape","id":"sh/vuh8zm9s","slide":2,"bbox":[212,157,58,0]}
+{"kind":"shape","id":"sh/zmtwbel8","slide":2,"bbox":[450,157,55,0]}
+{"kind":"shape","id":"sh/ylkfi94n","slide":2,"bbox":[685,157,55,0]}
+{"kind":"shape","id":"sh/lovedo3e","slide":2,"bbox":[920,157,55,0]}
+{"kind":"shape","id":"sh/knmxkjmt","slide":2,"bbox":[1205,157,24,205]}
+{"kind":"shape","id":"sh/bitw7elc","slide":2,"bbox":[920,362,55,0]}
+{"kind":"shape","id":"sh/qhkfe94r","slide":2,"bbox":[685,362,55,0]}
+{"kind":"shape","id":"sh/dkbe9432","slide":2,"bbox":[450,362,55,0]}
+{"kind":"shape","id":"sh/cj2xgzmx","slide":2,"bbox":[246,362,24,210]}
+{"kind":"shape","id":"sh/vexwjylg","slide":2,"bbox":[490,572,65,0]}
+{"kind":"shape","id":"sh/ud4fqt4v","slide":2,"bbox":[775,572,65,0]}
+{"kind":"textbox","id":"sh/fadgzu58","slide":2,"name":"experiment-input-log","text":"Simulation-ready event log","textPreview":"Simulation-ready event log","textChars":26,"textLines":1,"bbox":[42,120,170,74]}
+{"kind":"textbox","id":"sh/u94fqp4n","slide":2,"name":"experiment-input-log-description","text":"Full CTB event log","textPreview":"Full CTB event log","textChars":18,"textLines":1,"bbox":[38,201,178,48]}
+{"kind":"textbox","id":"sh/p0vy54na","slide":2,"name":"temporal-split","text":"Temporal data split","textPreview":"Temporal data split","textChars":19,"textLines":1,"bbox":[270,120,180,74]}
+{"kind":"textbox","id":"sh/4zmxwzmp","slide":2,"name":"temporal-split-description","text":"64% discovery, 16% validation, 20% final test","textPreview":"64% discovery, 16% validation, 20% final test","textChars":45,"textLines":1,"bbox":[266,201,188,48]}
+{"kind":"textbox","id":"sh/mlgvq147","slide":2,"name":"inductive-miner","text":"Initial process discovery","textPreview":"Initial process discovery","textChars":25,"textLines":1,"bbox":[505,120,180,74]}
+{"kind":"textbox","id":"sh/nmpcj6ls","slide":2,"name":"inductive-miner-description","text":"Inductive Miner produces a generalised Petri net","textPreview":"Inductive Miner produces a generalised Petri net","textChars":48,"textLines":1,"bbox":[501,201,188,48]}
+{"kind":"textbox","id":"sh/onydsbmd","slide":2,"name":"domain-audit","text":"Domain audit","textPreview":"Domain audit","textChars":12,"textLines":1,"bbox":[740,120,180,74]}
 {"kind":"textbox","id":"sh/9o7ulg3y","slide":2,"name":"domain-audit-description","text":"Expert-validated: one truck cannot execute activities in parallel","textPreview":"Expert-validated: one truck cannot execute activities in parallel","textChars":65,"textLines":1,"bbox":[736,201,188,48]}
 {"kind":"textbox","id":"sh/a9gvulkj","slide":2,"name":"prefix-trie","text":"Accepted Petri-net skeleton","textPreview":"Accepted Petri-net skeleton","textChars":27,"textLines":1,"bbox":[975,120,230,74]}
-{"kind":"textbox","id":"sh/je9crql0","slide":2,"name":"freeze-calibrate-description","text":"Expert-validated RMG ceiling: three per block","textPreview":"Expert-validated RMG ceiling: three per block","textChars":45,"textLines":1,"bbox":[736,406,188,48]}
-{"kind":"textbox","id":"sh/exgvmlcv","slide":2,"name":"robustness-sensitivity-description","text":"Configuration, resource, transition and demand-saturation tests","textPreview":"Configuration, resource, transition and demand-saturation tests","textChars":63,"textLines":1,"bbox":[266,616,228,48]}
+{"kind":"textbox","id":"sh/ba9cn6l4","slide":2,"name":"prefix-trie-description","text":"Use sequential net and verify held-out language and case contract","textPreview":"Use sequential net and verify held-out language and case contract","textChars":65,"textLines":1,"bbox":[971,201,238,48]}
+{"kind":"textbox","id":"sh/wbidwb29","slide":2,"name":"prosit-discovery","text":"Discover simulation parameters","textPreview":"Discover simulation parameters","textChars":30,"textLines":1,"bbox":[975,325,230,74]}
+{"kind":"textbox","id":"sh/xcrupg3u","slide":2,"name":"prosit-discovery-description","text":"2x2: static proxies off/on, native state off/on","textPreview":"2x2: static proxies off/on, native state off/on","textChars":47,"textLines":1,"bbox":[971,406,238,48]}
+{"kind":"textbox","id":"sh/id0vylkf","slide":2,"name":"freeze-calibrate","text":"Select and freeze models","textPreview":"Select and freeze models","textChars":24,"textLines":1,"bbox":[740,325,180,74]}
+{"kind":"textbox","id":"sh/je9crql0","slide":2,"name":"freeze-calibrate-description","text":"Validate on 16%, refit on 80%, cap RMGs at three","textPreview":"Validate on 16%, refit on 80%, cap RMGs at three","textChars":48,"textLines":1,"bbox":[736,406,188,48]}
+{"kind":"textbox","id":"sh/ru5cbqd4","slide":2,"name":"monte-carlo","text":"Run simulations","textPreview":"Run simulations","textChars":15,"textLines":1,"bbox":[505,325,180,74]}
+{"kind":"textbox","id":"sh/69wbilcj","slide":2,"name":"monte-carlo-description","text":"Ten seeds (42--51), 17,892 test cases per run","textPreview":"Ten seeds (42--51), 17,892 test cases per run","textChars":45,"textLines":1,"bbox":[501,406,188,48]}
+{"kind":"textbox","id":"sh/tw7ud0va","slide":2,"name":"held-out-evaluation","text":"Evaluate untouched test","textPreview":"Evaluate untouched test","textChars":23,"textLines":1,"bbox":[270,325,180,74]}
+{"kind":"textbox","id":"sh/svedkvup","slide":2,"name":"held-out-evaluation-description","text":"EMD, KS, KPIs, activity-rate L1, 3-gram NGD and CIs","textPreview":"EMD, KS, KPIs, activity-rate L1, 3-gram NGD and CIs","textChars":51,"textLines":1,"bbox":[266,406,188,48]}
+{"kind":"textbox","id":"sh/fypcfqdg","slide":2,"name":"robustness-sensitivity","text":"Robustness and sensitivity","textPreview":"Robustness and sensitivity","textChars":26,"textLines":1,"bbox":[270,535,220,74]}
+{"kind":"textbox","id":"sh/exgvmlcv","slide":2,"name":"robustness-sensitivity-description","text":"Clean-static, structural, resource, transition and saturation tests","textPreview":"Clean-static, structural, resource, transition and saturation tests","textChars":67,"textLines":1,"bbox":[266,616,228,48]}
+{"kind":"textbox","id":"sh/107uh0v6","slide":2,"name":"what-if-scenarios","text":"What-if experiments","textPreview":"What-if experiments","textChars":19,"textLines":1,"bbox":[555,535,220,74]}
+{"kind":"textbox","id":"sh/gzydovul","slide":2,"name":"what-if-scenarios-description","text":"Native-only: T22 closure and 20% higher working-time demand","textPreview":"Native-only: T22 closure and 20% higher working-time demand","textChars":59,"textLines":1,"bbox":[551,616,228,48]}
+{"kind":"textbox","id":"sh/v2lc36dw","slide":2,"name":"critical-interpretation","text":"Interpret results and answer RQs","textPreview":"Interpret results and answer RQs","textChars":32,"textLines":1,"bbox":[840,535,300,74]}
+{"kind":"textbox","id":"sh/a1cba1wb","slide":2,"name":"critical-interpretation-description","text":"Separate executable model responses from physically valid operational claims","textPreview":"Separate executable model responses from physically valid operational claims","textChars":76,"textLines":1,"bbox":[836,616,308,48]}
+{"kind":"textbox","id":"sh/0vq1o36x","slide":2,"name":"bubble-pm4py","text":"PM4Py","textPreview":"PM4Py","textChars":5,"textLines":1,"bbox":[545,78,100,32]}
+{"kind":"textbox","id":"sh/1wzix87i","slide":2,"name":"bubble-domain-rule","text":"one truck = sequential","textPreview":"one truck = sequential","textChars":22,"textLines":1,"bbox":[765,76,130,34]}
+{"kind":"textbox","id":"sh/et8zmto7","slide":2,"name":"bubble-prosit","text":"ProSiT","textPreview":"ProSiT","textChars":6,"textLines":1,"bbox":[1030,280,120,32]}
+{"kind":"textbox","id":"sh/zuh0vypc","slide":2,"name":"bubble-seeds","text":"10 seeds","textPreview":"10 seeds","textChars":8,"textLines":1,"bbox":[535,280,120,32]}
+{"kind":"textbox","id":"sh/c76hk361","slide":2,"name":"bubble-metrics","text":"EMD / L1 / NGD","textPreview":"EMD / L1 / NGD","textChars":14,"textLines":1,"bbox":[300,278,120,34]}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":"[Sources]\n- Thesis Chapter 4: Experiments and Evaluation Framework (project workspace)\n- User-provided pipeline screenshots used as visual references only\n[/Sources]"}

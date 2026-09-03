@@ -1,0 +1,31 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-31T07:25:53.981110+02:00",
+  "finished_at": "2026-08-31T08:03:59.807959+02:00",
+  "source_params": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\tvt_final_visit_only_scenarios_cap3_20260831\\params_baseline_rmg_max_concurrency_3.pkl",
+  "source_params_sha256": "e18a056975ea7145a6f550ddbd4173e50e9154cc27dde6f9443929161b719a6a",
+  "model": "final selected visit-only expert-repaired cap-three bundle",
+  "n_cases_per_run": 17892,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    1.5,
+    2.0,
+    2.4,
+    3.0
+  ],
+  "paired_common_random_numbers": true,
+  "all_structural_contracts_passed": true
+}

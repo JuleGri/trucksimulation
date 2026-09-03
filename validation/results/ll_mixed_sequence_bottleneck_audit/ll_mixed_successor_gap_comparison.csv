@@ -1,0 +1,2 @@
+split,successor,n_after_ll_mixed,mean_after_ll_mixed_min,median_after_ll_mixed_min,p90_after_ll_mixed_min,n_after_other,mean_after_other_min,median_after_other_min,p90_after_other_min,mean_difference_min
+train,RMG_receive,6,10.666666666666666,6.0,22.5,32788,11.250853970964988,6.0,23.0,-0.5841873042983217

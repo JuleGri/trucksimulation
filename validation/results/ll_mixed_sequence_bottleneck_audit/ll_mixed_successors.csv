@@ -1,0 +1,4 @@
+split,successor,n,share_within_ll_mixed,gap_mean_min,gap_median_min,gap_p90_min,gap_total_min
+train,Gate Out,47,0.8867924528301887,12.638297872340425,8.0,16.0,594.0
+train,RMG_receive,6,0.11320754716981132,10.666666666666666,6.0,22.5,64.0
+holdout,Gate Out,11,1.0,11.0,10.0,18.0,121.0

@@ -1,0 +1,71 @@
+{
+  "schema": "ctb-ngram-control-flow-1",
+  "metric": {
+    "name": "N-Gram Distribution Distance",
+    "n": 3,
+    "primary_order": "completion timestamp, stable explicit/input-order tie break",
+    "sensitivity_order": "explicit case:event:order when present; input order otherwise",
+    "padding": "n-1 copies of '<BOUNDARY>' at both trace boundaries",
+    "normalization": "sum absolute count differences / combined n-gram count",
+    "better": "lower; 0 means identical n-gram histograms",
+    "reference": "Chapela-Campa et al., A framework for measuring the quality of business process simulation models, Information Systems 127 (2025) 102447"
+  },
+  "design": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "cases_per_run": 14314,
+    "start_time": "2026-04-10T15:50:00",
+    "timestamp_resolution": "minute",
+    "real_cases": 14314,
+    "real_events": 44146,
+    "real_cases_changed_by_completion_sort": 2,
+    "split_cutoff": "2026-04-10T15:50:00"
+  },
+  "inputs": {
+    "real_log": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\split64_16_20\\s6_validation.csv",
+      "sha256": "1391304619ee698faeb253ba00d7d08ed83733d11f871c07a0a477a66c51b13d"
+    },
+    "split_manifest": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\split_manifest_train64_validation16.json",
+      "sha256": "4a0385308ee07d93e55c88e819531b9708493e443154f3c444594cc51f39bda1"
+    },
+    "simulation_runner": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\_prosit_ctb_calibration.py",
+      "sha256": "1c821e4e378b208b5cd02421f2209a455e2253e8f95d019fd0c9fe32e7691c32"
+    },
+    "experiment_driver": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\19_ngram_control_flow_distance.py",
+      "sha256": "4e58c56efc36663f345910fc9173cf98cc6837501dce88dc672c2923fea67fe2"
+    },
+    "configurations": {
+      "visit_only": {
+        "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_visit_only_20260831\\prosit_params.pkl",
+        "sha256": "25a45f6ed49d9dca13a433c89b8e56dce806a949621a66ff463d8c30657e4185"
+      },
+      "static_only": {
+        "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_static_only_20260831\\prosit_params.pkl",
+        "sha256": "a58384763e0e97446a92baf3403aaa20373d7c021d8466e496c86d652c05b656"
+      },
+      "native_only": {
+        "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_native_only_20260831\\prosit_params.pkl",
+        "sha256": "28f00c033202b3ff3f58845dfee87ef09fdd0fc8696ac1488e73e93d14d59a4b"
+      },
+      "both": {
+        "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_both_20260831\\prosit_params.pkl",
+        "sha256": "bb89d9965ffbf06fe32ea8adefafd83b7ebf99c428cc80502fbaf099e87f7cb3"
+      }
+    }
+  },
+  "privacy_note": "heldout_ngram_profile.csv contains aggregate activity-sequence counts only; it contains no case identifiers, resources, attributes, or timestamps."
+}

@@ -1,0 +1,107 @@
+{
+  "calendar_preserving_closed_period_arrivals": 0,
+  "calendar_preserving_sunday_arrivals": 0,
+  "calendar_preserving_calendar_compliance_rate": 1.0,
+  "calendar_preserving_cases": 222000,
+  "compression_cases": 120000,
+  "calendar_preserving_mean_by_factor": {
+    "1.0": {
+      "mean_turnaround_min": 32.1951,
+      "p90_turnaround_min": 53.93,
+      "mean_rmg_service_min": 10.956337,
+      "mean_rmg_pre_service_min": 8.212835,
+      "arrival_rate_per_elapsed_hour": 87.979971,
+      "arrival_span_min": 1365.3
+    },
+    "1.2": {
+      "mean_turnaround_min": 32.183833,
+      "p90_turnaround_min": 54.21,
+      "mean_rmg_service_min": 11.024559,
+      "mean_rmg_pre_service_min": 8.227585,
+      "arrival_rate_per_elapsed_hour": 105.64851,
+      "arrival_span_min": 1364.3
+    },
+    "1.5": {
+      "mean_turnaround_min": 32.099,
+      "p90_turnaround_min": 54.5,
+      "mean_rmg_service_min": 11.094703,
+      "mean_rmg_pre_service_min": 8.083539,
+      "arrival_rate_per_elapsed_hour": 131.247321,
+      "arrival_span_min": 1372.5
+    },
+    "2.0": {
+      "mean_turnaround_min": 32.1095,
+      "p90_turnaround_min": 54.1,
+      "mean_rmg_service_min": 11.032033,
+      "mean_rmg_pre_service_min": 8.194311,
+      "arrival_rate_per_elapsed_hour": 172.727831,
+      "arrival_span_min": 1390.0
+    },
+    "2.4": {
+      "mean_turnaround_min": 32.011167,
+      "p90_turnaround_min": 54.1,
+      "mean_rmg_service_min": 10.995072,
+      "mean_rmg_pre_service_min": 8.202604,
+      "arrival_rate_per_elapsed_hour": 205.034009,
+      "arrival_span_min": 1405.0
+    },
+    "3.0": {
+      "mean_turnaround_min": 32.125617,
+      "p90_turnaround_min": 54.3,
+      "mean_rmg_service_min": 11.089015,
+      "mean_rmg_pre_service_min": 8.128929,
+      "arrival_rate_per_elapsed_hour": 252.915978,
+      "arrival_span_min": 1423.5
+    }
+  },
+  "compression_mean_by_factor": {
+    "1.0": {
+      "mean_turnaround_min": 32.1951,
+      "p90_turnaround_min": 53.93,
+      "mean_rmg_service_min": 10.956337,
+      "mean_rmg_pre_service_min": 8.212835,
+      "arrival_rate_per_elapsed_hour": 87.979971,
+      "arrival_span_min": 1365.3
+    },
+    "1.2": {
+      "mean_turnaround_min": 31.7753,
+      "p90_turnaround_min": 53.6,
+      "mean_rmg_service_min": 11.046792,
+      "mean_rmg_pre_service_min": 8.059823,
+      "arrival_rate_per_elapsed_hour": 105.281772,
+      "arrival_span_min": 1140.9
+    },
+    "1.5": {
+      "mean_turnaround_min": 32.02515,
+      "p90_turnaround_min": 54.01,
+      "mean_rmg_service_min": 11.09648,
+      "mean_rmg_pre_service_min": 8.098184,
+      "arrival_rate_per_elapsed_hour": 131.115091,
+      "arrival_span_min": 916.1
+    },
+    "2.0": {
+      "mean_turnaround_min": 32.07175,
+      "p90_turnaround_min": 53.8,
+      "mean_rmg_service_min": 10.952562,
+      "mean_rmg_pre_service_min": 8.102359,
+      "arrival_rate_per_elapsed_hour": 173.695854,
+      "arrival_span_min": 691.5
+    },
+    "2.4": {
+      "mean_turnaround_min": 31.94895,
+      "p90_turnaround_min": 53.72,
+      "mean_rmg_service_min": 10.994679,
+      "mean_rmg_pre_service_min": 8.135686,
+      "arrival_rate_per_elapsed_hour": 207.267045,
+      "arrival_span_min": 579.5
+    },
+    "3.0": {
+      "mean_turnaround_min": 32.26535,
+      "p90_turnaround_min": 54.71,
+      "mean_rmg_service_min": 11.111792,
+      "mean_rmg_pre_service_min": 8.252478,
+      "arrival_rate_per_elapsed_hour": 257.085455,
+      "arrival_span_min": 467.2
+    }
+  }
+}

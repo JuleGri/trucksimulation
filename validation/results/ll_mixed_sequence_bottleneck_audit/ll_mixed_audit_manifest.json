@@ -1,0 +1,10 @@
+{
+  "train_source": "data\\processed\\CTB\\s6_train.csv",
+  "holdout_source": "data\\processed\\CTB\\s6_test.csv",
+  "ordering": "case:event:order",
+  "delay_semantics": "Composite pre-service delay is the non-negative gap between the previous event completion and current event start. It is not interpreted as pure queueing.",
+  "holdout_ll_mixed_service_plus_pre_service_min": 233.0,
+  "holdout_total_turnaround_min": 711072.0,
+  "holdout_ll_mixed_burden_share": 0.00032767427208496466,
+  "interpretation_boundary": "The audit describes sequence frequency and accumulated time. The seven multi-yard LL_mixed cases are too sparse to establish a mandatory routing rule or a causal bottleneck."
+}

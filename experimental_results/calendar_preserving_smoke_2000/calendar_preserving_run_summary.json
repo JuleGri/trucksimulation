@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-31T15:51:15.843701+02:00",
+  "finished_at": "2026-08-31T15:53:27.061039+02:00",
+  "experiment": "calendar_preserving_demand_intensity",
+  "base_cases": 2000,
+  "seeds": [
+    42,
+    43
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    2.4,
+    3.0
+  ],
+  "case_count_rule": "round(base_cases * demand_multiplier)",
+  "inter_arrival_rule": "working_minute_inter_arrivals / demand_multiplier",
+  "gate_calendar_unchanged": true,
+  "all_arrival_calendar_audits_passed": true,
+  "all_cases_complete": true
+}

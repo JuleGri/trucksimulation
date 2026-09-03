@@ -1,0 +1,35 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-31T16:42:12.815289+02:00",
+  "finished_at": "2026-08-31T16:52:46.397747+02:00",
+  "experiment": "calendar_preserving_demand_intensity",
+  "base_cases": 2000,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    1.5,
+    2.0,
+    2.4,
+    3.0
+  ],
+  "case_count_rule": "round(base_cases * demand_multiplier)",
+  "inter_arrival_rule": "working_minute_inter_arrivals / demand_multiplier",
+  "closed_boundary_handling": "exact closed-hour boundary crossings retained and audited",
+  "gate_calendar_unchanged": true,
+  "all_sunday_audits_passed": true,
+  "closed_period_gate_arrivals_total": 0,
+  "arrival_calendar_compliance_rate": 1.0,
+  "all_cases_complete": true
+}

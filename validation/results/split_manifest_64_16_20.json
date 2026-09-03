@@ -1,0 +1,25 @@
+{
+  "schema": "ctb-temporal-train-validation-test-1",
+  "generated_at": "2026-08-31T00:11:04.708583+02:00",
+  "case_order": "earliest observed event timestamp; seeded tie break 42",
+  "fractions": {
+    "train": 0.64,
+    "validation": 0.16,
+    "test": 0.2
+  },
+  "cutoff_train_validation": "2026-04-10T15:50:00",
+  "cutoff_validation_test": "2026-04-20T18:17:00",
+  "train": {
+    "n_cases": 57254,
+    "n_events": 175902
+  },
+  "validation": {
+    "n_cases": 14314,
+    "n_events": 44146
+  },
+  "test": {
+    "n_cases": 17892,
+    "n_events": 55360
+  },
+  "persisted_80_20_equivalence": true
+}

@@ -1,0 +1,397 @@
+{
+  "principle": "The effective baseline is derived by deep copy from the frozen calibrated source bundle. The default RMG cap of three is a final domain constraint, while --no-rmg-cap retains the discovered overlap capacities only for diagnosis. Both operational scenarios are then independently derived from that effective baseline. Scenario A changes only the listed resource mappings and blocked-resource calendar. Scenario B changes only the empirical inter-arrival samples and their serialized fallback statistics.",
+  "rmg_capacity_constraint": {
+    "enabled": true,
+    "requested_max_concurrency": 3,
+    "before": {
+      "n_resources": 22,
+      "per_resource": {
+        "T06": 4,
+        "T07": 4,
+        "T08": 4,
+        "T09": 4,
+        "T10": 5,
+        "T11": 4,
+        "T12": 5,
+        "T13": 5,
+        "T14": 5,
+        "T15": 4,
+        "T16": 5,
+        "T17": 4,
+        "T18": 5,
+        "T19": 4,
+        "T20": 5,
+        "T21": 5,
+        "T22": 5,
+        "T23": 5,
+        "T24": 5,
+        "T25": 4,
+        "T26": 5,
+        "T27": 4
+      },
+      "minimum": 4,
+      "maximum": 5,
+      "aggregate": 100
+    },
+    "after": {
+      "n_resources": 22,
+      "per_resource": {
+        "T06": 3,
+        "T07": 3,
+        "T08": 3,
+        "T09": 3,
+        "T10": 3,
+        "T11": 3,
+        "T12": 3,
+        "T13": 3,
+        "T14": 3,
+        "T15": 3,
+        "T16": 3,
+        "T17": 3,
+        "T18": 3,
+        "T19": 3,
+        "T20": 3,
+        "T21": 3,
+        "T22": 3,
+        "T23": 3,
+        "T24": 3,
+        "T25": 3,
+        "T26": 3,
+        "T27": 3
+      },
+      "minimum": 3,
+      "maximum": 3,
+      "aggregate": 66
+    },
+    "changed_resources": {
+      "T06": {
+        "before": 4,
+        "after": 3
+      },
+      "T07": {
+        "before": 4,
+        "after": 3
+      },
+      "T08": {
+        "before": 4,
+        "after": 3
+      },
+      "T09": {
+        "before": 4,
+        "after": 3
+      },
+      "T10": {
+        "before": 5,
+        "after": 3
+      },
+      "T11": {
+        "before": 4,
+        "after": 3
+      },
+      "T12": {
+        "before": 5,
+        "after": 3
+      },
+      "T13": {
+        "before": 5,
+        "after": 3
+      },
+      "T14": {
+        "before": 5,
+        "after": 3
+      },
+      "T15": {
+        "before": 4,
+        "after": 3
+      },
+      "T16": {
+        "before": 5,
+        "after": 3
+      },
+      "T17": {
+        "before": 4,
+        "after": 3
+      },
+      "T18": {
+        "before": 5,
+        "after": 3
+      },
+      "T19": {
+        "before": 4,
+        "after": 3
+      },
+      "T20": {
+        "before": 5,
+        "after": 3
+      },
+      "T21": {
+        "before": 5,
+        "after": 3
+      },
+      "T22": {
+        "before": 5,
+        "after": 3
+      },
+      "T23": {
+        "before": 5,
+        "after": 3
+      },
+      "T24": {
+        "before": 5,
+        "after": 3
+      },
+      "T25": {
+        "before": 4,
+        "after": 3
+      },
+      "T26": {
+        "before": 5,
+        "after": 3
+      },
+      "T27": {
+        "before": 4,
+        "after": 3
+      }
+    },
+    "unchanged_parameter_families": [
+      "control-flow Petri net",
+      "arrival model and gate admission calendar",
+      "activity-duration and waiting-time models",
+      "routing decision models",
+      "activity/resource mappings",
+      "resource calendars, selection models, and weights",
+      "case attributes and feature schema",
+      "CTB minute timestamp observation model"
+    ]
+  },
+  "blocked_blocks": [
+    "T22"
+  ],
+  "t22_closed": {
+    "interpretation": "Resource-pool reallocation experiment: T22 is removed from the eligible RMG pools. Receive and delivery effects are reported separately; no physical container relocation is simulated.",
+    "act_to_resources_changes": {
+      "RMG_delivery": {
+        "before": [
+          "T13",
+          "T14",
+          "T16",
+          "T17",
+          "T12",
+          "T15",
+          "T21",
+          "T10",
+          "T20",
+          "T11",
+          "T24",
+          "T09",
+          "T06",
+          "T18",
+          "T22",
+          "T23",
+          "T27",
+          "T07",
+          "T19",
+          "T08",
+          "T25",
+          "T26"
+        ],
+        "after": [
+          "T13",
+          "T14",
+          "T16",
+          "T17",
+          "T12",
+          "T15",
+          "T21",
+          "T10",
+          "T20",
+          "T11",
+          "T24",
+          "T09",
+          "T06",
+          "T18",
+          "T23",
+          "T27",
+          "T07",
+          "T19",
+          "T08",
+          "T25",
+          "T26"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      },
+      "RMG_mixed": {
+        "before": [
+          "T13",
+          "T14",
+          "T24",
+          "T17",
+          "T21",
+          "T20",
+          "T23",
+          "T22",
+          "T27",
+          "T18",
+          "T16",
+          "T15",
+          "T12",
+          "T26",
+          "T19",
+          "T11",
+          "T25",
+          "T10",
+          "T09",
+          "T06",
+          "T08",
+          "T07"
+        ],
+        "after": [
+          "T13",
+          "T14",
+          "T24",
+          "T17",
+          "T21",
+          "T20",
+          "T23",
+          "T27",
+          "T18",
+          "T16",
+          "T15",
+          "T12",
+          "T26",
+          "T19",
+          "T11",
+          "T25",
+          "T10",
+          "T09",
+          "T06",
+          "T08",
+          "T07"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      },
+      "RMG_receive": {
+        "before": [
+          "T13",
+          "T24",
+          "T14",
+          "T16",
+          "T27",
+          "T11",
+          "T17",
+          "T20",
+          "T21",
+          "T23",
+          "T22",
+          "T10",
+          "T18",
+          "T12",
+          "T06",
+          "T15",
+          "T09",
+          "T26",
+          "T07",
+          "T08",
+          "T19",
+          "T25"
+        ],
+        "after": [
+          "T13",
+          "T24",
+          "T14",
+          "T16",
+          "T27",
+          "T11",
+          "T17",
+          "T20",
+          "T21",
+          "T23",
+          "T10",
+          "T18",
+          "T12",
+          "T06",
+          "T15",
+          "T09",
+          "T26",
+          "T07",
+          "T08",
+          "T19",
+          "T25"
+        ],
+        "removed": [
+          "T22"
+        ],
+        "added": []
+      }
+    },
+    "calendar_active_slots_before": {
+      "T22": 168
+    },
+    "calendar_active_slots_after": {
+      "T22": 0
+    }
+  },
+  "demand_plus_20pct": {
+    "requested_demand_increase_pct": 20.0,
+    "arrival_intensity_multiplier": 1.2,
+    "inter_arrival_time_multiplier": 0.8333333333333334,
+    "arrival_model_before": {
+      "n_samples": 71530,
+      "mean_working_inter_arrival_min": 0.6830420802460506,
+      "implied_arrivals_per_working_hour": 87.84231855581481,
+      "zero_probability": 0.5509716202991751,
+      "minimum_working_inter_arrival_min": 0.0,
+      "maximum_working_inter_arrival_min": 19.0
+    },
+    "arrival_model_after": {
+      "n_samples": 71530,
+      "mean_working_inter_arrival_min": 0.5692017335383756,
+      "implied_arrivals_per_working_hour": 105.41078226697776,
+      "zero_probability": 0.5509716202991751,
+      "minimum_working_inter_arrival_min": 0.0,
+      "maximum_working_inter_arrival_min": 15.833333333333334
+    },
+    "act_to_resources_changes": {},
+    "arrival_calendar_changed": false,
+    "resource_calendars_changed": false
+  },
+  "scenario_specific_unchanged_parameter_families": {
+    "t22_closed": [
+      "control-flow Petri net",
+      "arrival model and gate admission calendar",
+      "activity-duration models",
+      "routing decision models",
+      "resource-selection models and weights",
+      "case attributes and feature schema",
+      "CTB minute timestamp observation model"
+    ],
+    "demand_plus_20pct": [
+      "control-flow Petri net",
+      "gate admission calendar",
+      "activity-duration models",
+      "routing decision models",
+      "activity/resource mappings",
+      "resource calendars, selection models, and weights",
+      "case attributes and feature schema",
+      "CTB minute timestamp observation model"
+    ]
+  },
+  "source_baseline_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_selected_visit_only_train80_20260831\\prosit_params.pkl",
+  "source_baseline_sha256": "2a2a313d57fd4f8396428055a921cf20eb164bfae5ea8b2ae7eeb595a0cff490",
+  "baseline_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\tvt_final_visit_only_scenarios_cap3_20260831\\params_baseline_rmg_max_concurrency_3.pkl",
+  "baseline_sha256": "e18a056975ea7145a6f550ddbd4173e50e9154cc27dde6f9443929161b719a6a",
+  "scenario_pickles": {
+    "t22_closed": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\tvt_final_visit_only_scenarios_cap3_20260831\\params_t22_closed.pkl",
+    "demand_plus_20pct": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\tvt_final_visit_only_scenarios_cap3_20260831\\params_demand_plus_20pct.pkl"
+  },
+  "scenario_sha256": {
+    "t22_closed": "0eb59389a8801704a155f5e927794902b195f0fe0c7539f46666709d57695a4b",
+    "demand_plus_20pct": "a3a1ccad914873e102566d13f706ef3ae91c246e425690b62070af99a19b1f6f"
+  }
+}

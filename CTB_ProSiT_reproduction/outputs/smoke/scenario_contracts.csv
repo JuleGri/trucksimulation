@@ -1,0 +1,7 @@
+seed,scenario,gate_only_cases,wrong_case_boundary_cases,within_case_overlap_cases,decreasing_completion_cases,gate_out_before_final_yard_cases,wrong_case_count,t22_resource_assignments,prohibited_resource_assignments
+42,baseline,0,0,0,0,0,0,8,0
+42,t22_closed,0,0,0,0,0,0,0,0
+42,demand_plus_20pct,0,0,0,0,0,0,8,0
+43,baseline,0,0,0,0,0,0,8,0
+43,t22_closed,0,0,0,0,0,0,0,0
+43,demand_plus_20pct,0,0,0,0,0,0,8,0

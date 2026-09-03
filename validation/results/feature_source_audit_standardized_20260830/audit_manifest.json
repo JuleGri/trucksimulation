@@ -1,0 +1,9 @@
+{
+  "schema": "ctb-feature-source-audit-1",
+  "train_log": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\s6_train.csv",
+  "full_params": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_both_common_20260829\\prosit_params.pkl",
+  "n_cases": 71568,
+  "n_aligned_sync_events": 220048,
+  "interpretation": "Associations diagnose redundancy; they neither require predictor independence nor establish causal effects. Factorial hold-out simulation is the primary source-attribution experiment.",
+  "privacy": "Only aggregate associations and rule counts are persisted."
+}

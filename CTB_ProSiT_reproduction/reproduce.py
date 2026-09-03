@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from contextlib import contextmanager, redirect_stderr
+from contextlib import redirect_stderr
 from copy import deepcopy
 from datetime import datetime
 import importlib.util
@@ -146,27 +146,6 @@ def _scenario_module():
     return module
 
 
-@contextmanager
-def _stable_transition_sampling():
-    """Canonicalise ProSiT's enabled-transition set before seeded sampling."""
-    import prosit.simulator as simulator
-
-    original = simulator.return_fired_transition
-
-    def stable(weights, enabled):
-        ordered = sorted(
-            enabled,
-            key=lambda t: (str(t.name), "" if t.label is None else str(t.label)),
-        )
-        return original(weights, ordered)
-
-    simulator.return_fired_transition = stable
-    try:
-        yield
-    finally:
-        simulator.return_fired_transition = original
-
-
 def run(*, full: bool = True) -> Path:
     """Run the three saved models and write the thesis KPI tables."""
     models = load_pickle_models()
@@ -183,7 +162,7 @@ def run(*, full: bool = True) -> Path:
         print(f"seed={seed}")
         for name, params in models.items():
             print(f"  {name} ...", end=" ", flush=True)
-            with _stable_transition_sampling(), redirect_stderr(io.StringIO()):
+            with redirect_stderr(io.StringIO()):
                 log = scenario.simulate_ctb(
                     deepcopy(params),
                     n_traces=n_cases,

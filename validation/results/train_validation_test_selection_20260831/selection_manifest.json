@@ -1,0 +1,19 @@
+{
+  "policy_fixed_before_validation_results": true,
+  "primary_metrics": [
+    "case_turnaround_emd_min",
+    "yard_service_time_emd_frequency_weighted_min",
+    "yard_activity_rate_l1_error",
+    "ngd_completion_order"
+  ],
+  "rule": "Additional state replaces visit-only only with a paired 95% CI showing improvement in at least one primary error metric and no paired 95% CI showing worsening in another; parsimony then breaks ties.",
+  "qualified_candidates": [],
+  "selected_configuration": "visit_only",
+  "selection_data": "temporal validation 16%; final test 20% not accessed",
+  "inputs": {
+    "visit_only": "d2fba7cc0eb86444c504c0fe853ca5da9b92d1dfd553c79522fd5b3889997b9f",
+    "static_only": "a226c67829082aa4a7d93f1366d9afe9d40491a42b6c1c3796942f15e7b32fb2",
+    "native_only": "dd71d6b8e0be5c6cf517a33266d2514f1e57777524132a38f3d6b09858176c97",
+    "both": "d078150e804891ab338cba4055fa202a1fc91de76cc0e4c545274bdf2067338c"
+  }
+}

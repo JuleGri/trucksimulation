@@ -1,0 +1,171 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-28T16:20:21.356204+02:00",
+  "finished_at": "2026-08-28T16:20:46.788758+02:00",
+  "model": "calibrated rules+workload cap-three diagnostic baseline",
+  "n_cases_per_run": 250,
+  "seeds": [
+    42,
+    43
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    2.4,
+    3.0
+  ],
+  "paired_common_random_numbers": true,
+  "all_structural_contracts_passed": true,
+  "headline_paired_effects": [
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_turnaround_min",
+      "n": 2,
+      "mean_delta": 0.2579999999999991,
+      "std_delta": 1.0493464632808378,
+      "ci95_delta_lo": -9.170003914241635,
+      "ci95_delta_hi": 9.686003914241633,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "p90_turnaround_min",
+      "n": 2,
+      "mean_delta": -1.4000000000000057,
+      "std_delta": 7.919595949289324,
+      "ci95_delta_lo": -72.55474652257821,
+      "ci95_delta_hi": 69.7547465225782,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_service_min",
+      "n": 2,
+      "mean_delta": 0.2649109624439321,
+      "std_delta": 0.9156436629028893,
+      "ci95_delta_lo": -7.961820951159145,
+      "ci95_delta_hi": 8.49164287604701,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 2,
+      "mean_delta": -0.6509929616781962,
+      "std_delta": 0.4051891850133224,
+      "ci95_delta_lo": -4.291473352082482,
+      "ci95_delta_hi": 2.9894874287260897,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 2,
+      "mean_delta": 19.392438687140668,
+      "std_delta": 0.33742079646606726,
+      "ci95_delta_lo": 16.360833110577893,
+      "ci95_delta_hi": 22.424044263703443,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_turnaround_min",
+      "n": 2,
+      "mean_delta": 2.201999999999998,
+      "std_delta": 2.616295090390228,
+      "ci95_delta_lo": -21.304478761923203,
+      "ci95_delta_hi": 25.7084787619232,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "p90_turnaround_min",
+      "n": 2,
+      "mean_delta": 2.049999999999997,
+      "std_delta": 11.38441917710341,
+      "ci95_delta_lo": -100.23494812620625,
+      "ci95_delta_hi": 104.33494812620624,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_service_min",
+      "n": 2,
+      "mean_delta": 0.5040507350905248,
+      "std_delta": 0.902036004436286,
+      "ci95_delta_lo": -7.6004212178836426,
+      "ci95_delta_hi": 8.608522688064692,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 2,
+      "mean_delta": 0.3052267817274772,
+      "std_delta": 0.7711648097068493,
+      "ci95_delta_lo": -6.623414137983476,
+      "ci95_delta_hi": 7.233867701438431,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 2,
+      "mean_delta": 132.54575412170612,
+      "std_delta": 2.7596235522251473,
+      "ci95_delta_lo": 107.75152022219287,
+      "ci95_delta_hi": 157.33998802121937,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_turnaround_min",
+      "n": 2,
+      "mean_delta": 1.2999999999999972,
+      "std_delta": 2.392849347535277,
+      "ci95_delta_lo": -20.198898413607584,
+      "ci95_delta_hi": 22.798898413607578,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "p90_turnaround_min",
+      "n": 2,
+      "mean_delta": 1.0999999999999943,
+      "std_delta": 9.758073580374363,
+      "ci95_delta_lo": -86.57281267960545,
+      "ci95_delta_hi": 88.77281267960544,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_service_min",
+      "n": 2,
+      "mean_delta": -0.03827598580762448,
+      "std_delta": 0.44829149316539896,
+      "ci95_delta_lo": -4.066015250368777,
+      "ci95_delta_hi": 3.9894632787535285,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 2,
+      "mean_delta": 1.1291548377983895,
+      "std_delta": 1.3711706410940125,
+      "ci95_delta_lo": -11.190324594103775,
+      "ci95_delta_hi": 13.448634269700555,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 2,
+      "mean_delta": 187.2424283201492,
+      "std_delta": 1.5908016532696694,
+      "ci95_delta_lo": 172.9496425352558,
+      "ci95_delta_hi": 201.5352141050426,
+      "ci_excludes_zero": true
+    }
+  ]
+}

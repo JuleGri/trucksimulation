@@ -1,0 +1,6 @@
+file,same_shape,same_columns,values_match,max_abs_numeric_difference
+saturation_contracts.csv,True,True,True,0.0
+saturation_paired_delta_summary.csv,True,True,True,0.0
+saturation_paired_deltas.csv,True,True,True,0.0
+saturation_replications.csv,True,True,True,0.0
+saturation_summary.csv,True,True,True,0.0

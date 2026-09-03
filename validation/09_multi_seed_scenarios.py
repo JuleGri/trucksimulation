@@ -1,7 +1,7 @@
-"""Matched-seed validation of the final calibrated CTB what-if scenarios.
+"""Matched-seed validation of standardized CTB what-if scenarios.
 
-The authoritative, held-out-validated parameter bundle is frozen as the
-baseline.  Two transparent white-box interventions are derived from it:
+The supplied, held-out-validated parameter bundle is frozen as the baseline.
+Two transparent white-box interventions are derived from it:
 
 1. ``t22_closed`` removes T22 from every activity/resource mapping and makes
    its calendar unavailable.
@@ -75,12 +75,12 @@ DEFAULT_PARAMS = (
     / "baseline"
     / "discovery_params"
     / "params_20260816_214403_train80"
-    / "prosit_discovery_workload_inductive_calibrated"
+    / "prosit_discovery_feature_visit_only_common_20260829"
     / "prosit_params.pkl"
 )
 DEFAULT_MANIFEST = REPO_ROOT / "validation" / "results" / "split_manifest.json"
 DEFAULT_OUT_ROOT = REPO_ROOT / "validation" / "results"
-DEFAULT_LABEL = "final_deterministic_20260829_rules_workload_scenarios_cap3_ci"
+DEFAULT_LABEL = "standardized_20260830_visit_only_scenarios_cap3_ci"
 
 RMG_ACTIVITIES = ("RMG_receive", "RMG_delivery", "RMG_mixed")
 DEFAULT_BLOCKED_BLOCKS = ("T22",)
@@ -651,8 +651,6 @@ def _assert_audit(audit: dict, metrics: dict) -> None:
     violations = sum(int(audit[key]) for key in HARD_CONTRACT_KEYS)
     violations += int(audit["wrong_case_count"])
     violations += int(audit["prohibited_resource_assignments"])
-    violations += int(metrics["service_events_above_24h"])
-    violations += int(metrics["turnaround_cases_above_24h"])
     if violations:
         raise RuntimeError(
             f"Seed {audit['seed']} scenario {audit['scenario']} failed validation: "
@@ -988,7 +986,9 @@ def main() -> int:
             print(
                 f"turnaround={metrics['mean_turnaround_min']:.3f} min "
                 f"RMG-service={metrics['mean_rmg_service_min']:.3f} min "
-                f"contract=PASS"
+                f"contract=PASS "
+                f">24h(service/case)={metrics['service_events_above_24h']}/"
+                f"{metrics['turnaround_cases_above_24h']}"
             )
 
     replications = pd.DataFrame(rows)
@@ -996,6 +996,21 @@ def main() -> int:
     deltas = _paired_deltas(replications)
     kpi_summary = _scenario_kpi_summary(replications)
     delta_summary = _paired_delta_summary(deltas)
+    duration_tail_totals = {
+        "service_events_above_24h": int(replications["service_events_above_24h"].sum()),
+        "turnaround_cases_above_24h": int(replications["turnaround_cases_above_24h"].sum()),
+    }
+    duration_tail_rows = replications.loc[
+        (replications["service_events_above_24h"] > 0)
+        | (replications["turnaround_cases_above_24h"] > 0),
+        [
+            "seed",
+            "scenario",
+            "max_turnaround_min",
+            "service_events_above_24h",
+            "turnaround_cases_above_24h",
+        ],
+    ]
 
     replications.to_csv(out_dir / "scenario_replications.csv", index=False)
     contracts.to_csv(out_dir / "scenario_contracts.csv", index=False)
@@ -1037,7 +1052,9 @@ def main() -> int:
             "status": "completed",
             "finished_at": datetime.now().astimezone().isoformat(),
             "all_contracts_passed": True,
-            "all_duration_tail_counts_zero": True,
+            "all_duration_tail_counts_zero": not any(duration_tail_totals.values()),
+            "duration_tail_totals": duration_tail_totals,
+            "duration_tail_seed_scenarios": duration_tail_rows.to_dict(orient="records"),
             "headline_paired_effects": headline.to_dict(orient="records"),
             "t22_receive_delivery_effects": t22_focus.to_dict(orient="records"),
             "artifacts": {

@@ -1,0 +1,45 @@
+{
+  "authoritative_model": "expert_sequential_contract_repair",
+  "control_flow_policy": "expert_sequential_contract",
+  "raw_inductive_process_tree": "->( 'Gate In', X( tau, 'LL_mixed' ), X( tau, *( X( 'HO2_receive', 'RMG_mixed', 'HO2_mixed', 'LL_receive', 'HO2_delivery', 'RMG_receive', 'RMG_delivery', 'LL_delivery' ), tau ) ), 'Gate Out' )",
+  "raw_parallel_operator_count": 0,
+  "process_tree": "->( 'Gate In', *( X( 'HO2_delivery', 'HO2_mixed', 'HO2_receive', 'LL_delivery', 'LL_mixed', 'LL_receive', 'RMG_delivery', 'RMG_mixed', 'RMG_receive' ), tau ), 'Gate Out' )",
+  "repair_applied": true,
+  "repair_basis": "Terminal experts validated mandatory Gate In and Gate Out, at least one yard activity, arbitrary sequential yard order, repetitions, and no within-truck parallel activity.",
+  "yard_activity_labels": [
+    "HO2_delivery",
+    "HO2_mixed",
+    "HO2_receive",
+    "LL_delivery",
+    "LL_mixed",
+    "LL_receive",
+    "RMG_delivery",
+    "RMG_mixed",
+    "RMG_receive"
+  ],
+  "observed_case_language": [
+    "Gate In",
+    "one_or_more_yard_activities",
+    "Gate Out"
+  ],
+  "model_language": [
+    "Gate In",
+    "one_or_more_sequential_yard_activities",
+    "Gate Out"
+  ],
+  "within_case_parallelism": false,
+  "parallel_operator_count": 0,
+  "cross_case_resource_multitasking": true,
+  "petri_net": {
+    "places": 4,
+    "transitions": 12,
+    "arcs": 24
+  },
+  "holdout_variant_coverage": {
+    "train_variants": 70,
+    "test_variants": 53,
+    "unseen_test_variants": 10,
+    "unseen_test_cases": 10,
+    "unseen_test_case_share": 0.0005589090096132349
+  }
+}

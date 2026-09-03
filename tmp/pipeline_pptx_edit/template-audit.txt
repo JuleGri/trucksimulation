@@ -1,6 +1,7 @@
-Source deck: CTB_pipeline_diagrams_black_white.pptx
-Slides: 2, both 16:9, white background, black/grey process-diagram style.
-Typography: Arial for visible labels and body copy; 20 pt bold box headings; 16 pt descriptions.
-Structure: slide-local shapes and connectors on one empty title layout; no inherited placeholders, images, charts, or tables.
-Reuse contract: preserve slide 1 unchanged. Duplicate slide 2 and edit only three inherited text shapes. Keep all geometry, connectors, colours, fonts, and spacing.
+Communication job: By the end, a thesis reader should understand that model discovery, configuration selection, final testing, and scenario analysis use distinct data and model roles.
 
+Source structure: two-slide local PowerPoint deck with one event-log engineering diagram and one experimental pipeline diagram. Both slides use the same grayscale typography, boxed process steps, thin connectors, and small explanatory text below each box. The title and separator rule are slide-local elements. Speaker notes contain thesis-only source blocks.
+
+Edit scope: preserve slide 1 unchanged. On slide 2, update only the temporal-split, bundle-selection, simulation, held-out-evaluation, and what-if labels required to reflect the final 64/16/20 design and the native-only scenario role. Preserve all positions, typography, connectors, masters, layouts, notes, and unaffected wording.
+
+Inspection note: the bundled template inspection helper could not complete because its external unzip executable is unavailable in the runtime. The existing complete deck inspection and PNGs were reviewed, and the authoring script performs a fresh artifact-tool inspection of both slides before and after editing.

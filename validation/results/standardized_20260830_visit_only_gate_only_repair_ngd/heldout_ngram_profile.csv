@@ -1,0 +1,205 @@
+order_mode,activity_1,activity_2,activity_3,count
+completion,<BOUNDARY>,<BOUNDARY>,Gate In,17892
+completion,<BOUNDARY>,Gate In,Gate Out,3
+completion,<BOUNDARY>,Gate In,HO2_delivery,1409
+completion,<BOUNDARY>,Gate In,HO2_mixed,271
+completion,<BOUNDARY>,Gate In,HO2_receive,1110
+completion,<BOUNDARY>,Gate In,LL_delivery,3571
+completion,<BOUNDARY>,Gate In,LL_mixed,10
+completion,<BOUNDARY>,Gate In,LL_receive,108
+completion,<BOUNDARY>,Gate In,RMG_delivery,4403
+completion,<BOUNDARY>,Gate In,RMG_mixed,932
+completion,<BOUNDARY>,Gate In,RMG_receive,6075
+completion,Gate In,Gate Out,LL_delivery,3
+completion,Gate In,HO2_delivery,Gate Out,1274
+completion,Gate In,HO2_delivery,HO2_delivery,3
+completion,Gate In,HO2_delivery,LL_delivery,17
+completion,Gate In,HO2_delivery,LL_receive,12
+completion,Gate In,HO2_delivery,RMG_delivery,13
+completion,Gate In,HO2_delivery,RMG_receive,90
+completion,Gate In,HO2_mixed,Gate Out,263
+completion,Gate In,HO2_mixed,LL_receive,1
+completion,Gate In,HO2_mixed,RMG_receive,7
+completion,Gate In,HO2_receive,Gate Out,1095
+completion,Gate In,HO2_receive,HO2_receive,3
+completion,Gate In,HO2_receive,RMG_delivery,1
+completion,Gate In,HO2_receive,RMG_receive,11
+completion,Gate In,LL_delivery,Gate Out,2163
+completion,Gate In,LL_delivery,HO2_delivery,30
+completion,Gate In,LL_delivery,HO2_mixed,5
+completion,Gate In,LL_delivery,HO2_receive,136
+completion,Gate In,LL_delivery,RMG_delivery,252
+completion,Gate In,LL_delivery,RMG_mixed,15
+completion,Gate In,LL_delivery,RMG_receive,970
+completion,Gate In,LL_mixed,Gate Out,10
+completion,Gate In,LL_receive,Gate Out,107
+completion,Gate In,LL_receive,RMG_receive,1
+completion,Gate In,RMG_delivery,Gate Out,4338
+completion,Gate In,RMG_delivery,HO2_delivery,3
+completion,Gate In,RMG_delivery,HO2_receive,12
+completion,Gate In,RMG_delivery,LL_delivery,23
+completion,Gate In,RMG_delivery,LL_mixed,1
+completion,Gate In,RMG_delivery,LL_receive,20
+completion,Gate In,RMG_delivery,RMG_delivery,6
+completion,Gate In,RMG_mixed,Gate Out,926
+completion,Gate In,RMG_mixed,RMG_mixed,6
+completion,Gate In,RMG_receive,Gate Out,6055
+completion,Gate In,RMG_receive,HO2_delivery,1
+completion,Gate In,RMG_receive,HO2_receive,9
+completion,Gate In,RMG_receive,LL_delivery,4
+completion,Gate In,RMG_receive,RMG_receive,6
+completion,Gate Out,<BOUNDARY>,<BOUNDARY>,17889
+completion,Gate Out,LL_delivery,<BOUNDARY>,3
+completion,HO2_delivery,Gate Out,<BOUNDARY>,1312
+completion,HO2_delivery,HO2_delivery,Gate Out,3
+completion,HO2_delivery,LL_delivery,Gate Out,16
+completion,HO2_delivery,LL_delivery,HO2_delivery,1
+completion,HO2_delivery,LL_receive,Gate Out,12
+completion,HO2_delivery,RMG_delivery,Gate Out,13
+completion,HO2_delivery,RMG_delivery,RMG_delivery,1
+completion,HO2_delivery,RMG_receive,Gate Out,91
+completion,HO2_mixed,Gate Out,<BOUNDARY>,267
+completion,HO2_mixed,LL_receive,Gate Out,1
+completion,HO2_mixed,RMG_receive,Gate Out,8
+completion,HO2_receive,Gate Out,<BOUNDARY>,1259
+completion,HO2_receive,HO2_receive,Gate Out,3
+completion,HO2_receive,RMG_delivery,Gate Out,1
+completion,HO2_receive,RMG_receive,Gate Out,10
+completion,HO2_receive,RMG_receive,HO2_receive,3
+completion,LL_delivery,<BOUNDARY>,<BOUNDARY>,3
+completion,LL_delivery,Gate Out,<BOUNDARY>,2201
+completion,LL_delivery,HO2_delivery,Gate Out,29
+completion,LL_delivery,HO2_delivery,RMG_delivery,1
+completion,LL_delivery,HO2_delivery,RMG_receive,1
+completion,LL_delivery,HO2_mixed,Gate Out,4
+completion,LL_delivery,HO2_mixed,RMG_receive,1
+completion,LL_delivery,HO2_receive,Gate Out,134
+completion,LL_delivery,HO2_receive,RMG_receive,2
+completion,LL_delivery,RMG_delivery,Gate Out,250
+completion,LL_delivery,RMG_delivery,HO2_delivery,1
+completion,LL_delivery,RMG_delivery,RMG_delivery,2
+completion,LL_delivery,RMG_mixed,Gate Out,15
+completion,LL_delivery,RMG_receive,Gate Out,969
+completion,LL_delivery,RMG_receive,HO2_delivery,1
+completion,LL_delivery,RMG_receive,HO2_receive,3
+completion,LL_delivery,RMG_receive,RMG_receive,1
+completion,LL_mixed,Gate Out,<BOUNDARY>,11
+completion,LL_receive,Gate Out,<BOUNDARY>,140
+completion,LL_receive,RMG_receive,Gate Out,1
+completion,RMG_delivery,Gate Out,<BOUNDARY>,4611
+completion,RMG_delivery,HO2_delivery,Gate Out,4
+completion,RMG_delivery,HO2_receive,Gate Out,12
+completion,RMG_delivery,LL_delivery,Gate Out,22
+completion,RMG_delivery,LL_delivery,RMG_delivery,1
+completion,RMG_delivery,LL_mixed,Gate Out,1
+completion,RMG_delivery,LL_receive,Gate Out,20
+completion,RMG_delivery,RMG_delivery,Gate Out,9
+completion,RMG_delivery,RMG_delivery,RMG_delivery,1
+completion,RMG_mixed,Gate Out,<BOUNDARY>,947
+completion,RMG_mixed,RMG_mixed,Gate Out,6
+completion,RMG_receive,Gate Out,<BOUNDARY>,7141
+completion,RMG_receive,HO2_delivery,Gate Out,2
+completion,RMG_receive,HO2_receive,Gate Out,15
+completion,RMG_receive,LL_delivery,RMG_receive,4
+completion,RMG_receive,RMG_receive,Gate Out,7
+completion,RMG_receive,RMG_receive,RMG_receive,2
+explicit,<BOUNDARY>,<BOUNDARY>,Gate In,17892
+explicit,<BOUNDARY>,Gate In,HO2_delivery,1409
+explicit,<BOUNDARY>,Gate In,HO2_mixed,271
+explicit,<BOUNDARY>,Gate In,HO2_receive,1110
+explicit,<BOUNDARY>,Gate In,LL_delivery,3574
+explicit,<BOUNDARY>,Gate In,LL_mixed,10
+explicit,<BOUNDARY>,Gate In,LL_receive,108
+explicit,<BOUNDARY>,Gate In,RMG_delivery,4403
+explicit,<BOUNDARY>,Gate In,RMG_mixed,932
+explicit,<BOUNDARY>,Gate In,RMG_receive,6075
+explicit,Gate In,HO2_delivery,Gate Out,1274
+explicit,Gate In,HO2_delivery,HO2_delivery,3
+explicit,Gate In,HO2_delivery,LL_delivery,17
+explicit,Gate In,HO2_delivery,LL_receive,12
+explicit,Gate In,HO2_delivery,RMG_delivery,13
+explicit,Gate In,HO2_delivery,RMG_receive,90
+explicit,Gate In,HO2_mixed,Gate Out,263
+explicit,Gate In,HO2_mixed,LL_receive,1
+explicit,Gate In,HO2_mixed,RMG_receive,7
+explicit,Gate In,HO2_receive,Gate Out,1095
+explicit,Gate In,HO2_receive,HO2_receive,3
+explicit,Gate In,HO2_receive,RMG_delivery,1
+explicit,Gate In,HO2_receive,RMG_receive,11
+explicit,Gate In,LL_delivery,Gate Out,2166
+explicit,Gate In,LL_delivery,HO2_delivery,30
+explicit,Gate In,LL_delivery,HO2_mixed,5
+explicit,Gate In,LL_delivery,HO2_receive,136
+explicit,Gate In,LL_delivery,RMG_delivery,252
+explicit,Gate In,LL_delivery,RMG_mixed,15
+explicit,Gate In,LL_delivery,RMG_receive,970
+explicit,Gate In,LL_mixed,Gate Out,10
+explicit,Gate In,LL_receive,Gate Out,107
+explicit,Gate In,LL_receive,RMG_receive,1
+explicit,Gate In,RMG_delivery,Gate Out,4338
+explicit,Gate In,RMG_delivery,HO2_delivery,3
+explicit,Gate In,RMG_delivery,HO2_receive,12
+explicit,Gate In,RMG_delivery,LL_delivery,23
+explicit,Gate In,RMG_delivery,LL_mixed,1
+explicit,Gate In,RMG_delivery,LL_receive,20
+explicit,Gate In,RMG_delivery,RMG_delivery,6
+explicit,Gate In,RMG_mixed,Gate Out,926
+explicit,Gate In,RMG_mixed,RMG_mixed,6
+explicit,Gate In,RMG_receive,Gate Out,6055
+explicit,Gate In,RMG_receive,HO2_delivery,1
+explicit,Gate In,RMG_receive,HO2_receive,9
+explicit,Gate In,RMG_receive,LL_delivery,4
+explicit,Gate In,RMG_receive,RMG_receive,6
+explicit,Gate Out,<BOUNDARY>,<BOUNDARY>,17892
+explicit,HO2_delivery,Gate Out,<BOUNDARY>,1312
+explicit,HO2_delivery,HO2_delivery,Gate Out,3
+explicit,HO2_delivery,LL_delivery,Gate Out,16
+explicit,HO2_delivery,LL_delivery,HO2_delivery,1
+explicit,HO2_delivery,LL_receive,Gate Out,12
+explicit,HO2_delivery,RMG_delivery,Gate Out,13
+explicit,HO2_delivery,RMG_delivery,RMG_delivery,1
+explicit,HO2_delivery,RMG_receive,Gate Out,91
+explicit,HO2_mixed,Gate Out,<BOUNDARY>,267
+explicit,HO2_mixed,LL_receive,Gate Out,1
+explicit,HO2_mixed,RMG_receive,Gate Out,8
+explicit,HO2_receive,Gate Out,<BOUNDARY>,1259
+explicit,HO2_receive,HO2_receive,Gate Out,3
+explicit,HO2_receive,RMG_delivery,Gate Out,1
+explicit,HO2_receive,RMG_receive,Gate Out,10
+explicit,HO2_receive,RMG_receive,HO2_receive,3
+explicit,LL_delivery,Gate Out,<BOUNDARY>,2204
+explicit,LL_delivery,HO2_delivery,Gate Out,29
+explicit,LL_delivery,HO2_delivery,RMG_delivery,1
+explicit,LL_delivery,HO2_delivery,RMG_receive,1
+explicit,LL_delivery,HO2_mixed,Gate Out,4
+explicit,LL_delivery,HO2_mixed,RMG_receive,1
+explicit,LL_delivery,HO2_receive,Gate Out,134
+explicit,LL_delivery,HO2_receive,RMG_receive,2
+explicit,LL_delivery,RMG_delivery,Gate Out,250
+explicit,LL_delivery,RMG_delivery,HO2_delivery,1
+explicit,LL_delivery,RMG_delivery,RMG_delivery,2
+explicit,LL_delivery,RMG_mixed,Gate Out,15
+explicit,LL_delivery,RMG_receive,Gate Out,969
+explicit,LL_delivery,RMG_receive,HO2_delivery,1
+explicit,LL_delivery,RMG_receive,HO2_receive,3
+explicit,LL_delivery,RMG_receive,RMG_receive,1
+explicit,LL_mixed,Gate Out,<BOUNDARY>,11
+explicit,LL_receive,Gate Out,<BOUNDARY>,140
+explicit,LL_receive,RMG_receive,Gate Out,1
+explicit,RMG_delivery,Gate Out,<BOUNDARY>,4611
+explicit,RMG_delivery,HO2_delivery,Gate Out,4
+explicit,RMG_delivery,HO2_receive,Gate Out,12
+explicit,RMG_delivery,LL_delivery,Gate Out,22
+explicit,RMG_delivery,LL_delivery,RMG_delivery,1
+explicit,RMG_delivery,LL_mixed,Gate Out,1
+explicit,RMG_delivery,LL_receive,Gate Out,20
+explicit,RMG_delivery,RMG_delivery,Gate Out,9
+explicit,RMG_delivery,RMG_delivery,RMG_delivery,1
+explicit,RMG_mixed,Gate Out,<BOUNDARY>,947
+explicit,RMG_mixed,RMG_mixed,Gate Out,6
+explicit,RMG_receive,Gate Out,<BOUNDARY>,7141
+explicit,RMG_receive,HO2_delivery,Gate Out,2
+explicit,RMG_receive,HO2_receive,Gate Out,15
+explicit,RMG_receive,LL_delivery,RMG_receive,4
+explicit,RMG_receive,RMG_receive,Gate Out,7
+explicit,RMG_receive,RMG_receive,RMG_receive,2

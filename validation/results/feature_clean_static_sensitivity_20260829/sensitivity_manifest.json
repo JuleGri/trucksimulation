@@ -1,0 +1,31 @@
+{
+  "schema": "ctb-clean-static-sensitivity-1",
+  "classification": "Post-hoc, pre-specified sensitivity analysis; not an independent model-selection test after inspection of the temporal hold-out.",
+  "design": "Paired seeds 42--51; clean-static minus visit-only.",
+  "feature_policy": {
+    "kept_static_state": [
+      "rmg_demand",
+      "vc_demand",
+      "mt_demand",
+      "rmg_utilization",
+      "vc_utilization",
+      "mt_utilization"
+    ],
+    "removed_redundant_or_derived": [
+      "gate_demand",
+      "gate_utilization",
+      "target_demand",
+      "target_utilization",
+      "target_demand_bin",
+      "target_utilization_bin",
+      "target_rank",
+      "target_rank_group"
+    ],
+    "native_dynamic_state": false
+  },
+  "sources": {
+    "visit_only": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_factorial_20260829_visit_only_common_vs_holdout_ci\\mc_replications.csv",
+    "clean_static": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_clean_static_20260829_vs_holdout_ci\\mc_replications.csv",
+    "ngd": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_clean_static_ngd_20260829\\ngd_replications.csv"
+  }
+}

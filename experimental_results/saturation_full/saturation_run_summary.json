@@ -1,0 +1,281 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-31T16:34:27.917851+02:00",
+  "finished_at": "2026-08-31T16:39:43.142965+02:00",
+  "model": "calibrated rules+workload cap-three diagnostic baseline",
+  "n_cases_per_run": 2000,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    1.5,
+    2.0,
+    2.4,
+    3.0
+  ],
+  "paired_common_random_numbers": true,
+  "all_structural_contracts_passed": true,
+  "headline_paired_effects": [
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.41979999999999895,
+      "std_delta": 0.4310633621896234,
+      "ci95_delta_lo": -0.7281641530532799,
+      "ci95_delta_hi": -0.11143584694671799,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.3300000000000409,
+      "std_delta": 1.0614978934401083,
+      "ci95_delta_lo": -1.089349848745735,
+      "ci95_delta_hi": 0.4293498487456532,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.09045555513284124,
+      "std_delta": 0.28818986252202294,
+      "ci95_delta_lo": -0.11570305325302431,
+      "ci95_delta_hi": 0.2966141635187068,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": -0.15301270653161234,
+      "std_delta": 0.362227994604668,
+      "ci95_delta_lo": -0.4121350040079662,
+      "ci95_delta_hi": 0.10610959094474157,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 17.30180111349627,
+      "std_delta": 0.67144746327562,
+      "ci95_delta_lo": 16.821476533645573,
+      "ci95_delta_hi": 17.78212569334697,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.16994999999999932,
+      "std_delta": 0.7299128734155718,
+      "ci95_delta_lo": -0.6920982147547201,
+      "ci95_delta_hi": 0.3521982147547215,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.07999999999997272,
+      "std_delta": 1.4358891941155236,
+      "ci95_delta_lo": -0.9471732512192192,
+      "ci95_delta_hi": 1.1071732512191648,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.14014378850358772,
+      "std_delta": 0.27721117811512014,
+      "ci95_delta_lo": -0.05816114217332746,
+      "ci95_delta_hi": 0.3384487191805029,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": -0.11465135595146903,
+      "std_delta": 0.3337644428647828,
+      "ci95_delta_lo": -0.3534120551222427,
+      "ci95_delta_hi": 0.12410934321930467,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 43.13511992875779,
+      "std_delta": 1.6947067576194061,
+      "ci95_delta_lo": 41.92279974609959,
+      "ci95_delta_hi": 44.347440111415985,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.12334999999999993,
+      "std_delta": 0.4030680291354176,
+      "ci95_delta_lo": -0.411687498218006,
+      "ci95_delta_hi": 0.16498749821800615,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.13000000000004092,
+      "std_delta": 0.8857514073122227,
+      "ci95_delta_lo": -0.7636283861940745,
+      "ci95_delta_hi": 0.5036283861939925,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": -0.0037743945364798748,
+      "std_delta": 0.15941246360708175,
+      "ci95_delta_lo": -0.11781120127560306,
+      "ci95_delta_hi": 0.11026241220264331,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": -0.11047621304244819,
+      "std_delta": 0.30238332062985757,
+      "ci95_delta_lo": -0.32678820970535855,
+      "ci95_delta_hi": 0.10583578362046216,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 85.71588362830194,
+      "std_delta": 3.33277059015408,
+      "ci95_delta_lo": 83.33176317061928,
+      "ci95_delta_hi": 88.1000040859846,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.24614999999999904,
+      "std_delta": 0.49594517226089335,
+      "ci95_delta_lo": -0.60092780395964,
+      "ci95_delta_hi": 0.10862780395964189,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": -0.21000000000001365,
+      "std_delta": 1.4379383389653826,
+      "ci95_delta_lo": -1.2386391211388867,
+      "ci95_delta_hi": 0.8186391211388594,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.038342616542225726,
+      "std_delta": 0.2782062692670942,
+      "ci95_delta_lo": -0.16067415946232436,
+      "ci95_delta_hi": 0.23735939254677582,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": -0.07714960303890353,
+      "std_delta": 0.2892641027520678,
+      "ci95_delta_lo": -0.2840766765920032,
+      "ci95_delta_hi": 0.12977747051419614,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 119.28707450802922,
+      "std_delta": 4.686299531163362,
+      "ci95_delta_lo": 115.93469777496442,
+      "ci95_delta_hi": 122.63945124109402,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.07025000000000184,
+      "std_delta": 0.6844795772458568,
+      "ci95_delta_lo": -0.4193971925787029,
+      "ci95_delta_hi": 0.5598971925787065,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.7799999999999727,
+      "std_delta": 1.9187959187411543,
+      "ci95_delta_lo": -0.5926239116198382,
+      "ci95_delta_hi": 2.1526239116197834,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.15545500580573818,
+      "std_delta": 0.32006333633961553,
+      "ci95_delta_lo": -0.07350451219281737,
+      "ci95_delta_hi": 0.38441452380429375,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 0.03964263605669309,
+      "std_delta": 0.3532606914196543,
+      "ci95_delta_lo": -0.21306483915832852,
+      "ci95_delta_hi": 0.29235011127171473,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 169.10548391491415,
+      "std_delta": 6.64945964343094,
+      "ci95_delta_lo": 164.3487470380126,
+      "ci95_delta_hi": 173.8622207918157,
+      "ci_excludes_zero": true
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "generated_at": "2026-08-30T22:36:08.415579Z",
+  "train_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\split64_16_20\\s6_train.csv",
+  "test_csv": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\data\\processed\\CTB\\split64_16_20\\s6_validation.csv",
+  "paramset_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80",
+  "prosit_output_folder": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_visit_only_20260831",
+  "hyperparameters": {
+    "max_depth_tree": 3,
+    "min_samples_leaf_cv": [
+      50,
+      100,
+      200
+    ],
+    "attribute_mode": "empirical",
+    "use_workload_features": false,
+    "workload_blind_attributes": true,
+    "clean_static_attributes": false,
+    "case_attribute_mode": "workload_blind",
+    "workload_proxy_attribute_universe": [
+      "gate_demand",
+      "gate_utilization",
+      "mt_demand",
+      "mt_utilization",
+      "rmg_demand",
+      "rmg_utilization",
+      "target_demand",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group",
+      "target_utilization",
+      "target_utilization_bin",
+      "vc_demand",
+      "vc_utilization"
+    ],
+    "workload_proxy_attributes_removed": [
+      "gate_demand",
+      "gate_utilization",
+      "mt_demand",
+      "mt_utilization",
+      "rmg_demand",
+      "rmg_utilization",
+      "target_demand",
+      "target_demand_bin",
+      "target_rank",
+      "target_rank_group",
+      "target_utilization",
+      "target_utilization_bin",
+      "vc_demand",
+      "vc_utilization"
+    ],
+    "attribute_removal_counts": {
+      "train": {
+        "gate_demand": 175902,
+        "gate_utilization": 175902,
+        "mt_demand": 175902,
+        "mt_utilization": 175902,
+        "rmg_demand": 175902,
+        "rmg_utilization": 175902,
+        "target_demand": 175902,
+        "target_demand_bin": 175902,
+        "target_rank": 175902,
+        "target_rank_group": 175902,
+        "target_utilization": 175902,
+        "target_utilization_bin": 175902,
+        "vc_demand": 175902,
+        "vc_utilization": 175902
+      },
+      "test": {
+        "gate_demand": 44146,
+        "gate_utilization": 44146,
+        "mt_demand": 44146,
+        "mt_utilization": 44146,
+        "rmg_demand": 44146,
+        "rmg_utilization": 44146,
+        "target_demand": 44146,
+        "target_demand_bin": 44146,
+        "target_rank": 44146,
+        "target_rank_group": 44146,
+        "target_utilization": 44146,
+        "target_utilization_bin": 44146,
+        "vc_demand": 44146,
+        "vc_utilization": 44146
+      }
+    },
+    "workload_blind_removal_counts": {
+      "train": {
+        "gate_demand": 175902,
+        "gate_utilization": 175902,
+        "mt_demand": 175902,
+        "mt_utilization": 175902,
+        "rmg_demand": 175902,
+        "rmg_utilization": 175902,
+        "target_demand": 175902,
+        "target_demand_bin": 175902,
+        "target_rank": 175902,
+        "target_rank_group": 175902,
+        "target_utilization": 175902,
+        "target_utilization_bin": 175902,
+        "vc_demand": 175902,
+        "vc_utilization": 175902
+      },
+      "test": {
+        "gate_demand": 44146,
+        "gate_utilization": 44146,
+        "mt_demand": 44146,
+        "mt_utilization": 44146,
+        "rmg_demand": 44146,
+        "rmg_utilization": 44146,
+        "target_demand": 44146,
+        "target_demand_bin": 44146,
+        "target_rank": 44146,
+        "target_rank_group": 44146,
+        "target_utilization": 44146,
+        "target_utilization_bin": 44146,
+        "vc_demand": 44146,
+        "vc_utilization": 44146
+      }
+    },
+    "ctb_calibration": true,
+    "timestamp_resolution": "minute",
+    "out_suffix": "_tvt_train64_visit_only_20260831",
+    "random_state": 42,
+    "prosit_case_attribute_allowlist": [
+      "process_flow_type",
+      "n_containers",
+      "n_stops",
+      "n_deliveries",
+      "n_receives",
+      "has_hazardous",
+      "has_reefer",
+      "full_ratio",
+      "visit_complexity",
+      "primary_target_area",
+      "target_area"
+    ]
+  },
+  "control_flow": {
+    "authoritative_model": "expert_sequential_contract_repair",
+    "control_flow_policy": "expert_sequential_contract",
+    "raw_inductive_process_tree": "->( 'Gate In', X( tau, 'LL_mixed' ), X( tau, +( X( tau, 'LL_delivery' ), X( tau, ->( X( tau, +( X( tau, *( 'HO2_mixed', tau ) ), X( tau, +( X( tau, 'LL_receive' ), X( tau, *( 'HO2_receive', tau ), *( 'HO2_delivery', tau ) ), X( tau, *( 'RMG_receive', tau ), *( 'RMG_delivery', tau ) ) ) ) ) ), X( tau, *( 'RMG_mixed', tau ) ) ) ) ) ), 'Gate Out' )",
+    "raw_parallel_operator_count": 3,
+    "process_tree": "->( 'Gate In', *( X( 'HO2_delivery', 'HO2_mixed', 'HO2_receive', 'LL_delivery', 'LL_mixed', 'LL_receive', 'RMG_delivery', 'RMG_mixed', 'RMG_receive' ), tau ), 'Gate Out' )",
+    "repair_applied": true,
+    "repair_basis": "Terminal experts validated mandatory Gate In and Gate Out, at least one yard activity, arbitrary sequential yard order, repetitions, and no within-truck parallel activity.",
+    "yard_activity_labels": [
+      "HO2_delivery",
+      "HO2_mixed",
+      "HO2_receive",
+      "LL_delivery",
+      "LL_mixed",
+      "LL_receive",
+      "RMG_delivery",
+      "RMG_mixed",
+      "RMG_receive"
+    ],
+    "observed_case_language": [
+      "Gate In",
+      "one_or_more_yard_activities",
+      "Gate Out"
+    ],
+    "model_language": [
+      "Gate In",
+      "one_or_more_sequential_yard_activities",
+      "Gate Out"
+    ],
+    "within_case_parallelism": false,
+    "parallel_operator_count": 0,
+    "cross_case_resource_multitasking": true,
+    "petri_net": {
+      "places": 4,
+      "transitions": 12,
+      "arcs": 24
+    },
+    "holdout_variant_coverage": {
+      "train_variants": 66,
+      "test_variants": 53,
+      "unseen_test_variants": 4,
+      "unseen_test_cases": 4,
+      "unseen_test_case_share": 0.0002794466955428252
+    }
+  },
+  "ctb_calibration": {
+    "version": 1,
+    "training_traces": 57254,
+    "holdout_used": false,
+    "routing": {
+      "method": "native_prosit_transition_weight_discovery",
+      "holdout_used": false,
+      "applied": false,
+      "reason": "Prefix-marginal calibration is specific to the legacy sequential trie and is not applied to the Inductive-Miner net."
+    },
+    "arrivals": {
+      "method": "robust_empirical_working_minute_pmf",
+      "holdout_used": false,
+      "n_raw_inter_arrivals": 57253,
+      "n_robust_inter_arrivals": 57223,
+      "mean_working_minutes": 0.6898275169075372,
+      "zero_probability": 0.5471226604686926,
+      "runtime_representation": "decision_rules_empirical_sample",
+      "support_counts": {
+        "0": 31308,
+        "1": 20052,
+        "2": 3032,
+        "3": 1215,
+        "4": 587,
+        "5": 356,
+        "6": 213,
+        "7": 140,
+        "8": 92,
+        "9": 64,
+        "10": 55,
+        "11": 28,
+        "12": 22,
+        "13": 13,
+        "14": 13,
+        "15": 10,
+        "16": 10,
+        "17": 4,
+        "18": 7,
+        "19": 2
+      }
+    },
+    "resource_calendars": {
+      "method": "continuous_nonpreemptive_completion_after_admission",
+      "holdout_used": false,
+      "arrival_calendar_unchanged": true,
+      "original_active_slots_per_week": {
+        "Res.GateIn": 127,
+        "Res.GateOut": 128,
+        "LL": 127,
+        "HO2": 126,
+        "T13": 126,
+        "T14": 126,
+        "T18": 124,
+        "T15": 124,
+        "T16": 125,
+        "T24": 125,
+        "T17": 124,
+        "T12": 122,
+        "T11": 124,
+        "T21": 123,
+        "T20": 124,
+        "T27": 121,
+        "T26": 123,
+        "T10": 123,
+        "T23": 123,
+        "T22": 125,
+        "T09": 122,
+        "T06": 123,
+        "T07": 124,
+        "T08": 123,
+        "T19": 120,
+        "T25": 168
+      },
+      "calibrated_active_slots_per_week": 168,
+      "interpretation": "The gate calendar still controls admission. Resources finish work on trucks already inside instead of pausing an activity until the next opening window."
+    },
+    "timestamp_observation_model": {
+      "resolution": "minute",
+      "method": "floor",
+      "reason": "All CTB source timestamps are recorded at minute resolution."
+    },
+    "enabled": true
+  },
+  "discovery_seconds": 305.78680968284607,
+  "conformance": [
+    {
+      "log": "train",
+      "fitness_log": 1.0,
+      "fitness_perc_fit_traces": 100.0,
+      "fitness_average_trace": 1.0,
+      "precision_token": 0.7778335918009575,
+      "compute_seconds": 1.5274882316589355,
+      "generalization": 0.9733215545882588,
+      "simplicity": 0.5
+    },
+    {
+      "log": "test",
+      "fitness_log": 1.0,
+      "fitness_perc_fit_traces": 100.0,
+      "fitness_average_trace": 1.0,
+      "precision_token": 0.7572874765352642,
+      "compute_seconds": 0.30765581130981445,
+      "generalization": 0.946051670699561,
+      "simplicity": 0.5
+    }
+  ],
+  "simulation": {},
+  "parameter_artifacts": {
+    "authoritative_pickle": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_visit_only_20260831\\prosit_params.pkl",
+    "portable_prosit_json": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_visit_only_20260831\\prosit_params.json",
+    "calibration_companion": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_tvt_train64_visit_only_20260831\\ctb_calibration.json",
+    "note": "The pickle is authoritative for calibrated simulation because ProSiT's JSON schema omits empirical sampled arrays. The calibration companion records the complete compact arrival PMF and routing audit."
+  }
+}

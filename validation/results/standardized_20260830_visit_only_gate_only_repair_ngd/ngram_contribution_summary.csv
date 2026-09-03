@@ -1,0 +1,1533 @@
+configuration,order_mode,activity_1,activity_2,activity_3,real_count_mean,sim_count_mean,signed_contribution_mean,absolute_contribution_mean
+original,completion,<BOUNDARY>,Gate In,LL_delivery,3571.0,2360.5,-0.00664447082627177,0.00664447082627177
+original,completion,<BOUNDARY>,Gate In,RMG_receive,6075.0,7246.9,0.006432572106737577,0.006432572106737577
+original,completion,Gate In,RMG_receive,Gate Out,6055.0,7226.5,0.006430379283834843,0.006430379283834843
+original,completion,RMG_receive,Gate Out,<BOUNDARY>,7141.0,8126.1,0.005407162825058526,0.005407162825058526
+original,completion,LL_delivery,Gate Out,<BOUNDARY>,2201.0,1532.8,-0.0036677269912822746,0.0036677269912822746
+original,completion,Gate In,LL_delivery,Gate Out,2163.0,1507.7,-0.0035969259554884205,0.0035969259554884205
+original,completion,HO2_receive,Gate Out,<BOUNDARY>,1259.0,966.0,-0.0016082714719123433,0.0016082714719123433
+original,completion,Gate In,LL_delivery,RMG_receive,970.0,701.8,-0.0014721842815161726,0.0014721842815161726
+original,completion,<BOUNDARY>,Gate In,LL_receive,108.0,372.3,0.001450741625144501,0.001450741625144501
+original,completion,Gate In,LL_receive,Gate Out,107.0,342.0,0.0012899223474632535,0.0012899223474632535
+original,completion,LL_receive,Gate Out,<BOUNDARY>,140.0,366.7,0.001244359709566386,0.001244359709566386
+original,completion,LL_delivery,RMG_receive,Gate Out,969.0,763.6,-0.0011274751571164984,0.0011274751571164984
+original,completion,LL_delivery,RMG_delivery,Gate Out,250.0,51.5,-0.0010895648937170764,0.0010895648937170764
+original,completion,RMG_delivery,Gate Out,<BOUNDARY>,4611.0,4414.5,-0.001078529722688725,0.001078529722688725
+original,completion,Gate In,LL_delivery,RMG_delivery,252.0,64.3,-0.0010302828031224101,0.0010302828031224101
+original,completion,Gate In,HO2_receive,Gate Out,1095.0,942.5,-0.0008370661598459415,0.0008370661598459415
+original,completion,LL_delivery,HO2_receive,Gate Out,134.0,3.6,-0.0007157641131826989,0.0007157641131826989
+original,completion,<BOUNDARY>,Gate In,HO2_mixed,271.0,163.4,-0.0005906323728994457,0.0005906323728994457
+original,completion,Gate In,LL_delivery,HO2_receive,136.0,30.2,-0.0005807444710311577,0.0005807444710311577
+original,completion,HO2_mixed,Gate Out,<BOUNDARY>,267.0,162.5,-0.0005736161734436081,0.0005736161734436081
+original,completion,Gate In,HO2_mixed,Gate Out,263.0,161.9,-0.0005549526747301585,0.0005549526747301585
+original,completion,<BOUNDARY>,Gate In,HO2_receive,1110.0,1009.0,-0.0005543853870964044,0.0005543853870964044
+original,completion,HO2_receive,HO2_receive,HO2_receive,0.0,79.7,0.0004374578617380425,0.0004374578617380425
+original,completion,Gate In,RMG_mixed,Gate Out,926.0,999.1,0.0004012165039105751,0.0004012165039105751
+original,completion,<BOUNDARY>,Gate In,RMG_mixed,932.0,1004.3,0.00039682395018641076,0.00039682395018641076
+original,completion,Gate In,HO2_delivery,RMG_receive,90.0,27.9,-0.0003408684279990987,0.0003408684279990987
+original,completion,RMG_mixed,Gate Out,<BOUNDARY>,947.0,1000.4,0.0002930841112992877,0.0002930841112992877
+original,completion,<BOUNDARY>,Gate In,HO2_delivery,1409.0,1357.1,-0.0002848742146881395,0.0002848742146881395
+original,completion,Gate In,RMG_delivery,Gate Out,4338.0,4334.4,-1.970624178266392e-05,0.00025577962732391263
+original,completion,<BOUNDARY>,Gate In,RMG_delivery,4403.0,4365.3,-0.00020687552963062918,0.00025409377180265124
+original,completion,Gate In,HO2_receive,LL_delivery,0.0,40.1,0.0002201098813890732,0.0002201098813890732
+original,completion,Gate In,HO2_delivery,Gate Out,1274.0,1297.7,0.00013009619644005716,0.00018608737834384235
+original,completion,HO2_receive,LL_delivery,RMG_receive,0.0,33.7,0.00018498032826105151,0.00018498032826105151
+original,completion,HO2_delivery,Gate Out,<BOUNDARY>,1312.0,1310.2,-9.876926561081395e-06,0.0001690698295579854
+original,completion,HO2_delivery,RMG_receive,Gate Out,91.0,61.0,-0.00016467639019497935,0.00016467639019497935
+original,completion,LL_delivery,HO2_delivery,RMG_receive,1.0,27.4,0.00014490432614778625,0.00014490432614778625
+original,completion,LL_delivery,HO2_delivery,Gate Out,29.0,3.6,-0.00013942144026018481,0.00013942144026018481
+original,completion,LL_delivery,HO2_receive,RMG_receive,2.0,21.2,0.00010537947581922184,0.00010537947581922184
+original,completion,HO2_delivery,LL_delivery,RMG_receive,0.0,17.5,9.60561756823922e-05,9.60561756823922e-05
+original,completion,RMG_receive,RMG_receive,Gate Out,7.0,24.2,9.440908042827936e-05,9.440908042827936e-05
+original,completion,Gate In,HO2_receive,HO2_receive,3.0,19.9,9.27568742748697e-05,9.27568742748697e-05
+original,completion,LL_receive,RMG_receive,Gate Out,1.0,17.9,9.275641756379064e-05,9.275641756379064e-05
+original,completion,HO2_receive,RMG_receive,Gate Out,10.0,25.4,8.45200095160015e-05,8.45200095160015e-05
+original,completion,RMG_receive,HO2_receive,Gate Out,15.0,0.1,-8.178573692892777e-05,8.178573692892777e-05
+original,completion,LL_delivery,RMG_mixed,Gate Out,15.0,0.4,-8.013941145182161e-05,8.013941145182161e-05
+original,completion,Gate In,RMG_delivery,LL_delivery,23.0,8.9,-7.738864273173755e-05,7.738864273173755e-05
+original,completion,RMG_delivery,LL_delivery,Gate Out,22.0,8.2,-7.574114176601827e-05,7.574114176601827e-05
+original,completion,HO2_delivery,LL_delivery,Gate Out,16.0,2.6,-7.355293986688633e-05,7.355293986688633e-05
+original,completion,HO2_receive,HO2_receive,LL_delivery,0.0,13.4,7.354642244073202e-05,7.354642244073202e-05
+original,completion,Gate In,LL_delivery,RMG_mixed,15.0,2.5,-6.861384911858621e-05,6.861384911858621e-05
+original,completion,LL_receive,LL_receive,LL_receive,0.0,11.7,6.420547843445839e-05,6.420547843445839e-05
+original,completion,Gate In,RMG_delivery,HO2_receive,12.0,0.4,-6.367157954719477e-05,6.367157954719477e-05
+original,completion,RMG_delivery,HO2_receive,Gate Out,12.0,0.8,-6.147510429178466e-05,6.147510429178466e-05
+original,completion,LL_delivery,HO2_receive,HO2_receive,0.0,11.2,6.147171837230688e-05,6.147171837230688e-05
+original,completion,Gate In,HO2_delivery,RMG_delivery,13.0,1.9,-6.092631666919117e-05,6.092631666919117e-05
+original,completion,HO2_receive,HO2_receive,Gate Out,3.0,14.0,6.037509777758438e-05,6.037509777758438e-05
+original,completion,Gate In,HO2_receive,RMG_receive,11.0,0.2,-5.928110704450732e-05,5.928110704450732e-05
+original,completion,HO2_receive,HO2_receive,HO2_delivery,0.0,10.7,5.8726529112762766e-05,5.8726529112762766e-05
+original,completion,HO2_delivery,LL_receive,Gate Out,12.0,1.7,-5.653500942320317e-05,5.653500942320317e-05
+original,completion,Gate In,RMG_delivery,LL_receive,20.0,9.9,-5.5440353096907335e-05,5.5440353096907335e-05
+original,completion,LL_delivery,LL_delivery,RMG_receive,0.0,10.1,5.543740249310245e-05,5.543740249310245e-05
+original,completion,HO2_receive,LL_delivery,HO2_receive,0.0,9.9,5.433693995556076e-05,5.433693995556076e-05
+original,completion,Gate In,LL_delivery,LL_receive,0.0,9.8,5.3791453809978827e-05,5.3791453809978827e-05
+original,completion,HO2_delivery,RMG_delivery,Gate Out,13.0,3.5,-5.2145002477352256e-05,5.2145002477352256e-05
+original,completion,Gate In,LL_receive,LL_delivery,0.0,9.4,5.1594575645821355e-05,5.1594575645821355e-05
+original,completion,LL_receive,HO2_receive,HO2_receive,0.0,9.4,5.159155076650631e-05,5.159155076650631e-05
+original,completion,Gate In,LL_delivery,LL_delivery,0.0,9.2,5.049748285215847e-05,5.049748285215847e-05
+original,completion,Gate In,RMG_receive,HO2_receive,9.0,0.0,-4.9400808456596924e-05,4.9400808456596924e-05
+original,completion,Gate In,HO2_delivery,LL_receive,12.0,3.1,-4.8851417398707974e-05,4.8851417398707974e-05
+original,completion,RMG_receive,RMG_receive,RMG_receive,2.0,10.4,4.61008316233359e-05,4.61008316233359e-05
+original,completion,LL_delivery,LL_receive,RMG_receive,0.0,8.2,4.501001392329743e-05,4.501001392329743e-05
+original,completion,HO2_receive,HO2_delivery,HO2_receive,0.0,8.1,4.445347668389367e-05,4.445347668389367e-05
+original,completion,RMG_delivery,RMG_delivery,Gate Out,9.0,16.8,4.2816376743693376e-05,4.2816376743693376e-05
+original,completion,Gate In,RMG_receive,RMG_receive,6.0,13.6,4.171591583097195e-05,4.171591583097195e-05
+original,completion,LL_receive,LL_receive,HO2_receive,0.0,7.3,4.0060463347609907e-05,4.0060463347609907e-05
+original,completion,HO2_delivery,HO2_receive,HO2_receive,0.0,7.2,3.951416473440969e-05,3.951416473440969e-05
+original,completion,RMG_delivery,LL_receive,Gate Out,20.0,13.0,-3.8424735652241947e-05,3.8424735652241947e-05
+original,completion,HO2_mixed,RMG_receive,Gate Out,8.0,1.0,-3.842352364773048e-05,3.842352364773048e-05
+original,completion,Gate In,HO2_mixed,RMG_receive,7.0,0.0,-3.8422851021797614e-05,3.8422851021797614e-05
+original,completion,LL_receive,HO2_receive,LL_receive,0.0,6.666666666666667,3.6585398235591154e-05,3.6585398235591154e-05
+original,completion,LL_receive,LL_delivery,RMG_receive,0.0,6.5,3.567720380383319e-05,3.567720380383319e-05
+original,completion,HO2_receive,LL_delivery,LL_delivery,0.0,6.5,3.567551973447277e-05,3.567551973447277e-05
+original,completion,HO2_receive,LL_receive,LL_receive,0.0,6.444444444444445,3.5366690466107046e-05,3.5366690466107046e-05
+original,completion,Gate In,LL_delivery,HO2_delivery,30.0,34.0,2.1948392555612864e-05,3.402826194931103e-05
+original,completion,HO2_receive,LL_receive,HO2_receive,0.0,6.2,3.402419808412139e-05,3.402419808412139e-05
+original,completion,LL_delivery,RMG_receive,RMG_receive,1.0,7.1,3.3481416497345964e-05,3.3481416497345964e-05
+original,completion,Gate In,LL_receive,HO2_receive,0.0,5.8,3.183796420114103e-05,3.183796420114103e-05
+original,completion,RMG_mixed,RMG_mixed,Gate Out,6.0,0.5,-3.0189206417136132e-05,3.0189206417136132e-05
+original,completion,Gate In,LL_receive,RMG_receive,1.0,6.4,2.963782634469198e-05,2.963782634469198e-05
+original,completion,HO2_receive,LL_delivery,Gate Out,0.0,5.3,2.9093525121978542e-05,2.9093525121978542e-05
+original,completion,LL_delivery,RMG_delivery,RMG_delivery,2.0,7.3,2.909221701736098e-05,2.909221701736098e-05
+original,completion,LL_delivery,RMG_delivery,LL_receive,0.0,5.3,2.909100740396806e-05,2.909100740396806e-05
+original,completion,LL_delivery,HO2_receive,LL_delivery,0.0,5.3,2.9090005521043828e-05,2.9090005521043828e-05
+original,completion,HO2_receive,HO2_receive,LL_receive,0.0,5.1,2.7986869108118446e-05,2.7986869108118446e-05
+original,completion,Gate In,RMG_delivery,RMG_delivery,6.0,11.0,2.7445176118590454e-05,2.7445176118590454e-05
+original,completion,Gate In,RMG_mixed,RMG_mixed,6.0,1.1,-2.6896085332864992e-05,2.6896085332864992e-05
+original,completion,LL_receive,LL_receive,RMG_receive,0.0,4.7,2.5794208311084627e-05,2.5794208311084627e-05
+original,completion,RMG_receive,LL_receive,Gate Out,0.0,4.5,2.469891652993866e-05,2.469891652993866e-05
+original,completion,HO2_delivery,LL_receive,LL_receive,0.0,4.5,2.4697015546315775e-05,2.4697015546315775e-05
+original,completion,RMG_delivery,RMG_receive,Gate Out,0.0,4.444444444444445,2.4391006011999513e-05,2.4391006011999513e-05
+original,completion,Gate In,HO2_delivery,LL_delivery,17.0,20.4,1.8661019567698413e-05,2.4150705867600563e-05
+original,completion,RMG_receive,LL_delivery,Gate Out,0.0,4.4,2.414961102654118e-05,2.414961102654118e-05
+original,completion,HO2_delivery,HO2_delivery,RMG_receive,0.0,4.3,2.360279494934359e-05,2.360279494934359e-05
+original,completion,LL_receive,RMG_delivery,Gate Out,0.0,4.125,2.2638629640745693e-05,2.2638629640745693e-05
+original,completion,LL_delivery,LL_delivery,LL_delivery,0.0,4.111111111111111,2.256734489339556e-05,2.256734489339556e-05
+original,completion,Gate In,LL_delivery,HO2_mixed,5.0,1.0,-2.1956795212772616e-05,2.1956795212772616e-05
+original,completion,HO2_receive,HO2_delivery,HO2_delivery,0.0,4.0,2.1955454674253816e-05,2.1955454674253816e-05
+original,completion,LL_delivery,LL_delivery,HO2_receive,0.0,4.0,2.195348284351029e-05,2.195348284351029e-05
+original,completion,LL_delivery,RMG_delivery,RMG_receive,0.0,4.0,2.195206543917319e-05,2.195206543917319e-05
+original,completion,Gate In,LL_receive,LL_receive,0.0,3.888888888888889,2.1342892386958298e-05,2.1342892386958298e-05
+original,completion,LL_delivery,HO2_mixed,Gate Out,4.0,0.2,-2.0858527178609847e-05,2.0858527178609847e-05
+original,completion,HO2_delivery,HO2_delivery,HO2_receive,0.0,3.75,2.058188345338273e-05,2.058188345338273e-05
+original,completion,HO2_delivery,HO2_delivery,HO2_delivery,0.0,3.7,2.0312021290781036e-05,2.0312021290781036e-05
+original,completion,Gate In,LL_receive,HO2_delivery,0.0,3.7,2.030805414872218e-05,2.030805414872218e-05
+original,completion,<BOUNDARY>,Gate In,LL_mixed,10.0,13.2,1.7567584670098014e-05,1.9762721530497183e-05
+original,completion,RMG_receive,LL_delivery,RMG_receive,4.0,0.4,-1.9761015855964625e-05,1.9761015855964625e-05
+original,completion,HO2_receive,HO2_delivery,LL_receive,0.0,3.6,1.9758489843943768e-05,1.9758489843943768e-05
+original,completion,LL_delivery,HO2_delivery,LL_receive,0.0,3.5555555555555554,1.9515533921266918e-05,1.9515533921266918e-05
+original,completion,LL_receive,RMG_receive,RMG_receive,0.0,3.5,1.9212613157974814e-05,1.9212613157974814e-05
+original,completion,LL_receive,LL_delivery,LL_receive,0.0,3.4444444444444446,1.8904985280772867e-05,1.8904985280772867e-05
+original,completion,LL_delivery,LL_receive,LL_receive,0.0,3.4,1.8660878345202697e-05,1.8660878345202697e-05
+original,completion,Gate In,RMG_mixed,LL_delivery,0.0,3.3,1.8111374065362042e-05,1.8111374065362042e-05
+original,completion,HO2_delivery,HO2_receive,HO2_delivery,0.0,3.2222222222222223,1.7684350154467218e-05,1.7684350154467218e-05
+original,completion,Gate In,LL_mixed,Gate Out,10.0,12.8,1.537055483343174e-05,1.7565691693830907e-05
+original,completion,HO2_receive,RMG_delivery,Gate Out,1.0,4.0,1.647082840573666e-05,1.647082840573666e-05
+original,completion,<BOUNDARY>,Gate In,Gate Out,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,Gate In,Gate Out,LL_delivery,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,Gate Out,<BOUNDARY>,<BOUNDARY>,17889.0,17892.0,1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,Gate Out,LL_delivery,<BOUNDARY>,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,HO2_receive,RMG_receive,HO2_receive,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,LL_delivery,<BOUNDARY>,<BOUNDARY>,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,completion,RMG_delivery,HO2_delivery,Gate Out,4.0,1.0,-1.6466626476606222e-05,1.6466626476606222e-05
+original,completion,LL_delivery,RMG_receive,HO2_receive,3.0,0.1,-1.5917992320131875e-05,1.5917992320131875e-05
+original,completion,LL_receive,HO2_receive,Gate Out,0.0,2.9,1.5916883356591157e-05,1.5916883356591157e-05
+original,completion,HO2_receive,HO2_receive,RMG_receive,0.0,2.888888888888889,1.5854749552289768e-05,1.5854749552289768e-05
+original,completion,LL_mixed,Gate Out,<BOUNDARY>,11.0,12.8,9.881576116032079e-06,1.5369237505485183e-05
+original,completion,RMG_mixed,RMG_receive,Gate Out,0.0,2.7777777777777777,1.5245776960021913e-05,1.5245776960021913e-05
+original,completion,LL_receive,HO2_receive,HO2_delivery,0.0,2.75,1.5091521315706654e-05,1.5091521315706654e-05
+original,completion,RMG_mixed,LL_delivery,RMG_receive,0.0,2.7,1.481972615178701e-05,1.481972615178701e-05
+original,completion,Gate In,HO2_delivery,HO2_delivery,3.0,5.1,1.152613846036912e-05,1.4818367737189854e-05
+original,completion,LL_receive,LL_receive,Gate Out,0.0,2.6666666666666665,1.4635358111667571e-05,1.4635358111667571e-05
+original,completion,HO2_delivery,HO2_receive,Gate Out,0.0,2.625,1.4409576503542587e-05,1.4409576503542587e-05
+original,completion,LL_delivery,HO2_delivery,HO2_delivery,0.0,2.5555555555555554,1.4026211053782387e-05,1.4026211053782387e-05
+original,completion,HO2_delivery,LL_receive,RMG_receive,0.0,2.5,1.3723279364468579e-05,1.3723279364468579e-05
+original,completion,HO2_delivery,HO2_receive,LL_receive,0.0,2.5,1.371939200188716e-05,1.371939200188716e-05
+original,completion,LL_delivery,HO2_receive,HO2_delivery,0.0,2.4444444444444446,1.3416963243688398e-05,1.3416963243688398e-05
+original,completion,HO2_delivery,HO2_delivery,LL_delivery,0.0,2.4444444444444446,1.3416939326050185e-05,1.3416939326050185e-05
+original,completion,LL_receive,HO2_delivery,LL_receive,0.0,2.4285714285714284,1.3329329983328323e-05,1.3329329983328323e-05
+original,completion,HO2_receive,LL_delivery,HO2_delivery,0.0,2.4,1.3171508708708531e-05,1.3171508708708531e-05
+original,completion,LL_receive,LL_delivery,Gate Out,0.0,2.375,1.3037347958948856e-05,1.3037347958948856e-05
+original,completion,LL_delivery,HO2_delivery,HO2_receive,0.0,2.3333333333333335,1.2807326185622454e-05,1.2807326185622454e-05
+original,completion,HO2_delivery,LL_receive,HO2_receive,0.0,2.3333333333333335,1.2807213008153863e-05,1.2807213008153863e-05
+original,completion,Gate In,RMG_delivery,HO2_delivery,3.0,0.7,-1.2624909873316376e-05,1.2624909873316376e-05
+original,completion,LL_delivery,LL_receive,Gate Out,0.0,2.2857142857142856,1.2547347150164004e-05,1.2547347150164004e-05
+original,completion,LL_receive,HO2_delivery,HO2_receive,0.0,2.25,1.2347333500989549e-05,1.2347333500989549e-05
+original,completion,HO2_receive,HO2_receive,RMG_delivery,0.0,2.2222222222222223,1.2199403891609894e-05,1.2199403891609894e-05
+original,completion,Gate In,RMG_receive,LL_receive,0.0,2.2222222222222223,1.219730119567421e-05,1.219730119567421e-05
+original,completion,LL_delivery,RMG_mixed,RMG_receive,0.0,2.2222222222222223,1.2196305773934642e-05,1.2196305773934642e-05
+original,completion,LL_receive,LL_receive,LL_delivery,0.0,2.2222222222222223,1.2196153067025958e-05,1.2196153067025958e-05
+original,completion,HO2_receive,HO2_delivery,Gate Out,0.0,2.2,1.2074265643345593e-05,1.2074265643345593e-05
+original,completion,RMG_delivery,RMG_delivery,LL_receive,0.0,2.125,1.1662829078154082e-05,1.1662829078154082e-05
+original,completion,LL_delivery,RMG_receive,LL_receive,0.0,2.111111111111111,1.1586447212772449e-05,1.1586447212772449e-05
+original,completion,RMG_delivery,LL_receive,RMG_delivery,0.0,2.111111111111111,1.1585736107358954e-05,1.1585736107358954e-05
+original,completion,HO2_receive,RMG_delivery,LL_delivery,0.0,2.0,1.0981078312096102e-05,1.0981078312096102e-05
+original,completion,HO2_receive,RMG_mixed,RMG_mixed,0.0,2.0,1.0980684975128748e-05,1.0980684975128748e-05
+original,completion,LL_receive,LL_receive,HO2_delivery,0.0,2.0,1.0979990695790353e-05,1.0979990695790353e-05
+original,completion,HO2_delivery,LL_delivery,LL_delivery,0.0,2.0,1.0978108441114983e-05,1.0978108441114983e-05
+original,completion,LL_delivery,HO2_receive,RMG_delivery,0.0,2.0,1.0977990475562382e-05,1.0977990475562382e-05
+original,completion,HO2_receive,HO2_delivery,RMG_receive,0.0,2.0,1.0977568561802304e-05,1.0977568561802304e-05
+original,completion,Gate In,LL_receive,RMG_delivery,0.0,2.0,1.0976372038906067e-05,1.0976372038906067e-05
+original,completion,HO2_delivery,RMG_receive,RMG_receive,0.0,2.0,1.0975567254238122e-05,1.0975567254238122e-05
+original,completion,LL_delivery,LL_receive,RMG_delivery,0.0,2.0,1.0975442447523666e-05,1.0975442447523666e-05
+original,completion,RMG_receive,RMG_delivery,RMG_receive,0.0,2.0,1.0973876686547672e-05,1.0973876686547672e-05
+original,completion,LL_delivery,HO2_mixed,RMG_delivery,0.0,2.0,1.0972311372252122e-05,1.0972311372252122e-05
+original,completion,Gate In,HO2_receive,LL_receive,0.0,1.9,1.042888342941497e-05,1.042888342941497e-05
+original,completion,LL_receive,LL_delivery,HO2_delivery,0.0,1.8571428571428572,1.0192875094606503e-05,1.0192875094606503e-05
+original,completion,LL_delivery,LL_delivery,Gate Out,0.0,1.8,9.88012299709132e-06,9.88012299709132e-06
+original,completion,LL_receive,HO2_delivery,RMG_receive,0.0,1.8,9.879804625762968e-06,9.879804625762968e-06
+original,completion,LL_delivery,LL_receive,HO2_delivery,0.0,1.8,9.87874379639859e-06,9.87874379639859e-06
+original,completion,Gate In,RMG_receive,LL_delivery,4.0,3.6,-2.197227546420149e-06,9.878664282223913e-06
+original,completion,RMG_delivery,RMG_delivery,RMG_delivery,1.0,2.4,7.68135613435542e-06,9.877897205754306e-06
+original,completion,HO2_mixed,LL_delivery,RMG_receive,0.0,1.75,9.606422217582012e-06,9.606422217582012e-06
+original,completion,LL_receive,HO2_delivery,Gate Out,0.0,1.7142857142857142,9.407901405386677e-06,9.407901405386677e-06
+original,completion,Gate In,HO2_receive,RMG_delivery,1.0,2.3,7.1389382986616235e-06,9.334316003073713e-06
+original,completion,Gate In,HO2_receive,HO2_delivery,0.0,1.7,9.330278293153696e-06,9.330278293153696e-06
+original,completion,HO2_delivery,RMG_receive,LL_delivery,0.0,1.6666666666666667,9.149094280077546e-06,9.149094280077546e-06
+original,completion,RMG_delivery,LL_receive,LL_receive,0.0,1.6666666666666667,9.147639136083292e-06,9.147639136083292e-06
+original,completion,HO2_receive,LL_delivery,RMG_delivery,0.0,1.6666666666666667,9.14743532589845e-06,9.14743532589845e-06
+original,completion,HO2_receive,LL_receive,Gate Out,0.0,1.6666666666666667,9.146893400470025e-06,9.146893400470025e-06
+original,completion,HO2_delivery,LL_receive,HO2_delivery,0.0,1.625,8.918230350276114e-06,8.918230350276114e-06
+original,completion,HO2_delivery,HO2_delivery,LL_receive,0.0,1.6,8.783863712186545e-06,8.783863712186545e-06
+original,completion,LL_receive,HO2_delivery,HO2_delivery,0.0,1.6,8.782817063098e-06,8.782817063098e-06
+original,completion,Gate In,HO2_delivery,HO2_receive,0.0,1.6,8.782446584924389e-06,8.782446584924389e-06
+original,completion,RMG_delivery,LL_delivery,RMG_receive,0.0,1.5,8.237534113212245e-06,8.237534113212245e-06
+original,completion,LL_receive,HO2_delivery,LL_delivery,0.0,1.5,8.237310906419902e-06,8.237310906419902e-06
+original,completion,RMG_receive,LL_delivery,LL_receive,0.0,1.5,8.235065271508559e-06,8.235065271508559e-06
+original,completion,HO2_delivery,LL_receive,LL_delivery,0.0,1.5,8.234806381045223e-06,8.234806381045223e-06
+original,completion,HO2_delivery,HO2_receive,RMG_receive,0.0,1.5,8.234291392205723e-06,8.234291392205723e-06
+original,completion,HO2_delivery,HO2_delivery,Gate Out,3.0,2.3,-3.8434339335124664e-06,8.233388492210036e-06
+original,completion,RMG_mixed,RMG_mixed,LL_delivery,0.0,1.5,8.232456275812406e-06,8.232456275812406e-06
+original,completion,HO2_receive,LL_receive,HO2_delivery,0.0,1.5,8.231839925683022e-06,8.231839925683022e-06
+original,completion,LL_delivery,LL_delivery,RMG_delivery,0.0,1.5,8.230979763279912e-06,8.230979763279912e-06
+original,completion,RMG_receive,RMG_receive,HO2_delivery,0.0,1.5,8.230965141660333e-06,8.230965141660333e-06
+original,completion,Gate In,HO2_mixed,HO2_mixed,0.0,1.5,8.22997108201953e-06,8.22997108201953e-06
+original,completion,Gate In,HO2_mixed,LL_delivery,0.0,1.4285714285714286,7.84088601570154e-06,7.84088601570154e-06
+original,completion,HO2_delivery,RMG_receive,HO2_delivery,0.0,1.3333333333333333,7.320628427764326e-06,7.320628427764326e-06
+original,completion,Gate In,RMG_receive,RMG_delivery,0.0,1.3333333333333333,7.317986926579855e-06,7.317986926579855e-06
+original,completion,RMG_receive,RMG_receive,LL_delivery,0.0,1.3333333333333333,7.3173748143572e-06,7.3173748143572e-06
+original,completion,HO2_mixed,RMG_delivery,Gate Out,0.0,1.3333333333333333,7.315827599134459e-06,7.315827599134459e-06
+original,completion,RMG_mixed,RMG_mixed,RMG_receive,0.0,1.25,6.861815264162783e-06,6.861815264162783e-06
+original,completion,RMG_delivery,LL_receive,LL_delivery,0.0,1.25,6.861404159906497e-06,6.861404159906497e-06
+original,completion,RMG_receive,RMG_receive,LL_receive,0.0,1.25,6.860707006216731e-06,6.860707006216731e-06
+original,completion,LL_receive,HO2_receive,RMG_receive,0.0,1.25,6.860678234410413e-06,6.860678234410413e-06
+original,completion,HO2_receive,HO2_delivery,RMG_delivery,0.0,1.25,6.860595417480894e-06,6.860595417480894e-06
+original,completion,RMG_mixed,LL_delivery,RMG_mixed,0.0,1.25,6.860344735471283e-06,6.860344735471283e-06
+original,completion,LL_receive,RMG_receive,LL_delivery,0.0,1.25,6.860307301479517e-06,6.860307301479517e-06
+original,completion,LL_receive,RMG_receive,LL_receive,0.0,1.25,6.859795057252455e-06,6.859795057252455e-06
+original,completion,RMG_mixed,LL_delivery,Gate Out,0.0,1.25,6.858650432768682e-06,6.858650432768682e-06
+original,completion,LL_receive,RMG_receive,HO2_delivery,0.0,1.2,6.58832360424053e-06,6.58832360424053e-06
+original,completion,HO2_delivery,LL_delivery,HO2_delivery,1.0,2.0,5.489862264639059e-06,6.587352304916943e-06
+original,completion,LL_delivery,RMG_mixed,RMG_mixed,0.0,1.2,6.586839879984993e-06,6.586839879984993e-06
+original,completion,RMG_receive,LL_receive,RMG_receive,0.0,1.2,6.584326139789015e-06,6.584326139789015e-06
+original,completion,HO2_delivery,LL_delivery,LL_receive,0.0,1.1666666666666667,6.4043014405010166e-06,6.4043014405010166e-06
+original,completion,Gate In,HO2_receive,HO2_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,Gate In,LL_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,Gate In,RMG_mixed,HO2_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,HO2_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,HO2_receive,HO2_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,HO2_receive,RMG_mixed,Gate Out,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,LL_mixed,LL_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,LL_receive,HO2_receive,RMG_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,RMG_mixed,HO2_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,RMG_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,completion,HO2_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+original,completion,LL_delivery,HO2_receive,RMG_mixed,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+original,completion,Gate In,LL_mixed,LL_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,Gate In,LL_mixed,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,Gate In,RMG_mixed,HO2_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_mixed,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_mixed,RMG_mixed,Gate Out,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_receive,LL_delivery,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_receive,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,LL_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,RMG_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,completion,HO2_receive,RMG_mixed,LL_delivery,0.0,1.0,5.492334230454651e-06,5.492334230454651e-06
+original,completion,Gate In,HO2_receive,RMG_mixed,0.0,1.0,5.491670316157892e-06,5.491670316157892e-06
+original,completion,HO2_receive,RMG_mixed,HO2_delivery,0.0,1.0,5.491566030227577e-06,5.491566030227577e-06
+original,completion,RMG_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+original,completion,RMG_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+original,completion,HO2_mixed,LL_delivery,Gate Out,0.0,1.0,5.491120382932196e-06,5.491120382932196e-06
+original,completion,RMG_receive,HO2_delivery,HO2_delivery,0.0,1.0,5.490738060781546e-06,5.490738060781546e-06
+original,completion,RMG_delivery,HO2_receive,HO2_receive,0.0,1.0,5.490692913182167e-06,5.490692913182167e-06
+original,completion,RMG_delivery,LL_receive,RMG_receive,0.0,1.0,5.4905356013943795e-06,5.4905356013943795e-06
+original,completion,Gate In,LL_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,Gate In,LL_receive,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_delivery,RMG_delivery,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_delivery,RMG_mixed,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,HO2_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,LL_delivery,HO2_delivery,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,LL_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,LL_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,LL_receive,RMG_mixed,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_mixed,HO2_receive,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_mixed,HO2_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_mixed,LL_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_mixed,RMG_mixed,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_receive,HO2_delivery,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_receive,HO2_mixed,Gate Out,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,RMG_receive,RMG_receive,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,completion,Gate In,RMG_mixed,RMG_delivery,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+original,completion,RMG_mixed,RMG_delivery,Gate Out,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+original,completion,Gate In,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,completion,HO2_receive,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,completion,RMG_mixed,HO2_receive,RMG_mixed,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,completion,HO2_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4894406225773e-06,5.4894406225773e-06
+original,completion,HO2_delivery,LL_receive,HO2_mixed,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,HO2_delivery,LL_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,HO2_mixed,RMG_receive,RMG_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,LL_delivery,LL_delivery,LL_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,LL_receive,RMG_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,RMG_mixed,HO2_receive,HO2_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,RMG_receive,LL_receive,LL_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,completion,RMG_mixed,RMG_receive,RMG_receive,0.0,1.0,5.4893286711362576e-06,5.4893286711362576e-06
+original,completion,LL_receive,HO2_receive,LL_delivery,0.0,1.0,5.489122203890628e-06,5.489122203890628e-06
+original,completion,Gate In,RMG_delivery,LL_mixed,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,completion,HO2_mixed,LL_receive,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,completion,RMG_delivery,LL_mixed,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,completion,RMG_receive,RMG_delivery,Gate Out,0.0,1.0,5.4889420987969345e-06,5.4889420987969345e-06
+original,completion,LL_receive,HO2_mixed,RMG_receive,0.0,1.0,5.488670120443955e-06,5.488670120443955e-06
+original,completion,LL_receive,HO2_receive,RMG_delivery,0.0,1.0,5.488353821549915e-06,5.488353821549915e-06
+original,completion,RMG_delivery,LL_delivery,LL_receive,0.0,1.0,5.488334018200014e-06,5.488334018200014e-06
+original,completion,HO2_delivery,RMG_delivery,RMG_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+original,completion,HO2_receive,RMG_receive,LL_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+original,completion,HO2_receive,RMG_receive,RMG_receive,0.0,1.0,5.4882490868452175e-06,5.4882490868452175e-06
+original,completion,LL_delivery,LL_delivery,HO2_delivery,0.0,1.0,5.488163463035359e-06,5.488163463035359e-06
+original,completion,HO2_receive,HO2_delivery,LL_delivery,0.0,1.0,5.488032629235566e-06,5.488032629235566e-06
+original,completion,HO2_delivery,LL_delivery,RMG_delivery,0.0,1.0,5.487982791693286e-06,5.487982791693286e-06
+original,completion,RMG_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487925720038693e-06,5.487925720038693e-06
+original,completion,HO2_delivery,RMG_receive,LL_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,HO2_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,HO2_mixed,LL_receive,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,HO2_receive,HO2_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,HO2_receive,LL_receive,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,LL_delivery,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,LL_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,LL_receive,LL_receive,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,LL_receive,RMG_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,RMG_delivery,HO2_delivery,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,RMG_mixed,HO2_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,completion,RMG_mixed,LL_delivery,HO2_receive,0.0,1.0,5.487862074070909e-06,5.487862074070909e-06
+original,completion,RMG_receive,RMG_mixed,RMG_receive,0.0,1.0,5.487811571989357e-06,5.487811571989357e-06
+original,completion,Gate In,HO2_mixed,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,Gate In,RMG_receive,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,HO2_mixed,LL_delivery,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,HO2_receive,HO2_mixed,RMG_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,HO2_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,LL_delivery,RMG_mixed,HO2_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,LL_delivery,RMG_receive,LL_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,LL_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,LL_receive,HO2_mixed,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,RMG_delivery,LL_receive,HO2_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,RMG_mixed,HO2_receive,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,RMG_mixed,RMG_mixed,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,completion,LL_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.4876760608031515e-06,5.4876760608031515e-06
+original,completion,HO2_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,completion,HO2_mixed,HO2_mixed,HO2_delivery,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,completion,LL_delivery,LL_receive,HO2_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,completion,RMG_mixed,LL_delivery,RMG_delivery,0.0,1.0,5.487581385005084e-06,5.487581385005084e-06
+original,completion,HO2_delivery,HO2_receive,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,HO2_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,HO2_receive,HO2_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,HO2_receive,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,LL_receive,LL_receive,RMG_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,LL_receive,RMG_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,LL_receive,RMG_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_delivery,HO2_mixed,Gate Out,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_mixed,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_mixed,LL_receive,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_mixed,RMG_delivery,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,RMG_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,completion,LL_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,completion,RMG_receive,RMG_mixed,Gate Out,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,completion,RMG_receive,RMG_receive,RMG_mixed,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,completion,LL_receive,LL_delivery,HO2_receive,0.0,1.0,5.4872596100349255e-06,5.4872596100349255e-06
+original,completion,Gate In,RMG_mixed,LL_receive,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+original,completion,HO2_receive,LL_receive,RMG_delivery,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+original,completion,HO2_mixed,HO2_mixed,LL_receive,0.0,1.0,5.48707395077085e-06,5.48707395077085e-06
+original,completion,Gate In,LL_receive,HO2_mixed,0.0,1.0,5.486983602543326e-06,5.486983602543326e-06
+original,completion,RMG_receive,HO2_delivery,RMG_receive,0.0,1.0,5.486938454943947e-06,5.486938454943947e-06
+original,completion,HO2_delivery,HO2_mixed,RMG_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,HO2_delivery,LL_delivery,RMG_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,LL_delivery,HO2_delivery,HO2_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,RMG_delivery,HO2_receive,HO2_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,RMG_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,RMG_mixed,LL_receive,LL_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,completion,HO2_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486893273150533e-06,5.486893273150533e-06
+original,completion,Gate In,HO2_delivery,RMG_mixed,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,completion,HO2_mixed,LL_receive,LL_delivery,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,completion,HO2_receive,RMG_delivery,LL_receive,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,completion,HO2_receive,LL_delivery,HO2_mixed,0.0,1.0,5.486802943757742e-06,5.486802943757742e-06
+original,completion,LL_receive,LL_delivery,RMG_delivery,0.0,1.0,5.486707630404237e-06,5.486707630404237e-06
+original,completion,HO2_delivery,RMG_mixed,RMG_mixed,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,HO2_mixed,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,HO2_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,HO2_receive,LL_receive,RMG_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,LL_delivery,HO2_receive,LL_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,LL_delivery,RMG_receive,RMG_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,LL_receive,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,RMG_mixed,LL_delivery,LL_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,completion,Gate In,HO2_mixed,LL_receive,1.0,0.1,-4.940233697260716e-06,4.940233697260716e-06
+original,completion,LL_delivery,RMG_delivery,HO2_delivery,1.0,0.2,-4.390708181700215e-06,4.390708181700215e-06
+original,completion,Gate In,RMG_receive,HO2_delivery,1.0,0.7,-1.6467962016771043e-06,3.842354739467864e-06
+original,completion,HO2_delivery,RMG_delivery,RMG_delivery,1.0,0.5,-2.744644192712996e-06,3.84189338897796e-06
+original,completion,RMG_receive,HO2_delivery,Gate Out,2.0,2.2,1.0985810420486803e-06,3.293741810135433e-06
+original,completion,RMG_delivery,LL_delivery,RMG_delivery,1.0,1.1,5.477417310878059e-07,2.7442828024866922e-06
+original,completion,LL_delivery,HO2_delivery,RMG_delivery,1.0,1.5,2.7433397511010124e-06,2.7433397511010124e-06
+original,completion,LL_delivery,RMG_receive,HO2_delivery,1.0,0.8,-1.0978515430153666e-06,2.195341583293251e-06
+original,completion,LL_delivery,HO2_mixed,RMG_receive,1.0,0.7,-1.6469287746581216e-06,1.6469287746581216e-06
+original,completion,<BOUNDARY>,<BOUNDARY>,Gate In,17892.0,17892.0,0.0,0.0
+original,explicit,<BOUNDARY>,Gate In,LL_delivery,3574.0,2360.5,-0.006660937762423968,0.006660937762423968
+original,explicit,<BOUNDARY>,Gate In,RMG_receive,6075.0,7246.9,0.006432572106737577,0.006432572106737577
+original,explicit,Gate In,RMG_receive,Gate Out,6055.0,7226.5,0.006430379283834843,0.006430379283834843
+original,explicit,RMG_receive,Gate Out,<BOUNDARY>,7141.0,8126.1,0.005407162825058526,0.005407162825058526
+original,explicit,LL_delivery,Gate Out,<BOUNDARY>,2204.0,1532.8,-0.003684193927434474,0.003684193927434474
+original,explicit,Gate In,LL_delivery,Gate Out,2166.0,1507.7,-0.00361339289164062,0.00361339289164062
+original,explicit,HO2_receive,Gate Out,<BOUNDARY>,1259.0,966.0,-0.0016082714719123433,0.0016082714719123433
+original,explicit,Gate In,LL_delivery,RMG_receive,970.0,701.8,-0.0014721842815161726,0.0014721842815161726
+original,explicit,<BOUNDARY>,Gate In,LL_receive,108.0,372.3,0.001450741625144501,0.001450741625144501
+original,explicit,Gate In,LL_receive,Gate Out,107.0,342.0,0.0012899223474632535,0.0012899223474632535
+original,explicit,LL_receive,Gate Out,<BOUNDARY>,140.0,366.7,0.001244359709566386,0.001244359709566386
+original,explicit,LL_delivery,RMG_receive,Gate Out,969.0,763.6,-0.0011274751571164984,0.0011274751571164984
+original,explicit,LL_delivery,RMG_delivery,Gate Out,250.0,51.5,-0.0010895648937170764,0.0010895648937170764
+original,explicit,RMG_delivery,Gate Out,<BOUNDARY>,4611.0,4414.5,-0.001078529722688725,0.001078529722688725
+original,explicit,Gate In,LL_delivery,RMG_delivery,252.0,64.3,-0.0010302828031224101,0.0010302828031224101
+original,explicit,Gate In,HO2_receive,Gate Out,1095.0,942.5,-0.0008370661598459415,0.0008370661598459415
+original,explicit,LL_delivery,HO2_receive,Gate Out,134.0,3.6,-0.0007157641131826989,0.0007157641131826989
+original,explicit,<BOUNDARY>,Gate In,HO2_mixed,271.0,163.4,-0.0005906323728994457,0.0005906323728994457
+original,explicit,Gate In,LL_delivery,HO2_receive,136.0,30.2,-0.0005807444710311577,0.0005807444710311577
+original,explicit,HO2_mixed,Gate Out,<BOUNDARY>,267.0,162.5,-0.0005736161734436081,0.0005736161734436081
+original,explicit,Gate In,HO2_mixed,Gate Out,263.0,161.9,-0.0005549526747301585,0.0005549526747301585
+original,explicit,<BOUNDARY>,Gate In,HO2_receive,1110.0,1009.0,-0.0005543853870964044,0.0005543853870964044
+original,explicit,HO2_receive,HO2_receive,HO2_receive,0.0,79.7,0.0004374578617380425,0.0004374578617380425
+original,explicit,Gate In,RMG_mixed,Gate Out,926.0,999.1,0.0004012165039105751,0.0004012165039105751
+original,explicit,<BOUNDARY>,Gate In,RMG_mixed,932.0,1004.3,0.00039682395018641076,0.00039682395018641076
+original,explicit,Gate In,HO2_delivery,RMG_receive,90.0,27.9,-0.0003408684279990987,0.0003408684279990987
+original,explicit,RMG_mixed,Gate Out,<BOUNDARY>,947.0,1000.4,0.0002930841112992877,0.0002930841112992877
+original,explicit,<BOUNDARY>,Gate In,HO2_delivery,1409.0,1357.1,-0.0002848742146881395,0.0002848742146881395
+original,explicit,Gate In,RMG_delivery,Gate Out,4338.0,4334.4,-1.970624178266392e-05,0.00025577962732391263
+original,explicit,<BOUNDARY>,Gate In,RMG_delivery,4403.0,4365.3,-0.00020687552963062918,0.00025409377180265124
+original,explicit,Gate In,HO2_receive,LL_delivery,0.0,40.1,0.0002201098813890732,0.0002201098813890732
+original,explicit,Gate In,HO2_delivery,Gate Out,1274.0,1297.7,0.00013009619644005716,0.00018608737834384235
+original,explicit,HO2_receive,LL_delivery,RMG_receive,0.0,33.7,0.00018498032826105151,0.00018498032826105151
+original,explicit,HO2_delivery,Gate Out,<BOUNDARY>,1312.0,1310.2,-9.876926561081395e-06,0.0001690698295579854
+original,explicit,HO2_delivery,RMG_receive,Gate Out,91.0,61.0,-0.00016467639019497935,0.00016467639019497935
+original,explicit,LL_delivery,HO2_delivery,RMG_receive,1.0,27.4,0.00014490432614778625,0.00014490432614778625
+original,explicit,LL_delivery,HO2_delivery,Gate Out,29.0,3.6,-0.00013942144026018481,0.00013942144026018481
+original,explicit,LL_delivery,HO2_receive,RMG_receive,2.0,21.2,0.00010537947581922184,0.00010537947581922184
+original,explicit,HO2_delivery,LL_delivery,RMG_receive,0.0,17.5,9.60561756823922e-05,9.60561756823922e-05
+original,explicit,RMG_receive,RMG_receive,Gate Out,7.0,24.2,9.440908042827936e-05,9.440908042827936e-05
+original,explicit,Gate In,HO2_receive,HO2_receive,3.0,19.9,9.27568742748697e-05,9.27568742748697e-05
+original,explicit,LL_receive,RMG_receive,Gate Out,1.0,17.9,9.275641756379064e-05,9.275641756379064e-05
+original,explicit,HO2_receive,RMG_receive,Gate Out,10.0,25.4,8.45200095160015e-05,8.45200095160015e-05
+original,explicit,RMG_receive,HO2_receive,Gate Out,15.0,0.1,-8.178573692892777e-05,8.178573692892777e-05
+original,explicit,LL_delivery,RMG_mixed,Gate Out,15.0,0.4,-8.013941145182161e-05,8.013941145182161e-05
+original,explicit,Gate In,RMG_delivery,LL_delivery,23.0,8.9,-7.738864273173755e-05,7.738864273173755e-05
+original,explicit,RMG_delivery,LL_delivery,Gate Out,22.0,8.2,-7.574114176601827e-05,7.574114176601827e-05
+original,explicit,HO2_delivery,LL_delivery,Gate Out,16.0,2.6,-7.355293986688633e-05,7.355293986688633e-05
+original,explicit,HO2_receive,HO2_receive,LL_delivery,0.0,13.4,7.354642244073202e-05,7.354642244073202e-05
+original,explicit,Gate In,LL_delivery,RMG_mixed,15.0,2.5,-6.861384911858621e-05,6.861384911858621e-05
+original,explicit,LL_receive,LL_receive,LL_receive,0.0,11.7,6.420547843445839e-05,6.420547843445839e-05
+original,explicit,Gate In,RMG_delivery,HO2_receive,12.0,0.4,-6.367157954719477e-05,6.367157954719477e-05
+original,explicit,RMG_delivery,HO2_receive,Gate Out,12.0,0.8,-6.147510429178466e-05,6.147510429178466e-05
+original,explicit,LL_delivery,HO2_receive,HO2_receive,0.0,11.2,6.147171837230688e-05,6.147171837230688e-05
+original,explicit,Gate In,HO2_delivery,RMG_delivery,13.0,1.9,-6.092631666919117e-05,6.092631666919117e-05
+original,explicit,HO2_receive,HO2_receive,Gate Out,3.0,14.0,6.037509777758438e-05,6.037509777758438e-05
+original,explicit,Gate In,HO2_receive,RMG_receive,11.0,0.2,-5.928110704450732e-05,5.928110704450732e-05
+original,explicit,HO2_receive,HO2_receive,HO2_delivery,0.0,10.7,5.8726529112762766e-05,5.8726529112762766e-05
+original,explicit,HO2_delivery,LL_receive,Gate Out,12.0,1.7,-5.653500942320317e-05,5.653500942320317e-05
+original,explicit,Gate In,RMG_delivery,LL_receive,20.0,9.9,-5.5440353096907335e-05,5.5440353096907335e-05
+original,explicit,LL_delivery,LL_delivery,RMG_receive,0.0,10.1,5.543740249310245e-05,5.543740249310245e-05
+original,explicit,HO2_receive,LL_delivery,HO2_receive,0.0,9.9,5.433693995556076e-05,5.433693995556076e-05
+original,explicit,Gate In,LL_delivery,LL_receive,0.0,9.8,5.3791453809978827e-05,5.3791453809978827e-05
+original,explicit,HO2_delivery,RMG_delivery,Gate Out,13.0,3.5,-5.2145002477352256e-05,5.2145002477352256e-05
+original,explicit,Gate In,LL_receive,LL_delivery,0.0,9.4,5.1594575645821355e-05,5.1594575645821355e-05
+original,explicit,LL_receive,HO2_receive,HO2_receive,0.0,9.4,5.159155076650631e-05,5.159155076650631e-05
+original,explicit,Gate In,LL_delivery,LL_delivery,0.0,9.2,5.049748285215847e-05,5.049748285215847e-05
+original,explicit,Gate In,RMG_receive,HO2_receive,9.0,0.0,-4.9400808456596924e-05,4.9400808456596924e-05
+original,explicit,Gate In,HO2_delivery,LL_receive,12.0,3.1,-4.8851417398707974e-05,4.8851417398707974e-05
+original,explicit,RMG_receive,RMG_receive,RMG_receive,2.0,10.4,4.61008316233359e-05,4.61008316233359e-05
+original,explicit,LL_delivery,LL_receive,RMG_receive,0.0,8.2,4.501001392329743e-05,4.501001392329743e-05
+original,explicit,HO2_receive,HO2_delivery,HO2_receive,0.0,8.1,4.445347668389367e-05,4.445347668389367e-05
+original,explicit,RMG_delivery,RMG_delivery,Gate Out,9.0,16.8,4.2816376743693376e-05,4.2816376743693376e-05
+original,explicit,Gate In,RMG_receive,RMG_receive,6.0,13.6,4.171591583097195e-05,4.171591583097195e-05
+original,explicit,LL_receive,LL_receive,HO2_receive,0.0,7.3,4.0060463347609907e-05,4.0060463347609907e-05
+original,explicit,HO2_delivery,HO2_receive,HO2_receive,0.0,7.2,3.951416473440969e-05,3.951416473440969e-05
+original,explicit,RMG_delivery,LL_receive,Gate Out,20.0,13.0,-3.8424735652241947e-05,3.8424735652241947e-05
+original,explicit,HO2_mixed,RMG_receive,Gate Out,8.0,1.0,-3.842352364773048e-05,3.842352364773048e-05
+original,explicit,Gate In,HO2_mixed,RMG_receive,7.0,0.0,-3.8422851021797614e-05,3.8422851021797614e-05
+original,explicit,LL_receive,HO2_receive,LL_receive,0.0,6.666666666666667,3.6585398235591154e-05,3.6585398235591154e-05
+original,explicit,LL_receive,LL_delivery,RMG_receive,0.0,6.5,3.567720380383319e-05,3.567720380383319e-05
+original,explicit,HO2_receive,LL_delivery,LL_delivery,0.0,6.5,3.567551973447277e-05,3.567551973447277e-05
+original,explicit,HO2_receive,LL_receive,LL_receive,0.0,6.444444444444445,3.5366690466107046e-05,3.5366690466107046e-05
+original,explicit,Gate In,LL_delivery,HO2_delivery,30.0,34.0,2.1948392555612864e-05,3.402826194931103e-05
+original,explicit,HO2_receive,LL_receive,HO2_receive,0.0,6.2,3.402419808412139e-05,3.402419808412139e-05
+original,explicit,LL_delivery,RMG_receive,RMG_receive,1.0,7.1,3.3481416497345964e-05,3.3481416497345964e-05
+original,explicit,Gate In,LL_receive,HO2_receive,0.0,5.8,3.183796420114103e-05,3.183796420114103e-05
+original,explicit,RMG_mixed,RMG_mixed,Gate Out,6.0,0.5,-3.0189206417136132e-05,3.0189206417136132e-05
+original,explicit,Gate In,LL_receive,RMG_receive,1.0,6.4,2.963782634469198e-05,2.963782634469198e-05
+original,explicit,HO2_receive,LL_delivery,Gate Out,0.0,5.3,2.9093525121978542e-05,2.9093525121978542e-05
+original,explicit,LL_delivery,RMG_delivery,RMG_delivery,2.0,7.3,2.909221701736098e-05,2.909221701736098e-05
+original,explicit,LL_delivery,RMG_delivery,LL_receive,0.0,5.3,2.909100740396806e-05,2.909100740396806e-05
+original,explicit,LL_delivery,HO2_receive,LL_delivery,0.0,5.3,2.9090005521043828e-05,2.9090005521043828e-05
+original,explicit,HO2_receive,HO2_receive,LL_receive,0.0,5.1,2.7986869108118446e-05,2.7986869108118446e-05
+original,explicit,Gate In,RMG_delivery,RMG_delivery,6.0,11.0,2.7445176118590454e-05,2.7445176118590454e-05
+original,explicit,Gate In,RMG_mixed,RMG_mixed,6.0,1.1,-2.6896085332864992e-05,2.6896085332864992e-05
+original,explicit,LL_receive,LL_receive,RMG_receive,0.0,4.7,2.5794208311084627e-05,2.5794208311084627e-05
+original,explicit,RMG_receive,LL_receive,Gate Out,0.0,4.5,2.469891652993866e-05,2.469891652993866e-05
+original,explicit,HO2_delivery,LL_receive,LL_receive,0.0,4.5,2.4697015546315775e-05,2.4697015546315775e-05
+original,explicit,RMG_delivery,RMG_receive,Gate Out,0.0,4.444444444444445,2.4391006011999513e-05,2.4391006011999513e-05
+original,explicit,Gate In,HO2_delivery,LL_delivery,17.0,20.4,1.8661019567698413e-05,2.4150705867600563e-05
+original,explicit,RMG_receive,LL_delivery,Gate Out,0.0,4.4,2.414961102654118e-05,2.414961102654118e-05
+original,explicit,HO2_delivery,HO2_delivery,RMG_receive,0.0,4.3,2.360279494934359e-05,2.360279494934359e-05
+original,explicit,LL_receive,RMG_delivery,Gate Out,0.0,4.125,2.2638629640745693e-05,2.2638629640745693e-05
+original,explicit,LL_delivery,LL_delivery,LL_delivery,0.0,4.111111111111111,2.256734489339556e-05,2.256734489339556e-05
+original,explicit,Gate In,LL_delivery,HO2_mixed,5.0,1.0,-2.1956795212772616e-05,2.1956795212772616e-05
+original,explicit,HO2_receive,HO2_delivery,HO2_delivery,0.0,4.0,2.1955454674253816e-05,2.1955454674253816e-05
+original,explicit,LL_delivery,LL_delivery,HO2_receive,0.0,4.0,2.195348284351029e-05,2.195348284351029e-05
+original,explicit,LL_delivery,RMG_delivery,RMG_receive,0.0,4.0,2.195206543917319e-05,2.195206543917319e-05
+original,explicit,Gate In,LL_receive,LL_receive,0.0,3.888888888888889,2.1342892386958298e-05,2.1342892386958298e-05
+original,explicit,LL_delivery,HO2_mixed,Gate Out,4.0,0.2,-2.0858527178609847e-05,2.0858527178609847e-05
+original,explicit,HO2_delivery,HO2_delivery,HO2_receive,0.0,3.75,2.058188345338273e-05,2.058188345338273e-05
+original,explicit,HO2_delivery,HO2_delivery,HO2_delivery,0.0,3.7,2.0312021290781036e-05,2.0312021290781036e-05
+original,explicit,Gate In,LL_receive,HO2_delivery,0.0,3.7,2.030805414872218e-05,2.030805414872218e-05
+original,explicit,<BOUNDARY>,Gate In,LL_mixed,10.0,13.2,1.7567584670098014e-05,1.9762721530497183e-05
+original,explicit,RMG_receive,LL_delivery,RMG_receive,4.0,0.4,-1.9761015855964625e-05,1.9761015855964625e-05
+original,explicit,HO2_receive,HO2_delivery,LL_receive,0.0,3.6,1.9758489843943768e-05,1.9758489843943768e-05
+original,explicit,LL_delivery,HO2_delivery,LL_receive,0.0,3.5555555555555554,1.9515533921266918e-05,1.9515533921266918e-05
+original,explicit,LL_receive,RMG_receive,RMG_receive,0.0,3.5,1.9212613157974814e-05,1.9212613157974814e-05
+original,explicit,LL_receive,LL_delivery,LL_receive,0.0,3.4444444444444446,1.8904985280772867e-05,1.8904985280772867e-05
+original,explicit,LL_delivery,LL_receive,LL_receive,0.0,3.4,1.8660878345202697e-05,1.8660878345202697e-05
+original,explicit,Gate In,RMG_mixed,LL_delivery,0.0,3.3,1.8111374065362042e-05,1.8111374065362042e-05
+original,explicit,HO2_delivery,HO2_receive,HO2_delivery,0.0,3.2222222222222223,1.7684350154467218e-05,1.7684350154467218e-05
+original,explicit,Gate In,LL_mixed,Gate Out,10.0,12.8,1.537055483343174e-05,1.7565691693830907e-05
+original,explicit,HO2_receive,RMG_delivery,Gate Out,1.0,4.0,1.647082840573666e-05,1.647082840573666e-05
+original,explicit,HO2_receive,RMG_receive,HO2_receive,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+original,explicit,RMG_delivery,HO2_delivery,Gate Out,4.0,1.0,-1.6466626476606222e-05,1.6466626476606222e-05
+original,explicit,LL_delivery,RMG_receive,HO2_receive,3.0,0.1,-1.5917992320131875e-05,1.5917992320131875e-05
+original,explicit,LL_receive,HO2_receive,Gate Out,0.0,2.9,1.5916883356591157e-05,1.5916883356591157e-05
+original,explicit,HO2_receive,HO2_receive,RMG_receive,0.0,2.888888888888889,1.5854749552289768e-05,1.5854749552289768e-05
+original,explicit,LL_mixed,Gate Out,<BOUNDARY>,11.0,12.8,9.881576116032079e-06,1.5369237505485183e-05
+original,explicit,RMG_mixed,RMG_receive,Gate Out,0.0,2.7777777777777777,1.5245776960021913e-05,1.5245776960021913e-05
+original,explicit,LL_receive,HO2_receive,HO2_delivery,0.0,2.75,1.5091521315706654e-05,1.5091521315706654e-05
+original,explicit,RMG_mixed,LL_delivery,RMG_receive,0.0,2.7,1.481972615178701e-05,1.481972615178701e-05
+original,explicit,Gate In,HO2_delivery,HO2_delivery,3.0,5.1,1.152613846036912e-05,1.4818367737189854e-05
+original,explicit,LL_receive,LL_receive,Gate Out,0.0,2.6666666666666665,1.4635358111667571e-05,1.4635358111667571e-05
+original,explicit,HO2_delivery,HO2_receive,Gate Out,0.0,2.625,1.4409576503542587e-05,1.4409576503542587e-05
+original,explicit,LL_delivery,HO2_delivery,HO2_delivery,0.0,2.5555555555555554,1.4026211053782387e-05,1.4026211053782387e-05
+original,explicit,HO2_delivery,LL_receive,RMG_receive,0.0,2.5,1.3723279364468579e-05,1.3723279364468579e-05
+original,explicit,HO2_delivery,HO2_receive,LL_receive,0.0,2.5,1.371939200188716e-05,1.371939200188716e-05
+original,explicit,LL_delivery,HO2_receive,HO2_delivery,0.0,2.4444444444444446,1.3416963243688398e-05,1.3416963243688398e-05
+original,explicit,HO2_delivery,HO2_delivery,LL_delivery,0.0,2.4444444444444446,1.3416939326050185e-05,1.3416939326050185e-05
+original,explicit,LL_receive,HO2_delivery,LL_receive,0.0,2.4285714285714284,1.3329329983328323e-05,1.3329329983328323e-05
+original,explicit,HO2_receive,LL_delivery,HO2_delivery,0.0,2.4,1.3171508708708531e-05,1.3171508708708531e-05
+original,explicit,LL_receive,LL_delivery,Gate Out,0.0,2.375,1.3037347958948856e-05,1.3037347958948856e-05
+original,explicit,LL_delivery,HO2_delivery,HO2_receive,0.0,2.3333333333333335,1.2807326185622454e-05,1.2807326185622454e-05
+original,explicit,HO2_delivery,LL_receive,HO2_receive,0.0,2.3333333333333335,1.2807213008153863e-05,1.2807213008153863e-05
+original,explicit,Gate In,RMG_delivery,HO2_delivery,3.0,0.7,-1.2624909873316376e-05,1.2624909873316376e-05
+original,explicit,LL_delivery,LL_receive,Gate Out,0.0,2.2857142857142856,1.2547347150164004e-05,1.2547347150164004e-05
+original,explicit,LL_receive,HO2_delivery,HO2_receive,0.0,2.25,1.2347333500989549e-05,1.2347333500989549e-05
+original,explicit,HO2_receive,HO2_receive,RMG_delivery,0.0,2.2222222222222223,1.2199403891609894e-05,1.2199403891609894e-05
+original,explicit,Gate In,RMG_receive,LL_receive,0.0,2.2222222222222223,1.219730119567421e-05,1.219730119567421e-05
+original,explicit,LL_delivery,RMG_mixed,RMG_receive,0.0,2.2222222222222223,1.2196305773934642e-05,1.2196305773934642e-05
+original,explicit,LL_receive,LL_receive,LL_delivery,0.0,2.2222222222222223,1.2196153067025958e-05,1.2196153067025958e-05
+original,explicit,HO2_receive,HO2_delivery,Gate Out,0.0,2.2,1.2074265643345593e-05,1.2074265643345593e-05
+original,explicit,RMG_delivery,RMG_delivery,LL_receive,0.0,2.125,1.1662829078154082e-05,1.1662829078154082e-05
+original,explicit,LL_delivery,RMG_receive,LL_receive,0.0,2.111111111111111,1.1586447212772449e-05,1.1586447212772449e-05
+original,explicit,RMG_delivery,LL_receive,RMG_delivery,0.0,2.111111111111111,1.1585736107358954e-05,1.1585736107358954e-05
+original,explicit,HO2_receive,RMG_delivery,LL_delivery,0.0,2.0,1.0981078312096102e-05,1.0981078312096102e-05
+original,explicit,HO2_receive,RMG_mixed,RMG_mixed,0.0,2.0,1.0980684975128748e-05,1.0980684975128748e-05
+original,explicit,LL_receive,LL_receive,HO2_delivery,0.0,2.0,1.0979990695790353e-05,1.0979990695790353e-05
+original,explicit,HO2_delivery,LL_delivery,LL_delivery,0.0,2.0,1.0978108441114983e-05,1.0978108441114983e-05
+original,explicit,LL_delivery,HO2_receive,RMG_delivery,0.0,2.0,1.0977990475562382e-05,1.0977990475562382e-05
+original,explicit,HO2_receive,HO2_delivery,RMG_receive,0.0,2.0,1.0977568561802304e-05,1.0977568561802304e-05
+original,explicit,Gate In,LL_receive,RMG_delivery,0.0,2.0,1.0976372038906067e-05,1.0976372038906067e-05
+original,explicit,HO2_delivery,RMG_receive,RMG_receive,0.0,2.0,1.0975567254238122e-05,1.0975567254238122e-05
+original,explicit,LL_delivery,LL_receive,RMG_delivery,0.0,2.0,1.0975442447523666e-05,1.0975442447523666e-05
+original,explicit,RMG_receive,RMG_delivery,RMG_receive,0.0,2.0,1.0973876686547672e-05,1.0973876686547672e-05
+original,explicit,LL_delivery,HO2_mixed,RMG_delivery,0.0,2.0,1.0972311372252122e-05,1.0972311372252122e-05
+original,explicit,Gate In,HO2_receive,LL_receive,0.0,1.9,1.042888342941497e-05,1.042888342941497e-05
+original,explicit,LL_receive,LL_delivery,HO2_delivery,0.0,1.8571428571428572,1.0192875094606503e-05,1.0192875094606503e-05
+original,explicit,LL_delivery,LL_delivery,Gate Out,0.0,1.8,9.88012299709132e-06,9.88012299709132e-06
+original,explicit,LL_receive,HO2_delivery,RMG_receive,0.0,1.8,9.879804625762968e-06,9.879804625762968e-06
+original,explicit,LL_delivery,LL_receive,HO2_delivery,0.0,1.8,9.87874379639859e-06,9.87874379639859e-06
+original,explicit,Gate In,RMG_receive,LL_delivery,4.0,3.6,-2.197227546420149e-06,9.878664282223913e-06
+original,explicit,RMG_delivery,RMG_delivery,RMG_delivery,1.0,2.4,7.68135613435542e-06,9.877897205754306e-06
+original,explicit,HO2_mixed,LL_delivery,RMG_receive,0.0,1.75,9.606422217582012e-06,9.606422217582012e-06
+original,explicit,LL_receive,HO2_delivery,Gate Out,0.0,1.7142857142857142,9.407901405386677e-06,9.407901405386677e-06
+original,explicit,Gate In,HO2_receive,RMG_delivery,1.0,2.3,7.1389382986616235e-06,9.334316003073713e-06
+original,explicit,Gate In,HO2_receive,HO2_delivery,0.0,1.7,9.330278293153696e-06,9.330278293153696e-06
+original,explicit,HO2_delivery,RMG_receive,LL_delivery,0.0,1.6666666666666667,9.149094280077546e-06,9.149094280077546e-06
+original,explicit,RMG_delivery,LL_receive,LL_receive,0.0,1.6666666666666667,9.147639136083292e-06,9.147639136083292e-06
+original,explicit,HO2_receive,LL_delivery,RMG_delivery,0.0,1.6666666666666667,9.14743532589845e-06,9.14743532589845e-06
+original,explicit,HO2_receive,LL_receive,Gate Out,0.0,1.6666666666666667,9.146893400470025e-06,9.146893400470025e-06
+original,explicit,HO2_delivery,LL_receive,HO2_delivery,0.0,1.625,8.918230350276114e-06,8.918230350276114e-06
+original,explicit,HO2_delivery,HO2_delivery,LL_receive,0.0,1.6,8.783863712186545e-06,8.783863712186545e-06
+original,explicit,LL_receive,HO2_delivery,HO2_delivery,0.0,1.6,8.782817063098e-06,8.782817063098e-06
+original,explicit,Gate In,HO2_delivery,HO2_receive,0.0,1.6,8.782446584924389e-06,8.782446584924389e-06
+original,explicit,RMG_delivery,LL_delivery,RMG_receive,0.0,1.5,8.237534113212245e-06,8.237534113212245e-06
+original,explicit,LL_receive,HO2_delivery,LL_delivery,0.0,1.5,8.237310906419902e-06,8.237310906419902e-06
+original,explicit,RMG_receive,LL_delivery,LL_receive,0.0,1.5,8.235065271508559e-06,8.235065271508559e-06
+original,explicit,HO2_delivery,LL_receive,LL_delivery,0.0,1.5,8.234806381045223e-06,8.234806381045223e-06
+original,explicit,HO2_delivery,HO2_receive,RMG_receive,0.0,1.5,8.234291392205723e-06,8.234291392205723e-06
+original,explicit,HO2_delivery,HO2_delivery,Gate Out,3.0,2.3,-3.8434339335124664e-06,8.233388492210036e-06
+original,explicit,RMG_mixed,RMG_mixed,LL_delivery,0.0,1.5,8.232456275812406e-06,8.232456275812406e-06
+original,explicit,HO2_receive,LL_receive,HO2_delivery,0.0,1.5,8.231839925683022e-06,8.231839925683022e-06
+original,explicit,LL_delivery,LL_delivery,RMG_delivery,0.0,1.5,8.230979763279912e-06,8.230979763279912e-06
+original,explicit,RMG_receive,RMG_receive,HO2_delivery,0.0,1.5,8.230965141660333e-06,8.230965141660333e-06
+original,explicit,Gate In,HO2_mixed,HO2_mixed,0.0,1.5,8.22997108201953e-06,8.22997108201953e-06
+original,explicit,Gate In,HO2_mixed,LL_delivery,0.0,1.4285714285714286,7.84088601570154e-06,7.84088601570154e-06
+original,explicit,HO2_delivery,RMG_receive,HO2_delivery,0.0,1.3333333333333333,7.320628427764326e-06,7.320628427764326e-06
+original,explicit,Gate In,RMG_receive,RMG_delivery,0.0,1.3333333333333333,7.317986926579855e-06,7.317986926579855e-06
+original,explicit,RMG_receive,RMG_receive,LL_delivery,0.0,1.3333333333333333,7.3173748143572e-06,7.3173748143572e-06
+original,explicit,HO2_mixed,RMG_delivery,Gate Out,0.0,1.3333333333333333,7.315827599134459e-06,7.315827599134459e-06
+original,explicit,RMG_mixed,RMG_mixed,RMG_receive,0.0,1.25,6.861815264162783e-06,6.861815264162783e-06
+original,explicit,RMG_delivery,LL_receive,LL_delivery,0.0,1.25,6.861404159906497e-06,6.861404159906497e-06
+original,explicit,RMG_receive,RMG_receive,LL_receive,0.0,1.25,6.860707006216731e-06,6.860707006216731e-06
+original,explicit,LL_receive,HO2_receive,RMG_receive,0.0,1.25,6.860678234410413e-06,6.860678234410413e-06
+original,explicit,HO2_receive,HO2_delivery,RMG_delivery,0.0,1.25,6.860595417480894e-06,6.860595417480894e-06
+original,explicit,RMG_mixed,LL_delivery,RMG_mixed,0.0,1.25,6.860344735471283e-06,6.860344735471283e-06
+original,explicit,LL_receive,RMG_receive,LL_delivery,0.0,1.25,6.860307301479517e-06,6.860307301479517e-06
+original,explicit,LL_receive,RMG_receive,LL_receive,0.0,1.25,6.859795057252455e-06,6.859795057252455e-06
+original,explicit,RMG_mixed,LL_delivery,Gate Out,0.0,1.25,6.858650432768682e-06,6.858650432768682e-06
+original,explicit,LL_receive,RMG_receive,HO2_delivery,0.0,1.2,6.58832360424053e-06,6.58832360424053e-06
+original,explicit,HO2_delivery,LL_delivery,HO2_delivery,1.0,2.0,5.489862264639059e-06,6.587352304916943e-06
+original,explicit,LL_delivery,RMG_mixed,RMG_mixed,0.0,1.2,6.586839879984993e-06,6.586839879984993e-06
+original,explicit,RMG_receive,LL_receive,RMG_receive,0.0,1.2,6.584326139789015e-06,6.584326139789015e-06
+original,explicit,HO2_delivery,LL_delivery,LL_receive,0.0,1.1666666666666667,6.4043014405010166e-06,6.4043014405010166e-06
+original,explicit,Gate In,HO2_receive,HO2_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,Gate In,LL_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,Gate In,RMG_mixed,HO2_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,HO2_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,HO2_receive,HO2_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,HO2_receive,RMG_mixed,Gate Out,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,LL_mixed,LL_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,LL_receive,HO2_receive,RMG_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,RMG_mixed,HO2_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,RMG_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+original,explicit,HO2_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+original,explicit,LL_delivery,HO2_receive,RMG_mixed,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+original,explicit,Gate In,LL_mixed,LL_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,Gate In,LL_mixed,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,Gate In,RMG_mixed,HO2_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_mixed,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_mixed,RMG_mixed,Gate Out,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_receive,LL_delivery,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_receive,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,LL_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,RMG_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+original,explicit,HO2_receive,RMG_mixed,LL_delivery,0.0,1.0,5.492334230454651e-06,5.492334230454651e-06
+original,explicit,Gate In,HO2_receive,RMG_mixed,0.0,1.0,5.491670316157892e-06,5.491670316157892e-06
+original,explicit,HO2_receive,RMG_mixed,HO2_delivery,0.0,1.0,5.491566030227577e-06,5.491566030227577e-06
+original,explicit,RMG_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+original,explicit,RMG_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+original,explicit,HO2_mixed,LL_delivery,Gate Out,0.0,1.0,5.491120382932196e-06,5.491120382932196e-06
+original,explicit,RMG_receive,HO2_delivery,HO2_delivery,0.0,1.0,5.490738060781546e-06,5.490738060781546e-06
+original,explicit,RMG_delivery,HO2_receive,HO2_receive,0.0,1.0,5.490692913182167e-06,5.490692913182167e-06
+original,explicit,RMG_delivery,LL_receive,RMG_receive,0.0,1.0,5.4905356013943795e-06,5.4905356013943795e-06
+original,explicit,Gate In,LL_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,Gate In,LL_receive,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_delivery,RMG_delivery,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_delivery,RMG_mixed,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,HO2_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,LL_delivery,HO2_delivery,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,LL_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,LL_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,LL_receive,RMG_mixed,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_mixed,HO2_receive,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_mixed,HO2_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_mixed,LL_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_mixed,RMG_mixed,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_receive,HO2_delivery,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_receive,HO2_mixed,Gate Out,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,RMG_receive,RMG_receive,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+original,explicit,Gate In,RMG_mixed,RMG_delivery,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+original,explicit,RMG_mixed,RMG_delivery,Gate Out,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+original,explicit,Gate In,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,explicit,HO2_receive,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,explicit,RMG_mixed,HO2_receive,RMG_mixed,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+original,explicit,HO2_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4894406225773e-06,5.4894406225773e-06
+original,explicit,HO2_delivery,LL_receive,HO2_mixed,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,HO2_delivery,LL_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,HO2_mixed,RMG_receive,RMG_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,LL_delivery,LL_delivery,LL_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,LL_receive,RMG_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,RMG_mixed,HO2_receive,HO2_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,RMG_receive,LL_receive,LL_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+original,explicit,RMG_mixed,RMG_receive,RMG_receive,0.0,1.0,5.4893286711362576e-06,5.4893286711362576e-06
+original,explicit,LL_receive,HO2_receive,LL_delivery,0.0,1.0,5.489122203890628e-06,5.489122203890628e-06
+original,explicit,Gate In,RMG_delivery,LL_mixed,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,explicit,HO2_mixed,LL_receive,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,explicit,RMG_delivery,LL_mixed,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+original,explicit,RMG_receive,RMG_delivery,Gate Out,0.0,1.0,5.4889420987969345e-06,5.4889420987969345e-06
+original,explicit,LL_receive,HO2_mixed,RMG_receive,0.0,1.0,5.488670120443955e-06,5.488670120443955e-06
+original,explicit,LL_receive,HO2_receive,RMG_delivery,0.0,1.0,5.488353821549915e-06,5.488353821549915e-06
+original,explicit,RMG_delivery,LL_delivery,LL_receive,0.0,1.0,5.488334018200014e-06,5.488334018200014e-06
+original,explicit,HO2_delivery,RMG_delivery,RMG_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+original,explicit,HO2_receive,RMG_receive,LL_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+original,explicit,HO2_receive,RMG_receive,RMG_receive,0.0,1.0,5.4882490868452175e-06,5.4882490868452175e-06
+original,explicit,LL_delivery,LL_delivery,HO2_delivery,0.0,1.0,5.488163463035359e-06,5.488163463035359e-06
+original,explicit,HO2_receive,HO2_delivery,LL_delivery,0.0,1.0,5.488032629235566e-06,5.488032629235566e-06
+original,explicit,HO2_delivery,LL_delivery,RMG_delivery,0.0,1.0,5.487982791693286e-06,5.487982791693286e-06
+original,explicit,RMG_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487925720038693e-06,5.487925720038693e-06
+original,explicit,HO2_delivery,RMG_receive,LL_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,HO2_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,HO2_mixed,LL_receive,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,HO2_receive,HO2_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,HO2_receive,LL_receive,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,LL_delivery,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,LL_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,LL_receive,LL_receive,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,LL_receive,RMG_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,RMG_delivery,HO2_delivery,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,RMG_mixed,HO2_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+original,explicit,RMG_mixed,LL_delivery,HO2_receive,0.0,1.0,5.487862074070909e-06,5.487862074070909e-06
+original,explicit,RMG_receive,RMG_mixed,RMG_receive,0.0,1.0,5.487811571989357e-06,5.487811571989357e-06
+original,explicit,Gate In,HO2_mixed,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,Gate In,RMG_receive,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,HO2_mixed,LL_delivery,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,HO2_receive,HO2_mixed,RMG_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,HO2_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,LL_delivery,RMG_mixed,HO2_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,LL_delivery,RMG_receive,LL_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,LL_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,LL_receive,HO2_mixed,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,RMG_delivery,LL_receive,HO2_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,RMG_mixed,HO2_receive,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,RMG_mixed,RMG_mixed,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+original,explicit,LL_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.4876760608031515e-06,5.4876760608031515e-06
+original,explicit,HO2_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,explicit,HO2_mixed,HO2_mixed,HO2_delivery,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,explicit,LL_delivery,LL_receive,HO2_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+original,explicit,RMG_mixed,LL_delivery,RMG_delivery,0.0,1.0,5.487581385005084e-06,5.487581385005084e-06
+original,explicit,HO2_delivery,HO2_receive,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,HO2_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,HO2_receive,HO2_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,HO2_receive,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,LL_receive,LL_receive,RMG_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,LL_receive,RMG_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,LL_receive,RMG_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_delivery,HO2_mixed,Gate Out,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_mixed,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_mixed,LL_receive,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_mixed,RMG_delivery,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,RMG_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+original,explicit,LL_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,explicit,RMG_receive,RMG_mixed,Gate Out,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,explicit,RMG_receive,RMG_receive,RMG_mixed,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+original,explicit,LL_receive,LL_delivery,HO2_receive,0.0,1.0,5.4872596100349255e-06,5.4872596100349255e-06
+original,explicit,Gate In,RMG_mixed,LL_receive,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+original,explicit,HO2_receive,LL_receive,RMG_delivery,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+original,explicit,HO2_mixed,HO2_mixed,LL_receive,0.0,1.0,5.48707395077085e-06,5.48707395077085e-06
+original,explicit,Gate In,LL_receive,HO2_mixed,0.0,1.0,5.486983602543326e-06,5.486983602543326e-06
+original,explicit,RMG_receive,HO2_delivery,RMG_receive,0.0,1.0,5.486938454943947e-06,5.486938454943947e-06
+original,explicit,HO2_delivery,HO2_mixed,RMG_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,HO2_delivery,LL_delivery,RMG_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,LL_delivery,HO2_delivery,HO2_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,RMG_delivery,HO2_receive,HO2_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,RMG_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,RMG_mixed,LL_receive,LL_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+original,explicit,HO2_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486893273150533e-06,5.486893273150533e-06
+original,explicit,Gate In,HO2_delivery,RMG_mixed,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,explicit,HO2_mixed,LL_receive,LL_delivery,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,explicit,HO2_receive,RMG_delivery,LL_receive,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+original,explicit,HO2_receive,LL_delivery,HO2_mixed,0.0,1.0,5.486802943757742e-06,5.486802943757742e-06
+original,explicit,LL_receive,LL_delivery,RMG_delivery,0.0,1.0,5.486707630404237e-06,5.486707630404237e-06
+original,explicit,HO2_delivery,RMG_mixed,RMG_mixed,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,HO2_mixed,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,HO2_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,HO2_receive,LL_receive,RMG_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,LL_delivery,HO2_receive,LL_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,LL_delivery,RMG_receive,RMG_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,LL_receive,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,RMG_mixed,LL_delivery,LL_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+original,explicit,Gate In,HO2_mixed,LL_receive,1.0,0.1,-4.940233697260716e-06,4.940233697260716e-06
+original,explicit,LL_delivery,RMG_delivery,HO2_delivery,1.0,0.2,-4.390708181700215e-06,4.390708181700215e-06
+original,explicit,Gate In,RMG_receive,HO2_delivery,1.0,0.7,-1.6467962016771043e-06,3.842354739467864e-06
+original,explicit,HO2_delivery,RMG_delivery,RMG_delivery,1.0,0.5,-2.744644192712996e-06,3.84189338897796e-06
+original,explicit,RMG_receive,HO2_delivery,Gate Out,2.0,2.2,1.0985810420486803e-06,3.293741810135433e-06
+original,explicit,RMG_delivery,LL_delivery,RMG_delivery,1.0,1.1,5.477417310878059e-07,2.7442828024866922e-06
+original,explicit,LL_delivery,HO2_delivery,RMG_delivery,1.0,1.5,2.7433397511010124e-06,2.7433397511010124e-06
+original,explicit,LL_delivery,RMG_receive,HO2_delivery,1.0,0.8,-1.0978515430153666e-06,2.195341583293251e-06
+original,explicit,LL_delivery,HO2_mixed,RMG_receive,1.0,0.7,-1.6469287746581216e-06,1.6469287746581216e-06
+original,explicit,<BOUNDARY>,<BOUNDARY>,Gate In,17892.0,17892.0,0.0,0.0
+original,explicit,Gate Out,<BOUNDARY>,<BOUNDARY>,17892.0,17892.0,0.0,0.0
+repaired,completion,<BOUNDARY>,Gate In,LL_delivery,3571.0,2360.5,-0.00664447082627177,0.00664447082627177
+repaired,completion,<BOUNDARY>,Gate In,RMG_receive,6075.0,7246.9,0.006432572106737577,0.006432572106737577
+repaired,completion,Gate In,RMG_receive,Gate Out,6055.0,7226.5,0.006430379283834843,0.006430379283834843
+repaired,completion,RMG_receive,Gate Out,<BOUNDARY>,7141.0,8126.1,0.005407162825058526,0.005407162825058526
+repaired,completion,LL_delivery,Gate Out,<BOUNDARY>,2201.0,1532.8,-0.0036677269912822746,0.0036677269912822746
+repaired,completion,Gate In,LL_delivery,Gate Out,2163.0,1507.7,-0.0035969259554884205,0.0035969259554884205
+repaired,completion,HO2_receive,Gate Out,<BOUNDARY>,1259.0,966.0,-0.0016082714719123433,0.0016082714719123433
+repaired,completion,Gate In,LL_delivery,RMG_receive,970.0,701.8,-0.0014721842815161726,0.0014721842815161726
+repaired,completion,<BOUNDARY>,Gate In,LL_receive,108.0,372.3,0.001450741625144501,0.001450741625144501
+repaired,completion,Gate In,LL_receive,Gate Out,107.0,342.0,0.0012899223474632535,0.0012899223474632535
+repaired,completion,LL_receive,Gate Out,<BOUNDARY>,140.0,366.7,0.001244359709566386,0.001244359709566386
+repaired,completion,LL_delivery,RMG_receive,Gate Out,969.0,763.6,-0.0011274751571164984,0.0011274751571164984
+repaired,completion,LL_delivery,RMG_delivery,Gate Out,250.0,51.5,-0.0010895648937170764,0.0010895648937170764
+repaired,completion,RMG_delivery,Gate Out,<BOUNDARY>,4611.0,4414.5,-0.001078529722688725,0.001078529722688725
+repaired,completion,Gate In,LL_delivery,RMG_delivery,252.0,64.3,-0.0010302828031224101,0.0010302828031224101
+repaired,completion,Gate In,HO2_receive,Gate Out,1095.0,942.5,-0.0008370661598459415,0.0008370661598459415
+repaired,completion,LL_delivery,HO2_receive,Gate Out,134.0,3.6,-0.0007157641131826989,0.0007157641131826989
+repaired,completion,<BOUNDARY>,Gate In,HO2_mixed,271.0,163.4,-0.0005906323728994457,0.0005906323728994457
+repaired,completion,Gate In,LL_delivery,HO2_receive,136.0,30.2,-0.0005807444710311577,0.0005807444710311577
+repaired,completion,HO2_mixed,Gate Out,<BOUNDARY>,267.0,162.5,-0.0005736161734436081,0.0005736161734436081
+repaired,completion,Gate In,HO2_mixed,Gate Out,263.0,161.9,-0.0005549526747301585,0.0005549526747301585
+repaired,completion,<BOUNDARY>,Gate In,HO2_receive,1110.0,1009.0,-0.0005543853870964044,0.0005543853870964044
+repaired,completion,HO2_receive,HO2_receive,HO2_receive,0.0,79.7,0.0004374578617380425,0.0004374578617380425
+repaired,completion,Gate In,RMG_mixed,Gate Out,926.0,999.1,0.0004012165039105751,0.0004012165039105751
+repaired,completion,<BOUNDARY>,Gate In,RMG_mixed,932.0,1004.3,0.00039682395018641076,0.00039682395018641076
+repaired,completion,Gate In,HO2_delivery,RMG_receive,90.0,27.9,-0.0003408684279990987,0.0003408684279990987
+repaired,completion,RMG_mixed,Gate Out,<BOUNDARY>,947.0,1000.4,0.0002930841112992877,0.0002930841112992877
+repaired,completion,<BOUNDARY>,Gate In,HO2_delivery,1409.0,1357.1,-0.0002848742146881395,0.0002848742146881395
+repaired,completion,Gate In,RMG_delivery,Gate Out,4338.0,4334.4,-1.970624178266392e-05,0.00025577962732391263
+repaired,completion,<BOUNDARY>,Gate In,RMG_delivery,4403.0,4365.3,-0.00020687552963062918,0.00025409377180265124
+repaired,completion,Gate In,HO2_receive,LL_delivery,0.0,40.1,0.0002201098813890732,0.0002201098813890732
+repaired,completion,Gate In,HO2_delivery,Gate Out,1274.0,1297.7,0.00013009619644005716,0.00018608737834384235
+repaired,completion,HO2_receive,LL_delivery,RMG_receive,0.0,33.7,0.00018498032826105151,0.00018498032826105151
+repaired,completion,HO2_delivery,Gate Out,<BOUNDARY>,1312.0,1310.2,-9.876926561081395e-06,0.0001690698295579854
+repaired,completion,HO2_delivery,RMG_receive,Gate Out,91.0,61.0,-0.00016467639019497935,0.00016467639019497935
+repaired,completion,LL_delivery,HO2_delivery,RMG_receive,1.0,27.4,0.00014490432614778625,0.00014490432614778625
+repaired,completion,LL_delivery,HO2_delivery,Gate Out,29.0,3.6,-0.00013942144026018481,0.00013942144026018481
+repaired,completion,LL_delivery,HO2_receive,RMG_receive,2.0,21.2,0.00010537947581922184,0.00010537947581922184
+repaired,completion,HO2_delivery,LL_delivery,RMG_receive,0.0,17.5,9.60561756823922e-05,9.60561756823922e-05
+repaired,completion,RMG_receive,RMG_receive,Gate Out,7.0,24.2,9.440908042827936e-05,9.440908042827936e-05
+repaired,completion,Gate In,HO2_receive,HO2_receive,3.0,19.9,9.27568742748697e-05,9.27568742748697e-05
+repaired,completion,LL_receive,RMG_receive,Gate Out,1.0,17.9,9.275641756379064e-05,9.275641756379064e-05
+repaired,completion,HO2_receive,RMG_receive,Gate Out,10.0,25.4,8.45200095160015e-05,8.45200095160015e-05
+repaired,completion,RMG_receive,HO2_receive,Gate Out,15.0,0.1,-8.178573692892777e-05,8.178573692892777e-05
+repaired,completion,LL_delivery,RMG_mixed,Gate Out,15.0,0.4,-8.013941145182161e-05,8.013941145182161e-05
+repaired,completion,Gate In,RMG_delivery,LL_delivery,23.0,8.9,-7.738864273173755e-05,7.738864273173755e-05
+repaired,completion,RMG_delivery,LL_delivery,Gate Out,22.0,8.2,-7.574114176601827e-05,7.574114176601827e-05
+repaired,completion,HO2_delivery,LL_delivery,Gate Out,16.0,2.6,-7.355293986688633e-05,7.355293986688633e-05
+repaired,completion,HO2_receive,HO2_receive,LL_delivery,0.0,13.4,7.354642244073202e-05,7.354642244073202e-05
+repaired,completion,Gate In,LL_delivery,RMG_mixed,15.0,2.5,-6.861384911858621e-05,6.861384911858621e-05
+repaired,completion,LL_receive,LL_receive,LL_receive,0.0,11.7,6.420547843445839e-05,6.420547843445839e-05
+repaired,completion,Gate In,RMG_delivery,HO2_receive,12.0,0.4,-6.367157954719477e-05,6.367157954719477e-05
+repaired,completion,RMG_delivery,HO2_receive,Gate Out,12.0,0.8,-6.147510429178466e-05,6.147510429178466e-05
+repaired,completion,LL_delivery,HO2_receive,HO2_receive,0.0,11.2,6.147171837230688e-05,6.147171837230688e-05
+repaired,completion,Gate In,HO2_delivery,RMG_delivery,13.0,1.9,-6.092631666919117e-05,6.092631666919117e-05
+repaired,completion,HO2_receive,HO2_receive,Gate Out,3.0,14.0,6.037509777758438e-05,6.037509777758438e-05
+repaired,completion,Gate In,HO2_receive,RMG_receive,11.0,0.2,-5.928110704450732e-05,5.928110704450732e-05
+repaired,completion,HO2_receive,HO2_receive,HO2_delivery,0.0,10.7,5.8726529112762766e-05,5.8726529112762766e-05
+repaired,completion,HO2_delivery,LL_receive,Gate Out,12.0,1.7,-5.653500942320317e-05,5.653500942320317e-05
+repaired,completion,Gate In,RMG_delivery,LL_receive,20.0,9.9,-5.5440353096907335e-05,5.5440353096907335e-05
+repaired,completion,LL_delivery,LL_delivery,RMG_receive,0.0,10.1,5.543740249310245e-05,5.543740249310245e-05
+repaired,completion,HO2_receive,LL_delivery,HO2_receive,0.0,9.9,5.433693995556076e-05,5.433693995556076e-05
+repaired,completion,Gate In,LL_delivery,LL_receive,0.0,9.8,5.3791453809978827e-05,5.3791453809978827e-05
+repaired,completion,HO2_delivery,RMG_delivery,Gate Out,13.0,3.5,-5.2145002477352256e-05,5.2145002477352256e-05
+repaired,completion,Gate In,LL_receive,LL_delivery,0.0,9.4,5.1594575645821355e-05,5.1594575645821355e-05
+repaired,completion,LL_receive,HO2_receive,HO2_receive,0.0,9.4,5.159155076650631e-05,5.159155076650631e-05
+repaired,completion,Gate In,LL_delivery,LL_delivery,0.0,9.2,5.049748285215847e-05,5.049748285215847e-05
+repaired,completion,Gate In,RMG_receive,HO2_receive,9.0,0.0,-4.9400808456596924e-05,4.9400808456596924e-05
+repaired,completion,Gate In,HO2_delivery,LL_receive,12.0,3.1,-4.8851417398707974e-05,4.8851417398707974e-05
+repaired,completion,RMG_receive,RMG_receive,RMG_receive,2.0,10.4,4.61008316233359e-05,4.61008316233359e-05
+repaired,completion,LL_delivery,LL_receive,RMG_receive,0.0,8.2,4.501001392329743e-05,4.501001392329743e-05
+repaired,completion,HO2_receive,HO2_delivery,HO2_receive,0.0,8.1,4.445347668389367e-05,4.445347668389367e-05
+repaired,completion,RMG_delivery,RMG_delivery,Gate Out,9.0,16.8,4.2816376743693376e-05,4.2816376743693376e-05
+repaired,completion,Gate In,RMG_receive,RMG_receive,6.0,13.6,4.171591583097195e-05,4.171591583097195e-05
+repaired,completion,LL_receive,LL_receive,HO2_receive,0.0,7.3,4.0060463347609907e-05,4.0060463347609907e-05
+repaired,completion,HO2_delivery,HO2_receive,HO2_receive,0.0,7.2,3.951416473440969e-05,3.951416473440969e-05
+repaired,completion,RMG_delivery,LL_receive,Gate Out,20.0,13.0,-3.8424735652241947e-05,3.8424735652241947e-05
+repaired,completion,HO2_mixed,RMG_receive,Gate Out,8.0,1.0,-3.842352364773048e-05,3.842352364773048e-05
+repaired,completion,Gate In,HO2_mixed,RMG_receive,7.0,0.0,-3.8422851021797614e-05,3.8422851021797614e-05
+repaired,completion,LL_receive,HO2_receive,LL_receive,0.0,6.666666666666667,3.6585398235591154e-05,3.6585398235591154e-05
+repaired,completion,LL_receive,LL_delivery,RMG_receive,0.0,6.5,3.567720380383319e-05,3.567720380383319e-05
+repaired,completion,HO2_receive,LL_delivery,LL_delivery,0.0,6.5,3.567551973447277e-05,3.567551973447277e-05
+repaired,completion,HO2_receive,LL_receive,LL_receive,0.0,6.444444444444445,3.5366690466107046e-05,3.5366690466107046e-05
+repaired,completion,Gate In,LL_delivery,HO2_delivery,30.0,34.0,2.1948392555612864e-05,3.402826194931103e-05
+repaired,completion,HO2_receive,LL_receive,HO2_receive,0.0,6.2,3.402419808412139e-05,3.402419808412139e-05
+repaired,completion,LL_delivery,RMG_receive,RMG_receive,1.0,7.1,3.3481416497345964e-05,3.3481416497345964e-05
+repaired,completion,Gate In,LL_receive,HO2_receive,0.0,5.8,3.183796420114103e-05,3.183796420114103e-05
+repaired,completion,RMG_mixed,RMG_mixed,Gate Out,6.0,0.5,-3.0189206417136132e-05,3.0189206417136132e-05
+repaired,completion,Gate In,LL_receive,RMG_receive,1.0,6.4,2.963782634469198e-05,2.963782634469198e-05
+repaired,completion,HO2_receive,LL_delivery,Gate Out,0.0,5.3,2.9093525121978542e-05,2.9093525121978542e-05
+repaired,completion,LL_delivery,RMG_delivery,RMG_delivery,2.0,7.3,2.909221701736098e-05,2.909221701736098e-05
+repaired,completion,LL_delivery,RMG_delivery,LL_receive,0.0,5.3,2.909100740396806e-05,2.909100740396806e-05
+repaired,completion,LL_delivery,HO2_receive,LL_delivery,0.0,5.3,2.9090005521043828e-05,2.9090005521043828e-05
+repaired,completion,HO2_receive,HO2_receive,LL_receive,0.0,5.1,2.7986869108118446e-05,2.7986869108118446e-05
+repaired,completion,Gate In,RMG_delivery,RMG_delivery,6.0,11.0,2.7445176118590454e-05,2.7445176118590454e-05
+repaired,completion,Gate In,RMG_mixed,RMG_mixed,6.0,1.1,-2.6896085332864992e-05,2.6896085332864992e-05
+repaired,completion,LL_receive,LL_receive,RMG_receive,0.0,4.7,2.5794208311084627e-05,2.5794208311084627e-05
+repaired,completion,RMG_receive,LL_receive,Gate Out,0.0,4.5,2.469891652993866e-05,2.469891652993866e-05
+repaired,completion,HO2_delivery,LL_receive,LL_receive,0.0,4.5,2.4697015546315775e-05,2.4697015546315775e-05
+repaired,completion,RMG_delivery,RMG_receive,Gate Out,0.0,4.444444444444445,2.4391006011999513e-05,2.4391006011999513e-05
+repaired,completion,Gate In,HO2_delivery,LL_delivery,17.0,20.4,1.8661019567698413e-05,2.4150705867600563e-05
+repaired,completion,RMG_receive,LL_delivery,Gate Out,0.0,4.4,2.414961102654118e-05,2.414961102654118e-05
+repaired,completion,HO2_delivery,HO2_delivery,RMG_receive,0.0,4.3,2.360279494934359e-05,2.360279494934359e-05
+repaired,completion,LL_receive,RMG_delivery,Gate Out,0.0,4.125,2.2638629640745693e-05,2.2638629640745693e-05
+repaired,completion,LL_delivery,LL_delivery,LL_delivery,0.0,4.111111111111111,2.256734489339556e-05,2.256734489339556e-05
+repaired,completion,Gate In,LL_delivery,HO2_mixed,5.0,1.0,-2.1956795212772616e-05,2.1956795212772616e-05
+repaired,completion,HO2_receive,HO2_delivery,HO2_delivery,0.0,4.0,2.1955454674253816e-05,2.1955454674253816e-05
+repaired,completion,LL_delivery,LL_delivery,HO2_receive,0.0,4.0,2.195348284351029e-05,2.195348284351029e-05
+repaired,completion,LL_delivery,RMG_delivery,RMG_receive,0.0,4.0,2.195206543917319e-05,2.195206543917319e-05
+repaired,completion,Gate In,LL_receive,LL_receive,0.0,3.888888888888889,2.1342892386958298e-05,2.1342892386958298e-05
+repaired,completion,LL_delivery,HO2_mixed,Gate Out,4.0,0.2,-2.0858527178609847e-05,2.0858527178609847e-05
+repaired,completion,HO2_delivery,HO2_delivery,HO2_receive,0.0,3.75,2.058188345338273e-05,2.058188345338273e-05
+repaired,completion,HO2_delivery,HO2_delivery,HO2_delivery,0.0,3.7,2.0312021290781036e-05,2.0312021290781036e-05
+repaired,completion,Gate In,LL_receive,HO2_delivery,0.0,3.7,2.030805414872218e-05,2.030805414872218e-05
+repaired,completion,<BOUNDARY>,Gate In,LL_mixed,10.0,13.2,1.7567584670098014e-05,1.9762721530497183e-05
+repaired,completion,RMG_receive,LL_delivery,RMG_receive,4.0,0.4,-1.9761015855964625e-05,1.9761015855964625e-05
+repaired,completion,HO2_receive,HO2_delivery,LL_receive,0.0,3.6,1.9758489843943768e-05,1.9758489843943768e-05
+repaired,completion,LL_delivery,HO2_delivery,LL_receive,0.0,3.5555555555555554,1.9515533921266918e-05,1.9515533921266918e-05
+repaired,completion,LL_receive,RMG_receive,RMG_receive,0.0,3.5,1.9212613157974814e-05,1.9212613157974814e-05
+repaired,completion,LL_receive,LL_delivery,LL_receive,0.0,3.4444444444444446,1.8904985280772867e-05,1.8904985280772867e-05
+repaired,completion,LL_delivery,LL_receive,LL_receive,0.0,3.4,1.8660878345202697e-05,1.8660878345202697e-05
+repaired,completion,Gate In,RMG_mixed,LL_delivery,0.0,3.3,1.8111374065362042e-05,1.8111374065362042e-05
+repaired,completion,HO2_delivery,HO2_receive,HO2_delivery,0.0,3.2222222222222223,1.7684350154467218e-05,1.7684350154467218e-05
+repaired,completion,Gate In,LL_mixed,Gate Out,10.0,12.8,1.537055483343174e-05,1.7565691693830907e-05
+repaired,completion,HO2_receive,RMG_delivery,Gate Out,1.0,4.0,1.647082840573666e-05,1.647082840573666e-05
+repaired,completion,<BOUNDARY>,Gate In,Gate Out,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,Gate In,Gate Out,LL_delivery,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,Gate Out,<BOUNDARY>,<BOUNDARY>,17889.0,17892.0,1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,Gate Out,LL_delivery,<BOUNDARY>,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,HO2_receive,RMG_receive,HO2_receive,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,LL_delivery,<BOUNDARY>,<BOUNDARY>,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,completion,RMG_delivery,HO2_delivery,Gate Out,4.0,1.0,-1.6466626476606222e-05,1.6466626476606222e-05
+repaired,completion,LL_delivery,RMG_receive,HO2_receive,3.0,0.1,-1.5917992320131875e-05,1.5917992320131875e-05
+repaired,completion,LL_receive,HO2_receive,Gate Out,0.0,2.9,1.5916883356591157e-05,1.5916883356591157e-05
+repaired,completion,HO2_receive,HO2_receive,RMG_receive,0.0,2.888888888888889,1.5854749552289768e-05,1.5854749552289768e-05
+repaired,completion,LL_mixed,Gate Out,<BOUNDARY>,11.0,12.8,9.881576116032079e-06,1.5369237505485183e-05
+repaired,completion,RMG_mixed,RMG_receive,Gate Out,0.0,2.7777777777777777,1.5245776960021913e-05,1.5245776960021913e-05
+repaired,completion,LL_receive,HO2_receive,HO2_delivery,0.0,2.75,1.5091521315706654e-05,1.5091521315706654e-05
+repaired,completion,RMG_mixed,LL_delivery,RMG_receive,0.0,2.7,1.481972615178701e-05,1.481972615178701e-05
+repaired,completion,Gate In,HO2_delivery,HO2_delivery,3.0,5.1,1.152613846036912e-05,1.4818367737189854e-05
+repaired,completion,LL_receive,LL_receive,Gate Out,0.0,2.6666666666666665,1.4635358111667571e-05,1.4635358111667571e-05
+repaired,completion,HO2_delivery,HO2_receive,Gate Out,0.0,2.625,1.4409576503542587e-05,1.4409576503542587e-05
+repaired,completion,LL_delivery,HO2_delivery,HO2_delivery,0.0,2.5555555555555554,1.4026211053782387e-05,1.4026211053782387e-05
+repaired,completion,HO2_delivery,LL_receive,RMG_receive,0.0,2.5,1.3723279364468579e-05,1.3723279364468579e-05
+repaired,completion,HO2_delivery,HO2_receive,LL_receive,0.0,2.5,1.371939200188716e-05,1.371939200188716e-05
+repaired,completion,LL_delivery,HO2_receive,HO2_delivery,0.0,2.4444444444444446,1.3416963243688398e-05,1.3416963243688398e-05
+repaired,completion,HO2_delivery,HO2_delivery,LL_delivery,0.0,2.4444444444444446,1.3416939326050185e-05,1.3416939326050185e-05
+repaired,completion,LL_receive,HO2_delivery,LL_receive,0.0,2.4285714285714284,1.3329329983328323e-05,1.3329329983328323e-05
+repaired,completion,HO2_receive,LL_delivery,HO2_delivery,0.0,2.4,1.3171508708708531e-05,1.3171508708708531e-05
+repaired,completion,LL_receive,LL_delivery,Gate Out,0.0,2.375,1.3037347958948856e-05,1.3037347958948856e-05
+repaired,completion,LL_delivery,HO2_delivery,HO2_receive,0.0,2.3333333333333335,1.2807326185622454e-05,1.2807326185622454e-05
+repaired,completion,HO2_delivery,LL_receive,HO2_receive,0.0,2.3333333333333335,1.2807213008153863e-05,1.2807213008153863e-05
+repaired,completion,Gate In,RMG_delivery,HO2_delivery,3.0,0.7,-1.2624909873316376e-05,1.2624909873316376e-05
+repaired,completion,LL_delivery,LL_receive,Gate Out,0.0,2.2857142857142856,1.2547347150164004e-05,1.2547347150164004e-05
+repaired,completion,LL_receive,HO2_delivery,HO2_receive,0.0,2.25,1.2347333500989549e-05,1.2347333500989549e-05
+repaired,completion,HO2_receive,HO2_receive,RMG_delivery,0.0,2.2222222222222223,1.2199403891609894e-05,1.2199403891609894e-05
+repaired,completion,Gate In,RMG_receive,LL_receive,0.0,2.2222222222222223,1.219730119567421e-05,1.219730119567421e-05
+repaired,completion,LL_delivery,RMG_mixed,RMG_receive,0.0,2.2222222222222223,1.2196305773934642e-05,1.2196305773934642e-05
+repaired,completion,LL_receive,LL_receive,LL_delivery,0.0,2.2222222222222223,1.2196153067025958e-05,1.2196153067025958e-05
+repaired,completion,HO2_receive,HO2_delivery,Gate Out,0.0,2.2,1.2074265643345593e-05,1.2074265643345593e-05
+repaired,completion,RMG_delivery,RMG_delivery,LL_receive,0.0,2.125,1.1662829078154082e-05,1.1662829078154082e-05
+repaired,completion,LL_delivery,RMG_receive,LL_receive,0.0,2.111111111111111,1.1586447212772449e-05,1.1586447212772449e-05
+repaired,completion,RMG_delivery,LL_receive,RMG_delivery,0.0,2.111111111111111,1.1585736107358954e-05,1.1585736107358954e-05
+repaired,completion,HO2_receive,RMG_delivery,LL_delivery,0.0,2.0,1.0981078312096102e-05,1.0981078312096102e-05
+repaired,completion,HO2_receive,RMG_mixed,RMG_mixed,0.0,2.0,1.0980684975128748e-05,1.0980684975128748e-05
+repaired,completion,LL_receive,LL_receive,HO2_delivery,0.0,2.0,1.0979990695790353e-05,1.0979990695790353e-05
+repaired,completion,HO2_delivery,LL_delivery,LL_delivery,0.0,2.0,1.0978108441114983e-05,1.0978108441114983e-05
+repaired,completion,LL_delivery,HO2_receive,RMG_delivery,0.0,2.0,1.0977990475562382e-05,1.0977990475562382e-05
+repaired,completion,HO2_receive,HO2_delivery,RMG_receive,0.0,2.0,1.0977568561802304e-05,1.0977568561802304e-05
+repaired,completion,Gate In,LL_receive,RMG_delivery,0.0,2.0,1.0976372038906067e-05,1.0976372038906067e-05
+repaired,completion,HO2_delivery,RMG_receive,RMG_receive,0.0,2.0,1.0975567254238122e-05,1.0975567254238122e-05
+repaired,completion,LL_delivery,LL_receive,RMG_delivery,0.0,2.0,1.0975442447523666e-05,1.0975442447523666e-05
+repaired,completion,RMG_receive,RMG_delivery,RMG_receive,0.0,2.0,1.0973876686547672e-05,1.0973876686547672e-05
+repaired,completion,LL_delivery,HO2_mixed,RMG_delivery,0.0,2.0,1.0972311372252122e-05,1.0972311372252122e-05
+repaired,completion,Gate In,HO2_receive,LL_receive,0.0,1.9,1.042888342941497e-05,1.042888342941497e-05
+repaired,completion,LL_receive,LL_delivery,HO2_delivery,0.0,1.8571428571428572,1.0192875094606503e-05,1.0192875094606503e-05
+repaired,completion,LL_delivery,LL_delivery,Gate Out,0.0,1.8,9.88012299709132e-06,9.88012299709132e-06
+repaired,completion,LL_receive,HO2_delivery,RMG_receive,0.0,1.8,9.879804625762968e-06,9.879804625762968e-06
+repaired,completion,LL_delivery,LL_receive,HO2_delivery,0.0,1.8,9.87874379639859e-06,9.87874379639859e-06
+repaired,completion,Gate In,RMG_receive,LL_delivery,4.0,3.6,-2.197227546420149e-06,9.878664282223913e-06
+repaired,completion,RMG_delivery,RMG_delivery,RMG_delivery,1.0,2.4,7.68135613435542e-06,9.877897205754306e-06
+repaired,completion,HO2_mixed,LL_delivery,RMG_receive,0.0,1.75,9.606422217582012e-06,9.606422217582012e-06
+repaired,completion,LL_receive,HO2_delivery,Gate Out,0.0,1.7142857142857142,9.407901405386677e-06,9.407901405386677e-06
+repaired,completion,Gate In,HO2_receive,RMG_delivery,1.0,2.3,7.1389382986616235e-06,9.334316003073713e-06
+repaired,completion,Gate In,HO2_receive,HO2_delivery,0.0,1.7,9.330278293153696e-06,9.330278293153696e-06
+repaired,completion,HO2_delivery,RMG_receive,LL_delivery,0.0,1.6666666666666667,9.149094280077546e-06,9.149094280077546e-06
+repaired,completion,RMG_delivery,LL_receive,LL_receive,0.0,1.6666666666666667,9.147639136083292e-06,9.147639136083292e-06
+repaired,completion,HO2_receive,LL_delivery,RMG_delivery,0.0,1.6666666666666667,9.14743532589845e-06,9.14743532589845e-06
+repaired,completion,HO2_receive,LL_receive,Gate Out,0.0,1.6666666666666667,9.146893400470025e-06,9.146893400470025e-06
+repaired,completion,HO2_delivery,LL_receive,HO2_delivery,0.0,1.625,8.918230350276114e-06,8.918230350276114e-06
+repaired,completion,HO2_delivery,HO2_delivery,LL_receive,0.0,1.6,8.783863712186545e-06,8.783863712186545e-06
+repaired,completion,LL_receive,HO2_delivery,HO2_delivery,0.0,1.6,8.782817063098e-06,8.782817063098e-06
+repaired,completion,Gate In,HO2_delivery,HO2_receive,0.0,1.6,8.782446584924389e-06,8.782446584924389e-06
+repaired,completion,RMG_delivery,LL_delivery,RMG_receive,0.0,1.5,8.237534113212245e-06,8.237534113212245e-06
+repaired,completion,LL_receive,HO2_delivery,LL_delivery,0.0,1.5,8.237310906419902e-06,8.237310906419902e-06
+repaired,completion,RMG_receive,LL_delivery,LL_receive,0.0,1.5,8.235065271508559e-06,8.235065271508559e-06
+repaired,completion,HO2_delivery,LL_receive,LL_delivery,0.0,1.5,8.234806381045223e-06,8.234806381045223e-06
+repaired,completion,HO2_delivery,HO2_receive,RMG_receive,0.0,1.5,8.234291392205723e-06,8.234291392205723e-06
+repaired,completion,HO2_delivery,HO2_delivery,Gate Out,3.0,2.3,-3.8434339335124664e-06,8.233388492210036e-06
+repaired,completion,RMG_mixed,RMG_mixed,LL_delivery,0.0,1.5,8.232456275812406e-06,8.232456275812406e-06
+repaired,completion,HO2_receive,LL_receive,HO2_delivery,0.0,1.5,8.231839925683022e-06,8.231839925683022e-06
+repaired,completion,LL_delivery,LL_delivery,RMG_delivery,0.0,1.5,8.230979763279912e-06,8.230979763279912e-06
+repaired,completion,RMG_receive,RMG_receive,HO2_delivery,0.0,1.5,8.230965141660333e-06,8.230965141660333e-06
+repaired,completion,Gate In,HO2_mixed,HO2_mixed,0.0,1.5,8.22997108201953e-06,8.22997108201953e-06
+repaired,completion,Gate In,HO2_mixed,LL_delivery,0.0,1.4285714285714286,7.84088601570154e-06,7.84088601570154e-06
+repaired,completion,HO2_delivery,RMG_receive,HO2_delivery,0.0,1.3333333333333333,7.320628427764326e-06,7.320628427764326e-06
+repaired,completion,Gate In,RMG_receive,RMG_delivery,0.0,1.3333333333333333,7.317986926579855e-06,7.317986926579855e-06
+repaired,completion,RMG_receive,RMG_receive,LL_delivery,0.0,1.3333333333333333,7.3173748143572e-06,7.3173748143572e-06
+repaired,completion,HO2_mixed,RMG_delivery,Gate Out,0.0,1.3333333333333333,7.315827599134459e-06,7.315827599134459e-06
+repaired,completion,RMG_mixed,RMG_mixed,RMG_receive,0.0,1.25,6.861815264162783e-06,6.861815264162783e-06
+repaired,completion,RMG_delivery,LL_receive,LL_delivery,0.0,1.25,6.861404159906497e-06,6.861404159906497e-06
+repaired,completion,RMG_receive,RMG_receive,LL_receive,0.0,1.25,6.860707006216731e-06,6.860707006216731e-06
+repaired,completion,LL_receive,HO2_receive,RMG_receive,0.0,1.25,6.860678234410413e-06,6.860678234410413e-06
+repaired,completion,HO2_receive,HO2_delivery,RMG_delivery,0.0,1.25,6.860595417480894e-06,6.860595417480894e-06
+repaired,completion,RMG_mixed,LL_delivery,RMG_mixed,0.0,1.25,6.860344735471283e-06,6.860344735471283e-06
+repaired,completion,LL_receive,RMG_receive,LL_delivery,0.0,1.25,6.860307301479517e-06,6.860307301479517e-06
+repaired,completion,LL_receive,RMG_receive,LL_receive,0.0,1.25,6.859795057252455e-06,6.859795057252455e-06
+repaired,completion,RMG_mixed,LL_delivery,Gate Out,0.0,1.25,6.858650432768682e-06,6.858650432768682e-06
+repaired,completion,LL_receive,RMG_receive,HO2_delivery,0.0,1.2,6.58832360424053e-06,6.58832360424053e-06
+repaired,completion,HO2_delivery,LL_delivery,HO2_delivery,1.0,2.0,5.489862264639059e-06,6.587352304916943e-06
+repaired,completion,LL_delivery,RMG_mixed,RMG_mixed,0.0,1.2,6.586839879984993e-06,6.586839879984993e-06
+repaired,completion,RMG_receive,LL_receive,RMG_receive,0.0,1.2,6.584326139789015e-06,6.584326139789015e-06
+repaired,completion,HO2_delivery,LL_delivery,LL_receive,0.0,1.1666666666666667,6.4043014405010166e-06,6.4043014405010166e-06
+repaired,completion,Gate In,HO2_receive,HO2_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,Gate In,LL_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,Gate In,RMG_mixed,HO2_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,HO2_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,HO2_receive,HO2_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,HO2_receive,RMG_mixed,Gate Out,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,LL_mixed,LL_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,LL_receive,HO2_receive,RMG_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,RMG_mixed,HO2_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,RMG_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,completion,HO2_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+repaired,completion,LL_delivery,HO2_receive,RMG_mixed,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+repaired,completion,Gate In,LL_mixed,LL_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,Gate In,LL_mixed,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,Gate In,RMG_mixed,HO2_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_mixed,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_mixed,RMG_mixed,Gate Out,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_receive,LL_delivery,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_receive,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,LL_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,RMG_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,completion,HO2_receive,RMG_mixed,LL_delivery,0.0,1.0,5.492334230454651e-06,5.492334230454651e-06
+repaired,completion,Gate In,HO2_receive,RMG_mixed,0.0,1.0,5.491670316157892e-06,5.491670316157892e-06
+repaired,completion,HO2_receive,RMG_mixed,HO2_delivery,0.0,1.0,5.491566030227577e-06,5.491566030227577e-06
+repaired,completion,RMG_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+repaired,completion,RMG_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+repaired,completion,HO2_mixed,LL_delivery,Gate Out,0.0,1.0,5.491120382932196e-06,5.491120382932196e-06
+repaired,completion,RMG_receive,HO2_delivery,HO2_delivery,0.0,1.0,5.490738060781546e-06,5.490738060781546e-06
+repaired,completion,RMG_delivery,HO2_receive,HO2_receive,0.0,1.0,5.490692913182167e-06,5.490692913182167e-06
+repaired,completion,RMG_delivery,LL_receive,RMG_receive,0.0,1.0,5.4905356013943795e-06,5.4905356013943795e-06
+repaired,completion,Gate In,LL_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,Gate In,LL_receive,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_delivery,RMG_delivery,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_delivery,RMG_mixed,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,HO2_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,LL_delivery,HO2_delivery,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,LL_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,LL_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,LL_receive,RMG_mixed,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_mixed,HO2_receive,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_mixed,HO2_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_mixed,LL_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_mixed,RMG_mixed,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_receive,HO2_delivery,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_receive,HO2_mixed,Gate Out,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,RMG_receive,RMG_receive,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,completion,Gate In,RMG_mixed,RMG_delivery,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+repaired,completion,RMG_mixed,RMG_delivery,Gate Out,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+repaired,completion,Gate In,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,completion,HO2_receive,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,completion,RMG_mixed,HO2_receive,RMG_mixed,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,completion,HO2_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4894406225773e-06,5.4894406225773e-06
+repaired,completion,HO2_delivery,LL_receive,HO2_mixed,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,HO2_delivery,LL_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,HO2_mixed,RMG_receive,RMG_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,LL_delivery,LL_delivery,LL_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,LL_receive,RMG_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,RMG_mixed,HO2_receive,HO2_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,RMG_receive,LL_receive,LL_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,completion,RMG_mixed,RMG_receive,RMG_receive,0.0,1.0,5.4893286711362576e-06,5.4893286711362576e-06
+repaired,completion,LL_receive,HO2_receive,LL_delivery,0.0,1.0,5.489122203890628e-06,5.489122203890628e-06
+repaired,completion,Gate In,RMG_delivery,LL_mixed,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,completion,HO2_mixed,LL_receive,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,completion,RMG_delivery,LL_mixed,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,completion,RMG_receive,RMG_delivery,Gate Out,0.0,1.0,5.4889420987969345e-06,5.4889420987969345e-06
+repaired,completion,LL_receive,HO2_mixed,RMG_receive,0.0,1.0,5.488670120443955e-06,5.488670120443955e-06
+repaired,completion,LL_receive,HO2_receive,RMG_delivery,0.0,1.0,5.488353821549915e-06,5.488353821549915e-06
+repaired,completion,RMG_delivery,LL_delivery,LL_receive,0.0,1.0,5.488334018200014e-06,5.488334018200014e-06
+repaired,completion,HO2_delivery,RMG_delivery,RMG_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+repaired,completion,HO2_receive,RMG_receive,LL_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+repaired,completion,HO2_receive,RMG_receive,RMG_receive,0.0,1.0,5.4882490868452175e-06,5.4882490868452175e-06
+repaired,completion,LL_delivery,LL_delivery,HO2_delivery,0.0,1.0,5.488163463035359e-06,5.488163463035359e-06
+repaired,completion,HO2_receive,HO2_delivery,LL_delivery,0.0,1.0,5.488032629235566e-06,5.488032629235566e-06
+repaired,completion,HO2_delivery,LL_delivery,RMG_delivery,0.0,1.0,5.487982791693286e-06,5.487982791693286e-06
+repaired,completion,RMG_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487925720038693e-06,5.487925720038693e-06
+repaired,completion,HO2_delivery,RMG_receive,LL_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,HO2_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,HO2_mixed,LL_receive,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,HO2_receive,HO2_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,HO2_receive,LL_receive,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,LL_delivery,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,LL_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,LL_receive,LL_receive,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,LL_receive,RMG_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,RMG_delivery,HO2_delivery,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,RMG_mixed,HO2_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,completion,RMG_mixed,LL_delivery,HO2_receive,0.0,1.0,5.487862074070909e-06,5.487862074070909e-06
+repaired,completion,RMG_receive,RMG_mixed,RMG_receive,0.0,1.0,5.487811571989357e-06,5.487811571989357e-06
+repaired,completion,Gate In,HO2_mixed,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,Gate In,RMG_receive,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,HO2_mixed,LL_delivery,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,HO2_receive,HO2_mixed,RMG_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,HO2_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,LL_delivery,RMG_mixed,HO2_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,LL_delivery,RMG_receive,LL_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,LL_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,LL_receive,HO2_mixed,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,RMG_delivery,LL_receive,HO2_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,RMG_mixed,HO2_receive,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,RMG_mixed,RMG_mixed,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,completion,LL_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.4876760608031515e-06,5.4876760608031515e-06
+repaired,completion,HO2_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,completion,HO2_mixed,HO2_mixed,HO2_delivery,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,completion,LL_delivery,LL_receive,HO2_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,completion,RMG_mixed,LL_delivery,RMG_delivery,0.0,1.0,5.487581385005084e-06,5.487581385005084e-06
+repaired,completion,HO2_delivery,HO2_receive,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,HO2_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,HO2_receive,HO2_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,HO2_receive,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,LL_receive,LL_receive,RMG_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,LL_receive,RMG_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,LL_receive,RMG_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_delivery,HO2_mixed,Gate Out,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_mixed,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_mixed,LL_receive,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_mixed,RMG_delivery,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,RMG_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,completion,LL_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,completion,RMG_receive,RMG_mixed,Gate Out,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,completion,RMG_receive,RMG_receive,RMG_mixed,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,completion,LL_receive,LL_delivery,HO2_receive,0.0,1.0,5.4872596100349255e-06,5.4872596100349255e-06
+repaired,completion,Gate In,RMG_mixed,LL_receive,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+repaired,completion,HO2_receive,LL_receive,RMG_delivery,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+repaired,completion,HO2_mixed,HO2_mixed,LL_receive,0.0,1.0,5.48707395077085e-06,5.48707395077085e-06
+repaired,completion,Gate In,LL_receive,HO2_mixed,0.0,1.0,5.486983602543326e-06,5.486983602543326e-06
+repaired,completion,RMG_receive,HO2_delivery,RMG_receive,0.0,1.0,5.486938454943947e-06,5.486938454943947e-06
+repaired,completion,HO2_delivery,HO2_mixed,RMG_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,HO2_delivery,LL_delivery,RMG_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,LL_delivery,HO2_delivery,HO2_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,RMG_delivery,HO2_receive,HO2_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,RMG_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,RMG_mixed,LL_receive,LL_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,completion,HO2_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486893273150533e-06,5.486893273150533e-06
+repaired,completion,Gate In,HO2_delivery,RMG_mixed,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,completion,HO2_mixed,LL_receive,LL_delivery,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,completion,HO2_receive,RMG_delivery,LL_receive,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,completion,HO2_receive,LL_delivery,HO2_mixed,0.0,1.0,5.486802943757742e-06,5.486802943757742e-06
+repaired,completion,LL_receive,LL_delivery,RMG_delivery,0.0,1.0,5.486707630404237e-06,5.486707630404237e-06
+repaired,completion,HO2_delivery,RMG_mixed,RMG_mixed,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,HO2_mixed,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,HO2_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,HO2_receive,LL_receive,RMG_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,LL_delivery,HO2_receive,LL_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,LL_delivery,RMG_receive,RMG_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,LL_receive,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,RMG_mixed,LL_delivery,LL_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,completion,Gate In,HO2_mixed,LL_receive,1.0,0.1,-4.940233697260716e-06,4.940233697260716e-06
+repaired,completion,LL_delivery,RMG_delivery,HO2_delivery,1.0,0.2,-4.390708181700215e-06,4.390708181700215e-06
+repaired,completion,Gate In,RMG_receive,HO2_delivery,1.0,0.7,-1.6467962016771043e-06,3.842354739467864e-06
+repaired,completion,HO2_delivery,RMG_delivery,RMG_delivery,1.0,0.5,-2.744644192712996e-06,3.84189338897796e-06
+repaired,completion,RMG_receive,HO2_delivery,Gate Out,2.0,2.2,1.0985810420486803e-06,3.293741810135433e-06
+repaired,completion,RMG_delivery,LL_delivery,RMG_delivery,1.0,1.1,5.477417310878059e-07,2.7442828024866922e-06
+repaired,completion,LL_delivery,HO2_delivery,RMG_delivery,1.0,1.5,2.7433397511010124e-06,2.7433397511010124e-06
+repaired,completion,LL_delivery,RMG_receive,HO2_delivery,1.0,0.8,-1.0978515430153666e-06,2.195341583293251e-06
+repaired,completion,LL_delivery,HO2_mixed,RMG_receive,1.0,0.7,-1.6469287746581216e-06,1.6469287746581216e-06
+repaired,completion,<BOUNDARY>,<BOUNDARY>,Gate In,17892.0,17892.0,0.0,0.0
+repaired,explicit,<BOUNDARY>,Gate In,LL_delivery,3574.0,2360.5,-0.006660937762423968,0.006660937762423968
+repaired,explicit,<BOUNDARY>,Gate In,RMG_receive,6075.0,7246.9,0.006432572106737577,0.006432572106737577
+repaired,explicit,Gate In,RMG_receive,Gate Out,6055.0,7226.5,0.006430379283834843,0.006430379283834843
+repaired,explicit,RMG_receive,Gate Out,<BOUNDARY>,7141.0,8126.1,0.005407162825058526,0.005407162825058526
+repaired,explicit,LL_delivery,Gate Out,<BOUNDARY>,2204.0,1532.8,-0.003684193927434474,0.003684193927434474
+repaired,explicit,Gate In,LL_delivery,Gate Out,2166.0,1507.7,-0.00361339289164062,0.00361339289164062
+repaired,explicit,HO2_receive,Gate Out,<BOUNDARY>,1259.0,966.0,-0.0016082714719123433,0.0016082714719123433
+repaired,explicit,Gate In,LL_delivery,RMG_receive,970.0,701.8,-0.0014721842815161726,0.0014721842815161726
+repaired,explicit,<BOUNDARY>,Gate In,LL_receive,108.0,372.3,0.001450741625144501,0.001450741625144501
+repaired,explicit,Gate In,LL_receive,Gate Out,107.0,342.0,0.0012899223474632535,0.0012899223474632535
+repaired,explicit,LL_receive,Gate Out,<BOUNDARY>,140.0,366.7,0.001244359709566386,0.001244359709566386
+repaired,explicit,LL_delivery,RMG_receive,Gate Out,969.0,763.6,-0.0011274751571164984,0.0011274751571164984
+repaired,explicit,LL_delivery,RMG_delivery,Gate Out,250.0,51.5,-0.0010895648937170764,0.0010895648937170764
+repaired,explicit,RMG_delivery,Gate Out,<BOUNDARY>,4611.0,4414.5,-0.001078529722688725,0.001078529722688725
+repaired,explicit,Gate In,LL_delivery,RMG_delivery,252.0,64.3,-0.0010302828031224101,0.0010302828031224101
+repaired,explicit,Gate In,HO2_receive,Gate Out,1095.0,942.5,-0.0008370661598459415,0.0008370661598459415
+repaired,explicit,LL_delivery,HO2_receive,Gate Out,134.0,3.6,-0.0007157641131826989,0.0007157641131826989
+repaired,explicit,<BOUNDARY>,Gate In,HO2_mixed,271.0,163.4,-0.0005906323728994457,0.0005906323728994457
+repaired,explicit,Gate In,LL_delivery,HO2_receive,136.0,30.2,-0.0005807444710311577,0.0005807444710311577
+repaired,explicit,HO2_mixed,Gate Out,<BOUNDARY>,267.0,162.5,-0.0005736161734436081,0.0005736161734436081
+repaired,explicit,Gate In,HO2_mixed,Gate Out,263.0,161.9,-0.0005549526747301585,0.0005549526747301585
+repaired,explicit,<BOUNDARY>,Gate In,HO2_receive,1110.0,1009.0,-0.0005543853870964044,0.0005543853870964044
+repaired,explicit,HO2_receive,HO2_receive,HO2_receive,0.0,79.7,0.0004374578617380425,0.0004374578617380425
+repaired,explicit,Gate In,RMG_mixed,Gate Out,926.0,999.1,0.0004012165039105751,0.0004012165039105751
+repaired,explicit,<BOUNDARY>,Gate In,RMG_mixed,932.0,1004.3,0.00039682395018641076,0.00039682395018641076
+repaired,explicit,Gate In,HO2_delivery,RMG_receive,90.0,27.9,-0.0003408684279990987,0.0003408684279990987
+repaired,explicit,RMG_mixed,Gate Out,<BOUNDARY>,947.0,1000.4,0.0002930841112992877,0.0002930841112992877
+repaired,explicit,<BOUNDARY>,Gate In,HO2_delivery,1409.0,1357.1,-0.0002848742146881395,0.0002848742146881395
+repaired,explicit,Gate In,RMG_delivery,Gate Out,4338.0,4334.4,-1.970624178266392e-05,0.00025577962732391263
+repaired,explicit,<BOUNDARY>,Gate In,RMG_delivery,4403.0,4365.3,-0.00020687552963062918,0.00025409377180265124
+repaired,explicit,Gate In,HO2_receive,LL_delivery,0.0,40.1,0.0002201098813890732,0.0002201098813890732
+repaired,explicit,Gate In,HO2_delivery,Gate Out,1274.0,1297.7,0.00013009619644005716,0.00018608737834384235
+repaired,explicit,HO2_receive,LL_delivery,RMG_receive,0.0,33.7,0.00018498032826105151,0.00018498032826105151
+repaired,explicit,HO2_delivery,Gate Out,<BOUNDARY>,1312.0,1310.2,-9.876926561081395e-06,0.0001690698295579854
+repaired,explicit,HO2_delivery,RMG_receive,Gate Out,91.0,61.0,-0.00016467639019497935,0.00016467639019497935
+repaired,explicit,LL_delivery,HO2_delivery,RMG_receive,1.0,27.4,0.00014490432614778625,0.00014490432614778625
+repaired,explicit,LL_delivery,HO2_delivery,Gate Out,29.0,3.6,-0.00013942144026018481,0.00013942144026018481
+repaired,explicit,LL_delivery,HO2_receive,RMG_receive,2.0,21.2,0.00010537947581922184,0.00010537947581922184
+repaired,explicit,HO2_delivery,LL_delivery,RMG_receive,0.0,17.5,9.60561756823922e-05,9.60561756823922e-05
+repaired,explicit,RMG_receive,RMG_receive,Gate Out,7.0,24.2,9.440908042827936e-05,9.440908042827936e-05
+repaired,explicit,Gate In,HO2_receive,HO2_receive,3.0,19.9,9.27568742748697e-05,9.27568742748697e-05
+repaired,explicit,LL_receive,RMG_receive,Gate Out,1.0,17.9,9.275641756379064e-05,9.275641756379064e-05
+repaired,explicit,HO2_receive,RMG_receive,Gate Out,10.0,25.4,8.45200095160015e-05,8.45200095160015e-05
+repaired,explicit,RMG_receive,HO2_receive,Gate Out,15.0,0.1,-8.178573692892777e-05,8.178573692892777e-05
+repaired,explicit,LL_delivery,RMG_mixed,Gate Out,15.0,0.4,-8.013941145182161e-05,8.013941145182161e-05
+repaired,explicit,Gate In,RMG_delivery,LL_delivery,23.0,8.9,-7.738864273173755e-05,7.738864273173755e-05
+repaired,explicit,RMG_delivery,LL_delivery,Gate Out,22.0,8.2,-7.574114176601827e-05,7.574114176601827e-05
+repaired,explicit,HO2_delivery,LL_delivery,Gate Out,16.0,2.6,-7.355293986688633e-05,7.355293986688633e-05
+repaired,explicit,HO2_receive,HO2_receive,LL_delivery,0.0,13.4,7.354642244073202e-05,7.354642244073202e-05
+repaired,explicit,Gate In,LL_delivery,RMG_mixed,15.0,2.5,-6.861384911858621e-05,6.861384911858621e-05
+repaired,explicit,LL_receive,LL_receive,LL_receive,0.0,11.7,6.420547843445839e-05,6.420547843445839e-05
+repaired,explicit,Gate In,RMG_delivery,HO2_receive,12.0,0.4,-6.367157954719477e-05,6.367157954719477e-05
+repaired,explicit,RMG_delivery,HO2_receive,Gate Out,12.0,0.8,-6.147510429178466e-05,6.147510429178466e-05
+repaired,explicit,LL_delivery,HO2_receive,HO2_receive,0.0,11.2,6.147171837230688e-05,6.147171837230688e-05
+repaired,explicit,Gate In,HO2_delivery,RMG_delivery,13.0,1.9,-6.092631666919117e-05,6.092631666919117e-05
+repaired,explicit,HO2_receive,HO2_receive,Gate Out,3.0,14.0,6.037509777758438e-05,6.037509777758438e-05
+repaired,explicit,Gate In,HO2_receive,RMG_receive,11.0,0.2,-5.928110704450732e-05,5.928110704450732e-05
+repaired,explicit,HO2_receive,HO2_receive,HO2_delivery,0.0,10.7,5.8726529112762766e-05,5.8726529112762766e-05
+repaired,explicit,HO2_delivery,LL_receive,Gate Out,12.0,1.7,-5.653500942320317e-05,5.653500942320317e-05
+repaired,explicit,Gate In,RMG_delivery,LL_receive,20.0,9.9,-5.5440353096907335e-05,5.5440353096907335e-05
+repaired,explicit,LL_delivery,LL_delivery,RMG_receive,0.0,10.1,5.543740249310245e-05,5.543740249310245e-05
+repaired,explicit,HO2_receive,LL_delivery,HO2_receive,0.0,9.9,5.433693995556076e-05,5.433693995556076e-05
+repaired,explicit,Gate In,LL_delivery,LL_receive,0.0,9.8,5.3791453809978827e-05,5.3791453809978827e-05
+repaired,explicit,HO2_delivery,RMG_delivery,Gate Out,13.0,3.5,-5.2145002477352256e-05,5.2145002477352256e-05
+repaired,explicit,Gate In,LL_receive,LL_delivery,0.0,9.4,5.1594575645821355e-05,5.1594575645821355e-05
+repaired,explicit,LL_receive,HO2_receive,HO2_receive,0.0,9.4,5.159155076650631e-05,5.159155076650631e-05
+repaired,explicit,Gate In,LL_delivery,LL_delivery,0.0,9.2,5.049748285215847e-05,5.049748285215847e-05
+repaired,explicit,Gate In,RMG_receive,HO2_receive,9.0,0.0,-4.9400808456596924e-05,4.9400808456596924e-05
+repaired,explicit,Gate In,HO2_delivery,LL_receive,12.0,3.1,-4.8851417398707974e-05,4.8851417398707974e-05
+repaired,explicit,RMG_receive,RMG_receive,RMG_receive,2.0,10.4,4.61008316233359e-05,4.61008316233359e-05
+repaired,explicit,LL_delivery,LL_receive,RMG_receive,0.0,8.2,4.501001392329743e-05,4.501001392329743e-05
+repaired,explicit,HO2_receive,HO2_delivery,HO2_receive,0.0,8.1,4.445347668389367e-05,4.445347668389367e-05
+repaired,explicit,RMG_delivery,RMG_delivery,Gate Out,9.0,16.8,4.2816376743693376e-05,4.2816376743693376e-05
+repaired,explicit,Gate In,RMG_receive,RMG_receive,6.0,13.6,4.171591583097195e-05,4.171591583097195e-05
+repaired,explicit,LL_receive,LL_receive,HO2_receive,0.0,7.3,4.0060463347609907e-05,4.0060463347609907e-05
+repaired,explicit,HO2_delivery,HO2_receive,HO2_receive,0.0,7.2,3.951416473440969e-05,3.951416473440969e-05
+repaired,explicit,RMG_delivery,LL_receive,Gate Out,20.0,13.0,-3.8424735652241947e-05,3.8424735652241947e-05
+repaired,explicit,HO2_mixed,RMG_receive,Gate Out,8.0,1.0,-3.842352364773048e-05,3.842352364773048e-05
+repaired,explicit,Gate In,HO2_mixed,RMG_receive,7.0,0.0,-3.8422851021797614e-05,3.8422851021797614e-05
+repaired,explicit,LL_receive,HO2_receive,LL_receive,0.0,6.666666666666667,3.6585398235591154e-05,3.6585398235591154e-05
+repaired,explicit,LL_receive,LL_delivery,RMG_receive,0.0,6.5,3.567720380383319e-05,3.567720380383319e-05
+repaired,explicit,HO2_receive,LL_delivery,LL_delivery,0.0,6.5,3.567551973447277e-05,3.567551973447277e-05
+repaired,explicit,HO2_receive,LL_receive,LL_receive,0.0,6.444444444444445,3.5366690466107046e-05,3.5366690466107046e-05
+repaired,explicit,Gate In,LL_delivery,HO2_delivery,30.0,34.0,2.1948392555612864e-05,3.402826194931103e-05
+repaired,explicit,HO2_receive,LL_receive,HO2_receive,0.0,6.2,3.402419808412139e-05,3.402419808412139e-05
+repaired,explicit,LL_delivery,RMG_receive,RMG_receive,1.0,7.1,3.3481416497345964e-05,3.3481416497345964e-05
+repaired,explicit,Gate In,LL_receive,HO2_receive,0.0,5.8,3.183796420114103e-05,3.183796420114103e-05
+repaired,explicit,RMG_mixed,RMG_mixed,Gate Out,6.0,0.5,-3.0189206417136132e-05,3.0189206417136132e-05
+repaired,explicit,Gate In,LL_receive,RMG_receive,1.0,6.4,2.963782634469198e-05,2.963782634469198e-05
+repaired,explicit,HO2_receive,LL_delivery,Gate Out,0.0,5.3,2.9093525121978542e-05,2.9093525121978542e-05
+repaired,explicit,LL_delivery,RMG_delivery,RMG_delivery,2.0,7.3,2.909221701736098e-05,2.909221701736098e-05
+repaired,explicit,LL_delivery,RMG_delivery,LL_receive,0.0,5.3,2.909100740396806e-05,2.909100740396806e-05
+repaired,explicit,LL_delivery,HO2_receive,LL_delivery,0.0,5.3,2.9090005521043828e-05,2.9090005521043828e-05
+repaired,explicit,HO2_receive,HO2_receive,LL_receive,0.0,5.1,2.7986869108118446e-05,2.7986869108118446e-05
+repaired,explicit,Gate In,RMG_delivery,RMG_delivery,6.0,11.0,2.7445176118590454e-05,2.7445176118590454e-05
+repaired,explicit,Gate In,RMG_mixed,RMG_mixed,6.0,1.1,-2.6896085332864992e-05,2.6896085332864992e-05
+repaired,explicit,LL_receive,LL_receive,RMG_receive,0.0,4.7,2.5794208311084627e-05,2.5794208311084627e-05
+repaired,explicit,RMG_receive,LL_receive,Gate Out,0.0,4.5,2.469891652993866e-05,2.469891652993866e-05
+repaired,explicit,HO2_delivery,LL_receive,LL_receive,0.0,4.5,2.4697015546315775e-05,2.4697015546315775e-05
+repaired,explicit,RMG_delivery,RMG_receive,Gate Out,0.0,4.444444444444445,2.4391006011999513e-05,2.4391006011999513e-05
+repaired,explicit,Gate In,HO2_delivery,LL_delivery,17.0,20.4,1.8661019567698413e-05,2.4150705867600563e-05
+repaired,explicit,RMG_receive,LL_delivery,Gate Out,0.0,4.4,2.414961102654118e-05,2.414961102654118e-05
+repaired,explicit,HO2_delivery,HO2_delivery,RMG_receive,0.0,4.3,2.360279494934359e-05,2.360279494934359e-05
+repaired,explicit,LL_receive,RMG_delivery,Gate Out,0.0,4.125,2.2638629640745693e-05,2.2638629640745693e-05
+repaired,explicit,LL_delivery,LL_delivery,LL_delivery,0.0,4.111111111111111,2.256734489339556e-05,2.256734489339556e-05
+repaired,explicit,Gate In,LL_delivery,HO2_mixed,5.0,1.0,-2.1956795212772616e-05,2.1956795212772616e-05
+repaired,explicit,HO2_receive,HO2_delivery,HO2_delivery,0.0,4.0,2.1955454674253816e-05,2.1955454674253816e-05
+repaired,explicit,LL_delivery,LL_delivery,HO2_receive,0.0,4.0,2.195348284351029e-05,2.195348284351029e-05
+repaired,explicit,LL_delivery,RMG_delivery,RMG_receive,0.0,4.0,2.195206543917319e-05,2.195206543917319e-05
+repaired,explicit,Gate In,LL_receive,LL_receive,0.0,3.888888888888889,2.1342892386958298e-05,2.1342892386958298e-05
+repaired,explicit,LL_delivery,HO2_mixed,Gate Out,4.0,0.2,-2.0858527178609847e-05,2.0858527178609847e-05
+repaired,explicit,HO2_delivery,HO2_delivery,HO2_receive,0.0,3.75,2.058188345338273e-05,2.058188345338273e-05
+repaired,explicit,HO2_delivery,HO2_delivery,HO2_delivery,0.0,3.7,2.0312021290781036e-05,2.0312021290781036e-05
+repaired,explicit,Gate In,LL_receive,HO2_delivery,0.0,3.7,2.030805414872218e-05,2.030805414872218e-05
+repaired,explicit,<BOUNDARY>,Gate In,LL_mixed,10.0,13.2,1.7567584670098014e-05,1.9762721530497183e-05
+repaired,explicit,RMG_receive,LL_delivery,RMG_receive,4.0,0.4,-1.9761015855964625e-05,1.9761015855964625e-05
+repaired,explicit,HO2_receive,HO2_delivery,LL_receive,0.0,3.6,1.9758489843943768e-05,1.9758489843943768e-05
+repaired,explicit,LL_delivery,HO2_delivery,LL_receive,0.0,3.5555555555555554,1.9515533921266918e-05,1.9515533921266918e-05
+repaired,explicit,LL_receive,RMG_receive,RMG_receive,0.0,3.5,1.9212613157974814e-05,1.9212613157974814e-05
+repaired,explicit,LL_receive,LL_delivery,LL_receive,0.0,3.4444444444444446,1.8904985280772867e-05,1.8904985280772867e-05
+repaired,explicit,LL_delivery,LL_receive,LL_receive,0.0,3.4,1.8660878345202697e-05,1.8660878345202697e-05
+repaired,explicit,Gate In,RMG_mixed,LL_delivery,0.0,3.3,1.8111374065362042e-05,1.8111374065362042e-05
+repaired,explicit,HO2_delivery,HO2_receive,HO2_delivery,0.0,3.2222222222222223,1.7684350154467218e-05,1.7684350154467218e-05
+repaired,explicit,Gate In,LL_mixed,Gate Out,10.0,12.8,1.537055483343174e-05,1.7565691693830907e-05
+repaired,explicit,HO2_receive,RMG_delivery,Gate Out,1.0,4.0,1.647082840573666e-05,1.647082840573666e-05
+repaired,explicit,HO2_receive,RMG_receive,HO2_receive,3.0,0.0,-1.6466936152198978e-05,1.6466936152198978e-05
+repaired,explicit,RMG_delivery,HO2_delivery,Gate Out,4.0,1.0,-1.6466626476606222e-05,1.6466626476606222e-05
+repaired,explicit,LL_delivery,RMG_receive,HO2_receive,3.0,0.1,-1.5917992320131875e-05,1.5917992320131875e-05
+repaired,explicit,LL_receive,HO2_receive,Gate Out,0.0,2.9,1.5916883356591157e-05,1.5916883356591157e-05
+repaired,explicit,HO2_receive,HO2_receive,RMG_receive,0.0,2.888888888888889,1.5854749552289768e-05,1.5854749552289768e-05
+repaired,explicit,LL_mixed,Gate Out,<BOUNDARY>,11.0,12.8,9.881576116032079e-06,1.5369237505485183e-05
+repaired,explicit,RMG_mixed,RMG_receive,Gate Out,0.0,2.7777777777777777,1.5245776960021913e-05,1.5245776960021913e-05
+repaired,explicit,LL_receive,HO2_receive,HO2_delivery,0.0,2.75,1.5091521315706654e-05,1.5091521315706654e-05
+repaired,explicit,RMG_mixed,LL_delivery,RMG_receive,0.0,2.7,1.481972615178701e-05,1.481972615178701e-05
+repaired,explicit,Gate In,HO2_delivery,HO2_delivery,3.0,5.1,1.152613846036912e-05,1.4818367737189854e-05
+repaired,explicit,LL_receive,LL_receive,Gate Out,0.0,2.6666666666666665,1.4635358111667571e-05,1.4635358111667571e-05
+repaired,explicit,HO2_delivery,HO2_receive,Gate Out,0.0,2.625,1.4409576503542587e-05,1.4409576503542587e-05
+repaired,explicit,LL_delivery,HO2_delivery,HO2_delivery,0.0,2.5555555555555554,1.4026211053782387e-05,1.4026211053782387e-05
+repaired,explicit,HO2_delivery,LL_receive,RMG_receive,0.0,2.5,1.3723279364468579e-05,1.3723279364468579e-05
+repaired,explicit,HO2_delivery,HO2_receive,LL_receive,0.0,2.5,1.371939200188716e-05,1.371939200188716e-05
+repaired,explicit,LL_delivery,HO2_receive,HO2_delivery,0.0,2.4444444444444446,1.3416963243688398e-05,1.3416963243688398e-05
+repaired,explicit,HO2_delivery,HO2_delivery,LL_delivery,0.0,2.4444444444444446,1.3416939326050185e-05,1.3416939326050185e-05
+repaired,explicit,LL_receive,HO2_delivery,LL_receive,0.0,2.4285714285714284,1.3329329983328323e-05,1.3329329983328323e-05
+repaired,explicit,HO2_receive,LL_delivery,HO2_delivery,0.0,2.4,1.3171508708708531e-05,1.3171508708708531e-05
+repaired,explicit,LL_receive,LL_delivery,Gate Out,0.0,2.375,1.3037347958948856e-05,1.3037347958948856e-05
+repaired,explicit,LL_delivery,HO2_delivery,HO2_receive,0.0,2.3333333333333335,1.2807326185622454e-05,1.2807326185622454e-05
+repaired,explicit,HO2_delivery,LL_receive,HO2_receive,0.0,2.3333333333333335,1.2807213008153863e-05,1.2807213008153863e-05
+repaired,explicit,Gate In,RMG_delivery,HO2_delivery,3.0,0.7,-1.2624909873316376e-05,1.2624909873316376e-05
+repaired,explicit,LL_delivery,LL_receive,Gate Out,0.0,2.2857142857142856,1.2547347150164004e-05,1.2547347150164004e-05
+repaired,explicit,LL_receive,HO2_delivery,HO2_receive,0.0,2.25,1.2347333500989549e-05,1.2347333500989549e-05
+repaired,explicit,HO2_receive,HO2_receive,RMG_delivery,0.0,2.2222222222222223,1.2199403891609894e-05,1.2199403891609894e-05
+repaired,explicit,Gate In,RMG_receive,LL_receive,0.0,2.2222222222222223,1.219730119567421e-05,1.219730119567421e-05
+repaired,explicit,LL_delivery,RMG_mixed,RMG_receive,0.0,2.2222222222222223,1.2196305773934642e-05,1.2196305773934642e-05
+repaired,explicit,LL_receive,LL_receive,LL_delivery,0.0,2.2222222222222223,1.2196153067025958e-05,1.2196153067025958e-05
+repaired,explicit,HO2_receive,HO2_delivery,Gate Out,0.0,2.2,1.2074265643345593e-05,1.2074265643345593e-05
+repaired,explicit,RMG_delivery,RMG_delivery,LL_receive,0.0,2.125,1.1662829078154082e-05,1.1662829078154082e-05
+repaired,explicit,LL_delivery,RMG_receive,LL_receive,0.0,2.111111111111111,1.1586447212772449e-05,1.1586447212772449e-05
+repaired,explicit,RMG_delivery,LL_receive,RMG_delivery,0.0,2.111111111111111,1.1585736107358954e-05,1.1585736107358954e-05
+repaired,explicit,HO2_receive,RMG_delivery,LL_delivery,0.0,2.0,1.0981078312096102e-05,1.0981078312096102e-05
+repaired,explicit,HO2_receive,RMG_mixed,RMG_mixed,0.0,2.0,1.0980684975128748e-05,1.0980684975128748e-05
+repaired,explicit,LL_receive,LL_receive,HO2_delivery,0.0,2.0,1.0979990695790353e-05,1.0979990695790353e-05
+repaired,explicit,HO2_delivery,LL_delivery,LL_delivery,0.0,2.0,1.0978108441114983e-05,1.0978108441114983e-05
+repaired,explicit,LL_delivery,HO2_receive,RMG_delivery,0.0,2.0,1.0977990475562382e-05,1.0977990475562382e-05
+repaired,explicit,HO2_receive,HO2_delivery,RMG_receive,0.0,2.0,1.0977568561802304e-05,1.0977568561802304e-05
+repaired,explicit,Gate In,LL_receive,RMG_delivery,0.0,2.0,1.0976372038906067e-05,1.0976372038906067e-05
+repaired,explicit,HO2_delivery,RMG_receive,RMG_receive,0.0,2.0,1.0975567254238122e-05,1.0975567254238122e-05
+repaired,explicit,LL_delivery,LL_receive,RMG_delivery,0.0,2.0,1.0975442447523666e-05,1.0975442447523666e-05
+repaired,explicit,RMG_receive,RMG_delivery,RMG_receive,0.0,2.0,1.0973876686547672e-05,1.0973876686547672e-05
+repaired,explicit,LL_delivery,HO2_mixed,RMG_delivery,0.0,2.0,1.0972311372252122e-05,1.0972311372252122e-05
+repaired,explicit,Gate In,HO2_receive,LL_receive,0.0,1.9,1.042888342941497e-05,1.042888342941497e-05
+repaired,explicit,LL_receive,LL_delivery,HO2_delivery,0.0,1.8571428571428572,1.0192875094606503e-05,1.0192875094606503e-05
+repaired,explicit,LL_delivery,LL_delivery,Gate Out,0.0,1.8,9.88012299709132e-06,9.88012299709132e-06
+repaired,explicit,LL_receive,HO2_delivery,RMG_receive,0.0,1.8,9.879804625762968e-06,9.879804625762968e-06
+repaired,explicit,LL_delivery,LL_receive,HO2_delivery,0.0,1.8,9.87874379639859e-06,9.87874379639859e-06
+repaired,explicit,Gate In,RMG_receive,LL_delivery,4.0,3.6,-2.197227546420149e-06,9.878664282223913e-06
+repaired,explicit,RMG_delivery,RMG_delivery,RMG_delivery,1.0,2.4,7.68135613435542e-06,9.877897205754306e-06
+repaired,explicit,HO2_mixed,LL_delivery,RMG_receive,0.0,1.75,9.606422217582012e-06,9.606422217582012e-06
+repaired,explicit,LL_receive,HO2_delivery,Gate Out,0.0,1.7142857142857142,9.407901405386677e-06,9.407901405386677e-06
+repaired,explicit,Gate In,HO2_receive,RMG_delivery,1.0,2.3,7.1389382986616235e-06,9.334316003073713e-06
+repaired,explicit,Gate In,HO2_receive,HO2_delivery,0.0,1.7,9.330278293153696e-06,9.330278293153696e-06
+repaired,explicit,HO2_delivery,RMG_receive,LL_delivery,0.0,1.6666666666666667,9.149094280077546e-06,9.149094280077546e-06
+repaired,explicit,RMG_delivery,LL_receive,LL_receive,0.0,1.6666666666666667,9.147639136083292e-06,9.147639136083292e-06
+repaired,explicit,HO2_receive,LL_delivery,RMG_delivery,0.0,1.6666666666666667,9.14743532589845e-06,9.14743532589845e-06
+repaired,explicit,HO2_receive,LL_receive,Gate Out,0.0,1.6666666666666667,9.146893400470025e-06,9.146893400470025e-06
+repaired,explicit,HO2_delivery,LL_receive,HO2_delivery,0.0,1.625,8.918230350276114e-06,8.918230350276114e-06
+repaired,explicit,HO2_delivery,HO2_delivery,LL_receive,0.0,1.6,8.783863712186545e-06,8.783863712186545e-06
+repaired,explicit,LL_receive,HO2_delivery,HO2_delivery,0.0,1.6,8.782817063098e-06,8.782817063098e-06
+repaired,explicit,Gate In,HO2_delivery,HO2_receive,0.0,1.6,8.782446584924389e-06,8.782446584924389e-06
+repaired,explicit,RMG_delivery,LL_delivery,RMG_receive,0.0,1.5,8.237534113212245e-06,8.237534113212245e-06
+repaired,explicit,LL_receive,HO2_delivery,LL_delivery,0.0,1.5,8.237310906419902e-06,8.237310906419902e-06
+repaired,explicit,RMG_receive,LL_delivery,LL_receive,0.0,1.5,8.235065271508559e-06,8.235065271508559e-06
+repaired,explicit,HO2_delivery,LL_receive,LL_delivery,0.0,1.5,8.234806381045223e-06,8.234806381045223e-06
+repaired,explicit,HO2_delivery,HO2_receive,RMG_receive,0.0,1.5,8.234291392205723e-06,8.234291392205723e-06
+repaired,explicit,HO2_delivery,HO2_delivery,Gate Out,3.0,2.3,-3.8434339335124664e-06,8.233388492210036e-06
+repaired,explicit,RMG_mixed,RMG_mixed,LL_delivery,0.0,1.5,8.232456275812406e-06,8.232456275812406e-06
+repaired,explicit,HO2_receive,LL_receive,HO2_delivery,0.0,1.5,8.231839925683022e-06,8.231839925683022e-06
+repaired,explicit,LL_delivery,LL_delivery,RMG_delivery,0.0,1.5,8.230979763279912e-06,8.230979763279912e-06
+repaired,explicit,RMG_receive,RMG_receive,HO2_delivery,0.0,1.5,8.230965141660333e-06,8.230965141660333e-06
+repaired,explicit,Gate In,HO2_mixed,HO2_mixed,0.0,1.5,8.22997108201953e-06,8.22997108201953e-06
+repaired,explicit,Gate In,HO2_mixed,LL_delivery,0.0,1.4285714285714286,7.84088601570154e-06,7.84088601570154e-06
+repaired,explicit,HO2_delivery,RMG_receive,HO2_delivery,0.0,1.3333333333333333,7.320628427764326e-06,7.320628427764326e-06
+repaired,explicit,Gate In,RMG_receive,RMG_delivery,0.0,1.3333333333333333,7.317986926579855e-06,7.317986926579855e-06
+repaired,explicit,RMG_receive,RMG_receive,LL_delivery,0.0,1.3333333333333333,7.3173748143572e-06,7.3173748143572e-06
+repaired,explicit,HO2_mixed,RMG_delivery,Gate Out,0.0,1.3333333333333333,7.315827599134459e-06,7.315827599134459e-06
+repaired,explicit,RMG_mixed,RMG_mixed,RMG_receive,0.0,1.25,6.861815264162783e-06,6.861815264162783e-06
+repaired,explicit,RMG_delivery,LL_receive,LL_delivery,0.0,1.25,6.861404159906497e-06,6.861404159906497e-06
+repaired,explicit,RMG_receive,RMG_receive,LL_receive,0.0,1.25,6.860707006216731e-06,6.860707006216731e-06
+repaired,explicit,LL_receive,HO2_receive,RMG_receive,0.0,1.25,6.860678234410413e-06,6.860678234410413e-06
+repaired,explicit,HO2_receive,HO2_delivery,RMG_delivery,0.0,1.25,6.860595417480894e-06,6.860595417480894e-06
+repaired,explicit,RMG_mixed,LL_delivery,RMG_mixed,0.0,1.25,6.860344735471283e-06,6.860344735471283e-06
+repaired,explicit,LL_receive,RMG_receive,LL_delivery,0.0,1.25,6.860307301479517e-06,6.860307301479517e-06
+repaired,explicit,LL_receive,RMG_receive,LL_receive,0.0,1.25,6.859795057252455e-06,6.859795057252455e-06
+repaired,explicit,RMG_mixed,LL_delivery,Gate Out,0.0,1.25,6.858650432768682e-06,6.858650432768682e-06
+repaired,explicit,LL_receive,RMG_receive,HO2_delivery,0.0,1.2,6.58832360424053e-06,6.58832360424053e-06
+repaired,explicit,HO2_delivery,LL_delivery,HO2_delivery,1.0,2.0,5.489862264639059e-06,6.587352304916943e-06
+repaired,explicit,LL_delivery,RMG_mixed,RMG_mixed,0.0,1.2,6.586839879984993e-06,6.586839879984993e-06
+repaired,explicit,RMG_receive,LL_receive,RMG_receive,0.0,1.2,6.584326139789015e-06,6.584326139789015e-06
+repaired,explicit,HO2_delivery,LL_delivery,LL_receive,0.0,1.1666666666666667,6.4043014405010166e-06,6.4043014405010166e-06
+repaired,explicit,Gate In,HO2_receive,HO2_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,Gate In,LL_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,Gate In,RMG_mixed,HO2_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,HO2_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,HO2_receive,HO2_mixed,LL_delivery,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,HO2_receive,RMG_mixed,Gate Out,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,LL_mixed,LL_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,LL_receive,HO2_receive,RMG_mixed,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,RMG_mixed,HO2_delivery,HO2_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,RMG_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.495230140238273e-06,5.495230140238273e-06
+repaired,explicit,HO2_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+repaired,explicit,LL_delivery,HO2_receive,RMG_mixed,0.0,1.0,5.4927863139013235e-06,5.4927863139013235e-06
+repaired,explicit,Gate In,LL_mixed,LL_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,Gate In,LL_mixed,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,Gate In,RMG_mixed,HO2_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_delivery,RMG_delivery,HO2_receive,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_mixed,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_mixed,RMG_mixed,Gate Out,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_receive,LL_delivery,RMG_mixed,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_receive,LL_receive,RMG_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,LL_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,RMG_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.492362869430057e-06,5.492362869430057e-06
+repaired,explicit,HO2_receive,RMG_mixed,LL_delivery,0.0,1.0,5.492334230454651e-06,5.492334230454651e-06
+repaired,explicit,Gate In,HO2_receive,RMG_mixed,0.0,1.0,5.491670316157892e-06,5.491670316157892e-06
+repaired,explicit,HO2_receive,RMG_mixed,HO2_delivery,0.0,1.0,5.491566030227577e-06,5.491566030227577e-06
+repaired,explicit,RMG_delivery,HO2_delivery,RMG_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+repaired,explicit,RMG_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.491340170813847e-06,5.491340170813847e-06
+repaired,explicit,HO2_mixed,LL_delivery,Gate Out,0.0,1.0,5.491120382932196e-06,5.491120382932196e-06
+repaired,explicit,RMG_receive,HO2_delivery,HO2_delivery,0.0,1.0,5.490738060781546e-06,5.490738060781546e-06
+repaired,explicit,RMG_delivery,HO2_receive,HO2_receive,0.0,1.0,5.490692913182167e-06,5.490692913182167e-06
+repaired,explicit,RMG_delivery,LL_receive,RMG_receive,0.0,1.0,5.4905356013943795e-06,5.4905356013943795e-06
+repaired,explicit,Gate In,LL_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,Gate In,LL_receive,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_delivery,RMG_delivery,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_delivery,RMG_mixed,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_mixed,HO2_mixed,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,HO2_receive,RMG_delivery,HO2_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,LL_delivery,HO2_delivery,RMG_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,LL_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,LL_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,LL_receive,RMG_mixed,LL_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_delivery,LL_delivery,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_mixed,HO2_receive,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_mixed,HO2_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_mixed,LL_receive,RMG_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_mixed,RMG_mixed,HO2_receive,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_receive,HO2_delivery,LL_delivery,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_receive,HO2_mixed,Gate Out,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,RMG_receive,RMG_receive,HO2_mixed,0.0,1.0,5.490342487564374e-06,5.490342487564374e-06
+repaired,explicit,Gate In,RMG_mixed,RMG_delivery,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+repaired,explicit,RMG_mixed,RMG_delivery,Gate Out,0.0,1.0,5.48990653540974e-06,5.48990653540974e-06
+repaired,explicit,Gate In,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,explicit,HO2_receive,RMG_mixed,HO2_receive,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,explicit,RMG_mixed,HO2_receive,RMG_mixed,0.0,1.0,5.489890404117702e-06,5.489890404117702e-06
+repaired,explicit,HO2_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4894406225773e-06,5.4894406225773e-06
+repaired,explicit,HO2_delivery,LL_receive,HO2_mixed,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,HO2_delivery,LL_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,HO2_mixed,RMG_receive,RMG_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,LL_delivery,LL_delivery,LL_receive,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,LL_receive,RMG_receive,RMG_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,RMG_mixed,HO2_receive,HO2_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,RMG_receive,LL_receive,LL_delivery,0.0,1.0,5.489438320671029e-06,5.489438320671029e-06
+repaired,explicit,RMG_mixed,RMG_receive,RMG_receive,0.0,1.0,5.4893286711362576e-06,5.4893286711362576e-06
+repaired,explicit,LL_receive,HO2_receive,LL_delivery,0.0,1.0,5.489122203890628e-06,5.489122203890628e-06
+repaired,explicit,Gate In,RMG_delivery,LL_mixed,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,explicit,HO2_mixed,LL_receive,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,explicit,RMG_delivery,LL_mixed,Gate Out,1.0,0.0,-5.488978717399659e-06,5.488978717399659e-06
+repaired,explicit,RMG_receive,RMG_delivery,Gate Out,0.0,1.0,5.4889420987969345e-06,5.4889420987969345e-06
+repaired,explicit,LL_receive,HO2_mixed,RMG_receive,0.0,1.0,5.488670120443955e-06,5.488670120443955e-06
+repaired,explicit,LL_receive,HO2_receive,RMG_delivery,0.0,1.0,5.488353821549915e-06,5.488353821549915e-06
+repaired,explicit,RMG_delivery,LL_delivery,LL_receive,0.0,1.0,5.488334018200014e-06,5.488334018200014e-06
+repaired,explicit,HO2_delivery,RMG_delivery,RMG_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+repaired,explicit,HO2_receive,RMG_receive,LL_receive,0.0,1.0,5.488294234444596e-06,5.488294234444596e-06
+repaired,explicit,HO2_receive,RMG_receive,RMG_receive,0.0,1.0,5.4882490868452175e-06,5.4882490868452175e-06
+repaired,explicit,LL_delivery,LL_delivery,HO2_delivery,0.0,1.0,5.488163463035359e-06,5.488163463035359e-06
+repaired,explicit,HO2_receive,HO2_delivery,LL_delivery,0.0,1.0,5.488032629235566e-06,5.488032629235566e-06
+repaired,explicit,HO2_delivery,LL_delivery,RMG_delivery,0.0,1.0,5.487982791693286e-06,5.487982791693286e-06
+repaired,explicit,RMG_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487925720038693e-06,5.487925720038693e-06
+repaired,explicit,HO2_delivery,RMG_receive,LL_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,HO2_mixed,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,HO2_mixed,LL_receive,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,HO2_receive,HO2_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,HO2_receive,LL_receive,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,LL_delivery,HO2_mixed,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,LL_delivery,RMG_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,LL_receive,LL_receive,HO2_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,LL_receive,RMG_receive,RMG_mixed,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,RMG_delivery,HO2_delivery,RMG_receive,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,RMG_mixed,HO2_delivery,LL_delivery,0.0,1.0,5.487901920216882e-06,5.487901920216882e-06
+repaired,explicit,RMG_mixed,LL_delivery,HO2_receive,0.0,1.0,5.487862074070909e-06,5.487862074070909e-06
+repaired,explicit,RMG_receive,RMG_mixed,RMG_receive,0.0,1.0,5.487811571989357e-06,5.487811571989357e-06
+repaired,explicit,Gate In,HO2_mixed,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,Gate In,RMG_receive,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,HO2_mixed,LL_delivery,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,HO2_receive,HO2_mixed,RMG_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,HO2_receive,RMG_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,LL_delivery,RMG_mixed,HO2_receive,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,LL_delivery,RMG_receive,LL_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,LL_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,LL_receive,HO2_mixed,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,RMG_delivery,LL_receive,HO2_delivery,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,RMG_mixed,HO2_receive,HO2_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,RMG_mixed,RMG_mixed,RMG_mixed,0.0,1.0,5.487721223761833e-06,5.487721223761833e-06
+repaired,explicit,LL_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.4876760608031515e-06,5.4876760608031515e-06
+repaired,explicit,HO2_mixed,HO2_delivery,RMG_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,explicit,HO2_mixed,HO2_mixed,HO2_delivery,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,explicit,LL_delivery,LL_receive,HO2_receive,0.0,1.0,5.487585712575627e-06,5.487585712575627e-06
+repaired,explicit,RMG_mixed,LL_delivery,RMG_delivery,0.0,1.0,5.487581385005084e-06,5.487581385005084e-06
+repaired,explicit,HO2_delivery,HO2_receive,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,HO2_delivery,RMG_mixed,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,HO2_receive,HO2_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,HO2_receive,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,LL_receive,LL_receive,RMG_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,LL_receive,RMG_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,LL_receive,RMG_mixed,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_delivery,HO2_mixed,Gate Out,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_delivery,RMG_delivery,HO2_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_mixed,LL_delivery,LL_receive,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_mixed,LL_receive,LL_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_mixed,RMG_delivery,HO2_mixed,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,RMG_receive,HO2_delivery,RMG_delivery,0.0,1.0,5.487450201389422e-06,5.487450201389422e-06
+repaired,explicit,LL_receive,RMG_delivery,HO2_receive,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,explicit,RMG_receive,RMG_mixed,Gate Out,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,explicit,RMG_receive,RMG_receive,RMG_mixed,0.0,1.0,5.4873297835178345e-06,5.4873297835178345e-06
+repaired,explicit,LL_receive,LL_delivery,HO2_receive,0.0,1.0,5.4872596100349255e-06,5.4872596100349255e-06
+repaired,explicit,Gate In,RMG_mixed,LL_receive,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+repaired,explicit,HO2_receive,LL_receive,RMG_delivery,0.0,1.0,5.487194272331629e-06,5.487194272331629e-06
+repaired,explicit,HO2_mixed,HO2_mixed,LL_receive,0.0,1.0,5.48707395077085e-06,5.48707395077085e-06
+repaired,explicit,Gate In,LL_receive,HO2_mixed,0.0,1.0,5.486983602543326e-06,5.486983602543326e-06
+repaired,explicit,RMG_receive,HO2_delivery,RMG_receive,0.0,1.0,5.486938454943947e-06,5.486938454943947e-06
+repaired,explicit,HO2_delivery,HO2_mixed,RMG_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,HO2_delivery,LL_delivery,RMG_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,LL_delivery,HO2_delivery,HO2_mixed,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,RMG_delivery,HO2_receive,HO2_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,RMG_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,RMG_mixed,LL_receive,LL_receive,0.0,1.0,5.486938343273836e-06,5.486938343273836e-06
+repaired,explicit,HO2_delivery,HO2_receive,LL_delivery,0.0,1.0,5.486893273150533e-06,5.486893273150533e-06
+repaired,explicit,Gate In,HO2_delivery,RMG_mixed,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,explicit,HO2_mixed,LL_receive,LL_delivery,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,explicit,HO2_receive,RMG_delivery,LL_receive,0.0,1.0,5.486848091357121e-06,5.486848091357121e-06
+repaired,explicit,HO2_receive,LL_delivery,HO2_mixed,0.0,1.0,5.486802943757742e-06,5.486802943757742e-06
+repaired,explicit,LL_receive,LL_delivery,RMG_delivery,0.0,1.0,5.486707630404237e-06,5.486707630404237e-06
+repaired,explicit,HO2_delivery,RMG_mixed,RMG_mixed,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,HO2_mixed,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,HO2_mixed,LL_delivery,HO2_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,HO2_receive,LL_receive,RMG_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,LL_delivery,HO2_receive,LL_receive,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,LL_delivery,RMG_receive,RMG_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,LL_receive,HO2_mixed,Gate Out,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,RMG_mixed,LL_delivery,LL_delivery,0.0,1.0,5.486245981324818e-06,5.486245981324818e-06
+repaired,explicit,Gate In,HO2_mixed,LL_receive,1.0,0.1,-4.940233697260716e-06,4.940233697260716e-06
+repaired,explicit,LL_delivery,RMG_delivery,HO2_delivery,1.0,0.2,-4.390708181700215e-06,4.390708181700215e-06
+repaired,explicit,Gate In,RMG_receive,HO2_delivery,1.0,0.7,-1.6467962016771043e-06,3.842354739467864e-06
+repaired,explicit,HO2_delivery,RMG_delivery,RMG_delivery,1.0,0.5,-2.744644192712996e-06,3.84189338897796e-06
+repaired,explicit,RMG_receive,HO2_delivery,Gate Out,2.0,2.2,1.0985810420486803e-06,3.293741810135433e-06
+repaired,explicit,RMG_delivery,LL_delivery,RMG_delivery,1.0,1.1,5.477417310878059e-07,2.7442828024866922e-06
+repaired,explicit,LL_delivery,HO2_delivery,RMG_delivery,1.0,1.5,2.7433397511010124e-06,2.7433397511010124e-06
+repaired,explicit,LL_delivery,RMG_receive,HO2_delivery,1.0,0.8,-1.0978515430153666e-06,2.195341583293251e-06
+repaired,explicit,LL_delivery,HO2_mixed,RMG_receive,1.0,0.7,-1.6469287746581216e-06,1.6469287746581216e-06
+repaired,explicit,<BOUNDARY>,<BOUNDARY>,Gate In,17892.0,17892.0,0.0,0.0
+repaired,explicit,Gate Out,<BOUNDARY>,<BOUNDARY>,17892.0,17892.0,0.0,0.0

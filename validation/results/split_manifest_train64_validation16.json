@@ -1,0 +1,12 @@
+{
+  "design": "64% discovery training and subsequent 16% temporal validation",
+  "cutoff_arrival_ts": "2026-04-10T15:50:00",
+  "train": {
+    "n_cases": 57254,
+    "n_events": 175902
+  },
+  "test": {
+    "n_cases": 14314,
+    "n_events": 44146
+  }
+}

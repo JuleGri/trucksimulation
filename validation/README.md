@@ -40,29 +40,36 @@ reconstruction.
 | 4 | `04_baseline_percentile_sensitivity.py` | Recomputes the transition baseline at the 5th, 10th, 25th and 50th percentile and reports the impact on discovered waiting times and the data-aware duration R² / MAE. Addresses the "circular reasoning" concern. |
 | 6 | `06_multi_seed_ci.py` | Repeats simulation for multiple seeds, reports raw/robust confidence intervals (including yard-only unweighted, real-frequency-weighted and per-activity EMD) and rejects any seed that violates the sequential case contract. |
 | 8 | `08_validate_eventlog_contract.py` | Hard structural/causality gate for the real and simulated logs; also writes routing-rate and duration-outlier audits. |
-| 9 | `09_multi_seed_scenarios.py` | Runs the final cap-3 effective baseline, T22 resource-pool reallocation and demand increase with matched seeds. It reports T22 effects separately for RMG receive and delivery work. `--no-rmg-cap` reproduces the freely discovered overlap capacities for diagnosis only. |
+| 9 | `09_multi_seed_scenarios.py` | Runs a supplied cap-3 baseline, T22 resource-pool reallocation and demand increase with matched seeds. It reports T22 effects separately for RMG receive and delivery work. Structural violations abort; outputs above 24 hours remain in the raw KPIs and are reported as a tail diagnostic. |
 | 10 | `10_compare_rmg_capacity_sensitivity.py` | Joins the original and capped scenario replications by seed, reports the direct cap effect and the cap-by-scenario difference-in-differences with 95% paired intervals. |
 | 11 | `11_receive_delivery_utilization_analysis.py` | Tests the association between target-area utilisation and RMG receive/delivery operational response time. Fits an adjusted model on the temporal training split, clusters uncertainty by calendar day, evaluates predictions on the holdout and checks whether the receive-delivery slope difference replicates. |
 | 12 | `12_audit_prosit_context_rules.py` | Audits every rule in the frozen ProSiT pickle and separates execution-time, waiting-time, resource-selection and transition-routing effects. Reconstructs each transition's process prefix and lists all retained utilisation/demand splits without mutating the model. |
 | 13 | `13_bottleneck_analysis.py` | Decomposes held-out turnaround into recorded service and composite pre-service delay, then ranks frequency-weighted accumulation points without treating them as causal queues. |
 | 14 | `14_temporal_transfer_audit.py` | Compares the observed training and held-out periods: turnaround, yard-service distributions, case mix, target areas, demand and utilisation proxies. |
-| 15 | `15_three_configuration_ablation.py` | Joins identical seeds for no-rules, workload-blind rules and rules+workload and reports paired incremental effects with 95% Student-t intervals. |
+| 15 | `15_three_configuration_ablation.py` | Legacy three-level screening retained for audit history; it is not the final feature-source experiment. |
 | 16 | `16_gate_only_structural_repair.py` | Exports a separate PNML and ProSiT bundle that removes only the silent gate-only bypass and compares before/after conformance and structure. |
-| 17 | `17_compare_scenario_state_ablation.py` | Compares matched-seed T22 and demand responses between workload-blind rules and rules+workload, including a paired difference-in-differences. |
+| 17 | `17_compare_scenario_state_ablation.py` | Compares matched-seed T22 and demand responses between the selected visit-only reference and the investigated but rejected both-sources model, including a paired difference-in-differences. |
 | 18 | `18_rmg_capacity_pressure_audit.py` | Tests whether the 20 percent demand intervention approaches the stated capacity of three concurrent RMG tasks per block using held-out offered load and minute-grid overlap diagnostics. |
+| 19 | `19_ngram_control_flow_distance.py` | Computes paired 3-gram distribution distance against the held-out log. |
+| 20 | `20_feature_source_audit.py` | Audits correlations, redundancy and the feature splits retained in the serialized white-box rules. |
+| 21 | `21_feature_source_factorial.py` | Computes paired factor effects and the static-by-native interaction. |
+| 22 | `22_run_feature_source_factorial.py` | Runs or resumes the standardized 2x2 feature-source experiment. |
+| 24 | `24_run_clean_static_sensitivity.py` | Runs or resumes the pre-specified semantically cleaned static-state sensitivity. |
+| 25 | `25_run_standardized_scenarios.py` | Runs or resumes final visit-only and both scenario bundles, validates the cap-3 visit-only reference, compares scenario responses and freezes provenance. |
 
 ### Layered validity audits
 
-After the three ten-seed configuration runs exist, reproduce the additional
-audits from the repository root with:
+The current feature-source, sensitivity and scenario evidence is reproduced
+from the repository root with:
 
 ```powershell
 python validation/13_bottleneck_analysis.py
 python validation/14_temporal_transfer_audit.py
-python validation/15_three_configuration_ablation.py
 python validation/16_gate_only_structural_repair.py
-python validation/17_compare_scenario_state_ablation.py
 python validation/18_rmg_capacity_pressure_audit.py
+python validation/22_run_feature_source_factorial.py
+python validation/24_run_clean_static_sensitivity.py
+python validation/25_run_standardized_scenarios.py
 ```
 
 The structural-repair pickle is a robustness model, not a replacement for the
@@ -143,32 +150,36 @@ resource to at most three, and uses that effective bundle as the final baseline.
 This does not overwrite or mutate the freely discovered source pickle:
 
 ```powershell
-python validation/09_multi_seed_scenarios.py `
-    --label prosit_sequential_calibrated_scenarios_rmg_cap3_ci `
-    --rmg-max-concurrency 3 `
-    --n-seeds 10 `
-    --base-seed 42
+python validation/25_run_standardized_scenarios.py
 ```
 
 The effective cap-3 baseline and both derived scenario bundles are serialized
-inside the labelled result directory. `scenario_parameter_changes.json`
+inside the labelled `standardized_20260830_visit_only_scenarios_cap3_ci` and
+`standardized_20260830_both_scenarios_cap3_ci` result directories.
+`scenario_parameter_changes.json`
 records the discovered and effective capacities, while
 `scenario_run_summary.json` records both parameter hashes and the contract
 status. The cap is an upper bound, not a claim that all three cranes serve
 landside trucks simultaneously: actual waterside/landside allocation is absent
 from the data and remains outside model scope.
 
-For the diagnostic comparison only, reproduce the unconstrained overlap model
-with `--no-rmg-cap`. After both runs are complete, generate the paired capacity
-comparison and interaction analysis:
+The existing capped-versus-uncapped diagnostic predates the final feature-source
+selection and uses the earlier fully contextualized Inductive-Miner bundle. It
+can be recomputed with `--no-rmg-cap` and compared with:
 
 ```powershell
 python validation/10_compare_rmg_capacity_sensitivity.py
 ```
 
-The comparison refuses to run if source-model hashes, seeds, trace counts,
+It is not an uncapped counterpart to the selected visit-only reference and is
+not part of `25_run_standardized_scenarios.py`. The comparison refuses to run
+if source-model hashes, seeds, trace counts,
 start time, timestamp resolution or demand settings differ, or if either run
-failed a case or duration contract.
+failed a structural case contract. The 24-hour threshold is reported as a
+tail diagnostic rather than treated as a physical validity contract. The final
+model roles, source and derived hashes, seeds and authoritative result paths are
+frozen in
+`validation/results/standardized_20260830_model_selection/model_role_manifest.json`.
 
 ### Receive/delivery utilisation and frozen-rule audit
 

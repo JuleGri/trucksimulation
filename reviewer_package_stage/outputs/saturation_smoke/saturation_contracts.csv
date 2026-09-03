@@ -1,0 +1,9 @@
+seed,scenario,gate_only_cases,wrong_case_boundary_cases,within_case_overlap_cases,decreasing_completion_cases,gate_out_before_final_yard_cases,wrong_case_count,t22_resource_assignments,prohibited_resource_assignments,demand_multiplier
+42,demand_x1.00,0,0,0,0,0,0,0,0,1.0
+42,demand_x1.20,0,0,0,0,0,0,0,0,1.2
+42,demand_x2.40,0,0,0,0,0,0,0,0,2.4
+42,demand_x3.00,0,0,0,0,0,0,0,0,3.0
+43,demand_x1.00,0,0,0,0,0,0,0,0,1.0
+43,demand_x1.20,0,0,0,0,0,0,0,0,1.2
+43,demand_x2.40,0,0,0,0,0,0,0,0,2.4
+43,demand_x3.00,0,0,0,0,0,0,0,0,3.0

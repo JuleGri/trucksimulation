@@ -1,0 +1,8 @@
+contrast,metric,n_paired_seeds,mean_difference,sd_difference,ci95_lo,ci95_hi,interval_excludes_zero
+clean_static_minus_visit_only,case_turnaround_emd_min,10,0.048893008089832435,0.10037455521945896,-0.02291062317014135,0.12069663934980622,False
+clean_static_minus_visit_only,yard_service_time_emd_frequency_weighted_min,10,-0.024405307219147288,0.09826760914898071,-0.0947017200570967,0.045891105618802136,False
+clean_static_minus_visit_only,yard_activity_rate_l1_error,10,0.06217862731947242,0.008618170325153036,0.05601355966054275,0.06834369497840209,True
+clean_static_minus_visit_only,inter_arrival_emd_min,10,0.0,0.0,0.0,0.0,False
+clean_static_minus_visit_only,gate_only_cases,10,0.0,0.0,0.0,0.0,False
+clean_static_minus_visit_only,ngd_completion_order,10,0.016355052377803016,0.0024762606345647338,0.014583642231883834,0.0181264625237222,True
+clean_static_minus_visit_only,ngd_explicit_order,10,0.016355003529724348,0.002476264932647566,0.014583590309141928,0.018126416750306767,True

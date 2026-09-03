@@ -1,0 +1,4 @@
+split,ll_mixed_events,ll_mixed_cases,ll_mixed_only_yard_cases,ll_mixed_multi_yard_cases,ll_mixed_first_in_multi_yard,ll_mixed_last_in_multi_yard,service_mean_min,service_median_min,service_total_min,pre_service_mean_min,pre_service_median_min,pre_service_total_min
+train,53,53,47,6,6,0,11.377358490566039,9.0,603.0,7.245283018867925,6.0,384.0
+holdout,11,11,10,1,0,1,14.909090909090908,14.0,164.0,6.2727272727272725,5.0,69.0
+combined,64,64,57,7,6,1,11.984375,10.0,767.0,7.078125,6.0,453.0

@@ -1,0 +1,69 @@
+{
+  "schema": "ctb-prosit-provenance-2",
+  "model_role": "final standardized cap-three visit-only baseline and primary policy scenarios",
+  "simulation_contract": {
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "cases_per_run": 17892,
+    "start_time": "2026-04-20T18:17:00",
+    "timestamp_resolution": "minute"
+  },
+  "petri_net": {
+    "path": "models/ctb_inductive_miner.pnml",
+    "sha256": "47de11c659f1cc898a2bfebc810409007a610076539bb3259113d0572ff78bb7"
+  },
+  "models": {
+    "baseline": {
+      "pkl": "models/params_baseline.pkl",
+      "pkl_sha256": "d654924277035011e5e5cd666f30d1015993101139ad0d054510e8da75a58b22",
+      "json": "models/params_baseline.json",
+      "json_sha256": "474195b5ebbfc0248b4dc83ad447114c677fa3405e6fccbcda666f4e40ec0934"
+    },
+    "t22_closed": {
+      "pkl": "models/params_t22_closed.pkl",
+      "pkl_sha256": "4d6ef79e21d221c135f967b2ca2ae494f24049f67eb6b37707bdf2d9f883d62c",
+      "json": "models/params_t22_closed.json",
+      "json_sha256": "c213f59719e98ef29cd27f714bd81761ed9e906db41c91138d137ab454854d2c"
+    },
+    "demand_plus_20pct": {
+      "pkl": "models/params_demand_plus_20pct.pkl",
+      "pkl_sha256": "d5e78080f49112c9a9e1d1e7fa05db2f6e2ca56fdf08b07c774622ceb551b66d",
+      "json": "models/params_demand_plus_20pct.json",
+      "json_sha256": "b410907a83462614b02dd62f48d0c23d6d2c91af0df24074d97db1beff0d179b"
+    }
+  },
+  "expected_results": {
+    "scenario_replications.csv": {
+      "path": "expected_results/scenario_replications.csv",
+      "sha256": "618ef34689286fd0a422a67312cf0209543f2aa7570bea46024e65f8cf05a11a"
+    },
+    "scenario_contracts.csv": {
+      "path": "expected_results/scenario_contracts.csv",
+      "sha256": "1fcf878fd6f24584e66374d696dd4cb4c54efccc32c8a4069e73dd81f91fbd7e"
+    },
+    "scenario_kpi_summary.csv": {
+      "path": "expected_results/scenario_kpi_summary.csv",
+      "sha256": "34cf96d997822dad8248e2e4caa12045267359ca90f9bb8d483b4f06bbcd8683"
+    },
+    "scenario_paired_deltas.csv": {
+      "path": "expected_results/scenario_paired_deltas.csv",
+      "sha256": "158660905fe0f1c15282eac99d5905cd1336483c77fe13ff8adc0c9a2f5f1bf0"
+    },
+    "scenario_paired_delta_summary.csv": {
+      "path": "expected_results/scenario_paired_delta_summary.csv",
+      "sha256": "b56f1c06fb82bd0126417da6b2c640f8cc4f78c08e5ee21466bdaaa4872dce32"
+    }
+  },
+  "originating_result_directory": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_scenarios_cap3_ci",
+  "scope_note": "The primary notebooks reproduce the final baseline and two policy scenarios. They do not repeat discovery because the confidential event log is not distributed."
+}

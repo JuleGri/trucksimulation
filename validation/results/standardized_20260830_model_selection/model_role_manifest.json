@@ -1,0 +1,108 @@
+{
+  "created_at": "2026-08-30T09:26:13.337735+02:00",
+  "purpose": "Freeze the final standardized model roles and exact scenario artifacts used for thesis result synchronization.",
+  "design": {
+    "training_test_split": "unchanged shared 80/20 arrival-time split",
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51
+    ],
+    "scenario_common_random_numbers": true,
+    "rmg_max_concurrency": 3,
+    "scenarios": [
+      "baseline",
+      "t22_closed",
+      "demand_plus_20pct"
+    ],
+    "demand_increase_pct": 20.0
+  },
+  "model_roles": {
+    "visit_only": {
+      "role": "historical reference model",
+      "selection_basis": "parsimony and superior activity-frequency and 3-gram fidelity; selection was not based on turnaround EMD alone"
+    },
+    "both": {
+      "role": "investigated but rejected model",
+      "continued_use": "scenario-response robustness comparator only, not an adopted baseline"
+    },
+    "clean_static": {
+      "role": "pre-specified post-hoc sensitivity",
+      "conclusion": "no retained demand/utilisation split and worse activity-frequency and 3-gram fidelity; no further ad-hoc feature combinations pursued"
+    }
+  },
+  "evidence": {
+    "standardized_2x2": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_source_factorial_standardized_20260829\\factorial_manifest.json",
+    "clean_static_sensitivity": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_clean_static_sensitivity_20260829\\sensitivity_manifest.json",
+    "reference_holdout_validation": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_reference_cap3_vs_holdout_ci",
+    "visit_only_scenarios": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_scenarios_cap3_ci",
+    "both_scenarios": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_both_scenarios_cap3_ci",
+    "scenario_bundle_robustness": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_scenario_bundle_robustness",
+    "standardized_feature_audit": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_source_audit_standardized_20260830"
+  },
+  "artifacts": {
+    "visit_only_source_pickle": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_visit_only_common_20260829\\prosit_params.pkl",
+      "sha256": "c3e93a9e01991440366eb0dda4e93c298d344fc2ff7c95df17c3bb47b5e2c10c"
+    },
+    "visit_only_source_json": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_visit_only_common_20260829\\prosit_params.json",
+      "sha256": "a35faeb96b16d59e147bdf8e2a17ea7c0b9efd0059f1a0685aaf4c9c6ccbe4d8"
+    },
+    "static_only_source_pickle": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_static_only_20260829\\prosit_params.pkl",
+      "sha256": "2d5d5a5412a77f61dd0b9c3c36beee338bf7dc836349d6a03c556c2aadf06e4f"
+    },
+    "static_only_source_json": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_static_only_20260829\\prosit_params.json",
+      "sha256": "5f3d53ae823502a340e0521bdb9d3186ecfea41b24e860493b3833a4ce505cf7"
+    },
+    "native_only_source_pickle": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_native_only_20260829\\prosit_params.pkl",
+      "sha256": "598802be24336099d9ed1ffcb5bb7e6f852e525ea438848d757ff1f4e6cf0af0"
+    },
+    "native_only_source_json": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_native_only_20260829\\prosit_params.json",
+      "sha256": "7c018203e806203fd163c7c2e977c3526009c83b371b480fab6433ad702391ae"
+    },
+    "both_source_pickle": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_both_common_20260829\\prosit_params.pkl",
+      "sha256": "f66ecc793e14749a930428efaf78237450b7ab01ba420599b3083b67291f8ec0"
+    },
+    "both_source_json": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\baseline\\discovery_params\\params_20260816_214403_train80\\prosit_discovery_feature_both_common_20260829\\prosit_params.json",
+      "sha256": "6ef62dd61849b9dcad3a6956f517df757e3465774b6611aade169ef928163eb0"
+    },
+    "visit_only_cap3_baseline": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_scenarios_cap3_ci\\params_baseline_rmg_max_concurrency_3.pkl",
+      "sha256": "d654924277035011e5e5cd666f30d1015993101139ad0d054510e8da75a58b22"
+    },
+    "visit_only_scenario_summary": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_scenarios_cap3_ci\\scenario_run_summary.json",
+      "sha256": "47977ffbfe97b7e6d1fd078d0269f3a7398db9371685c4893727f23babbb2c66"
+    },
+    "both_scenario_summary": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_both_scenarios_cap3_ci\\scenario_run_summary.json",
+      "sha256": "bcb2c46b42af7a84f7538e6ed4610d10fc4b3134bcefb67dd7f44cf13b7317a3"
+    },
+    "scenario_robustness_summary": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_scenario_bundle_robustness\\scenario_state_ablation_summary.json",
+      "sha256": "b80ae0daa4109a62d4d1458c2cd60ed36c020449ac4ce53fde31a19a55f33be7"
+    },
+    "standardized_feature_audit": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\feature_source_audit_standardized_20260830\\audit_manifest.json",
+      "sha256": "0c759b7658dcc517f457ed7f27cdcff1c2aff66cdc6d2a6928b98a6165487031"
+    },
+    "reference_holdout_replications": {
+      "path": "C:\\Users\\Jule\\Documents\\Master\\Masterthesis\\trucksimulation\\validation\\results\\standardized_20260830_visit_only_reference_cap3_vs_holdout_ci\\mc_replications.csv",
+      "sha256": "b4db21b9aed084fabef00b76ea816d3dee94064979463fd7c6279b3ff05e2ad5"
+    }
+  }
+}

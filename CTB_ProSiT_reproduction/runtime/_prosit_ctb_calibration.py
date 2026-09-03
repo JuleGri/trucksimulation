@@ -414,6 +414,7 @@ def simulate_ctb(
     # ProSiT 1.0.3 no-rules mode may pass numpy arrays to random.choice().
     original_choice = random.choice
     original_sampling_from_dist = prosit_simulator.sampling_from_dist
+    original_return_fired_transition = prosit_simulator.return_fired_transition
 
     def safe_choice(sequence):
         if isinstance(sequence, np.ndarray):
@@ -445,8 +446,34 @@ def simulate_ctb(
             n_sample=n_sample,
         )
 
+    def deterministic_return_fired_transition(
+        transition_weights,
+        enabled_transitions,
+    ):
+        """Sample enabled transitions in a stable, process-independent order.
+
+        ProSiT obtains enabled transitions from a set. PM4Py hashes transition
+        objects by identity, so iteration order can change after a model is
+        unpickled in another Python process. Sorting by the Petri-net transition
+        name makes the existing weighted draw reproducible without changing the
+        net, the weights, or the random-number stream.
+        """
+
+        ordered_transitions = sorted(
+            enabled_transitions,
+            key=lambda transition: (
+                str(transition.name),
+                "" if transition.label is None else str(transition.label),
+            ),
+        )
+        return original_return_fired_transition(
+            transition_weights,
+            ordered_transitions,
+        )
+
     random.choice = safe_choice
     prosit_simulator.sampling_from_dist = sampling_with_ctb_empirical
+    prosit_simulator.return_fired_transition = deterministic_return_fired_transition
     try:
         if t_start is None:
             simulated = engine.apply(n_traces=n_traces)
@@ -455,6 +482,7 @@ def simulate_ctb(
     finally:
         random.choice = original_choice
         prosit_simulator.sampling_from_dist = original_sampling_from_dist
+        prosit_simulator.return_fired_transition = original_return_fired_transition
 
     return quantize_simulated_timestamps(
         simulated,

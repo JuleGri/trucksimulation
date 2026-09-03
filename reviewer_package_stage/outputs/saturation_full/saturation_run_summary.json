@@ -1,0 +1,281 @@
+{
+  "status": "completed",
+  "started_at": "2026-08-28T16:21:21.703665+02:00",
+  "finished_at": "2026-08-28T17:23:10.788295+02:00",
+  "model": "calibrated rules+workload cap-three diagnostic baseline",
+  "n_cases_per_run": 17892,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "demand_multipliers": [
+    1.0,
+    1.2,
+    1.5,
+    2.0,
+    2.4,
+    3.0
+  ],
+  "paired_common_random_numbers": true,
+  "all_structural_contracts_passed": true,
+  "headline_paired_effects": [
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.005471719204114223,
+      "std_delta": 0.19780185185200183,
+      "ci95_delta_lo": -0.1360272015320016,
+      "ci95_delta_hi": 0.14697063994023002,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.0,
+      "std_delta": 0.816496580927726,
+      "ci95_delta_lo": -0.5840864678680845,
+      "ci95_delta_hi": 0.5840864678680845,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.09133294782713275,
+      "std_delta": 0.07608525720717399,
+      "ci95_delta_lo": 0.03690483364142655,
+      "ci95_delta_hi": 0.14576106201283895,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 0.00863495192018826,
+      "std_delta": 0.11321293218056457,
+      "ci95_delta_lo": -0.07235270096036711,
+      "ci95_delta_hi": 0.08962260480074363,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 1.2,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 11.527215808394361,
+      "std_delta": 0.06907354734167166,
+      "ci95_delta_lo": 11.477803569283605,
+      "ci95_delta_hi": 11.576628047505118,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 0.576324614352783,
+      "std_delta": 0.7018020214598951,
+      "ci95_delta_lo": 0.0742856916772745,
+      "ci95_delta_hi": 1.0783635370282916,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 1.1,
+      "std_delta": 1.286683937707919,
+      "ci95_delta_lo": 0.1795617593591119,
+      "ci95_delta_hi": 2.020438240640888,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.061239867126087866,
+      "std_delta": 0.08039645015604452,
+      "ci95_delta_lo": 0.0037277112914351,
+      "ci95_delta_hi": 0.11875202296074064,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 0.6942784128916949,
+      "std_delta": 0.8661392411380583,
+      "ci95_delta_lo": 0.0746797252113941,
+      "ci95_delta_hi": 1.3138771005719958,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 1.5,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 27.40264665904632,
+      "std_delta": 0.15925549510711717,
+      "ci95_delta_lo": 27.288722140807664,
+      "ci95_delta_hi": 27.516571177284973,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 4.644382964453388,
+      "std_delta": 1.1688663753995412,
+      "ci95_delta_lo": 3.8082263306544264,
+      "ci95_delta_hi": 5.480539598252348,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 10.7,
+      "std_delta": 3.16403399335581,
+      "ci95_delta_lo": 8.43658643212698,
+      "ci95_delta_hi": 12.963413567873019,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.027207782226316903,
+      "std_delta": 0.11528578623651471,
+      "ci95_delta_lo": -0.05526270111823171,
+      "ci95_delta_hi": 0.10967826557086552,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 5.877875833356177,
+      "std_delta": 1.384502348395906,
+      "ci95_delta_lo": 4.887462517098562,
+      "ci95_delta_hi": 6.868289149613792,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.0,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 99.02026437242829,
+      "std_delta": 1.081291958306606,
+      "ci95_delta_lo": 98.2467547026831,
+      "ci95_delta_hi": 99.79377404217347,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 5.714168343393695,
+      "std_delta": 0.2957309632607363,
+      "ci95_delta_lo": 5.50261515651577,
+      "ci95_delta_hi": 5.92572153027162,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 13.6,
+      "std_delta": 0.8432740427115678,
+      "ci95_delta_lo": 12.996758089920478,
+      "ci95_delta_hi": 14.203241910079521,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.024595864170265536,
+      "std_delta": 0.11860783826871558,
+      "ci95_delta_lo": -0.060251072037511844,
+      "ci95_delta_hi": 0.10944280037804291,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 7.207536915788422,
+      "std_delta": 0.3252846816804423,
+      "ci95_delta_lo": 6.974842272341848,
+      "ci95_delta_hi": 7.440231559234996,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 2.4,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 132.24467574159712,
+      "std_delta": 1.394184797737339,
+      "ci95_delta_lo": 131.2473360183364,
+      "ci95_delta_hi": 133.24201546485784,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_turnaround_min",
+      "n": 10,
+      "mean_delta": 6.159775318578136,
+      "std_delta": 0.3788513242345859,
+      "ci95_delta_lo": 5.888761407450794,
+      "ci95_delta_hi": 6.4307892297054785,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "p90_turnaround_min",
+      "n": 10,
+      "mean_delta": 14.8,
+      "std_delta": 1.0327955589886444,
+      "ci95_delta_lo": 14.06118256442164,
+      "ci95_delta_hi": 15.53881743557836,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_service_min",
+      "n": 10,
+      "mean_delta": 0.03965021734892567,
+      "std_delta": 0.10493475044541219,
+      "ci95_delta_lo": -0.03541558105850823,
+      "ci95_delta_hi": 0.11471601575635956,
+      "ci_excludes_zero": false
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "mean_rmg_pre_service_min",
+      "n": 10,
+      "mean_delta": 7.7666520402098715,
+      "std_delta": 0.30579161038321184,
+      "ci95_delta_lo": 7.547901899934351,
+      "ci95_delta_hi": 7.9854021804853925,
+      "ci_excludes_zero": true
+    },
+    {
+      "demand_multiplier": 3.0,
+      "metric": "arrival_rate_per_elapsed_hour",
+      "n": 10,
+      "mean_delta": 181.4325130703721,
+      "std_delta": 1.8551948825303841,
+      "ci95_delta_lo": 180.10538659923256,
+      "ci95_delta_hi": 182.75963954151163,
+      "ci_excludes_zero": true
+    }
+  ]
+}
